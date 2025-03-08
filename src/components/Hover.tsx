@@ -1,21 +1,32 @@
+'use client'
+
 import { useEffect, useRef } from 'react';
 import styles from './Hover.module.scss';
 
+interface Props {
+  color?: string;
+}
+
 export default function Hover({ color }: Props) {
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function mouseMoveEvent(e) {
-      const { x } = container.current.getBoundingClientRect();
-      container.current.style.setProperty('--px', e.clientX - x);
-      color && container.current.style.setProperty('--color', color);
+
+    if (!container.current) return;
+
+    const currentContainer = container.current;
+
+    function mouseMoveEvent(e: MouseEvent) {
+      const { x } = currentContainer.getBoundingClientRect();
+      currentContainer.style.setProperty('--px', `${e.clientX - x}`);
+      color && currentContainer.style.setProperty('--color', color);
     }
-    container.current.addEventListener('mousemove', mouseMoveEvent);
+    currentContainer.addEventListener('mousemove', mouseMoveEvent);
 
     return () => {
-      container.current.removeEventListener('mousemove', mouseMoveEvent);
+      currentContainer.removeEventListener('mousemove', mouseMoveEvent);
     };
-  }, []);
+  }, [color]);
 
   return <div ref={container} className={styles.hover}></div>;
-}
+};

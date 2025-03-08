@@ -70,6 +70,7 @@ export default function Navbar() {
           </Link>
           <Link href='https://opencollective.com/Hack4Impact' className={styles.donate_button}>
             Donate
+            <Hover />
           </Link>
         </div>
       </nav>

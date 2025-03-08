@@ -33,6 +33,7 @@ main {
 h1 {
   font-size: 44px;
 
+  // mixin definied in variables.scss
   @include screen('tablet') {
     font-size: $h1;
   }
@@ -41,6 +42,7 @@ h1 {
 h2 {
   font-size: $h3;
 
+  // mixin definied in variables.scss
   @include screen('tablet') {
     font-size: $h2;
   }
@@ -49,6 +51,7 @@ h2 {
 h3 {
   font-size: $h4;
 
+  // mixin definied in variables.scss
   @include screen('tablet') {
     font-size: $h3;
   }
@@ -104,6 +107,8 @@ button {
 /* Utility Classes */
 
 .contain {
+
+  // mixin definied in variables.scss
   @include container;
 }
 

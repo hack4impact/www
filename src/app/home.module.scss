@@ -1,0 +1,25 @@
+@use '../variables.scss' as *;
+
+.card_row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.button_row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 52px;
+
+  a {
+    margin-bottom: 8px;
+    width: 100%;
+
+    @include screen('tablet') {
+      width: auto;
+      margin-right: 20px;
+    }
+  }
+}
