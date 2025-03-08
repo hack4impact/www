@@ -1,0 +1,22 @@
+@use '@/variables.scss' as *;
+
+.root {
+  margin-bottom: 50px;
+
+  @include screen('tablet') {
+    margin-bottom: 100px;
+
+    h2 {
+      text-align: left;
+    }
+  }
+
+  @include screen('desktop-wide') {
+    margin-bottom: 150px;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+}

@@ -1,4 +1,4 @@
-import styles from '@/app/home.module.scss';
+import styles from '@/app/(home)/home.module.scss';
 import LinkButton from '@/components/LinkButton';
 import Container from '@/components/Container';
 import Hero from '@/components/Hero';

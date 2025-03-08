@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react';
-import styles from './AnimatedRole.module.scss';
+import styles from '@/components/AnimatedRole.module.scss';
 
 const ANIM_INTERVAL = 2250;
 const WIPE_ANIM_DURATION = 500;

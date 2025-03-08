@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import classNames from 'classnames';
-import styles from './LinkButton.module.scss';
-import Hover from './Hover';
+import styles from '@/components/LinkButton.module.scss';
+import Hover from '@/components/Hover';
 
 type Props = {
   children: React.ReactNode;
