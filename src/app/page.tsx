@@ -1,8 +1,9 @@
-import Head from 'next/head';
-import styles from './home.module.scss';
-import LinkButton from '../components/LinkButton';
-import Container from '../components/Container';
-import Hero from '../components/Hero';
+import styles from '@/app/home.module.scss';
+import LinkButton from '@/components/LinkButton';
+import Container from '@/components/Container';
+import Hero from '@/components/Hero';
+import StaggerAnimOnScroll from '@/components/StaggerAnimOnScroll';
+import { StaggerItem } from '@/components/StaggerAnimOnScroll';
 
 // type Props = {
 //   featuredProjects: Project[];
@@ -14,8 +15,8 @@ export default function Home() {
       <Hero />
       <Container>
         <h2>Our Initiatives</h2>
-        {/*   <StaggerAnimOnScroll className={styles.card_row}> */}
-        {/*     <StaggerItem> */}
+        {/* <StaggerAnimOnScroll className={styles.card_row}> */}
+        {/* <StaggerItem> */}
         {/*       <Card */}
         {/*         title="Chapter Network" */}
         {/*         subtitle="We mentor" */}
@@ -24,8 +25,8 @@ export default function Home() {
         {/*         buttonTitle="Current Chapters"> */}
         {/*         <FaNetworkWired /> */}
         {/*       </Card> */}
-        {/*     </StaggerItem> */}
-        {/*     <StaggerItem> */}
+        {/* </StaggerItem> */}
+        {/* <StaggerItem> */}
         {/*       <Card */}
         {/*         title="Nonprofit Projects" */}
         {/*         subtitle="We build" */}
@@ -34,8 +35,8 @@ export default function Home() {
         {/*         buttonTitle="Current Projects"> */}
         {/*         <FaHandshake size={34} /> */}
         {/*       </Card> */}
-        {/*     </StaggerItem> */}
-        {/*     <StaggerItem> */}
+        {/* </StaggerItem> */}
+        {/* <StaggerItem> */}
         {/*       <Card */}
         {/*         title="Chapter Resources" */}
         {/*         subtitle="We share" */}
@@ -45,18 +46,18 @@ export default function Home() {
         {/*         buttonTitle="Our Resources"> */}
         {/*         <FaFolder /> */}
         {/*       </Card> */}
-        {/*     </StaggerItem> */}
-        {/*   </StaggerAnimOnScroll> */}
-        {/* </Container> */}
-        {/* <Container> */}
+        {/* </StaggerItem> */}
+        {/* </StaggerAnimOnScroll> */}
+      </Container>
+      <Container>
         {/*   <h2>Featured Projects</h2> */}
-        {/*   <StaggerAnimOnScroll> */}
-        {/*     {featuredProjects.map(item => ( */}
-        {/*       <StaggerItem key={item.name}> */}
-        {/*         <ProjectView {...item} /> */}
-        {/*       </StaggerItem> */}
-        {/*     ))} */}
-        {/*   </StaggerAnimOnScroll> */}
+        // <StaggerAnimOnScroll>
+          {/*     {featuredProjects.map(item => ( */}
+          {/* <StaggerItem key={item.name}> */}
+          {/*         <ProjectView {...item} /> */}
+          {/* </StaggerItem> */}
+          {/*     ))} */}
+        // </StaggerAnimOnScroll>
         <div className={styles.button_row}>
           <LinkButton href="/work#our-chapters">See all chapters</LinkButton>
           <LinkButton href="/apply/nonprofit" type="secondary">

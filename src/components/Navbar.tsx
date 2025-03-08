@@ -6,8 +6,10 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from "next/link";
 
-import styles from './Navbar.module.scss';
-import Hover from './Hover';
+import styles from '@/components/Navbar.module.scss';
+import Hover from '@/components/Hover';
+
+import useHasScrolledDown from '@/utils/useHasScrolledDown';
 
 export default function Navbar() {
 
@@ -34,8 +36,15 @@ export default function Navbar() {
     return () => document.removeEventListener('keypress', escapeKeyListener)
   }, [])
 
+  const hasScrolledDown = useHasScrolledDown();
+
   return (
-    <header className={styles.header}>
+    <header className={classNames(
+      styles.header,
+      {
+        [styles.with_background]: hasScrolledDown,
+      }
+    )}>
       <nav className={classNames(
         styles.nav,
         {
