@@ -37,6 +37,11 @@ $font-family: 'HK Grotesk', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
 }
 
 @mixin angle-bracket-accent($quadrant: 'top-left', $size: 24px) {
+  content: '';
+  position: absolute;
+  height: $size;
+  width: $size;
+  border: solid $black calc(#{$size} / 4);
 
   @if ($quadrant =='top-left') {
     top: 0;
@@ -66,11 +71,6 @@ $font-family: 'HK Grotesk', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     border-top: none;
   }
 
-  content: '';
-  position: absolute;
-  height: $size;
-  width: $size;
-  border: solid $black calc(#{$size} / 4);
 }
 
 /* Margins */

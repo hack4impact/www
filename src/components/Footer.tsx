@@ -62,7 +62,8 @@ export default function Footer() {
           </a>
           <a href="https://www.contentful.com/" target="_blank" rel="noreferrer">
             <Image
-              fill={true}
+              width={140}
+              height={45.5}
               src="https://images.ctfassets.net/fo9twyrwpveg/7Htleo27dKYua8gio8UEUy/0797152a2d2f8e41db49ecbf1ccffdaa/PoweredByContentful_DarkBackground_MonochromeLogo.svg"
               alt="Powered by Contentful"
             />
