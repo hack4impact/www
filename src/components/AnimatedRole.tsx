@@ -14,8 +14,7 @@ export default function AnimatedRole() {
 
   useEffect(() => {
     if (textRef?.current && wipeRef?.current) {
-      const width = textRef.current.clientWidth.toString();
-      textRef.current.style.setProperty('--width', width);
+      textRef.current.style.setProperty('--width', `${textRef.current.clientWidth}`);
       wipeRef.current.animate(
         [
           { transform: 'skew(-20deg) scaleX(0)', transformOrigin: 'left' },
@@ -44,7 +43,7 @@ export default function AnimatedRole() {
     }, ANIM_INTERVAL);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]);
 
   return (
     <span ref={textRef} className={styles.role_name}>

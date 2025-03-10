@@ -1,4 +1,5 @@
 import styles from '@/components/Hero.module.scss';
+import Image from 'next/image';
 import Container from '@/components/Container';
 import AnimatedRole from '@/components/AnimatedRole';
 import LinkButton from '@/components/LinkButton';
@@ -21,7 +22,7 @@ export default function Home() {
           </LinkButton>
         </div>
         <div className={styles.image_container}>
-          <img
+          <Image
             width="450"
             height="450"
             src="/images/bog-stone-mountain.jpg"

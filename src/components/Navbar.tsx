@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import { useState, useEffect } from 'react';
 
 import { usePathname } from 'next/navigation';
-import Link from "next/link";
+import Link from 'next/link';
+import Image from 'next/image';
 
 import styles from '@/components/Navbar.module.scss';
 import Hover from '@/components/Hover';
@@ -52,7 +53,7 @@ export default function Navbar() {
         }
       )}>
         <Link href={'/'} className={styles.logo_link}>
-          <img width={275} height={53} src='/logo.svg' alt='Hack4Impact logo' />
+          <Image width={275} height={53} src='/logo.svg' alt='Hack4Impact logo' />
         </Link>
 
         <button

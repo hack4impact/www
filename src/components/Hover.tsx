@@ -19,7 +19,9 @@ export default function Hover({ color }: Props) {
     function mouseMoveEvent(e: MouseEvent) {
       const { x } = currentContainer.getBoundingClientRect();
       currentContainer.style.setProperty('--px', `${e.clientX - x}`);
-      color && currentContainer.style.setProperty('--color', color);
+      if (color) {
+        currentContainer.style.setProperty('--color', color);
+      }
     }
     currentContainer.addEventListener('mousemove', mouseMoveEvent);
 

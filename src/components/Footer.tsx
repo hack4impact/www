@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '@/components/Footer.module.scss';
 
 export default function Footer() {
@@ -60,7 +61,8 @@ export default function Footer() {
             Made with &#9829; by the Hack4Impact team
           </a>
           <a href="https://www.contentful.com/" target="_blank" rel="noreferrer">
-            <img
+            <Image
+              fill={true}
               src="https://images.ctfassets.net/fo9twyrwpveg/7Htleo27dKYua8gio8UEUy/0797152a2d2f8e41db49ecbf1ccffdaa/PoweredByContentful_DarkBackground_MonochromeLogo.svg"
               alt="Powered by Contentful"
             />
