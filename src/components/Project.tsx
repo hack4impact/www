@@ -4,7 +4,7 @@ import ProjectContent from '@/utils/contentTypes/ProjectContent';
 import determineLinkName from '@/utils/determineLinkName';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
-export default function Project({ photo, name, tags, description, link }: Project) {
+export default function Project({ photo, name, tags, description, link }: ProjectContent) {
   return (
     <div className={styles.root}>
       <img className={styles.image} src={photo.url} alt={photo.description} />

@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 
-const useHasScrolledDown = () => {
+export function useHasScrolledDown() {
   const [hasScrolledDown, setHasScrolledDown] = useState(false);
 
   const onScroll = (e: Event) => {
@@ -16,4 +15,9 @@ const useHasScrolledDown = () => {
   return hasScrolledDown;
 };
 
-export default useHasScrolledDown;
+export function determineLinkName(link: string) {
+  if (link.includes('github')) {
+    return 'Visit GitHub';
+  }
+  return 'Visit Site';
+};

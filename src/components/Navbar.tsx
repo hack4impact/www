@@ -10,7 +10,7 @@ import Image from 'next/image';
 import styles from '@/components/Navbar.module.scss';
 import Hover from '@/components/Hover';
 
-import useHasScrolledDown from '@/utils/useHasScrolledDown';
+import { useHasScrolledDown } from '@/utils/helpers';
 
 export default function Navbar() {
 
