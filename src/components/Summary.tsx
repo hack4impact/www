@@ -1,10 +1,10 @@
-import styles from '@/components/Project.module.scss';
-import ProjectContent from '@/utils/contentTypes/ProjectContent';
+import styles from '@/components/Summary.module.scss';
+import { Project } from '@/types/contentful';
 
-import determineLinkName from '@/utils/determineLinkName';
+import { determineLinkName } from '@/utils/helpers';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
-export default function Project({ photo, name, tags, description, link }: ProjectContent) {
+export default function Summary({ photo, name, tags, description, link }: Project) {
   return (
     <div className={styles.root}>
       <img className={styles.image} src={photo.url} alt={photo.description} />

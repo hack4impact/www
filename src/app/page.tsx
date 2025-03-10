@@ -5,17 +5,16 @@ import Hero from '@/components/Hero';
 import StaggerAnimOnScroll from '@/components/StaggerAnimOnScroll';
 import { StaggerItem } from '@/components/StaggerAnimOnScroll';
 import Card from '@/components/Card';
-import Project from '@/components/Project';
-import { ProjectContent } from '@/types/contentful';
-import fetchContent from '@/utils/fetchContent';
+import Summary from '@/components/Summary';
+import type { Project } from '@/types/contentful.d.ts';
+import { getFeaturedProjects } from '@/lib/api';
 
 import { FaNetworkWired, FaHandshake, FaFolder } from 'react-icons/fa6';
 
-type Props = {
-  featuredProjects: ProjectContent[];
-}
+export default async function Home() {
 
-export default function Home({ featuredProjects }: Props) {
+  const projects = await getFeaturedProjects();
+
   return (
     <main style={{ marginTop: 0 }}>
       <Hero />
@@ -58,11 +57,11 @@ export default function Home({ featuredProjects }: Props) {
       <Container>
         <h2>Featured Projects</h2>
         <StaggerAnimOnScroll>
-          {/* {featuredProjects.map(item => ( */}
-          {/*   <StaggerItem key={item.name}> */}
-          {/*     <Project {...item} /> */}
-          {/*   </StaggerItem> */}
-          {/* ))} */}
+          {projects.map(item => (
+            <StaggerItem key={item.name}>
+              <Summary {...item} />
+            </StaggerItem>
+          ))}
         </StaggerAnimOnScroll>
         <div className={styles.button_row}>
           <LinkButton href="/work#our-chapters">See all chapters</LinkButton>

@@ -27,4 +27,33 @@ export async function fetchContent(query: string) {
   }
 }
 
-export default fetchContent;
+export async function getFeaturedProjects() {
+  try {
+    const projects = await fetchContent(`
+  {
+    projectCollection(limit: 3, where: {featuredOnHomePage: true}) {
+      items {
+        photo {
+          url
+          description
+        }
+        name
+        tags
+        description {
+          json
+        }
+        link
+      }
+    }
+  }
+  `);
+
+    if (!projects) {
+      throw new Error('No data received')
+    }
+    return projects.projectCollection.items
+
+  } catch (error) {
+    console.error('Error in getFeaturedProjects', error);
+  }
+}
