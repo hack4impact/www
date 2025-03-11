@@ -2,8 +2,8 @@ import styles from '@/app/home.module.scss';
 import LinkButton from '@/components/LinkButton';
 import Container from '@/components/Container';
 import Hero from '@/components/Hero';
-import StaggerAnimOnScroll from '@/components/StaggerAnimOnScroll';
-import { StaggerItem } from '@/components/StaggerAnimOnScroll';
+import AnimatedStagger from '@/components/AnimatedStagger';
+import { StaggerItem } from '@/components/AnimatedStagger';
 import Card from '@/components/Card';
 import Summary from '@/components/Summary';
 import type { Project } from '@/types/contentful.d.ts';
@@ -20,7 +20,7 @@ export default async function Home() {
       <Hero />
       <Container>
         <h2>Our Initiatives</h2>
-        <StaggerAnimOnScroll className={styles.card_row}>
+        <AnimatedStagger className={styles.card_row}>
           <StaggerItem>
             <Card
               title="Chapter Network"
@@ -52,17 +52,17 @@ export default async function Home() {
               <FaFolder />
             </Card>
           </StaggerItem>
-        </StaggerAnimOnScroll>
+        </AnimatedStagger>
       </Container>
       <Container>
         <h2>Featured Projects</h2>
-        <StaggerAnimOnScroll>
-          {projects.map(item => (
+        <AnimatedStagger>
+          {projects.map((item: Project) => (
             <StaggerItem key={item.name}>
               <Summary {...item} />
             </StaggerItem>
           ))}
-        </StaggerAnimOnScroll>
+        </AnimatedStagger>
         <div className={styles.button_row}>
           <LinkButton href="/work#our-chapters">See all chapters</LinkButton>
           <LinkButton href="/apply/nonprofit" type="secondary">

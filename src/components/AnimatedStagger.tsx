@@ -22,11 +22,11 @@ export function StaggerItem({ children, animShow, animHidden }: StaggerItemProps
   );
 }
 
-type StaggerAnimOnScrollProps = React.HTMLAttributes<HTMLDivElement> & {
+type AnimatedStaggerProps = React.HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
 };
 
-export default function StaggerAnimOnScroll({ children, className }: StaggerAnimOnScrollProps) {
+export default function AnimatedStagger({ children, className }: AnimatedStaggerProps) {
   const [ref, inView] = useInView({
     triggerOnce: false,
     rootMargin: '0px 0px -50px 50px',

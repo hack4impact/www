@@ -3,6 +3,10 @@
 .root {
   margin-bottom: 50px;
 
+  h2 {
+    text-align: center;
+  }
+
   @include screen('tablet') {
     margin-bottom: 100px;
 
@@ -15,8 +19,6 @@
     margin-bottom: 150px;
   }
 
-  h2 {
-    text-align: center;
-  }
+
 
 }

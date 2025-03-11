@@ -25,7 +25,7 @@ export async function fetchContent(query: string) {
     console.error(`There was a problem retrieving entries with the query ${query}`);
     console.error(error);
   }
-}
+};
 
 export async function getFeaturedProjects() {
   try {
@@ -56,4 +56,29 @@ export async function getFeaturedProjects() {
   } catch (error) {
     console.error('Error in getFeaturedProjects', error);
   }
-}
+};
+
+export async function getExecMembers() {
+  const execMembers = await fetchContent(`
+  {
+    executiveBoardMemberCollection(order: title_DESC) {
+      items {
+        name
+        title
+        description {
+          json
+        }
+        photo {
+          url
+        }
+        linkedIn
+        email
+      }
+    }
+  }
+  `);
+
+  console.log(execMembers)
+  return execMembers.executiveBoardMemberCollection.items
+};
+

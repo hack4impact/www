@@ -12,4 +12,4 @@ export default function Container({ children, className }: Props) {
       {children}
     </section>
   )
-}
+};
