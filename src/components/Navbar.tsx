@@ -18,9 +18,9 @@ export default function Navbar() {
   const [mobileNavOpened, setMobileNavOpened] = useState(false);
 
   const links = [
-    { href: '/about', label: 'About Us' },
-    { href: '/work', label: 'Our Work' },
-    { href: '/apply', label: 'Apply' }
+    { href: '/about', active: 'about', label: 'About Us' },
+    { href: '/work', active: 'work', label: 'Our Work' },
+    { href: '/apply/chapter', active: 'apply', label: 'Apply' }
   ]
 
   const toggleMobileNav = () => setMobileNavOpened(!mobileNavOpened);
@@ -38,6 +38,8 @@ export default function Navbar() {
   }, [])
 
   const hasScrolledDown = useHasScrolledDown();
+
+  console.log("HERE", pathname);
 
   return (
     <header className={classNames(
@@ -68,8 +70,8 @@ export default function Navbar() {
           <span className={styles.stripe_bottom}></span>
         </button>
         <div className={styles.dropdown_container}>
-          {links.map(({ href, label }) =>
-            <Link key={href} href={href} className={pathname === href ? styles.active : ''}>
+          {links.map(({ href, active, label }) =>
+            <Link key={href} href={href} className={pathname.includes(active) ? styles.active : ''}>
               {label}
               <Hover color="#001aff" />
             </Link>

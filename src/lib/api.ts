@@ -155,3 +155,71 @@ export async function getChapters() {
 
   return chaptersWithFormattedDate
 };
+
+export async function getChapterApply() {
+  const { chapterApplication } = await fetchContent(`
+  {
+    chapterApplication: applicationPageCollection(limit: 1, where: {applicationType: "New Chapters"}) {
+      items {
+        applicationType
+        headerTitle
+        photo {
+          url
+        }
+        applicationLink
+        description {
+          json
+        }
+        faqsCollection {
+          items {
+            question
+            answer {
+              json
+            }
+          }
+        }
+      }
+    }
+  }
+  `);
+
+  return {
+    props: {
+      content: chapterApplication?.items[0],
+    },
+  };
+};
+
+export async function getNonprofitApply() {
+  const { nonprofitApplication } = await fetchContent(`
+  {
+    nonprofitApplication: applicationPageCollection(limit: 1, where: {applicationType: "Nonprofits"}) {
+      items {
+        applicationType
+        headerTitle
+        photo {
+          url
+        }
+        applicationLink
+        description {
+          json
+        }
+        faqsCollection {
+          items {
+            question
+            answer {
+              json
+            }
+          }
+        }
+      }
+    }
+  }
+  `);
+
+  return {
+    props: {
+      content: nonprofitApplication?.items[0],
+    },
+  };
+};

@@ -71,7 +71,7 @@
         transition: background-color 0.2s;
         padding: 10px 20px;
 
-        &[data-selected] {
+        &.selected {
           border-bottom: solid 5px $accent;
         }
 
