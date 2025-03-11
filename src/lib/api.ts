@@ -1,3 +1,5 @@
+import { Chapter } from "@/types/contentful";
+
 const space = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
 const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 
@@ -78,7 +80,78 @@ export async function getExecMembers() {
   }
   `);
 
-  console.log(execMembers)
   return execMembers.executiveBoardMemberCollection.items
 };
 
+const projectQuery = `
+    items {
+      photo {
+        url
+        description
+      }
+      name
+      tags
+      description {
+        json
+      }
+      link
+      type
+    }
+  `;
+
+export async function getNationalInitiatives() {
+  const nationalInitiatives = await fetchContent(`
+{
+    nationalInitiatives: projectCollection(limit: 2, where: {type: "National Initiative"}) {
+      ${projectQuery}}
+}`);
+
+  console.log(nationalInitiatives);
+  return nationalInitiatives.nationalInitiatives.items;
+
+}
+
+export async function getChapters() {
+
+  const chapters = await fetchContent(`
+{
+    chapters: chapterCollection(order: establishedDate_ASC) {
+      items {
+        universityLogo {
+          url
+          description
+        }
+        name
+        slug
+        location
+        establishedDate
+        incubating
+        email
+        websiteLink
+        socialMediaLink
+        socialMediaLinkType
+        codeRepoLink
+        photo {
+          url
+          description
+        }
+        projects: projectsCollection(limit: 2) {
+          ${projectQuery}
+        }
+      }
+    }
+}`);
+
+  console.log(chapters);
+  const chaptersWithFormattedDate = chapters.chapters.items.map((chapter: Chapter) => {
+    const date = new Date(chapter.establishedDate);
+    const year = date.getUTCFullYear();
+    const semester = date.getUTCMonth() >= 6 ? 'Fall' : 'Spring';
+    return {
+      ...chapter,
+      establishedDate: `${semester} ${year}`,
+    };
+  });
+
+  return chaptersWithFormattedDate
+};
