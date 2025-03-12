@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { FaQuestion } from 'react-icons/fa';
 import { MdArrowDropDownCircle } from 'react-icons/md';
 import classNames from 'classnames';
-import styles from '@/components/QuestionCell.module.scss';
-import Hover from '@/components/Hover';
+import styles from '@/components/apply/QuestionCell.module.scss';
+import Hover from '@/components/common/Hover';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { FAQ } from '@/types/contentful';
 

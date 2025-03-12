@@ -48,6 +48,12 @@
   display: flex;
   align-items: center;
 
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   @include screen('tablet') {
     width: 57vw;
   }
@@ -56,12 +62,6 @@
     content: '';
     @include absolute-cover;
     background: linear-gradient(to right, rgba(color.adjust($primary, $lightness: 10%), 0.6), rgba($primary, 0.6));
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 }
 

@@ -36,6 +36,7 @@
 .dropdown {
   font-size: 18px;
   margin: 8px 0;
+  padding: 0px 8px;
   font-weight: bold;
   color: $accent;
   border-radius: $border-radius;
@@ -53,4 +54,8 @@
 
 .answer {
   margin-bottom: 0;
+}
+
+.disclosure_button {
+  padding: 0;
 }

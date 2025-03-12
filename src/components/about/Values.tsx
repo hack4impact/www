@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react';
-import Container from '@/components/Container';
+import Container from '@/components/common/Container';
 import { FaBullseye } from 'react-icons/fa';
 import { IoMdArrowDropright as ArrowIcon } from 'react-icons/io';
-import styles from '@/components/Values.module.scss';
+import styles from '@/components/about/Values.module.scss';
 import classNames from 'classnames';
-import HoverShinyEffect from '@/components/Hover';
+import HoverShinyEffect from '@/components/common/Hover';
 
 const values = [
   {

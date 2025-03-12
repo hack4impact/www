@@ -1,8 +1,8 @@
-import styles from '@/components/Hero.module.scss';
+import styles from '@/components/home/Hero.module.scss';
 import Image from 'next/image';
-import Container from '@/components/Container';
-import AnimatedRole from '@/components/AnimatedRole';
-import LinkButton from '@/components/LinkButton';
+import Container from '@/components/common/Container';
+import AnimatedRole from '@/components/home/AnimatedRole';
+import LinkButton from '@/components/common/LinkButton';
 
 export default function Home() {
   return (

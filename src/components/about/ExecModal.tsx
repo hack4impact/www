@@ -2,7 +2,7 @@
 
 import { ExecMember } from '@/types/contentful';
 import { IoIosClose as CloseIcon } from 'react-icons/io';
-import styles from './ExecModal.module.scss';
+import styles from '@/components/about/ExecModal.module.scss';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { useEffect } from 'react';
 

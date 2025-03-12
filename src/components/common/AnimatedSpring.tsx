@@ -1,6 +1,6 @@
 'use client'
 
-import styles from '@/components/AnimatedSpring.module.scss';
+import styles from '@/components/common/AnimatedSpring.module.scss';
 import { motion } from 'framer-motion';
 
 

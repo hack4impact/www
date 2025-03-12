@@ -1,9 +1,9 @@
-import Header from '@/components/Header';
-import Banner from '@/components/Banner';
-import Container from '@/components/Container';
-import AnimatedSpring from '@/components/AnimatedSpring';
-import ExecBoard from '@/components/ExecBoard';
-import Values from '@/components/Values';
+import Header from '@/components/common/Header';
+import Banner from '@/components/about/Banner';
+import Container from '@/components/common/Container';
+import AnimatedSpring from '@/components/common/AnimatedSpring';
+import ExecBoard from '@/components/about/ExecBoard';
+import Values from '@/components/about/Values';
 import { getExecMembers } from '@/lib/api';
 
 export default async function About() {

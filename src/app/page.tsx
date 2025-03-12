@@ -1,11 +1,11 @@
 import styles from '@/app/home.module.scss';
-import LinkButton from '@/components/LinkButton';
-import Container from '@/components/Container';
-import Hero from '@/components/Hero';
-import AnimatedStagger from '@/components/AnimatedStagger';
-import { StaggerItem } from '@/components/AnimatedStagger';
-import Card from '@/components/Card';
-import Summary from '@/components/Summary';
+import LinkButton from '@/components/common/LinkButton';
+import Container from '@/components/common/Container';
+import Hero from '@/components/home/Hero';
+import AnimatedStagger from '@/components/common/AnimatedStagger';
+import { StaggerItem } from '@/components/common/AnimatedStagger';
+import Card from '@/components/home/Card';
+import Summary from '@/components/common/Summary';
 import type { Project } from '@/types/contentful.d.ts';
 import { getFeaturedProjects } from '@/lib/api';
 

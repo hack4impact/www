@@ -7,8 +7,8 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import styles from '@/components/Navbar.module.scss';
-import Hover from '@/components/Hover';
+import styles from '@/components/common/Navbar.module.scss';
+import Hover from '@/components/common/Hover';
 
 import { useHasScrolledDown } from '@/hooks/useHasScrolledDown';
 
@@ -29,17 +29,7 @@ export default function Navbar() {
     setMobileNavOpened(false);
   }, [pathname])
 
-  useEffect(() => {
-    const escapeKeyListener = (event: KeyboardEvent) =>
-      event.key === 'Escape' && setMobileNavOpened(false);
-
-    document.addEventListener('keypress', escapeKeyListener);
-    return () => document.removeEventListener('keypress', escapeKeyListener)
-  }, [])
-
   const hasScrolledDown = useHasScrolledDown();
-
-  console.log("HERE", pathname);
 
   return (
     <header className={classNames(

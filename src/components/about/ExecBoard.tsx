@@ -1,13 +1,13 @@
 'use client'
 
-import Container from '@/components/Container';
-import AnimatedStagger, { StaggerItem } from '@/components/AnimatedStagger';
+import Container from '@/components/common/Container';
+import AnimatedStagger, { StaggerItem } from '@/components/common/AnimatedStagger';
 import type { ExecMember } from '@/types/contentful';
-import styles from '@/components/ExecBoard.module.scss';
+import styles from '@/components/about/ExecBoard.module.scss';
 import { IoMdArrowDropright as ArrowIcon } from 'react-icons/io';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import ExecModal from './ExecModal';
+import ExecModal from '@/components/about/ExecModal';
 
 type Props = {
   execMembers: ExecMember[];

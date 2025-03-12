@@ -1,4 +1,4 @@
-import styles from '@/components/Header.module.scss';
+import styles from '@/components/common/Header.module.scss';
 
 type Props = {
   title: string;

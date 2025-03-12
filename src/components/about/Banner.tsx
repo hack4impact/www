@@ -1,6 +1,4 @@
-import styles from '@/components/Banner.module.scss';
-import Container from '@/components/Container';
-import { motion } from 'framer-motion';
+import styles from '@/components/about/Banner.module.scss';
 
 export default function Banner() {
   return (

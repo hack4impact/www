@@ -1,8 +1,8 @@
 'use client'
 import { useRef, useEffect, useState } from 'react';
-import styles from './ChapterTable.module.scss';
+import styles from '@/components/work/ChapterTable.module.scss';
 import { Chapter } from '@/types/contentful';
-import ChapterFeature from '@/components/ChapterFeature';
+import ChapterFeature from '@/components/work/ChapterFeature';
 import { useSearchParams, usePathname } from 'next/navigation';
 
 type Props = {

@@ -1,5 +1,5 @@
-import styles from '@/components/Card.module.scss';
-import LinkButton from '@/components/LinkButton';
+import styles from '@/components/home/Card.module.scss';
+import LinkButton from '@/components/common/LinkButton';
 import { IoMdArrowDropright as ArrowIcon } from 'react-icons/io';
 
 type Props = {

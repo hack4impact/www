@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import Header from '@/components/Header';
-import Container from '@/components/Container';
-import Summary from '@/components/Summary';
-import ChapterTable from '@/components/ChapterTable';
-import AnimatedStagger, { StaggerItem } from '@/components/AnimatedStagger';
+import Header from '@/components/common/Header';
+import Container from '@/components/common/Container';
+import Summary from '@/components/common/Summary';
+import ChapterTable from '@/components/work/ChapterTable';
+import AnimatedStagger, { StaggerItem } from '@/components/common/AnimatedStagger';
 import { getNationalInitiatives, getChapters } from '@/lib/api';
 import { Project, Chapter } from '@/types/contentful';
 

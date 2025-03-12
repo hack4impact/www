@@ -1,9 +1,9 @@
-import Summary from '@/components/Summary';
+import Summary from '@/components/common/Summary';
 import { Chapter } from '@/types/contentful';
-import styles from '@/components/ChapterFeature.module.scss';
-import ImageHighlight from '@/components/ImageHighlight';
-import AnimatedStagger, { StaggerItem } from '@/components/AnimatedStagger';
-import AboutLink from './AboutLink';
+import styles from '@/components/work/ChapterFeature.module.scss';
+import ImageHighlight from '@/components/common/ImageHighlight';
+import AnimatedStagger, { StaggerItem } from '@/components/common/AnimatedStagger';
+import AboutLink from '@/components/work/AboutLink';
 import {
   IoIosGlobe as WebsiteLinkIcon,
   IoIosHeart as SocialMediaLinkIcon,

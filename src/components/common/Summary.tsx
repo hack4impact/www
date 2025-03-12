@@ -1,4 +1,4 @@
-import styles from '@/components/Summary.module.scss';
+import styles from '@/components/common/Summary.module.scss';
 import { Project } from '@/types/contentful';
 
 import { determineLinkName } from '@/utils/helpers';

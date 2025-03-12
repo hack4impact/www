@@ -1,4 +1,4 @@
-import styles from '@/components/AboutLink.module.scss';
+import styles from '@/components/work/AboutLink.module.scss';
 
 type Props = {
   link?: string;

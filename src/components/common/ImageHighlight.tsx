@@ -1,5 +1,5 @@
 
-import styles from '@/components/ImageHighlight.module.scss';
+import styles from '@/components/common/ImageHighlight.module.scss';
 import classNames from 'classnames';
 
 type Props = React.ImgHTMLAttributes<null> & {

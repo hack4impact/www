@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react';
-import styles from '@/components/Hover.module.scss';
+import styles from '@/components/common/Hover.module.scss';
 
 interface Props {
   color?: string;
