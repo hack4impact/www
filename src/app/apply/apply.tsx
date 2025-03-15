@@ -27,14 +27,14 @@ export default function Apply({ content }: Props) {
               [styles.selected]: content.applicationType === 'New Chapters',
             })}>
             For New Chapters
-            <Hover />
+            <Hover color="#001aff" />
           </Link>
           <Link href="/apply/nonprofit"
             className={classNames({
               [styles.selected]: content.applicationType === 'Nonprofits',
             })}>
             For Non Profits
-            <Hover />
+            <Hover color="#001aff" />
           </Link>
         </div>
       </Header>
