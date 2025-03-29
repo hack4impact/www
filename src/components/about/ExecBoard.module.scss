@@ -1,0 +1,74 @@
+@use '@/variables.scss' as *;
+
+@mixin img-styles() {
+  border-radius: 50%;
+  border: solid $primary $border-width;
+}
+
+.list_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 140px);
+  justify-content: center;
+  gap: 48px 36px;
+
+  @include screen('tablet-small') {
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fill, 150px);
+  }
+
+  .member_container {
+    text-align: center;
+    color: $black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    padding: 0;
+    height: 100%;
+
+    &:hover>img {
+      transform: scale(1.1);
+    }
+
+    h3 {
+      font-size: $body;
+      margin: 0;
+    }
+
+    p {
+      font-size: inherit;
+    }
+
+    img {
+      @include img-styles;
+      transition: transform 0.3s;
+      height: 130px;
+      width: 130px;
+      margin-bottom: 8px;
+    }
+
+    .about_button {
+      margin-top: auto;
+      width: 100%;
+      font-size: inherit;
+      font-family: inherit;
+      color: $accent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: $border-radius;
+      overflow: hidden;
+
+      svg {
+        margin-right: -6px;
+      }
+    }
+
+    @include screen('tablet-small') {
+      img {
+        height: 150px;
+        width: 150px;
+      }
+    }
+  }
+}

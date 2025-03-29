@@ -1,0 +1,77 @@
+@use '@/variables.scss' as *;
+
+.root {
+  .about_chapter_container {
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+
+    @include screen('tablet') {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .text_content {
+      flex: 1;
+
+      hgroup {
+        .established_date {
+          font-weight: normal;
+          font-size: $body;
+          color: $primary-dark-2;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 10px;
+        }
+
+        h3 {
+          margin: 10px 0;
+        }
+      }
+
+      .subheading {
+        margin-bottom: 40px;
+        font-size: 20px;
+
+        @include screen('tablet') {
+          font-size: 24px;
+        }
+
+        .contact {
+          color: $accent;
+          font-weight: bold;
+          display: block;
+
+          @include screen('tablet') {
+            display: inline-block;
+            margin-left: 10px;
+
+            &::before {
+              content: '• ';
+            }
+          }
+        }
+      }
+
+      .links {
+        list-style: none;
+        padding: 0;
+      }
+    }
+
+    .image {
+      max-width: 500px;
+
+      @include screen('tablet') {
+        max-width: 40%;
+        align-self: flex-end;
+      }
+
+      @include screen('tablet-wide') {
+        max-width: 50%;
+      }
+    }
+  }
+}

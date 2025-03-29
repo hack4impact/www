@@ -1,0 +1,143 @@
+@use '@/variables.scss' as *;
+
+@font-face {
+  font-family: 'HK Grotesk';
+  src: local('HK Grotesk'), local('HKGrotesk-Regular'),
+    url('/fonts/hkgrotesk-regular.woff2') format('woff2'),
+    url('/fonts/hkgrotesk-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HK Grotesk';
+  src: local('HK Grotesk'), local('HKGrotesk-Bold'),
+    url('/fonts/hkgrotesk-bold.woff2') format('woff2'),
+    url('/fonts/hkgrotesk-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $font-family;
+  color: $black;
+}
+
+main {
+  margin-top: $nav-height;
+}
+
+h1 {
+  font-size: 44px;
+
+  // mixin definied in variables.scss
+  @include screen('tablet') {
+    font-size: $h1;
+  }
+}
+
+h2 {
+  font-size: $h3;
+
+  // mixin definied in variables.scss
+  @include screen('tablet') {
+    font-size: $h2;
+  }
+}
+
+h3 {
+  font-size: $h4;
+
+  // mixin definied in variables.scss
+  @include screen('tablet') {
+    font-size: $h3;
+  }
+}
+
+h4 {
+  font-size: $h4;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  scroll-margin-top: $nav-height + 20px;
+}
+
+p {
+  line-height: 1.4;
+  font-size: $body;
+}
+
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+
+a {
+  color: $accent;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+// Modal
+[data-reach-dialog-content] {
+  width: calc(100% - 12px);
+
+  @include screen('tablet') {
+    width: 500px;
+  }
+}
+
+/* Utility Classes */
+
+.contain {
+
+  // mixin definied in variables.scss
+  @include container;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+
+  &.spaced {
+    justify-content: space-between;
+  }
+
+  &.centered {
+    justify-content: center;
+  }
+
+  &.aligned {
+    align-items: center;
+  }
+
+  &.wrap {
+    flex-wrap: wrap;
+  }
+}
+
+[data-reach-disclosure-button] {
+  padding: 0;
+}
