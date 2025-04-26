@@ -5,7 +5,7 @@ import Summary from '@/components/common/Summary';
 import ChapterTable from '@/components/work/ChapterTable';
 import AnimatedStagger, { StaggerItem } from '@/components/common/AnimatedStagger';
 import { getNationalInitiatives, getChapters } from '@/lib/api';
-import { Project, Chapter } from '@/types/contentful';
+import { Project } from '@/types/contentful';
 
 export default async function Work() {
   const nationalInitiatives = await getNationalInitiatives();

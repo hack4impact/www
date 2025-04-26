@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 import styles from '@/components/work/ChapterTable.module.scss';
 import { Chapter } from '@/types/contentful';
 import ChapterFeature from '@/components/work/ChapterFeature';
-import { useSearchParams, usePathname } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 type Props = {
   chapters: Chapter[];

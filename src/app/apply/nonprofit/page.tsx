@@ -1,4 +1,4 @@
-import { getChapterApply, getNonprofitApply } from '@/lib/api';
+import { getNonprofitApply } from '@/lib/api';
 import Apply from '../apply';
 
 

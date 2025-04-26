@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Header from '@/components/common/Header';
 import ImageHighlight from '@/components/common/ImageHighlight';
 import Container from '@/components/common/Container';
