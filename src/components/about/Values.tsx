@@ -43,9 +43,9 @@ const values = [
 
 export default function Values() {
   const [selected, setSelected] = useState(2);
-  const [displayValues, setDisplayValues] = useState([]);
+  const [displayValues, setDisplayValues] = useState<{ title: string, description: string, color: string }[]>([]);
   const [moveToNext, setMoveToNext] = useState(false);
-  const autoScrollInterval = useRef(null);
+  const autoScrollInterval = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
   useEffect(() => {
     setDisplayValues(values);

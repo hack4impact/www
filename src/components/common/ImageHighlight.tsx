@@ -2,7 +2,7 @@
 import styles from '@/components/common/ImageHighlight.module.scss';
 import classNames from 'classnames';
 
-type Props = React.ImgHTMLAttributes<null> & {
+type Props = React.ImgHTMLAttributes<HTMLImageElement> & {
   className?: string;
 };
 
