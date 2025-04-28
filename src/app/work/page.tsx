@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Head from 'next/head';
 import Header from '@/components/common/Header';
 import Container from '@/components/common/Container';
@@ -28,7 +29,9 @@ export default async function Work() {
         </AnimatedStagger>
       </Container>
       <Container>
-        <ChapterTable chapters={chapters} />
+        <Suspense fallback={<div>Loading chapters...</div>}>
+          <ChapterTable chapters={chapters} />
+        </Suspense>
       </Container>
     </main>
   );
