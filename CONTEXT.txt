@@ -128,6 +128,31 @@ import { Button } from "@/components/ui/Button";
 <Button variant="primary" size="md">Click me</Button>
 ```
 
+### Card (src/components/ui/Card.tsx)
+General-purpose card component for content blocks. Custom component (BaseUI has no Card).
+
+Props:
+- icon?: ReactNode (optional, rendered above title)
+- title: string (text-xl, sans-serif)
+- description: string (text-base)
+- className?: string (optional additional classes)
+
+Styles:
+- Padding p-6
+- All content left-aligned (items-start)
+- Icon has mb-4, title has mb-2
+- Has debug-border class for development
+
+Usage:
+```tsx
+import { Card } from "@/components/ui/Card";
+<Card
+  icon={<SomeIcon />}
+  title="Card Title"
+  description="Card description text."
+/>
+```
+
 ### Footer (src/components/layout/Footer.tsx)
 - Tagline: "Code for the common good."
 - Sections: Organization, Get Involved, Resources
@@ -164,11 +189,11 @@ Current structure:
      - Button: "Meet the Team" (primary variant)
 
 2. Values Section
-   - Title: "Our Values" (centered, text-3xl)
-   - Three-column grid of value cards (stacked on mobile)
-   - Each card (centered content):
-     - Placeholder icon (gray circle, w-16 h-16)
-     - Title: Sustainable / Ethical / Accessible (text-xl)
+   - Title: "Our Values" (left-aligned, text-3xl)
+   - Three-column grid of Card components (stacked on mobile)
+   - Each card (left-aligned content, debug-border):
+     - Placeholder icon (gray circle, w-10 h-10)
+     - Title: Sustainable / Ethical / Accessible
      - Description paragraph
 
 ## Debug Mode

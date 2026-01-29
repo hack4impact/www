@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 
 const values = [
   {
@@ -14,6 +15,10 @@ const values = [
     description: "We design inclusive software that works for everyone, regardless of ability or background.",
   },
 ];
+
+function PlaceholderIcon() {
+  return <div className="w-10 h-10 rounded-full bg-gray-200" />;
+}
 
 export default function AboutPage() {
   return (
@@ -34,15 +39,15 @@ export default function AboutPage() {
       </section>
 
       <section className="p-8 md:p-12">
-        <h2 className="text-3xl font-sans text-center mb-12">Our Values</h2>
+        <h2 className="text-3xl font-sans mb-12">Our Values</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {values.map((value) => (
-            <div key={value.title} className="flex flex-col items-center text-center">
-              {/* Placeholder icon */}
-              <div className="w-16 h-16 rounded-full bg-gray-200 mb-4" />
-              <h3 className="text-xl font-sans mb-2">{value.title}</h3>
-              <p className="text-base">{value.description}</p>
-            </div>
+            <Card
+              key={value.title}
+              icon={<PlaceholderIcon />}
+              title={value.title}
+              description={value.description}
+            />
           ))}
         </div>
       </section>
