@@ -20,25 +20,33 @@ A minimal website for Hack4Impact (H4I), built with Next.js 15, React 19, Tailwi
 │   │   ├── layout.tsx            # Root layout
 │   │   ├── globals.css           # Global styles, fonts, Tailwind theme
 │   │   ├── about/page.tsx
-│   │   ├── chapters/page.tsx
-│   │   ├── projects/page.tsx
-│   │   ├── journal/page.tsx
-│   │   ├── partners/page.tsx
-│   │   ├── get-involved/page.tsx
-│   │   └── [slug]/page.tsx
+│   │   ├── chapters/
+│   │   │   ├── page.tsx          # Chapters listing with data table
+│   │   │   └── [slug]/page.tsx   # Individual chapter page
+│   │   ├── projects/
+│   │   │   ├── page.tsx          # Projects listing with data table
+│   │   │   └── [slug]/page.tsx   # Individual project page
+│   │   ├── journal/
+│   │   │   ├── page.tsx          # Journal listing with cards
+│   │   │   └── [slug]/page.tsx   # Individual journal entry page
+│   │   ├── partners/page.tsx   # Partners listing with data table
+│   │   └── get-involved/page.tsx
 │   ├── components/
 │   │   ├── layout/
 │   │   │   ├── Header.tsx
 │   │   │   └── Footer.tsx
 │   │   └── ui/
-│   │       └── Button.tsx        # Reusable button component
+│   │       ├── Button.tsx        # Reusable button component
+│   │       ├── Card.tsx          # Reusable card component
+│   │       └── DataTable.tsx     # Reusable data table component
 │   ├── lib/
 │   │   ├── contentful.ts
 │   │   └── types.ts
 │   └── data/
-│       ├── journal-entries.ts   # Mock journal data
-│       ├── chapters.ts          # Mock chapter data
-│       └── projects.ts          # Mock project data
+│       ├── journal-entries.ts   # Mock journal data (4 entries)
+│       ├── chapters.ts          # Mock chapter data (23 chapters)
+│       ├── projects.ts          # Mock project data (15 projects)
+│       └── partners.ts          # Mock partner data (15 partners)
 ├── public/
 │   ├── fonts/
 │   │   ├── InclusiveSans.ttf        # Variable font, weight 300-700, from GitHub (has ss01)
@@ -135,10 +143,18 @@ import { Button } from "@/components/ui/Button";
 ### Card (src/components/ui/Card.tsx)
 General-purpose card component for content blocks. Custom component (BaseUI has no Card component).
 
+### DataTable (src/components/ui/DataTable.tsx)
+A generic, reusable table component for displaying data.
+
+Props:
+- columns: An array of column definitions, including header, accessor, and class names.
+- data: An array of data objects to display in the table.
+- getRowHref?: A function that returns a URL for each row to make it a clickable link.
+
 ## BaseUI Usage
 Components using BaseUI as foundation:
 - Button: @base-ui/react/button
-- Separator: @base-ui/react/separator (used in journal entry divider)
+- Separator: @base-ui/react/separator (used in journal, chapter, and project detail pages as dividers)
 
 BaseUI is focused on interactive/form components. For basic layout elements (cards, containers), custom components with semantic HTML are appropriate.
 
@@ -215,6 +231,21 @@ Current structure:
      - Title: "Our story" (sans-serif, text-3xl md:text-4xl)
      - Paragraph with story placeholder text (mt-6 md:mt-8 gap from title)
 
+### Partners Page (src/app/partners/page.tsx)
+Current structure:
+1. Banner
+   - Wide gradient banner (h-56 md:h-80)
+   - Gradient: orange-100 via pink-100 to purple-100 (horizontal)
+
+2. Content Section
+   - Title: "Partners" (centered, text-3xl md:text-4xl)
+   - Uses the DataTable component to display a list of partners.
+
+Data file: src/data/partners.ts
+- Partner interface: id, slug, name, location, projectCount, description, website?
+- 15 mock partners
+- getPartnerBySlug(slug) helper function
+
 ### Journal Page (src/app/journal/page.tsx)
 Current structure:
 1. Banner
@@ -267,33 +298,37 @@ Current structure:
 
 2. Content Section
    - Title: "Chapters" (centered, text-3xl md:text-4xl)
-   - Full-width table layout (bg-white/80 backdrop-blur, rounded, max-h-[70vh] scrollable):
-     - Sticky header row (sticky top-0, bg-white - fully opaque)
-     - Columns: Chapter, Location (hidden mobile), Founded (hidden mobile/tablet), Members (hidden mobile/tablet), Projects (hidden mobile/tablet)
-     - Entire row is clickable (Link with contents class wraps tr)
-     - Location shown under chapter name on mobile
-     - Hover state on rows (bg-gray-50, cursor-pointer)
-     - Font-sans for headings and numbers, font-serif for location
+   - Uses the DataTable component to display a list of chapters with clickable rows.
 
 Data file: src/data/chapters.ts
-- Chapter interface: id, slug, name, university, location, founded, description, memberCount, projectCount, website?, github?
+- Chapter interface: id, slug, name, university, location, founded, description, memberCount, projectCount, website?, github?, instagram?
 - 23 mock chapters with various universities
 - getChapterBySlug(slug) helper function
 
 ### Chapter Page (src/app/chapters/[slug]/page.tsx)
-Dynamic route for individual chapters.
+Dynamic route for individual chapters. Similar layout to journal/projects stub pages.
 
 Structure:
-- Full page gradient background (same as chapters list: green-100 via blue-100 to purple-100)
-- Back link above content box ("Back to chapters" with arrow)
-- Centered content box (max-w-4xl, bg-white/80 backdrop-blur, rounded, p-8 md:p-12)
-- Header: location + founded year, chapter name (centered)
-- Description (text-lg md:text-xl, font-serif, centered)
-- Stats: member count and project count (centered, gap-12)
-- Link cards grid (2 cols on md+):
-  - Website card (if available)
-  - GitHub card (if available)
-  - Each card: p-6, border border-gray-200, rounded, hover:bg-gray-50
+1. Intro Section (two-column like about page)
+   - Two-column grid (stacked on mobile, 2 cols on md+), min-h-[50vh]
+   - Left column: image placeholder gradient (green-100 to blue-200), aspect-[4/3] on mobile
+   - Right column: brand white background (#FCF9F2), vertically centered, left-aligned
+     - Subtitle: location + "Est." + founded year (font-serif)
+     - Title: chapter name (text-3xl md:text-5xl, font-sans)
+
+2. Content Section
+   - Back link at top ("Back to chapters" with arrow, mb-8)
+   - Two-column layout (stacked on mobile/tablet, sidebar + content on lg+)
+   - Left sidebar (200px, font-serif): Members count, Projects count, University (horizontal on mobile, vertical on desktop with border-right)
+   - Right content (font-serif):
+     - Description paragraph (text-lg md:text-xl)
+     - Horizontal divider (BaseUI Separator)
+     - Link cards (3-col grid on md+) for website, github, instagram (if available)
+     - Projects table (if chapter has projects):
+       - Columns: Project, Partner (hidden mobile), Year (hidden mobile), Type (hidden mobile/tablet)
+       - Clickable rows linking to project pages
+       - Filtered from projects data by chapter name
+   - Column gap: gap-8 on mobile, lg:gap-16 on desktop
 
 ### Projects Page (src/app/projects/page.tsx)
 Current structure:
@@ -303,13 +338,7 @@ Current structure:
 
 2. Content Section
    - Title: "Projects" (centered, text-3xl md:text-4xl)
-   - Full-width table layout (bg-white/80 backdrop-blur, rounded, max-h-[70vh] scrollable):
-     - Sticky header row (sticky top-0, bg-white - fully opaque)
-     - Columns: Project, Partner (hidden mobile), Chapter (hidden mobile/tablet), Year (hidden mobile/tablet), Type (hidden mobile/tablet)
-     - Entire row is clickable (Link with contents class wraps tr)
-     - Partner shown under project name on mobile
-     - Hover state on rows (bg-gray-50, cursor-pointer)
-     - Font-sans for headings and year, font-serif for partner/chapter/type
+   - Uses the DataTable component to display a list of projects with clickable rows.
 
 Data file: src/data/projects.ts
 - TeamMember interface: name, role ("Tech Lead" | "Developer" | "Designer" | "Project Manager")
@@ -368,6 +397,32 @@ Remove these for production.
 - Site title: "Hack4Impact" (template: "%s | Hack4Impact")
 - Description: "Code for the common good."
 
+## Common Patterns
+
+### Listing Pages (Journal, Chapters, Projects, Partners)
+- Top gradient banner (h-56 md:h-80, horizontal gradient)
+- Centered title below banner
+- Full-width content area with consistent padding (p-8 md:p-12)
+
+### Detail Pages (Journal Entry, Chapter, Project)
+- Header/intro section at top
+- Back link above main content
+- Two-column layout on lg+: sidebar (200px) + main content
+- Sidebar has border-right on desktop, horizontal layout on mobile
+- BaseUI Separator for content dividers
+- Link cards for external links (website, github, instagram)
+
+### Data Tables (Chapters, Projects listings)
+- Full-width table with bg-white/80 backdrop-blur
+- Sticky header row (bg-white, fully opaque)
+- Clickable rows using Link with className="contents"
+- Responsive columns (hide on mobile/tablet)
+- Secondary info shown under primary column on mobile
+
+### Link Cards
+- p-4, border border-gray-200, rounded, hover:bg-gray-50
+- Title in font-sans, URL in font-serif text-gray-500
+
 ## Design Principles
 - Minimal styling approach
 - Only create what is explicitly requested
@@ -378,4 +433,5 @@ Remove these for production.
 ## Notes
 - Delete duplicate lockfile: "pnpm-lock 2.yaml" (accidental macOS duplicate)
 - Contentful integration exists but content structure not yet defined
-- All pages besides Home are placeholder stubs
+- Developed pages: Home, About, Journal (list + detail), Chapters (list + detail), Projects (list + detail), Partners (list)
+- Placeholder stub pages: Get Involved

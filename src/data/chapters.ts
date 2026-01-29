@@ -10,6 +10,7 @@ export interface Chapter {
   projectCount: number;
   website?: string;
   github?: string;
+  instagram?: string;
 }
 
 export const chapters: Chapter[] = [
@@ -25,6 +26,7 @@ export const chapters: Chapter[] = [
     projectCount: 12,
     website: "https://hack4impact.gatech.edu",
     github: "https://github.com/hack4impact-gt",
+    instagram: "https://instagram.com/hack4impactgt",
   },
   {
     id: "2",
@@ -38,6 +40,7 @@ export const chapters: Chapter[] = [
     projectCount: 24,
     website: "https://uiuc.hack4impact.org",
     github: "https://github.com/hack4impact-uiuc",
+    instagram: "https://instagram.com/hack4impactuiuc",
   },
   {
     id: "3",
@@ -51,6 +54,7 @@ export const chapters: Chapter[] = [
     projectCount: 18,
     website: "https://hack4impact.upenn.edu",
     github: "https://github.com/hack4impact-upenn",
+    instagram: "https://instagram.com/hack4impactpenn",
   },
   {
     id: "4",

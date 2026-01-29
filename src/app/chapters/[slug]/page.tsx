@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Separator } from "@base-ui/react/separator";
 import { getChapterBySlug } from "@/data/chapters";
+import { projects } from "@/data/projects";
 
 interface ChapterPageProps {
   params: Promise<{ slug: string }>;
@@ -14,6 +15,11 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   if (!chapter) {
     notFound();
   }
+
+  // Filter projects by this chapter
+  const chapterProjects = projects.filter(
+    (project) => project.chapter === chapter.name.replace("Hack4Impact ", "")
+  );
 
   return (
     <>
@@ -69,8 +75,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             <Separator className="border-t border-gray-300 mb-8" />
 
             {/* Link Cards */}
-            {(chapter.website || chapter.github) && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {(chapter.website || chapter.github || chapter.instagram) && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 {chapter.website && (
                   <a
                     href={chapter.website}
@@ -93,7 +99,53 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                     <p className="font-serif text-gray-500 text-sm truncate">{chapter.github}</p>
                   </a>
                 )}
+                {chapter.instagram && (
+                  <a
+                    href={chapter.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
+                  >
+                    <p className="font-sans text-base mb-1">Instagram</p>
+                    <p className="font-serif text-gray-500 text-sm truncate">{chapter.instagram}</p>
+                  </a>
+                )}
               </div>
+            )}
+
+            {/* Projects Table */}
+            {chapterProjects.length > 0 && (
+              <>
+                <Separator className="border-t border-gray-300 mb-8" />
+                <h2 className="text-xl md:text-2xl font-sans mb-4">Projects</h2>
+                <div className="overflow-auto debug-border rounded">
+                  <table className="w-full">
+                    <thead className="bg-gray-50">
+                      <tr className="border-b border-gray-200 text-left">
+                        <th className="py-3 px-4 font-sans font-medium text-sm">Project</th>
+                        <th className="py-3 px-4 font-sans font-medium text-sm hidden md:table-cell">Partner</th>
+                        <th className="py-3 px-4 font-sans font-medium text-sm hidden md:table-cell">Year</th>
+                        <th className="py-3 px-4 font-sans font-medium text-sm hidden lg:table-cell">Type</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {chapterProjects.map((project) => (
+                        <Link key={project.id} href={`/projects/${project.slug}`} className="contents">
+                          <tr className="border-b border-gray-100 hover:bg-gray-50 cursor-pointer">
+                            <td className="py-3 px-4">
+                              <span className="font-sans text-sm">{project.title}</span>
+                              <span className="block text-xs text-gray-500 font-serif md:hidden">{project.partner}</span>
+                            </td>
+                            <td className="py-3 px-4 font-serif text-gray-600 text-sm hidden md:table-cell">{project.partner}</td>
+                            <td className="py-3 px-4 font-sans text-gray-600 text-sm hidden md:table-cell">{project.year}</td>
+                            <td className="py-3 px-4 font-serif text-gray-600 text-sm hidden lg:table-cell">{project.tag}</td>
+                          </tr>
+                        </Link>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
             )}
           </article>
         </div>
