@@ -191,6 +191,7 @@ Current structure:
      - Button: "Meet the Team" (primary variant)
 
 2. Values Section
+   - Extra vertical padding (py-16 md:py-24, px-8 md:px-12)
    - Title: "Our values" (left-aligned, text-3xl)
    - Three-column grid of Card components (stacked on mobile/tablet, 3 cols on lg+)
    - Each card (left-aligned content, debug-border):
@@ -200,7 +201,7 @@ Current structure:
 
 3. Story Section (callout/highlight)
    - Two-column grid layout (stacked on mobile)
-   - Left column: placeholder gradient (purple-100 to blue-300, diagonal), portrait aspect ratio (3/4)
+   - Left column: left padding aligned with values section (pl-8 md:pl-12, py-8 md:py-12), placeholder gradient (purple-100 to blue-300, diagonal), aspect-[3/4], full width
    - Right column: vertically centered, left-aligned content
      - Title: "Our story" (sans-serif, text-3xl md:text-4xl)
      - Paragraph with story placeholder text
@@ -214,7 +215,7 @@ Current structure:
 2. Content Section
    - Title: "Journal" (text-3xl md:text-4xl)
    - Grid of journal entries (1 col mobile, 2 cols md, 3 cols lg)
-   - Each entry (debug-border):
+   - Each entry (p-4, debug-border):
      - Image placeholder (16:9 aspect ratio, gray gradient)
      - Title (text-xl)
      - Subtitle line: tag + "·" + read time (text-sm, gray)

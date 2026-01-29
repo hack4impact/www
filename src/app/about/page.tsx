@@ -38,7 +38,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="p-8 md:p-12">
+      <section className="px-8 md:px-12 py-16 md:py-24">
         <h2 className="text-3xl font-sans mb-12">Our values</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {values.map((value) => (
@@ -54,7 +54,9 @@ export default function AboutPage() {
 
       <section className="grid grid-cols-1 md:grid-cols-2">
         {/* Image placeholder - portrait */}
-        <div className="bg-gradient-to-br from-purple-100 to-blue-300 aspect-[3/4]" />
+        <div className="pl-8 md:pl-12 py-8 md:py-12">
+          <div className="bg-gradient-to-br from-purple-100 to-blue-300 aspect-[3/4] w-full" />
+        </div>
 
         {/* Text content */}
         <div className="flex flex-col justify-center items-start p-8 md:p-12">

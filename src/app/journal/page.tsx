@@ -12,7 +12,7 @@ export default function JournalPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {journalEntries.map((entry) => (
-            <article key={entry.id} className="debug-border">
+            <article key={entry.id} className="p-4 debug-border">
               {/* Image placeholder */}
               <div className="aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 mb-4" />
 
