@@ -83,9 +83,16 @@ export default function AboutPage() {
       </section>
 
       <section className="grid grid-cols-1 lg:grid-cols-2">
-        {/* Image placeholder - portrait */}
-        <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
-          <div className="bg-gradient-to-br from-purple-100 to-blue-300 aspect-[4/5] w-full" />
+        {/* Image */}
+        <div className="px-8 lg:px-0 lg:pl-8 py-8 lg:py-12">
+          <div className="relative aspect-[4/5] w-full">
+            <Image
+              src="/images/old.jpg"
+              alt="Early Hack4Impact team"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
 
         {/* Text content */}

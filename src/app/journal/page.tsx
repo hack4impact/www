@@ -1,11 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 import { journalEntries } from "@/data/journal-entries";
 
 export default function JournalPage() {
   return (
     <>
       {/* Banner */}
-      <section className="h-56 md:h-80 bg-gradient-to-r from-purple-100 via-blue-100 to-green-100" />
+      <section className="h-56 md:h-80 relative">
+        <Image
+          src="/images/paper.jpg"
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </section>
 
       {/* Content */}
       <section className="p-8 md:p-12">

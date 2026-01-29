@@ -9,10 +9,10 @@ const footerLinks = {
     { label: 'Partners', href: '/partners' },
   ],
   getInvolved: [
-    { label: 'Join a Chapter', href: '/get-involved#join' },
     { label: 'Start a Chapter', href: '/get-involved#start' },
     { label: 'Be a Mentor', href: '/get-involved#mentor' },
     { label: 'Partner With Us', href: '/get-involved#partner' },
+    { label: 'Sponsor Us', href: '/get-involved#sponsor' },
   ],
   resources: [
     { label: 'Journal', href: '/journal' },
@@ -96,8 +96,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-green-400 mt-8 pt-6 text-sm text-center">
-          <p>&copy; {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for Impact</p>
-          <p className="mt-1">EIN 81-0790890</p>
+          <p>&copy; {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for Impact ▪ EIN 81-0790890</p>
         </div>
       </div>
     </footer>

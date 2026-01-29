@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Separator } from "@base-ui/react/separator";
 import { getChapterBySlug } from "@/data/chapters";
 import { projects } from "@/data/projects";
@@ -26,8 +27,19 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
     <>
       {/* Intro - Two column */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[50vh]">
-        {/* Image placeholder */}
-        <div className="bg-gradient-to-br from-green-100 to-blue-200 min-h-64 md:min-h-0 aspect-[4/3] md:aspect-auto" />
+        {/* Image */}
+        {chapter.image ? (
+          <div className="relative min-h-64 md:min-h-0 aspect-[4/3] md:aspect-auto">
+            <Image
+              src={chapter.image}
+              alt={chapter.name}
+              fill
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="bg-gradient-to-br from-green-100 to-blue-200 min-h-64 md:min-h-0 aspect-[4/3] md:aspect-auto" />
+        )}
 
         {/* Header content */}
         <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">

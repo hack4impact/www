@@ -192,9 +192,9 @@ import { Card } from "@/components/ui/Card";
 - Background: bg-green-300, text-green-600
 - Padding: py-8 md:py-12
 - Layout: links + social on left, large logomark (100x100) on right
-- Links: Organization, Get Involved, Resources (flex-wrap with gap-x-12)
+- Links: Organization, Get Involved (Start a Chapter, Be a Mentor, Partner With Us, Sponsor Us), Resources
 - Social icons: LinkedIn, GitHub, Instagram (inline SVGs, 24x24)
-- Bottom: centered copyright "Hack4Impact Inc. d/b/a Hack for Impact" + EIN 81-0790890
+- Bottom: centered copyright + EIN on same line separated by ▪
 - Bottom divider: border-green-400
 
 ### Header (src/components/layout/Header.tsx)
@@ -235,6 +235,11 @@ Current structure:
    - Cards: Non-Profits, Students, Professionals
    - Each card: SVG icon (45x45 from /public/icons/), h3 title, description (font-serif)
 
+4. Quote Callout Section
+   - Two-column grid (stacked on mobile, 2 cols on lg+)
+   - Left column: javid.jpg image (aspect-[4/5])
+   - Right column: blockquote (font-sans, text-2xl md:text-3xl) + name (font-sans) + title (font-serif text-gray-600)
+
 ### About Page (src/app/about/page.tsx)
 Current structure:
 1. Intro Section
@@ -255,7 +260,7 @@ Current structure:
 
 3. Story Section (callout/highlight)
    - Two-column grid layout (stacked on mobile/tablet, 2 cols on lg+)
-   - Left column: full width with matching padding (px-8 on mobile/tablet, lg:pl-12 on desktop), placeholder gradient (purple-100 to blue-300, diagonal), aspect-[4/5]
+   - Left column: old.jpg image (px-8 on mobile, lg:pl-8 on desktop), aspect-[4/5]
    - Right column: vertically centered, left-aligned content, more horizontal padding (p-8, lg:px-24 lg:py-12)
      - Title: "Our story" (sans-serif, text-3xl md:text-4xl)
      - Paragraph with story placeholder text (mt-6 md:mt-8 gap from title)
@@ -286,8 +291,7 @@ Data file: src/data/partners.ts
 ### Journal Page (src/app/journal/page.tsx)
 Current structure:
 1. Banner
-   - Wide gradient banner (h-56 md:h-80)
-   - Gradient: purple-100 via blue-100 to green-100 (horizontal)
+   - paper.jpg image banner (h-56 md:h-80, object-cover)
 
 2. Content Section
    - Title: "Journal" (centered, text-3xl md:text-4xl)
@@ -338,7 +342,7 @@ Current structure:
    - Uses the DataTable component to display a list of chapters with clickable rows.
 
 Data file: src/data/chapters.ts
-- Chapter interface: id, slug, name, university, location, founded, description, memberCount, projectCount, website?, github?, instagram?
+- Chapter interface: id, slug, name, university, location, founded, description, memberCount, projectCount, website?, github?, instagram?, image?
 - 23 mock chapters with various universities
 - getChapterBySlug(slug) helper function
 

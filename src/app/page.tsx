@@ -120,6 +120,32 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Quote Callout Section */}
+      <section className="grid grid-cols-1 lg:grid-cols-2">
+        {/* Image */}
+        <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
+          <div className="relative aspect-[4/5] w-full">
+            <Image
+              src="/images/javid.jpg"
+              alt="Javid Fathi"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Quote content */}
+        <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
+          <blockquote className="font-sans text-2xl md:text-3xl">
+            &ldquo;...the kind of passion for socially-minded engineering our industry desperately needs.&rdquo;
+          </blockquote>
+          <div className="mt-6 md:mt-8">
+            <p className="font-sans text-lg">Javid Fathi</p>
+            <p className="font-serif text-gray-600">Software Engineer Lead at Microsoft</p>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
