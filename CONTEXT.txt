@@ -223,6 +223,13 @@ Current structure:
      - Steps use flex-1 to distribute evenly: Source, Define, Design, Develop, Maintain
      - Each step: h3 title (font-sans) + expanded partner-focused description (font-serif, text-gray-600) + number in upper right (font-mono, text-gray-400, 01-05)
 
+3. Programs Section
+   - Extra vertical padding (py-16 md:py-24, px-8 md:px-12)
+   - Two-line centered title: "Our programs" (font-serif) + "Community in action" (font-sans), both text-2xl md:text-3xl
+   - Three-column grid (stacked on mobile, 3 cols on lg+)
+   - Cards: Non-Profits, Students, Professionals
+   - Each card: SVG icon (45x45 from /public/icons/), h3 title, description (font-serif)
+
 ### About Page (src/app/about/page.tsx)
 Current structure:
 1. Intro Section

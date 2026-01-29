@@ -89,6 +89,37 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Programs Section */}
+      <section className="px-8 md:px-12 py-16 md:py-24">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-serif">Our programs</h2>
+          <p className="text-2xl md:text-3xl font-sans">Community in action</p>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col items-start px-6 py-8 debug-border">
+            <div className="mb-6">
+              <Image src="/icons/nonprofits.svg" alt="" width={45} height={45} />
+            </div>
+            <h3 className="text-xl font-sans mb-2">Non-Profits</h3>
+            <p className="text-base font-serif">We build custom software solutions for nonprofit organizations, helping them better serve their communities and amplify their impact.</p>
+          </div>
+          <div className="flex flex-col items-start px-6 py-8 debug-border">
+            <div className="mb-6">
+              <Image src="/icons/students.svg" alt="" width={45} height={45} />
+            </div>
+            <h3 className="text-xl font-sans mb-2">Students</h3>
+            <p className="text-base font-serif">We provide community, education, and service-learning opportunities for students to develop real-world skills while making a difference.</p>
+          </div>
+          <div className="flex flex-col items-start px-6 py-8 debug-border">
+            <div className="mb-6">
+              <Image src="/icons/professionals.svg" alt="" width={45} height={45} />
+            </div>
+            <h3 className="text-xl font-sans mb-2">Professionals</h3>
+            <p className="text-base font-serif">Industry professionals mentor our students, sharing expertise and guiding the next generation of socially-conscious technologists.</p>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
