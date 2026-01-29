@@ -183,18 +183,25 @@ Current structure:
 Current structure:
 1. Intro Section
    - Two-column grid layout (stacked on mobile), min-h-[70vh]
-   - Left column: placeholder gradient (blue-100 to green-300, diagonal)
+   - Left column: placeholder gradient (blue-100 to green-300, diagonal), portrait aspect ratio (3/4)
    - Right column: brand white background (#FCF9F2), vertically centered, left-aligned content
      - Title: "Creating software to support those supporting their communities" (sans-serif, text-3xl md:text-4xl)
      - Button: "Meet the Team" (primary variant)
 
 2. Values Section
-   - Title: "Our Values" (left-aligned, text-3xl)
-   - Three-column grid of Card components (stacked on mobile)
+   - Title: "Our values" (left-aligned, text-3xl)
+   - Three-column grid of Card components (stacked on mobile/tablet, 3 cols on lg+)
    - Each card (left-aligned content, debug-border):
      - Placeholder icon (gray circle, w-10 h-10)
      - Title: Sustainable / Ethical / Accessible
      - Description paragraph
+
+3. Story Section (callout/highlight)
+   - Two-column grid layout (stacked on mobile)
+   - Left column: placeholder gradient (purple-100 to blue-300, diagonal), portrait aspect ratio (3/4)
+   - Right column: vertically centered, left-aligned content
+     - Title: "Our story" (sans-serif, text-3xl md:text-4xl)
+     - Paragraph with story placeholder text
 
 ## Debug Mode
 For development, thin borders are added to sections and .debug-border elements:
