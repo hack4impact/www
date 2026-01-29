@@ -32,9 +32,11 @@ A minimal website for Hack4Impact (H4I), built with Next.js 15, React 19, Tailwi
 │   │   │   └── Footer.tsx
 │   │   └── ui/
 │   │       └── Button.tsx        # Reusable button component
-│   └── lib/
-│       ├── contentful.ts
-│       └── types.ts
+│   ├── lib/
+│   │   ├── contentful.ts
+│   │   └── types.ts
+│   └── data/
+│       └── journal-entries.ts   # Mock journal data
 ├── public/
 │   ├── fonts/
 │   │   ├── InclusiveSans.ttf        # Variable font, weight 300-700, from GitHub (has ss01)
@@ -167,7 +169,7 @@ import { Card } from "@/components/ui/Card";
 ### Home Page (src/app/page.tsx)
 Current structure:
 1. Intro Section
-   - White-to-gray gradient background (from-white to-gray-200)
+   - Blue-to-green gradient background (from-blue-100 via-blue-100 via-60% to-green-300, more blue than green)
    - Gradient stops at bottom-1/3, allowing image to hang below
    - Bottom padding pb-32 ensures image hangs off gradient on mobile
    - Top padding pt-24 for gap between navbar and content
@@ -202,6 +204,25 @@ Current structure:
    - Right column: vertically centered, left-aligned content
      - Title: "Our story" (sans-serif, text-3xl md:text-4xl)
      - Paragraph with story placeholder text
+
+### Journal Page (src/app/journal/page.tsx)
+Current structure:
+1. Banner
+   - Wide gradient banner (h-48 md:h-64)
+   - Gradient: purple-100 via blue-100 to green-100 (horizontal)
+
+2. Content Section
+   - Title: "Journal" (text-3xl md:text-4xl)
+   - Grid of journal entries (1 col mobile, 2 cols md, 3 cols lg)
+   - Each entry (debug-border):
+     - Image placeholder (16:9 aspect ratio, gray gradient)
+     - Title (text-xl)
+     - Subtitle line: tag + "·" + read time (text-sm, gray)
+     - Description paragraph
+
+Data file: src/data/journal-entries.ts
+- JournalEntry interface: id, title, tag, readTime, description, image?
+- Mock entries with Engineering, Case Study, Opinion, Design tags
 
 ## Debug Mode
 For development, thin borders are added to sections and .debug-border elements:
