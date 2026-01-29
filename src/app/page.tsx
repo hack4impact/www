@@ -11,7 +11,7 @@ export default function HomePage() {
         {/* Content */}
         <div className="relative text-center pt-24 px-8">
           <h1 className="flex flex-col">
-            <span className="font-serif text-4xl md:text-6xl">
+            <span className="font-serif text-5xl md:text-7xl">
               Code &amp; community
             </span>
             <span className="font-sans text-4xl md:text-6xl">
@@ -93,7 +93,7 @@ export default function HomePage() {
       {/* Programs Section */}
       <section className="px-8 md:px-12 py-16 md:py-24">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-serif">Our programs</h2>
+          <h2 className="text-3xl md:text-4xl font-serif">Our programs</h2>
           <p className="text-2xl md:text-3xl font-sans">Community in action</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

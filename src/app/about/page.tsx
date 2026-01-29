@@ -1,6 +1,27 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+
+const operationsTeam = [
+  { name: "Sarah Chen", title: "Executive Director", contact: "sarah@hack4impact.org" },
+  { name: "Marcus Johnson", title: "Director of Programs", contact: "marcus@hack4impact.org" },
+  { name: "Emily Rodriguez", title: "Director of Partnerships", contact: "emily@hack4impact.org" },
+  { name: "David Kim", title: "Director of Operations", contact: "david@hack4impact.org" },
+];
+
+const boardOfDirectors = [
+  { name: "Dr. James Mitchell", title: "Board Chair", contact: "james@hack4impact.org" },
+  { name: "Amanda Foster", title: "Vice Chair", contact: "amanda@hack4impact.org" },
+  { name: "Robert Nguyen", title: "Treasurer", contact: "robert@hack4impact.org" },
+  { name: "Lisa Park", title: "Secretary", contact: "lisa@hack4impact.org" },
+];
+
+const advisoryBoard = [
+  { name: "Michael Torres", title: "CTO, TechForGood", website: "techforgood.org" },
+  { name: "Jennifer Walsh", title: "VP Engineering, Stripe", website: "stripe.com" },
+  { name: "Daniel Okonkwo", title: "Founder, ImpactLabs", website: "impactlabs.io" },
+];
 
 const values = [
   {
@@ -40,7 +61,9 @@ export default function AboutPage() {
             Creating software to support those supporting their communities
           </h1>
           <div className="mt-6">
-            <Button>Meet the Team</Button>
+            <Link href="#operations-team">
+              <Button>Meet the Team</Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -71,6 +94,66 @@ export default function AboutPage() {
           <p className="mt-6 md:mt-8 text-base md:text-lg">
             Founded by students who believed technology could be a force for good, Hack4Impact began as a small group of developers volunteering their skills for local nonprofits. What started as weekend projects quickly grew into a nationwide network of chapters, each dedicated to bridging the gap between student talent and community needs. Today, we continue that mission, empowering the next generation of technologists to build with purpose and impact.
           </p>
+        </div>
+      </section>
+
+      {/* Team Sections */}
+      <section className="px-8 md:px-12 py-16 md:py-24">
+        {/* Operations Team */}
+        <div id="operations-team" className="mb-16 scroll-mt-8">
+          <h2 className="text-2xl md:text-3xl font-sans mb-8">Operations Team</h2>
+          <div className="divide-y divide-gray-200">
+            <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
+              <span>Name</span>
+              <span>Title</span>
+              <span>Contact</span>
+            </div>
+            {operationsTeam.map((member) => (
+              <div key={member.name} className="grid grid-cols-3 py-4">
+                <span className="font-sans">{member.name}</span>
+                <span className="font-serif text-gray-600">{member.title}</span>
+                <a href={`mailto:${member.contact}`} className="font-serif text-gray-600 hover:text-gray-900">{member.contact}</a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Board of Directors */}
+        <div className="mb-16">
+          <h2 className="text-2xl md:text-3xl font-sans mb-8">Board of Directors</h2>
+          <div className="divide-y divide-gray-200">
+            <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
+              <span>Name</span>
+              <span>Title</span>
+              <span>Contact</span>
+            </div>
+            {boardOfDirectors.map((member) => (
+              <div key={member.name} className="grid grid-cols-3 py-4">
+                <span className="font-sans">{member.name}</span>
+                <span className="font-serif text-gray-600">{member.title}</span>
+                <a href={`mailto:${member.contact}`} className="font-serif text-gray-600 hover:text-gray-900">{member.contact}</a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Advisory Board */}
+        <div>
+          <h2 className="text-2xl md:text-3xl font-sans mb-8">Advisory Board</h2>
+          <div className="divide-y divide-gray-200">
+            <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
+              <span>Name</span>
+              <span>Title</span>
+              <span>Website</span>
+            </div>
+            {advisoryBoard.map((member) => (
+              <div key={member.name} className="grid grid-cols-3 py-4">
+                <span className="font-sans">{member.name}</span>
+                <span className="font-serif text-gray-600">{member.title}</span>
+                <a href={`https://${member.website}`} target="_blank" rel="noopener noreferrer" className="font-serif text-gray-600 hover:text-gray-900">{member.website}</a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const navigation = [
   { label: 'About', href: '/about' },
@@ -18,8 +19,9 @@ export default function Header() {
   return (
     <header>
       <nav className="flex items-center justify-between p-4 border-b">
-        <Link href="/" className="font-bold text-xl">
-          H4I
+        <Link href="/">
+          <Image src="/logomark.svg" alt="Hack4Impact" width={32} height={32} className="md:hidden" />
+          <Image src="/logo.svg" alt="Hack4Impact" width={150} height={40} className="hidden md:block" />
         </Link>
 
         <div className="hidden md:flex items-center gap-6">

@@ -189,11 +189,16 @@ import { Card } from "@/components/ui/Card";
 ```
 
 ### Footer (src/components/layout/Footer.tsx)
-- Tagline: "Code for the common good."
-- Sections: Organization, Get Involved, Resources
-- Get Involved links: Join a Chapter, Start a Chapter, Be a Mentor, Partner With Us
+- Background: bg-green-300, text-green-600
+- Padding: py-8 md:py-12
+- Layout: links + social on left, large logomark (100x100) on right
+- Links: Organization, Get Involved, Resources (flex-wrap with gap-x-12)
+- Social icons: LinkedIn, GitHub, Instagram (inline SVGs, 24x24)
+- Bottom: centered copyright "Hack4Impact Inc. d/b/a Hack for Impact" + EIN 81-0790890
+- Bottom divider: border-green-400
 
 ### Header (src/components/layout/Header.tsx)
+- Logo: /logomark.svg on mobile (32x32), /logo.svg on desktop (150x40)
 - Navigation with mobile menu
 - Links to main sections
 
@@ -207,9 +212,9 @@ Current structure:
    - Bottom padding pb-32 ensures image hangs off gradient on mobile
    - Top padding pt-24 for gap between navbar and content
    - Stacked title (flexbox column, no gap):
-     - "Code & community" (Newsreader/serif, text-4xl md:text-6xl) on top
+     - "Code & community" (Newsreader/serif, text-5xl md:text-7xl) on top
      - "for the common good" (Inclusive Sans/sans, text-4xl md:text-6xl) below
-     - Both lines same font size, tight spacing to read as one title
+     - Serif sized up for optical balance with sans-serif
    - Subtitle paragraph (text-base md:text-lg) about H4I mission
    - "Partner with us!" button (primary variant)
    - Full-width image (gt.jpg) that hangs below the gradient
@@ -225,7 +230,7 @@ Current structure:
 
 3. Programs Section
    - Extra vertical padding (py-16 md:py-24, px-8 md:px-12)
-   - Two-line centered title: "Our programs" (font-serif) + "Community in action" (font-sans), both text-2xl md:text-3xl
+   - Two-line centered title: "Our programs" (font-serif, text-3xl md:text-4xl) + "Community in action" (font-sans, text-2xl md:text-3xl)
    - Three-column grid (stacked on mobile, 3 cols on lg+)
    - Cards: Non-Profits, Students, Professionals
    - Each card: SVG icon (45x45 from /public/icons/), h3 title, description (font-serif)
@@ -254,6 +259,14 @@ Current structure:
    - Right column: vertically centered, left-aligned content, more horizontal padding (p-8, lg:px-24 lg:py-12)
      - Title: "Our story" (sans-serif, text-3xl md:text-4xl)
      - Paragraph with story placeholder text (mt-6 md:mt-8 gap from title)
+
+4. Team Sections
+   - "Meet the Team" button links to #operations-team
+   - Three subsections: Operations Team (id="operations-team"), Board of Directors, Advisory Board
+   - Each subsection: h2 title (text-2xl md:text-3xl), table-like list with dividers (no top border)
+   - Header row: font-mono text-sm text-gray-500 (Name, Title, Contact/Website)
+   - Data rows: name (font-sans), title (font-serif), contact as mailto: link, website as https:// link
+   - Mock data: 4 Operations Team, 4 Board of Directors, 3 Advisory Board members
 
 ### Partners Page (src/app/partners/page.tsx)
 Current structure:
