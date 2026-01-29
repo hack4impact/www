@@ -42,6 +42,53 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Process Section */}
+      <section className="px-8 md:px-12 py-16 md:py-24">
+        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center max-w-lg mx-auto">
+          Our process for turning computer science into community science
+        </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Image */}
+          <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px]">
+            <Image
+              src="/images/group.jpg"
+              alt="Hack4Impact team collaborating"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Process steps */}
+          <div className="flex flex-col justify-between h-full divide-y divide-gray-200 border-t border-gray-200">
+            <div className="flex-1 flex flex-col justify-center py-4 relative">
+              <span className="absolute top-4 right-0 font-mono text-gray-400">01</span>
+              <h3 className="text-lg font-sans mb-1">Source</h3>
+              <p className="font-serif text-gray-600">We connect with nonprofit organizations facing technical challenges that align with our mission. Partners apply through our network, and we evaluate projects based on community impact and feasibility.</p>
+            </div>
+            <div className="flex-1 flex flex-col justify-center py-4 relative">
+              <span className="absolute top-4 right-0 font-mono text-gray-400">02</span>
+              <h3 className="text-lg font-sans mb-1">Define</h3>
+              <p className="font-serif text-gray-600">Our team meets with your organization to understand your goals, users, and constraints. Together we scope the project, identify key requirements, and establish success metrics.</p>
+            </div>
+            <div className="flex-1 flex flex-col justify-center py-4 relative">
+              <span className="absolute top-4 right-0 font-mono text-gray-400">03</span>
+              <h3 className="text-lg font-sans mb-1">Design</h3>
+              <p className="font-serif text-gray-600">We create wireframes and prototypes in close collaboration with your team. User research and iterative feedback ensure the solution truly serves your community's needs.</p>
+            </div>
+            <div className="flex-1 flex flex-col justify-center py-4 relative">
+              <span className="absolute top-4 right-0 font-mono text-gray-400">04</span>
+              <h3 className="text-lg font-sans mb-1">Develop</h3>
+              <p className="font-serif text-gray-600">Student developers build your product using modern, maintainable technologies. Regular check-ins keep you informed and involved throughout the development process.</p>
+            </div>
+            <div className="flex-1 flex flex-col justify-center py-4 relative">
+              <span className="absolute top-4 right-0 font-mono text-gray-400">05</span>
+              <h3 className="text-lg font-sans mb-1">Maintain</h3>
+              <p className="font-serif text-gray-600">We deliver comprehensive documentation and training so your team can manage the product independently. Ongoing support options ensure long-term success.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

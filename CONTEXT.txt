@@ -173,9 +173,9 @@ Props:
 - className?: string (optional additional classes)
 
 Styles:
-- Padding p-6
+- Padding px-6 py-8
 - All content left-aligned (items-start)
-- Icon has mb-4, title has mb-2
+- Icon has mb-6, title has mb-2
 - Has debug-border class for development
 
 Usage:
@@ -214,6 +214,15 @@ Current structure:
    - "Partner with us!" button (primary variant)
    - Full-width image (gt.jpg) that hangs below the gradient
 
+2. Process Section
+   - Extra vertical padding (py-16 md:py-24, px-8 md:px-12)
+   - Title: centered, max-w-lg to wrap to two lines
+   - Two-column grid (stacked on mobile, 2 cols on lg+)
+   - Left column: group.jpg image (aspect-[4/3] on mobile, fills height on desktop)
+   - Right column: 5 process steps with dividers, height matches image
+     - Steps use flex-1 to distribute evenly: Source, Define, Design, Develop, Maintain
+     - Each step: h3 title (font-sans) + expanded partner-focused description (font-serif, text-gray-600) + number in upper right (font-mono, text-gray-400, 01-05)
+
 ### About Page (src/app/about/page.tsx)
 Current structure:
 1. Intro Section
@@ -228,7 +237,7 @@ Current structure:
    - Title: "Our values" (centered, text-3xl)
    - Three-column grid of Card components (stacked on mobile/tablet, 3 cols on lg+)
    - Each card (left-aligned content, debug-border):
-     - Placeholder icon (gray circle, w-10 h-10)
+     - SVG icon (45x45): sustain.svg, ethics.svg, access.svg from /public/icons/
      - Title: Sustainable / Ethical / Accessible
      - Description paragraph
 

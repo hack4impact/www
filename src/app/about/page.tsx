@@ -6,20 +6,19 @@ const values = [
   {
     title: "Sustainable",
     description: "We build lasting solutions that continue to serve communities long after our initial engagement.",
+    icon: "/icons/sustain.svg",
   },
   {
     title: "Ethical",
     description: "We prioritize the needs and privacy of the communities we serve in every decision we make.",
+    icon: "/icons/ethics.svg",
   },
   {
     title: "Accessible",
     description: "We design inclusive software that works for everyone, regardless of ability or background.",
+    icon: "/icons/access.svg",
   },
 ];
-
-function PlaceholderIcon() {
-  return <div className="w-10 h-10 rounded-full bg-gray-200" />;
-}
 
 export default function AboutPage() {
   return (
@@ -52,7 +51,7 @@ export default function AboutPage() {
           {values.map((value) => (
             <Card
               key={value.title}
-              icon={<PlaceholderIcon />}
+              icon={<Image src={value.icon} alt="" width={45} height={45} />}
               title={value.title}
               description={value.description}
             />
