@@ -121,7 +121,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-24">
           {/* Sidebar - Project Details */}
           <aside className="grid grid-cols-2 lg:block lg:border-r lg:pr-8 debug-border font-serif">
             <div className="mb-4 lg:mb-6">

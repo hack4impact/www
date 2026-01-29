@@ -35,6 +35,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
               alt={chapter.name}
               fill
               className="object-cover"
+              style={{ objectPosition: chapter.imagePosition || "center" }}
             />
           </div>
         ) : (

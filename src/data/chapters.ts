@@ -12,6 +12,7 @@ export interface Chapter {
   github?: string;
   instagram?: string;
   image?: string;
+  imagePosition?: string;
 }
 
 export const chapters: Chapter[] = [
@@ -28,6 +29,7 @@ export const chapters: Chapter[] = [
     website: "https://hack4impact.bu.edu",
     github: "https://github.com/hack4impact-bu",
     image: "/images/boston.jpg",
+    imagePosition: "center 30%",
   },
   {
     id: "2",
@@ -131,6 +133,7 @@ export const chapters: Chapter[] = [
     website: "https://hack4impact.upenn.edu",
     github: "https://github.com/hack4impact-upenn",
     instagram: "https://instagram.com/hack4impactpenn",
+    image: "/images/upenn.jpg",
   },
   {
     id: "10",
