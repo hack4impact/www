@@ -147,11 +147,13 @@ General-purpose card component for content blocks. Custom component (BaseUI has 
 A generic, reusable table component for displaying data. It does *not* apply any default visual styling to its wrapper div or thead element. All styling for these elements must be provided via the `wrapperClassName` and `theadClassName` props.
 
 Props:
-- columns: An array of column definitions, including header, accessor, and class names.
+- columns: An array of column definitions. Each column object requires an `id` (string), `header` (string), and `accessor` (function). For sorting, an `accessorKey` (a key of the data object) is also required. An optional `width` (string) can be provided to set the column width.
 - data: An array of data objects to display in the table.
 - getRowHref?: A function that returns a URL for each row to make it a clickable link.
 - wrapperClassName?: string (classes for the outermost div)
 - theadClassName?: string (classes for the thead element)
+- initialSort?: An object with `columnId` and `direction` ("asc" | "desc") to set the default sort order.
+
 
 ### ChapterProjects (src/components/ui/ChapterProjects.tsx)
 A client component used in the chapter detail page to display a table of projects associated with a chapter. It utilizes the `DataTable` component internally and passes specific styling props to it to maintain the original look and feel of the embedded table.

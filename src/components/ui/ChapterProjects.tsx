@@ -4,13 +4,19 @@ import { DataTable } from "@/components/ui/DataTable";
 import type { Project } from "@/data/projects";
 
 const projectColumns: Array<{
+  id: string;
   header: string;
   accessor: (row: Project) => React.ReactNode;
+  accessorKey?: keyof Project;
+  width?: string;
   className?: string;
   headerClassName?: string;
 }> = [
   {
+    id: "title",
     header: "Project",
+    accessorKey: "title",
+    width: "40%",
     accessor: (row) => (
       <>
         <span className="font-sans text-sm">{row.title}</span>
@@ -19,19 +25,28 @@ const projectColumns: Array<{
     ),
   },
   {
+    id: "partner",
     header: "Partner",
+    accessorKey: "partner",
+    width: "30%",
     accessor: (row) => row.partner,
     className: "font-serif text-gray-600 text-sm hidden md:table-cell",
     headerClassName: "hidden md:table-cell",
   },
   {
+    id: "tag",
     header: "Type",
+    accessorKey: "tag",
+    width: "15%",
     accessor: (row) => row.tag,
     className: "font-serif text-gray-600 text-sm hidden lg:table-cell",
     headerClassName: "hidden lg:table-cell",
   },
   {
+    id: "year",
     header: "Year",
+    accessorKey: "year",
+    width: "15%",
     accessor: (row) => row.year,
     className: "font-sans text-gray-600 text-sm hidden md:table-cell",
     headerClassName: "hidden md:table-cell",
@@ -50,6 +65,7 @@ export function ChapterProjects({ projects }: ChapterProjectsProps) {
       getRowHref={(row) => `/projects/${row.slug}`}
       wrapperClassName="overflow-auto debug-border rounded"
       theadClassName="bg-gray-50"
+      initialSort={{ columnId: "year", direction: "desc" }}
     />
   );
 }

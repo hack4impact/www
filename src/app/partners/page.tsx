@@ -5,13 +5,19 @@ import { partners, Partner } from "@/data/partners";
 import { DataTable } from "@/components/ui/DataTable";
 
 const columns: Array<{
+  id: string;
   header: string;
   accessor: (row: Partner) => React.ReactNode;
+  accessorKey?: keyof Partner;
+  width?: string;
   className?: string;
   headerClassName?: string;
 }> = [
   {
+    id: "name",
     header: "Partner",
+    accessorKey: "name",
+    width: "30%",
     accessor: (row) => (
       <>
         <span className="font-sans text-base">{row.name}</span>
@@ -20,13 +26,19 @@ const columns: Array<{
     ),
   },
   {
+    id: "location",
     header: "Location",
+    accessorKey: "location",
+    width: "25%",
     accessor: (row) => row.location,
     className: "font-serif text-gray-600 hidden md:table-cell",
     headerClassName: "hidden md:table-cell",
   },
   {
+    id: "website",
     header: "Website",
+    accessorKey: "website",
+    width: "35%",
     accessor: (row) =>
       row.website ? (
         <Link href={row.website} target="_blank" rel="noopener noreferrer" className="hover:underline">
@@ -39,7 +51,10 @@ const columns: Array<{
     headerClassName: "hidden lg:table-cell",
   },
   {
+    id: "projectCount",
     header: "Projects",
+    accessorKey: "projectCount",
+    width: "10%",
     accessor: (row) => row.projectCount,
     className: "font-sans text-gray-600 hidden lg:table-cell text-right",
     headerClassName: "hidden lg:table-cell text-right",
@@ -59,7 +74,8 @@ export default function PartnersPage() {
           columns={columns}
           data={partners}
           wrapperClassName="overflow-auto max-h-[70vh] debug-border bg-white/80 backdrop-blur-sm rounded"
-          theadClassName="sticky top-0 bg-white"
+          theadClassName="sticky top-0 bg-white border-b-2 border-gray-200"
+          initialSort={{ columnId: "name", direction: "asc" }}
         />
       </section>
     </>
