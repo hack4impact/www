@@ -154,6 +154,23 @@ Current structure:
    - "Partner with us!" button (primary variant)
    - Full-width image (gt.jpg) that hangs below the gradient
 
+### About Page (src/app/about/page.tsx)
+Current structure:
+1. Intro Section
+   - Two-column grid layout (stacked on mobile), min-h-[70vh]
+   - Left column: placeholder gradient (blue-100 to green-300, diagonal)
+   - Right column: brand white background (#FCF9F2), vertically centered, left-aligned content
+     - Title: "Creating software to support those supporting their communities" (sans-serif, text-3xl md:text-4xl)
+     - Button: "Meet the Team" (primary variant)
+
+2. Values Section
+   - Title: "Our Values" (centered, text-3xl)
+   - Three-column grid of value cards (stacked on mobile)
+   - Each card (centered content):
+     - Placeholder icon (gray circle, w-16 h-16)
+     - Title: Sustainable / Ethical / Accessible (text-xl)
+     - Description paragraph
+
 ## Debug Mode
 For development, thin borders are added to sections and .debug-border elements:
 ```css
