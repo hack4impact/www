@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Separator } from "@base-ui/react/separator";
 import { getChapterBySlug } from "@/data/chapters";
 
 interface ChapterPageProps {
@@ -15,13 +17,14 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
   return (
     <>
-      {/* Banner */}
-      <section className="h-56 md:h-80 bg-gradient-to-br from-blue-100 to-green-200" />
+      {/* Intro - Two column */}
+      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[50vh]">
+        {/* Image placeholder */}
+        <div className="bg-gradient-to-br from-green-100 to-blue-200 min-h-64 md:min-h-0 aspect-[4/3] md:aspect-auto" />
 
-      {/* Header */}
-      <section className="p-8 md:px-24 md:py-12 text-center">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-center gap-2 text-base font-serif mb-2">
+        {/* Header content */}
+        <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
+          <div className="flex items-center gap-2 text-base font-serif mb-2">
             <span className="text-gray-600">{chapter.location}</span>
             <span className="text-gray-400">·</span>
             <span className="text-gray-600">Est. {chapter.founded}</span>
@@ -32,47 +35,67 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
       {/* Content */}
       <section className="p-8 md:px-24 md:py-12">
-        <div className="max-w-3xl mx-auto">
-          {/* Description */}
-          <p className="text-lg md:text-xl font-serif text-center mb-12">{chapter.description}</p>
+        {/* Back link */}
+        <div className="mb-8">
+          <Link href="/chapters" className="inline-flex items-center gap-2 font-sans text-gray-600 hover:text-gray-900">
+            <span>←</span>
+            <span>Back to chapters</span>
+          </Link>
+        </div>
 
-          {/* Stats */}
-          <div className="flex justify-center gap-12 mb-12">
-            <div className="text-center">
-              <p className="text-3xl font-sans">{chapter.memberCount}</p>
-              <p className="text-sm text-gray-500 font-serif">Members</p>
+        <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-16">
+          {/* Sidebar - Stats */}
+          <aside className="flex flex-row lg:flex-col gap-8 lg:gap-0 lg:border-r lg:pr-8 debug-border font-serif">
+            <div className="lg:mb-6">
+              <p className="text-sm text-gray-500">Members</p>
+              <p className="text-2xl font-sans">{chapter.memberCount}</p>
             </div>
-            <div className="text-center">
-              <p className="text-3xl font-sans">{chapter.projectCount}</p>
-              <p className="text-sm text-gray-500 font-serif">Projects</p>
+            <div className="lg:mb-6">
+              <p className="text-sm text-gray-500">Projects</p>
+              <p className="text-2xl font-sans">{chapter.projectCount}</p>
             </div>
-          </div>
+            <div>
+              <p className="text-sm text-gray-500">University</p>
+              <p className="font-sans">{chapter.university}</p>
+            </div>
+          </aside>
 
-          {/* Link Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {chapter.website && (
-              <a
-                href={chapter.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-6 debug-border hover:bg-gray-50 transition-colors"
-              >
-                <p className="font-sans text-lg mb-1">Website</p>
-                <p className="font-serif text-gray-500 text-sm truncate">{chapter.website}</p>
-              </a>
+          {/* Main content */}
+          <article className="debug-border font-serif">
+            {/* Description */}
+            <p className="text-lg md:text-xl mb-8">{chapter.description}</p>
+
+            {/* Divider */}
+            <Separator className="border-t border-gray-300 mb-8" />
+
+            {/* Link Cards */}
+            {(chapter.website || chapter.github) && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {chapter.website && (
+                  <a
+                    href={chapter.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
+                  >
+                    <p className="font-sans text-base mb-1">Website</p>
+                    <p className="font-serif text-gray-500 text-sm truncate">{chapter.website}</p>
+                  </a>
+                )}
+                {chapter.github && (
+                  <a
+                    href={chapter.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
+                  >
+                    <p className="font-sans text-base mb-1">GitHub</p>
+                    <p className="font-serif text-gray-500 text-sm truncate">{chapter.github}</p>
+                  </a>
+                )}
+              </div>
             )}
-            {chapter.github && (
-              <a
-                href={chapter.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-6 debug-border hover:bg-gray-50 transition-colors"
-              >
-                <p className="font-sans text-lg mb-1">GitHub</p>
-                <p className="font-serif text-gray-500 text-sm truncate">{chapter.github}</p>
-              </a>
-            )}
-          </div>
+          </article>
         </div>
       </section>
     </>

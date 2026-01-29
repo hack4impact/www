@@ -3,14 +3,17 @@ import { chapters } from "@/data/chapters";
 
 export default function ChaptersPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-100 via-blue-100 to-purple-100">
+    <>
+      {/* Banner */}
+      <section className="h-56 md:h-80 bg-gradient-to-r from-green-100 via-blue-100 to-purple-100" />
+
       {/* Content */}
       <section className="p-8 md:p-12">
-        <h1 className="text-3xl md:text-4xl font-sans mb-12 text-center pt-12">Chapters</h1>
+        <h1 className="text-3xl md:text-4xl font-sans mb-12 text-center">Chapters</h1>
 
-        <div className="max-w-4xl mx-auto overflow-x-auto debug-border bg-white/80 backdrop-blur-sm rounded">
+        <div className="overflow-auto max-h-[70vh] debug-border bg-white/80 backdrop-blur-sm rounded">
           <table className="w-full">
-            <thead className="sticky top-0 bg-white/95 backdrop-blur-sm">
+            <thead className="sticky top-0 bg-white">
               <tr className="border-b border-gray-200 text-left">
                 <th className="py-4 px-4 font-sans font-medium">Chapter</th>
                 <th className="py-4 px-4 font-sans font-medium hidden md:table-cell">Location</th>
@@ -38,6 +41,6 @@ export default function ChaptersPage() {
           </table>
         </div>
       </section>
-    </div>
+    </>
   );
 }
