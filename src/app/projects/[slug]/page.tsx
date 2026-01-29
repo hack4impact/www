@@ -1,10 +1,60 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Separator } from "@base-ui/react/separator";
-import { getProjectBySlug, TeamMember } from "@/data/projects";
+import { getProjectBySlug, TeamMember, ProjectSection } from "@/data/projects";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
+}
+
+function SectionRenderer({ section }: { section: ProjectSection }) {
+  switch (section.type) {
+    case "text":
+      return (
+        <div className="mb-8">
+          <h2 className="text-xl md:text-2xl font-sans mt-8 mb-4">{section.title}</h2>
+          <p className="text-base md:text-lg">{section.content}</p>
+        </div>
+      );
+
+    case "image":
+      return (
+        <figure className="mb-8">
+          <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200" />
+          {section.caption && (
+            <figcaption className="text-sm text-gray-500 font-serif mt-2">
+              {section.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+
+    case "two-column":
+      return (
+        <div
+          className={`grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 ${
+            section.imagePosition === "right" ? "" : "md:[&>*:first-child]:order-2"
+          }`}
+        >
+          <div className="flex items-center">
+            <p className="text-base md:text-lg">{section.text}</p>
+          </div>
+          <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200" />
+        </div>
+      );
+
+    case "image-grid":
+      return (
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          {section.images.map((_, index) => (
+            <div key={index} className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200" />
+          ))}
+        </div>
+      );
+
+    default:
+      return null;
+  }
 }
 
 function groupTeamByRole(team: TeamMember[]) {
@@ -135,28 +185,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {/* Divider */}
             <Separator className="border-t border-gray-300 mb-6" />
 
-            {/* Content with images */}
-            <div className="max-w-none">
-              {project.content.split("\n\n").map((block, index) => {
-                if (block.startsWith("## ")) {
-                  const title = block.replace("## ", "");
-                  return (
-                    <div key={index}>
-                      <h2 className="text-xl md:text-2xl font-sans mt-8 mb-4">
-                        {title}
-                      </h2>
-                      {/* Image placeholder after each section heading */}
-                      <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 rounded mb-4" />
-                    </div>
-                  );
-                }
-                return (
-                  <p key={index} className="mb-4 text-base md:text-lg">
-                    {block}
-                  </p>
-                );
-              })}
-            </div>
+            {/* Sections */}
+            {project.sections.length > 0 && (
+              <div className="max-w-none">
+                {project.sections.map((section, index) => (
+                  <SectionRenderer key={index} section={section} />
+                ))}
+              </div>
+            )}
           </article>
         </div>
       </section>

@@ -3,6 +3,35 @@ export interface TeamMember {
   role: "Tech Lead" | "Developer" | "Designer" | "Project Manager";
 }
 
+export type ProjectSection =
+  | {
+      type: "text";
+      title: string;
+      content: string;
+    }
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+      caption?: string;
+    }
+  | {
+      type: "two-column";
+      text: string;
+      image: {
+        src: string;
+        alt: string;
+      };
+      imagePosition: "left" | "right";
+    }
+  | {
+      type: "image-grid";
+      images: Array<{
+        src: string;
+        alt: string;
+      }>;
+    };
+
 export interface Project {
   id: string;
   slug: string;
@@ -13,7 +42,7 @@ export interface Project {
   tag: string;
   description: string;
   intro: string;
-  content: string;
+  sections: ProjectSection[];
   team: TeamMember[];
   duration: string;
   technologies?: string[];
@@ -32,7 +61,45 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A comprehensive inventory tracking system to help food banks manage donations and distributions efficiently.",
     intro: "The Atlanta Community Food Bank serves over 700,000 people annually across metro Atlanta. Their previous inventory system relied heavily on spreadsheets and manual tracking, leading to inefficiencies and occasional food waste.",
-    content: "## The Challenge\n\nFood banks operate on tight margins with perishable goods. Tracking incoming donations, managing expiration dates, and coordinating distributions across multiple locations required a more robust solution than their existing spreadsheet-based system.\n\n## Our Approach\n\nWe worked closely with warehouse staff to understand their daily workflows. The key insight was that any solution needed to work on mobile devices in the warehouse, not just desktop computers in the office.\n\n## The Solution\n\nWe built a progressive web app that works offline and syncs when connected. Staff can scan barcodes to log incoming donations, the system automatically tracks expiration dates and sends alerts, and distribution centers can request inventory through the app.\n\n## Impact\n\nSince deployment, the food bank has reduced food waste by 23% and cut inventory processing time in half. The system now tracks over 2 million pounds of food monthly.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "Food banks operate on tight margins with perishable goods. Tracking incoming donations, managing expiration dates, and coordinating distributions across multiple locations required a more robust solution than their existing spreadsheet-based system.",
+      },
+      {
+        type: "two-column",
+        text: "We worked closely with warehouse staff to understand their daily workflows. The key insight was that any solution needed to work on mobile devices in the warehouse, not just desktop computers in the office.",
+        image: {
+          src: "/images/surf.jpg",
+          alt: "A person surfing a wave",
+        },
+        imagePosition: "left",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "We built a progressive web app that works offline and syncs when connected. Staff can scan barcodes to log incoming donations, the system automatically tracks expiration dates and sends alerts, and distribution centers can request inventory through the app.",
+      },
+      {
+        type: "image-grid",
+        images: [
+          {
+            src: "/images/umd.jpg",
+            alt: "University of Maryland campus",
+          },
+          {
+            src: "/images/gt.jpg",
+            alt: "A group of students working on laptops",
+          },
+        ],
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "Since deployment, the food bank has reduced food waste by 23% and cut inventory processing time in half. The system now tracks over 2 million pounds of food monthly.",
+      },
+    ],
     team: [
       { name: "Sarah Chen", role: "Tech Lead" },
       { name: "Marcus Johnson", role: "Project Manager" },
@@ -56,7 +123,7 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A platform connecting volunteers with opportunities based on skills, availability, and interests.",
     intro: "Hands On Chicago connects thousands of volunteers with nonprofit organizations across the city. Their challenge was matching the right volunteers to the right opportunities efficiently.",
-    content: "## The Challenge\n\nWith hundreds of volunteer opportunities and thousands of potential volunteers, manual matching was time-consuming and often resulted in poor fits. Volunteers would sign up for roles that didn't match their skills, leading to frustration on both sides.\n\n## Our Approach\n\nWe developed a matching algorithm that considers volunteer skills, availability, location preferences, and past feedback. The system learns from successful matches to improve recommendations over time.\n\n## The Solution\n\nThe platform features a clean interface where volunteers can browse opportunities, filter by cause area, and receive personalized recommendations. Nonprofits can post opportunities and review volunteer applications through a dashboard.\n\n## Impact\n\nVolunteer retention has increased by 40% since launch, and nonprofits report higher satisfaction with volunteer matches. The platform has facilitated over 10,000 volunteer hours in its first year.",
+    sections: [],
     team: [
       { name: "Michael Torres", role: "Tech Lead" },
       { name: "Jessica Liu", role: "Project Manager" },
@@ -78,7 +145,7 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A secure portal for low-income clients to access legal resources and communicate with their attorneys.",
     intro: "Philadelphia Legal Assistance provides free civil legal services to low-income Philadelphians. Communication between attorneys and clients was fragmented across phone calls, emails, and in-person visits.",
-    content: "## The Challenge\n\nMany clients lack reliable internet access or technical skills. The portal needed to be extremely simple to use while maintaining security for sensitive legal communications.\n\n## Our Approach\n\nWe conducted user research with actual clients to understand their needs and limitations. Accessibility and simplicity were prioritized over features.\n\n## The Solution\n\nThe portal features large buttons, clear language, and works well on older smartphones. Clients can upload documents by taking photos, receive case updates via text message, and schedule appointments through a simple calendar interface.\n\n## Impact\n\nClient communication response times decreased from days to hours. Attorneys can now manage twice as many cases with the reduced administrative overhead.",
+    sections: [],
     team: [
       { name: "Amanda Wright", role: "Tech Lead" },
       { name: "Brandon Lee", role: "Project Manager" },
@@ -103,7 +170,7 @@ export const projects: Project[] = [
     tag: "Mobile App",
     description: "A mobile app for researchers and citizen scientists to report wildlife sightings and track population trends.",
     intro: "The Bay Area Wildlife Foundation monitors endangered species across Northern California. Their data collection relied on paper forms that researchers would submit weeks after field visits.",
-    content: "## The Challenge\n\nDelayed data entry meant that population trends were always weeks behind reality. Additionally, the foundation wanted to engage citizen scientists but had no easy way for the public to contribute observations.\n\n## Our Approach\n\nWe built a mobile-first solution that works offline in remote areas where researchers often work. The app validates data entry in real-time to improve data quality.\n\n## The Solution\n\nResearchers can log sightings with GPS coordinates, photos, and behavioral notes. The app works offline and syncs when connected. A separate public version allows citizen scientists to submit sightings that are reviewed before being added to the database.\n\n## Impact\n\nData collection is now real-time, and the citizen science program has tripled the foundation's observation network. The data has been used in three published research papers.",
+    sections: [],
     team: [
       { name: "Kevin Zhang", role: "Tech Lead" },
       { name: "Rachel Green", role: "Project Manager" },
@@ -124,7 +191,7 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A scheduling system connecting student tutors with K-12 students needing academic support.",
     intro: "The Austin Youth Education Initiative provides free tutoring to underserved K-12 students. Coordinating schedules between volunteer tutors and students was a constant challenge.",
-    content: "## The Challenge\n\nTutors and students had varying availability that changed weekly. The manual scheduling process consumed hours of staff time and often resulted in last-minute cancellations when schedules didn't align.\n\n## Our Approach\n\nWe focused on making the scheduling process as frictionless as possible for both tutors and students, while giving staff visibility into the program's utilization.\n\n## The Solution\n\nTutors set their weekly availability, students (or their parents) book sessions through a simple interface, and automated reminders reduce no-shows. Staff can monitor session completion rates and tutor utilization through a dashboard.\n\n## Impact\n\nNo-show rates dropped from 30% to 8%, and staff time spent on scheduling decreased by 75%. The program has expanded to serve 40% more students with the same staff.",
+    sections: [],
     team: [
       { name: "Jordan Rivera", role: "Tech Lead" },
       { name: "Samantha Cole", role: "Project Manager" },
@@ -147,7 +214,7 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A dashboard for tracking donations, managing donor relationships, and generating reports for grant applications.",
     intro: "The Michigan Humane Society relies on donations to fund their animal rescue and adoption programs. Their existing donor management was scattered across multiple systems.",
-    content: "## The Challenge\n\nDonor information was split between a payment processor, email marketing tool, and spreadsheets. Staff couldn't easily see a complete picture of donor engagement or identify opportunities for stewardship.\n\n## Our Approach\n\nWe integrated data from existing systems into a unified dashboard, focusing on the metrics that matter most for nonprofit fundraising.\n\n## The Solution\n\nThe dashboard shows donation trends, donor retention rates, and campaign performance. Staff can segment donors, track communication history, and generate reports for grant applications with a few clicks.\n\n## Impact\n\nDonor retention improved by 15% in the first year as staff could identify and reach out to lapsed donors. Grant reporting that used to take days now takes minutes.",
+    sections: [],
     team: [
       { name: "Olivia Chen", role: "Tech Lead" },
       { name: "Nathan Brooks", role: "Project Manager" },
@@ -170,7 +237,28 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A searchable directory of mental health resources with filtering by insurance, specialty, and availability.",
     intro: "Finding mental health care is challenging, especially for those with limited insurance or specific needs. The Triangle Mental Health Alliance wanted to make this search easier for North Carolina residents.",
-    content: "## The Challenge\n\nExisting directories were outdated, didn't include crucial information like insurance acceptance, and weren't designed with accessibility in mind for users who might be in crisis.\n\n## Our Approach\n\nWe partnered with mental health professionals to understand what information is most important when seeking care. The interface was designed to be calming and straightforward.\n\n## The Solution\n\nUsers can filter providers by insurance, specialty, language, and current availability. Each listing includes verified information that's updated quarterly. Crisis resources are prominently displayed on every page.\n\n## Impact\n\nThe directory serves over 5,000 searches monthly and has helped connect hundreds of people with appropriate mental health care.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "Existing directories were outdated, didn't include crucial information like insurance acceptance, and weren't designed with accessibility in mind for users who might be in crisis.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We partnered with mental health professionals to understand what information is most important when seeking care. The interface was designed to be calming and straightforward.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "Users can filter providers by insurance, specialty, language, and current availability. Each listing includes verified information that's updated quarterly. Crisis resources are prominently displayed on every page.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "The directory serves over 5,000 searches monthly and has helped connect hundreds of people with appropriate mental health care.",
+      },
+    ],
     team: [
       { name: "Zoe Williams", role: "Tech Lead" },
       { name: "Andrew Park", role: "Project Manager" },
@@ -193,7 +281,28 @@ export const projects: Project[] = [
     tag: "Mobile App",
     description: "A multilingual app helping refugees navigate essential services like healthcare, education, and legal assistance.",
     intro: "Refugees arriving in upstate New York face overwhelming challenges navigating a new system in an unfamiliar language. The Welcome Center needed a way to provide guidance that didn't require constant staff availability.",
-    content: "## The Challenge\n\nRefugees needed information about everything from how to enroll children in school to finding halal groceries. Staff couldn't be available 24/7, and printed guides quickly became outdated.\n\n## Our Approach\n\nWe worked with refugees and case workers to identify the most common questions and most critical information. The app needed to work offline and support multiple languages.\n\n## The Solution\n\nThe app provides step-by-step guides for common tasks, a directory of services with real-time availability, and push notifications for important deadlines. Content is available in 8 languages with more being added.\n\n## Impact\n\nCase workers report that clients are better prepared for appointments and more independent in navigating daily life. The app has been downloaded over 2,000 times.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "Refugees needed information about everything from how to enroll children in school to finding halal groceries. Staff couldn't be available 24/7, and printed guides quickly became outdated.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We worked with refugees and case workers to identify the most common questions and most critical information. The app needed to work offline and support multiple languages.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "The app provides step-by-step guides for common tasks, a directory of services with real-time availability, and push notifications for important deadlines. Content is available in 8 languages with more being added.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "Case workers report that clients are better prepared for appointments and more independent in navigating daily life. The app has been downloaded over 2,000 times.",
+      },
+    ],
     team: [
       { name: "Benjamin Lee", role: "Tech Lead" },
       { name: "Claire Wilson", role: "Project Manager" },
@@ -216,7 +325,28 @@ export const projects: Project[] = [
     tag: "Data Visualization",
     description: "A dashboard visualizing environmental sensor data to track coastal ecosystem health.",
     intro: "The California Coastal Commission monitors dozens of sensors along the coast that measure water quality, temperature, and other environmental factors. The raw data was difficult to interpret.",
-    content: "## The Challenge\n\nSensor data was stored in various formats and locations. Scientists needed hours to compile data for analysis, and the information wasn't accessible to policymakers or the public.\n\n## Our Approach\n\nWe built a data pipeline to normalize and aggregate sensor data, then created visualizations designed for different audiences.\n\n## The Solution\n\nThe dashboard provides real-time views of coastal health with historical comparisons. Scientists can drill down into raw data, while a public view shows simplified metrics and trends.\n\n## Impact\n\nThe dashboard has been cited in policy discussions and is used by three universities for research. Data analysis that took hours now takes minutes.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "Sensor data was stored in various formats and locations. Scientists needed hours to compile data for analysis, and the information wasn't accessible to policymakers or the public.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We built a data pipeline to normalize and aggregate sensor data, then created visualizations designed for different audiences.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "The dashboard provides real-time views of coastal health with historical comparisons. Scientists can drill down into raw data, while a public view shows simplified metrics and trends.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "The dashboard has been cited in policy discussions and is used by three universities for research. Data analysis that took hours now takes minutes.",
+      },
+    ],
     team: [
       { name: "Ian Foster", role: "Tech Lead" },
       { name: "Julia Sanchez", role: "Project Manager" },
@@ -238,7 +368,28 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A search tool helping DC residents find affordable housing options that match their eligibility and preferences.",
     intro: "Finding affordable housing in the DC metro area is extremely challenging. Information about available units was scattered across multiple websites and often outdated.",
-    content: "## The Challenge\n\nEligibility requirements for affordable housing programs are complex and vary by program. Residents often applied to units they weren't eligible for, wasting time for everyone involved.\n\n## Our Approach\n\nWe aggregated listings from multiple sources and built an eligibility screener that helps users understand which programs they qualify for before they start searching.\n\n## The Solution\n\nUsers answer questions about their household size, income, and preferences. The tool shows only listings they're likely to qualify for, with clear explanations of requirements and application processes.\n\n## Impact\n\nThe tool processes over 3,000 searches monthly. Housing authority staff report a significant decrease in ineligible applications, allowing them to process applications faster.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "Eligibility requirements for affordable housing programs are complex and vary by program. Residents often applied to units they weren't eligible for, wasting time for everyone involved.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We aggregated listings from multiple sources and built an eligibility screener that helps users understand which programs they qualify for before they start searching.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "Users answer questions about their household size, income, and preferences. The tool shows only listings they're likely to qualify for, with clear explanations of requirements and application processes.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "The tool processes over 3,000 searches monthly. Housing authority staff report a significant decrease in ineligible applications, allowing them to process applications faster.",
+      },
+    ],
     team: [
       { name: "Michelle Adams", role: "Tech Lead" },
       { name: "Nicholas Brown", role: "Project Manager" },
@@ -263,7 +414,28 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A simple CRM designed for small nonprofits who can't afford enterprise solutions like Salesforce.",
     intro: "Many small nonprofits struggle with donor and volunteer management because enterprise CRM solutions are too expensive and complex for their needs.",
-    content: "## The Challenge\n\nSmall nonprofits often manage relationships through spreadsheets, losing valuable context and history. They need something more powerful than spreadsheets but simpler than Salesforce.\n\n## Our Approach\n\nWe interviewed staff at a dozen small nonprofits to understand their actual needs, which turned out to be much simpler than what enterprise CRMs offer.\n\n## The Solution\n\nThe CRM tracks contacts, logs interactions, and provides basic reporting. It's designed to be learned in minutes, not days. The software is open source and can be self-hosted.\n\n## Impact\n\nThe CRM is now used by over 50 small nonprofits. It's become one of Hack4Impact's most forked repositories.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "Small nonprofits often manage relationships through spreadsheets, losing valuable context and history. They need something more powerful than spreadsheets but simpler than Salesforce.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We interviewed staff at a dozen small nonprofits to understand their actual needs, which turned out to be much simpler than what enterprise CRMs offer.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "The CRM tracks contacts, logs interactions, and provides basic reporting. It's designed to be learned in minutes, not days. The software is open source and can be self-hosted.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "The CRM is now used by over 50 small nonprofits. It's become one of Hack4Impact's most forked repositories.",
+      },
+    ],
     team: [
       { name: "Thomas Huang", role: "Tech Lead" },
       { name: "Uma Patel", role: "Project Manager" },
@@ -288,7 +460,28 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A system for managing community garden plot assignments, waitlists, and gardener communications.",
     intro: "Boston Urban Growers manages 15 community gardens across the city. Plot assignments, waitlists, and gardener communications were managed through a combination of paper forms and email.",
-    content: "## The Challenge\n\nWith hundreds of gardeners across multiple locations, keeping track of plot assignments, payments, and rule compliance was overwhelming. The waitlist alone was a spreadsheet with over 500 names.\n\n## Our Approach\n\nWe mapped out the entire gardener lifecycle from application to plot assignment to renewal, identifying pain points at each stage.\n\n## The Solution\n\nGardeners can apply online, join waitlists, and manage their plot through a portal. Coordinators can assign plots, send bulk communications, and track rule compliance. Automated reminders reduce administrative work.\n\n## Impact\n\nPlot turnover communication that took a week now happens automatically. Waitlist management is transparent, and gardeners can see their position in real-time.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "With hundreds of gardeners across multiple locations, keeping track of plot assignments, payments, and rule compliance was overwhelming. The waitlist alone was a spreadsheet with over 500 names.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We mapped out the entire gardener lifecycle from application to plot assignment to renewal, identifying pain points at each stage.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "Gardeners can apply online, join waitlists, and manage their plot through a portal. Coordinators can assign plots, send bulk communications, and track rule compliance. Automated reminders reduce administrative work.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "Plot turnover communication that took a week now happens automatically. Waitlist management is transparent, and gardeners can see their position in real-time.",
+      },
+    ],
     team: [
       { name: "Brian Murphy", role: "Tech Lead" },
       { name: "Catherine Zhao", role: "Project Manager" },
@@ -310,7 +503,28 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "An accessible portal for people with disabilities to request accommodations and services.",
     intro: "Access Pittsburgh provides services to people with disabilities across the region. Their intake process relied on phone calls during business hours, which was inaccessible for some clients.",
-    content: "## The Challenge\n\nThe existing intake process required phone calls, which was difficult for deaf and hard-of-hearing clients. Forms needed to be highly accessible while still collecting necessary information.\n\n## Our Approach\n\nWe followed WCAG 2.1 AAA guidelines and tested with users who have various disabilities. Every feature was validated with actual users before implementation.\n\n## The Solution\n\nThe portal meets the highest accessibility standards with screen reader optimization, keyboard navigation, and high contrast options. Clients can request services, upload documentation, and track their requests online.\n\n## Impact\n\nService requests increased 25% after launch as the portal removed barriers that had prevented some clients from seeking help.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "The existing intake process required phone calls, which was difficult for deaf and hard-of-hearing clients. Forms needed to be highly accessible while still collecting necessary information.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We followed WCAG 2.1 AAA guidelines and tested with users who have various disabilities. Every feature was validated with actual users before implementation.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "The portal meets the highest accessibility standards with screen reader optimization, keyboard navigation, and high contrast options. Clients can request services, upload documentation, and track their requests online.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "Service requests increased 25% after launch as the portal removed barriers that had prevented some clients from seeking help.",
+      },
+    ],
     team: [
       { name: "Frank Anderson", role: "Tech Lead" },
       { name: "Grace Taylor", role: "Project Manager" },
@@ -333,7 +547,28 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A platform matching at-risk youth with mentors based on interests, goals, and compatibility.",
     intro: "The Los Angeles Youth Network pairs at-risk youth with adult mentors. Finding good matches and tracking relationship progress was challenging at scale.",
-    content: "## The Challenge\n\nMentor-mentee compatibility is crucial for program success. Poor matches lead to early dropout, which can be harmful for youth who already struggle with trusting adults.\n\n## Our Approach\n\nWe worked with program staff and developmental psychologists to identify factors that predict successful matches. The system needed to support staff judgment, not replace it.\n\n## The Solution\n\nThe platform suggests potential matches based on interests, location, and availability, but staff make final decisions. Progress tracking helps identify relationships that may need additional support.\n\n## Impact\n\nMatch success rates (measured by 1-year retention) improved from 60% to 78%. Staff can now manage more mentorship pairs with better outcomes.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "Mentor-mentee compatibility is crucial for program success. Poor matches lead to early dropout, which can be harmful for youth who already struggle with trusting adults.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We worked with program staff and developmental psychologists to identify factors that predict successful matches. The system needed to support staff judgment, not replace it.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "The platform suggests potential matches based on interests, location, and availability, but staff make final decisions. Progress tracking helps identify relationships that may need additional support.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "Match success rates (measured by 1-year retention) improved from 60% to 78%. Staff can now manage more mentorship pairs with better outcomes.",
+      },
+    ],
     team: [
       { name: "Karen Lee", role: "Tech Lead" },
       { name: "Leo Martinez", role: "Project Manager" },
@@ -356,7 +591,28 @@ export const projects: Project[] = [
     tag: "Web App",
     description: "A tool for nonprofits to track grant opportunities, deadlines, and application materials.",
     intro: "Small nonprofits in Providence were missing grant opportunities due to disorganized tracking of deadlines and requirements. The consortium wanted to help members be more successful in securing funding.",
-    content: "## The Challenge\n\nGrant applications require extensive documentation and have strict deadlines. Small nonprofits without dedicated grant writers often missed opportunities or submitted incomplete applications.\n\n## Our Approach\n\nWe created a shared database of grant opportunities and a system to track each organization's application pipeline.\n\n## The Solution\n\nOrganizations can browse grants, save opportunities to their pipeline, and track required materials. Automated reminders ensure deadlines aren't missed, and successful applications can be used as templates.\n\n## Impact\n\nConsortium members report 30% more grant applications submitted, with higher success rates due to better preparation.",
+    sections: [
+      {
+        type: "text",
+        title: "The Challenge",
+        content: "Grant applications require extensive documentation and have strict deadlines. Small nonprofits without dedicated grant writers often missed opportunities or submitted incomplete applications.",
+      },
+      {
+        type: "text",
+        title: "Our Approach",
+        content: "We created a shared database of grant opportunities and a system to track each organization's application pipeline.",
+      },
+      {
+        type: "text",
+        title: "The Solution",
+        content: "Organizations can browse grants, save opportunities to their pipeline, and track required materials. Automated reminders ensure deadlines aren't missed, and successful applications can be used as templates.",
+      },
+      {
+        type: "text",
+        title: "Impact",
+        content: "Consortium members report 30% more grant applications submitted, with higher success rates due to better preparation.",
+      },
+    ],
     team: [
       { name: "Quinn Davis", role: "Tech Lead" },
       { name: "Rachel Kim", role: "Project Manager" },

@@ -350,7 +350,12 @@ Current structure:
 
 Data file: src/data/projects.ts
 - TeamMember interface: name, role ("Tech Lead" | "Developer" | "Designer" | "Project Manager")
-- Project interface: id, slug, title, partner, chapter, year, tag, description, intro, content, team (TeamMember[]), duration, technologies?, website?, github?
+- ProjectSection: discriminated union type for flexible content layouts:
+  - `{ type: "text", title: string, content: string }` - Title + paragraph
+  - `{ type: "image", src: string, alt: string, caption?: string }` - Full-width image
+  - `{ type: "two-column", text: string, image: { src, alt }, imagePosition: "left" | "right" }` - Text with image
+  - `{ type: "image-grid", images: Array<{ src, alt }> }` - 2-column image grid
+- Project interface: id, slug, title, partner, chapter, year, tag, description, intro, sections (ProjectSection[]), team (TeamMember[]), duration, technologies?, website?, github?
 - 15 mock projects with team members assigned to roles
 - getProjectBySlug(slug) helper function
 
@@ -374,9 +379,11 @@ Structure (text sections: p-8 md:px-24 for narrower content; banner: px-8 md:px-
      - Intro paragraph (text-lg md:text-xl)
      - Link cards for website/github (if available)
      - Horizontal divider line (BaseUI Separator)
-     - Article content with section headings (## prefix parsed as h2, font-sans)
-     - Image placeholder (16:9 aspect ratio, gray gradient) after each section heading
-     - Paragraphs for section content
+     - Sections rendered by type via SectionRenderer component:
+       - text: h2 title (font-sans) + paragraph content
+       - image: 16:9 placeholder (gray gradient) + optional caption
+       - two-column: text + 4:3 placeholder side-by-side, image position configurable
+       - image-grid: 2-column grid of 4:3 placeholders
    - Column gap: gap-8 on mobile, lg:gap-16 on desktop
 
 4. Team Section
