@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
@@ -24,8 +25,15 @@ export default function AboutPage() {
   return (
     <>
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        {/* Image placeholder - portrait */}
-        <div className="bg-gradient-to-br from-blue-100 to-green-300 min-h-80 md:min-h-0 aspect-[3/4] md:aspect-auto" />
+        {/* Image */}
+        <div className="min-h-80 md:min-h-0 aspect-[3/4] md:aspect-auto relative">
+          <Image
+            src="/images/surf.jpg"
+            alt="Students surfing"
+            fill
+            className="object-cover"
+          />
+        </div>
 
         {/* Text content */}
         <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">

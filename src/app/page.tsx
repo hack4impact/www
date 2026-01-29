@@ -33,7 +33,7 @@ export default function HomePage() {
         <div className="relative mt-8 flex justify-center px-8">
           <div className="debug-border">
             <Image
-              src="/gt.jpg"
+              src="/images/gt.jpg"
               alt="Hack4Impact"
               width={800}
               height={500}
