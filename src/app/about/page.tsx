@@ -52,16 +52,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2">
+      <section className="grid grid-cols-1 lg:grid-cols-2">
         {/* Image placeholder - portrait */}
-        <div className="pl-8 md:pl-12 py-8 md:py-12">
-          <div className="bg-gradient-to-br from-purple-100 to-blue-300 aspect-[3/4] w-full" />
+        <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
+          <div className="bg-gradient-to-br from-purple-100 to-blue-300 aspect-[4/5] w-full" />
         </div>
 
         {/* Text content */}
-        <div className="flex flex-col justify-center items-start p-8 md:p-12">
+        <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
           <h2 className="font-sans text-3xl md:text-4xl">Our story</h2>
-          <p className="mt-4 text-base md:text-lg">
+          <p className="mt-6 md:mt-8 text-base md:text-lg">
             Founded by students who believed technology could be a force for good, Hack4Impact began as a small group of developers volunteering their skills for local nonprofits. What started as weekend projects quickly grew into a nationwide network of chapters, each dedicated to bridging the gap between student talent and community needs. Today, we continue that mission, empowering the next generation of technologists to build with purpose and impact.
           </p>
         </div>

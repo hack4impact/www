@@ -135,8 +135,8 @@ General-purpose card component for content blocks. Custom component (BaseUI has 
 
 Props:
 - icon?: ReactNode (optional, rendered above title)
-- title: string (text-xl, sans-serif)
-- description: string (text-base)
+- title: string (text-xl, font-sans)
+- description: string (text-base, font-serif/Newsreader)
 - className?: string (optional additional classes)
 
 Styles:
@@ -200,11 +200,11 @@ Current structure:
      - Description paragraph
 
 3. Story Section (callout/highlight)
-   - Two-column grid layout (stacked on mobile)
-   - Left column: left padding aligned with values section (pl-8 md:pl-12, py-8 md:py-12), placeholder gradient (purple-100 to blue-300, diagonal), aspect-[3/4], full width
-   - Right column: vertically centered, left-aligned content
+   - Two-column grid layout (stacked on mobile/tablet, 2 cols on lg+)
+   - Left column: full width with matching padding (px-8 on mobile/tablet, lg:pl-12 on desktop), placeholder gradient (purple-100 to blue-300, diagonal), aspect-[4/5]
+   - Right column: vertically centered, left-aligned content, more horizontal padding (p-8, lg:px-24 lg:py-12)
      - Title: "Our story" (sans-serif, text-3xl md:text-4xl)
-     - Paragraph with story placeholder text
+     - Paragraph with story placeholder text (mt-6 md:mt-8 gap from title)
 
 ### Journal Page (src/app/journal/page.tsx)
 Current structure:
@@ -222,8 +222,33 @@ Current structure:
      - Description paragraph
 
 Data file: src/data/journal-entries.ts
-- JournalEntry interface: id, title, tag, readTime, description, image?
+- JournalEntry interface: id, slug, title, tag, readTime, description, author, publishedDate, intro, content, image?
 - Mock entries with Engineering, Case Study, Opinion, Design tags
+- getJournalEntryBySlug(slug) helper function
+
+### Journal Entry Page (src/app/journal/[slug]/page.tsx)
+Dynamic route for individual journal entries.
+
+Structure (text sections: p-8 md:px-24 for narrower content; banner: px-8 md:px-12):
+1. Header Section
+   - Subtitle: tag + "·" + read time (text-sm, font-serif/Newsreader)
+   - Title (text-3xl md:text-5xl, font-sans)
+
+2. Banner Section
+   - Full-width image placeholder (3:1 aspect ratio, gradient)
+
+3. Content Section
+   - Two-column layout (stacked on mobile/tablet, sidebar + content on lg+)
+   - Left sidebar (200px, font-serif): author name, published date (horizontal on mobile/tablet, vertical on desktop with border-right)
+   - Right content (font-serif):
+     - Intro paragraph (text-lg md:text-xl, not bold)
+     - Horizontal divider line
+     - Article content with section headings (## prefix parsed as h2, font-sans) and paragraphs
+   - Column gap: gap-8 on mobile, lg:gap-16 on desktop for narrower article width
+
+Typography notes:
+- Newsreader (font-serif) for: subtitles, sidebar labels, all content text
+- Inclusive Sans (font-sans) for: section headings/titles only
 
 ## Debug Mode
 For development, thin borders are added to sections and .debug-border elements:
