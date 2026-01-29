@@ -1,0 +1,182 @@
+# H4I Website Project Context
+
+## Overview
+A minimal website for Hack4Impact (H4I), built with Next.js 15, React 19, Tailwind CSS 4, and BaseUI React 1.1.0. The project uses TypeScript and is managed with pnpm.
+
+## Tech Stack
+- Next.js 15.3.0 (App Router, Turbopack for dev)
+- React 19.0.0
+- Tailwind CSS 4 (configured via CSS @theme, not tailwind.config.js)
+- BaseUI React 1.1.0 (@base-ui/react)
+- Contentful CMS 11.5.5 (for content management)
+- TypeScript 5
+
+## Directory Structure
+```
+/www
+├── src/
+│   ├── app/
+│   │   ├── page.tsx              # Home page with Intro section
+│   │   ├── layout.tsx            # Root layout
+│   │   ├── globals.css           # Global styles, fonts, Tailwind theme
+│   │   ├── about/page.tsx
+│   │   ├── chapters/page.tsx
+│   │   ├── projects/page.tsx
+│   │   ├── journal/page.tsx
+│   │   ├── partners/page.tsx
+│   │   ├── get-involved/page.tsx
+│   │   └── [slug]/page.tsx
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Header.tsx
+│   │   │   └── Footer.tsx
+│   │   └── ui/
+│   │       └── Button.tsx        # Reusable button component
+│   └── lib/
+│       ├── contentful.ts
+│       └── types.ts
+├── public/
+│   ├── fonts/
+│   │   ├── InclusiveSans.ttf        # Variable font, weight 300-700, from GitHub (has ss01)
+│   │   ├── InclusiveSans-Italic.ttf # Variable font italic, weight 300-700
+│   │   ├── Newsreader.woff2         # Variable font, weight 200-800
+│   │   └── Newsreader-Italic.woff2
+│   └── gt.jpg                       # Intro section image
+├── package.json
+├── tsconfig.json
+├── next.config.ts
+└── postcss.config.mjs
+```
+
+## Fonts
+Fonts are self-hosted (not using next/font).
+
+### Inclusive Sans
+- Source: GitHub repo (LivKing/Inclusive-Sans) - NOT Google Fonts (Google version lacks ss01)
+- Files: /public/fonts/InclusiveSans.ttf, InclusiveSans-Italic.ttf
+- Format: TTF (TrueType)
+- Weight range: 300-700 (variable)
+- Usage: `font-sans` class, default body font
+- Stylistic set ss01 (double-story "a") enabled in @font-face declaration via font-feature-settings
+
+### Newsreader
+- Source: Google Fonts
+- Files: /public/fonts/Newsreader.woff2, Newsreader-Italic.woff2
+- Format: woff2
+- Weight range: 200-800 (variable)
+- Usage: `font-serif` class
+
+Font definitions are in globals.css using @font-face declarations. Tailwind theme variables:
+- --font-sans: "Inclusive Sans", system-ui, sans-serif
+- --font-serif: "Newsreader", Georgia, serif
+
+## Brand Colors (defined in globals.css @theme)
+All colors available as Tailwind classes (e.g., bg-blue-500, text-purple-600):
+
+### Blue
+- 50: #EDF4FD, 100: #D9E9FA, 200: #C4DDF8, 300: #ADCFF5
+- 400: #63A3EC, 500: #247EE4, 600: #1661B4, 700: #104581
+- 800: #092749, 900: #061A31, 950: #04101E
+
+### Purple
+- 50: #F4F2FD, 100: #E8E5FC, 200: #DBD6FA, 300: #CCC6F8
+- 400: #A094F2, 500: #7C6BED, 600: #5943E8, 700: #321AD1
+- 800: #1D0F7A, 900: #140A53, 950: #0D0736
+
+### Pink
+- 50: #FBF0FD, 100: #F8E0FB, 200: #F3CEF9, 300: #EFBAF6
+- 400: #DF77EE, 500: #CE31E6, 600: #A417B9, 700: #771186
+- 800: #450A4D, 900: #2F0735, 950: #1F0423
+
+### Orange
+- 50: #FDF1EB, 100: #FAE3D6, 200: #F7D3BE, 300: #F4C1A4
+- 400: #E9864E, 500: #D05B1A, 600: #A04714, 700: #73330E
+- 800: #411D08, 900: #2B1305, 950: #1B0C03
+
+### Green
+- 50: #E2FBDB, 100: #BFF6B2, 200: #96EF80, 300: #5FE73E
+- 400: #36B817, 500: #2B9212, 600: #21700E, 700: #18500A
+- 800: #0D2D06, 900: #091E04, 950: #061302
+
+### Neutrals
+- --color-black: #10100F
+- --color-white: #FCF9F2
+
+## Components
+
+### Button (src/components/ui/Button.tsx)
+Wraps BaseUI's Button component with styling.
+
+Props:
+- variant: "primary" | "secondary" | "outline" (default: "primary")
+- size: "sm" | "md" | "lg" (default: "md")
+- All standard button props from BaseUI
+
+Base styles:
+- No border radius (square corners)
+- Monospaced font (font-mono)
+- Focus ring uses green-300
+
+Variant styles:
+- primary: bg-green-300, hover:bg-green-400, active:bg-green-500, black text
+- secondary: bg-purple-600, hover:bg-purple-700, active:bg-purple-800, white text
+- outline: border-green-300, text-green-300, hover:bg-green-50
+
+Usage:
+```tsx
+import { Button } from "@/components/ui/Button";
+<Button variant="primary" size="md">Click me</Button>
+```
+
+### Footer (src/components/layout/Footer.tsx)
+- Tagline: "Code for the common good."
+- Sections: Organization, Get Involved, Resources
+- Get Involved links: Join a Chapter, Start a Chapter, Be a Mentor, Partner With Us
+
+### Header (src/components/layout/Header.tsx)
+- Navigation with mobile menu
+- Links to main sections
+
+## Pages
+
+### Home Page (src/app/page.tsx)
+Current structure:
+1. Intro Section
+   - White-to-gray gradient background (from-white to-gray-200)
+   - Gradient stops at bottom-1/4, allowing image to hang below
+   - Bottom padding pb-32 ensures image hangs off gradient on mobile
+   - Top padding pt-24 for gap between navbar and content
+   - Stacked title (flexbox column):
+     - "Code & community" (Newsreader/serif, text-4xl md:text-6xl) on top
+     - "for the common good" (Inclusive Sans/sans, text-4xl md:text-6xl) below
+     - Both lines same font size
+     - Gap: gap-1 on mobile, gap-2 on desktop
+   - Subtitle paragraph (text-base md:text-lg) about H4I mission
+   - "Partner with us!" button (primary variant)
+   - Full-width image (gt.jpg) that hangs below the gradient
+
+## Debug Mode
+For development, thin borders are added to sections and .debug-border elements:
+```css
+section,
+.debug-border {
+  border: 1px solid #ccc;
+}
+```
+Remove these for production.
+
+## Metadata
+- Site title: "Hack4Impact" (template: "%s | Hack4Impact")
+- Description: "Code for the common good."
+
+## Design Principles
+- Minimal styling approach
+- Only create what is explicitly requested
+- Use BaseUI components wherever possible
+- Keep components general and industry-standard
+- Debug borders during development for visual debugging
+
+## Notes
+- Delete duplicate lockfile: "pnpm-lock 2.yaml" (accidental macOS duplicate)
+- Contentful integration exists but content structure not yet defined
+- All pages besides Home are placeholder stubs
