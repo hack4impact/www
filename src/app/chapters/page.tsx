@@ -53,7 +53,13 @@ export default function ChaptersPage() {
       {/* Content */}
       <section className="p-8 md:p-12">
         <h1 className="text-3xl md:text-4xl font-sans mb-12 text-center">Chapters</h1>
-        <DataTable columns={columns} data={chapters} getRowHref={(row) => `/chapters/${row.slug}`} />
+        <DataTable
+          columns={columns}
+          data={chapters}
+          getRowHref={(row) => `/chapters/${row.slug}`}
+          wrapperClassName="overflow-auto max-h-[70vh] debug-border bg-white/80 backdrop-blur-sm rounded"
+          theadClassName="sticky top-0 bg-white"
+        />
       </section>
     </>
   );

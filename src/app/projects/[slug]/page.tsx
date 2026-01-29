@@ -104,6 +104,34 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {/* Intro */}
             <p className="text-lg md:text-xl mb-6">{project.intro}</p>
 
+            {/* Links */}
+            {(project.website || project.github) && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                {project.website && (
+                  <a
+                    href={project.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
+                  >
+                    <p className="font-sans text-base mb-1">Website</p>
+                    <p className="font-serif text-gray-500 text-sm truncate">{project.website}</p>
+                  </a>
+                )}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
+                  >
+                    <p className="font-sans text-base mb-1">GitHub</p>
+                    <p className="font-serif text-gray-500 text-sm truncate">{project.github}</p>
+                  </a>
+                )}
+              </div>
+            )}
+
             {/* Divider */}
             <Separator className="border-t border-gray-300 mb-6" />
 
@@ -129,37 +157,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 );
               })}
             </div>
-
-            {/* Links */}
-            {(project.website || project.github) && (
-              <>
-                <Separator className="border-t border-gray-300 my-8" />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {project.website && (
-                    <a
-                      href={project.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
-                    >
-                      <p className="font-sans text-base mb-1">Website</p>
-                      <p className="font-serif text-gray-500 text-sm truncate">{project.website}</p>
-                    </a>
-                  )}
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
-                    >
-                      <p className="font-sans text-base mb-1">GitHub</p>
-                      <p className="font-serif text-gray-500 text-sm truncate">{project.github}</p>
-                    </a>
-                  )}
-                </div>
-              </>
-            )}
           </article>
         </div>
       </section>

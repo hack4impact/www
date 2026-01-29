@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Column<T> {
   header: string;
@@ -12,13 +14,29 @@ interface DataTableProps<T> {
   columns: Column<T>[];
   data: T[];
   getRowHref?: (row: T) => string;
+  wrapperClassName?: string;
+  theadClassName?: string;
 }
 
-export function DataTable<T extends { id: string | number }>({ columns, data, getRowHref }: DataTableProps<T>) {
+export function DataTable<T extends { id: string | number }>({
+  columns,
+  data,
+  getRowHref,
+  wrapperClassName,
+  theadClassName,
+}: DataTableProps<T>) {
+  const router = useRouter();
+
+  const handleRowClick = (row: T) => {
+    if (getRowHref) {
+      router.push(getRowHref(row));
+    }
+  };
+
   return (
-    <div className="overflow-auto max-h-[70vh] debug-border bg-white/80 backdrop-blur-sm rounded">
+    <div className={wrapperClassName}>
       <table className="w-full">
-        <thead className="sticky top-0 bg-white">
+        <thead className={theadClassName}>
           <tr className="border-b border-gray-200 text-left">
             {columns.map((column) => (
               <th key={column.header} className={`py-4 px-4 font-sans font-medium ${column.headerClassName}`}>
@@ -28,30 +46,19 @@ export function DataTable<T extends { id: string | number }>({ columns, data, ge
           </tr>
         </thead>
         <tbody>
-          {data.map((row) => {
-            const rowContent = (
-              <tr
-                key={row.id}
-                className={`border-b border-gray-100 ${getRowHref ? "hover:bg-gray-50 cursor-pointer" : ""}`}
-              >
-                {columns.map((column) => (
-                  <td key={column.header} className={`py-4 px-4 ${column.className}`}>
-                    {column.accessor(row)}
-                  </td>
-                ))}
-              </tr>
-            );
-
-            if (getRowHref) {
-              return (
-                <Link key={row.id} href={getRowHref(row)} className="contents">
-                  {rowContent}
-                </Link>
-              );
-            }
-
-            return rowContent;
-          })}
+          {data.map((row) => (
+            <tr
+              key={row.id}
+              className={`border-b border-gray-100 ${getRowHref ? "hover:bg-gray-50 cursor-pointer" : ""}`}
+              onClick={() => handleRowClick(row)}
+            >
+              {columns.map((column) => (
+                <td key={column.header} className={`py-4 px-4 ${column.className}`}>
+                  {column.accessor(row)}
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

@@ -144,12 +144,18 @@ import { Button } from "@/components/ui/Button";
 General-purpose card component for content blocks. Custom component (BaseUI has no Card component).
 
 ### DataTable (src/components/ui/DataTable.tsx)
-A generic, reusable table component for displaying data.
+A generic, reusable table component for displaying data. It does *not* apply any default visual styling to its wrapper div or thead element. All styling for these elements must be provided via the `wrapperClassName` and `theadClassName` props.
 
 Props:
 - columns: An array of column definitions, including header, accessor, and class names.
 - data: An array of data objects to display in the table.
 - getRowHref?: A function that returns a URL for each row to make it a clickable link.
+- wrapperClassName?: string (classes for the outermost div)
+- theadClassName?: string (classes for the thead element)
+
+### ChapterProjects (src/components/ui/ChapterProjects.tsx)
+A client component used in the chapter detail page to display a table of projects associated with a chapter. It utilizes the `DataTable` component internally and passes specific styling props to it to maintain the original look and feel of the embedded table.
+
 
 ## BaseUI Usage
 Components using BaseUI as foundation:
@@ -323,7 +329,7 @@ Structure:
    - Right content (font-serif):
      - Description paragraph (text-lg md:text-xl)
      - Horizontal divider (BaseUI Separator)
-     - Link cards (3-col grid on md+) for website, github, instagram (if available)
+     - Link cards for website, github, and instagram, which fill the space evenly.
      - Projects table (if chapter has projects):
        - Columns: Project, Partner (hidden mobile), Year (hidden mobile), Type (hidden mobile/tablet)
        - Clickable rows linking to project pages
@@ -364,11 +370,11 @@ Structure (text sections: p-8 md:px-24 for narrower content; banner: px-8 md:px-
    - Technologies styled as inline tags (px-2 py-1, bg-gray-100, text-gray-700, rounded, text-sm)
    - Right content (font-serif):
      - Intro paragraph (text-lg md:text-xl)
+     - Link cards for website/github (if available)
      - Horizontal divider line (BaseUI Separator)
      - Article content with section headings (## prefix parsed as h2, font-sans)
      - Image placeholder (16:9 aspect ratio, gray gradient) after each section heading
      - Paragraphs for section content
-     - Link cards for website/github (if available) after another divider
    - Column gap: gap-8 on mobile, lg:gap-16 on desktop
 
 4. Team Section

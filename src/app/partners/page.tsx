@@ -55,7 +55,12 @@ export default function PartnersPage() {
       {/* Content */}
       <section className="p-8 md:p-12">
         <h1 className="text-3xl md:text-4xl font-sans mb-12 text-center">Partners</h1>
-        <DataTable columns={columns} data={partners} />
+        <DataTable
+          columns={columns}
+          data={partners}
+          wrapperClassName="overflow-auto max-h-[70vh] debug-border bg-white/80 backdrop-blur-sm rounded"
+          theadClassName="sticky top-0 bg-white"
+        />
       </section>
     </>
   );
