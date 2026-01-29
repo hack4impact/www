@@ -156,7 +156,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
             {/* Links */}
             {(project.website || project.github) && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className={`grid gap-4 mb-6 ${project.website && project.github ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
                 {project.website && (
                   <a
                     href={project.website}
@@ -200,18 +200,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* Team Section */}
       <section className="p-8 md:px-24 md:py-12 bg-gray-50">
         <h2 className="text-2xl md:text-3xl font-sans mb-8">Team</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {Object.entries(teamByRole).map(([role, members]) => (
-            <div key={role} className="debug-border">
-              <p className="text-sm text-gray-500 font-serif mb-2">{role}</p>
-              <ul className="space-y-1">
-                {members.map((name) => (
-                  <li key={name} className="font-sans">{name}</li>
-                ))}
-              </ul>
+        {(() => {
+          const roleCount = Object.keys(teamByRole).length;
+          const gridCols = roleCount === 1 ? "grid-cols-1"
+            : roleCount === 2 ? "grid-cols-1 md:grid-cols-2"
+            : roleCount === 3 ? "grid-cols-1 md:grid-cols-3"
+            : "grid-cols-1 md:grid-cols-2 lg:grid-cols-4";
+          return (
+            <div className={`grid ${gridCols} gap-8`}>
+              {Object.entries(teamByRole).map(([role, members]) => (
+                <div key={role} className="debug-border">
+                  <p className="text-sm text-gray-500 font-serif mb-2">{role}</p>
+                  <ul className="space-y-1">
+                    {members.map((name) => (
+                      <li key={name} className="font-sans">{name}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          );
+        })()}
       </section>
 
     </>
