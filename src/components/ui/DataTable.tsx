@@ -37,7 +37,7 @@ export function DataTable<T extends { id: string | number }>({
   const [sortConfig, setSortConfig] = useState(initialSort);
 
   const sortedData = useMemo(() => {
-    let sortableData = [...data];
+    const sortableData = [...data];
     if (sortConfig) {
       const { columnId, direction } = sortConfig;
       const sortColumn = columns.find((c) => c.id === columnId);

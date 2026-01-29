@@ -9,10 +9,10 @@ const footerLinks = {
     { label: 'Partners', href: '/partners' },
   ],
   getInvolved: [
-    { label: 'Start a Chapter', href: '/get-involved#start' },
-    { label: 'Be a Mentor', href: '/get-involved#mentor' },
-    { label: 'Partner With Us', href: '/get-involved#partner' },
-    { label: 'Sponsor Us', href: '/get-involved#sponsor' },
+    { label: 'Start a Chapter', href: '/students' },
+    { label: 'Be a Mentor', href: '/mentors' },
+    { label: 'Partner With Us', href: '/nonprofits' },
+    { label: 'Sponsor Us', href: '/sponsors' },
   ],
   resources: [
     { label: 'Journal', href: '/journal' },

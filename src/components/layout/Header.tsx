@@ -17,10 +17,10 @@ const workItems = [
 ];
 
 const getInvolvedItems = [
-  { label: 'Non-Profits', href: '/get-involved#nonprofits' },
-  { label: 'Sponsors', href: '/get-involved#sponsors' },
-  { label: 'Mentors', href: '/get-involved#mentors' },
-  { label: 'Students', href: '/get-involved#students' },
+  { label: 'Nonprofit', href: '/nonprofits' },
+  { label: 'Sponsor', href: '/sponsors' },
+  { label: 'Mentor', href: '/mentors' },
+  { label: 'Student', href: '/students' },
 ];
 
 function NavDropdown({ label, items }: { label: string; items: { label: string; href: string }[] }) {

@@ -74,7 +74,7 @@ export default function HomePage() {
             <div className="flex-1 flex flex-col justify-center py-4 relative">
               <span className="absolute top-4 right-0 font-mono text-gray-400">03</span>
               <h3 className="text-lg font-sans mb-1">Design</h3>
-              <p className="font-serif text-gray-600">We create wireframes and prototypes in close collaboration with your team. User research and iterative feedback ensure the solution truly serves your community's needs.</p>
+              <p className="font-serif text-gray-600">We create wireframes and prototypes in close collaboration with your team. User research and iterative feedback ensure the solution truly serves your community&apos;s needs.</p>
             </div>
             <div className="flex-1 flex flex-col justify-center py-4 relative">
               <span className="absolute top-4 right-0 font-mono text-gray-400">04</span>
