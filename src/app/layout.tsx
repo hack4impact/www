@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: "Hack4Impact",
     template: "%s | Hack4Impact",
   },
-  description: "Hack4Impact builds software for social impact.",
+  description: "Code for the common good.",
 };
 
 export default function RootLayout({

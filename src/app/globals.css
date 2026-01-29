@@ -1,10 +1,109 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Inclusive Sans";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/fonts/InclusiveSans.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/Newsreader.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("/fonts/Newsreader-Italic.woff2") format("woff2");
+}
+
+@theme {
+  --font-sans: "Inclusive Sans", system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+
+  /* Brand Colors */
+  --color-blue-50: #EDF4FD;
+  --color-blue-100: #D9E9FA;
+  --color-blue-200: #C4DDF8;
+  --color-blue-300: #ADCFF5;
+  --color-blue-400: #63A3EC;
+  --color-blue-500: #247EE4;
+  --color-blue-600: #1661B4;
+  --color-blue-700: #104581;
+  --color-blue-800: #092749;
+  --color-blue-900: #061A31;
+  --color-blue-950: #04101E;
+
+  --color-purple-50: #F4F2FD;
+  --color-purple-100: #E8E5FC;
+  --color-purple-200: #DBD6FA;
+  --color-purple-300: #CCC6F8;
+  --color-purple-400: #A094F2;
+  --color-purple-500: #7C6BED;
+  --color-purple-600: #5943E8;
+  --color-purple-700: #321AD1;
+  --color-purple-800: #1D0F7A;
+  --color-purple-900: #140A53;
+  --color-purple-950: #0D0736;
+
+  --color-pink-50: #FBF0FD;
+  --color-pink-100: #F8E0FB;
+  --color-pink-200: #F3CEF9;
+  --color-pink-300: #EFBAF6;
+  --color-pink-400: #DF77EE;
+  --color-pink-500: #CE31E6;
+  --color-pink-600: #A417B9;
+  --color-pink-700: #771186;
+  --color-pink-800: #450A4D;
+  --color-pink-900: #2F0735;
+  --color-pink-950: #1F0423;
+
+  --color-orange-50: #FDF1EB;
+  --color-orange-100: #FAE3D6;
+  --color-orange-200: #F7D3BE;
+  --color-orange-300: #F4C1A4;
+  --color-orange-400: #E9864E;
+  --color-orange-500: #D05B1A;
+  --color-orange-600: #A04714;
+  --color-orange-700: #73330E;
+  --color-orange-800: #411D08;
+  --color-orange-900: #2B1305;
+  --color-orange-950: #1B0C03;
+
+  --color-green-50: #E2FBDB;
+  --color-green-100: #BFF6B2;
+  --color-green-200: #96EF80;
+  --color-green-300: #5FE73E;
+  --color-green-400: #36B817;
+  --color-green-500: #2B9212;
+  --color-green-600: #21700E;
+  --color-green-700: #18500A;
+  --color-green-800: #0D2D06;
+  --color-green-900: #091E04;
+  --color-green-950: #061302;
+
+  --color-black: #10100F;
+  --color-white: #FCF9F2;
+}
+
+/* Debug borders - remove for production */
+section,
+.debug-border {
+  border: 1px solid #ccc;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.5;
 }

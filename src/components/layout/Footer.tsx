@@ -10,6 +10,7 @@ const footerLinks = {
   getInvolved: [
     { label: 'Join a Chapter', href: '/get-involved#join' },
     { label: 'Start a Chapter', href: '/get-involved#start' },
+    { label: 'Be a Mentor', href: '/get-involved#mentor' },
     { label: 'Partner With Us', href: '/get-involved#partner' },
   ],
   resources: [
@@ -27,7 +28,7 @@ export default function Footer() {
               H4I
             </Link>
             <p className="mt-2 text-sm">
-              Building technology for social good.
+              Code for the common good.
             </p>
           </div>
 
