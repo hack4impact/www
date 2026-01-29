@@ -143,14 +143,13 @@ import { Button } from "@/components/ui/Button";
 Current structure:
 1. Intro Section
    - White-to-gray gradient background (from-white to-gray-200)
-   - Gradient stops at bottom-1/4, allowing image to hang below
+   - Gradient stops at bottom-1/3, allowing image to hang below
    - Bottom padding pb-32 ensures image hangs off gradient on mobile
    - Top padding pt-24 for gap between navbar and content
-   - Stacked title (flexbox column):
+   - Stacked title (flexbox column, no gap):
      - "Code & community" (Newsreader/serif, text-4xl md:text-6xl) on top
      - "for the common good" (Inclusive Sans/sans, text-4xl md:text-6xl) below
-     - Both lines same font size
-     - Gap: gap-1 on mobile, gap-2 on desktop
+     - Both lines same font size, tight spacing to read as one title
    - Subtitle paragraph (text-base md:text-lg) about H4I mission
    - "Partner with us!" button (primary variant)
    - Full-width image (gt.jpg) that hangs below the gradient

@@ -6,11 +6,11 @@ export default function HomePage() {
     <>
       <section className="relative pb-32">
         {/* Gradient background */}
-        <div className="absolute inset-0 bottom-1/4 bg-gradient-to-b from-white to-gray-200" />
+        <div className="absolute inset-0 bottom-1/3 bg-gradient-to-b from-white to-gray-200" />
 
         {/* Content */}
         <div className="relative text-center pt-24 px-8">
-          <h1 className="flex flex-col gap-1 md:gap-2">
+          <h1 className="flex flex-col">
             <span className="font-serif text-4xl md:text-6xl">Code &amp; community</span>
             <span className="font-sans text-4xl md:text-6xl">for the common good</span>
           </h1>
