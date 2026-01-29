@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Separator } from "@base-ui/react/separator";
 import { getJournalEntryBySlug } from "@/data/journal-entries";
 
 interface JournalPostPageProps {
@@ -16,13 +17,15 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
   return (
     <>
       {/* Header */}
-      <section className="p-8 md:px-24 md:py-12">
-        <div className="flex items-center gap-2 text-sm font-serif mb-2">
-          <span className="text-gray-600">{entry.tag}</span>
-          <span className="text-gray-400">·</span>
-          <span className="text-gray-600">{entry.readTime}</span>
+      <section className="p-8 md:px-24 md:py-12 text-center">
+        <div className="max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-2 text-base font-serif mb-2">
+            <span className="text-gray-600">{entry.tag}</span>
+            <span className="text-gray-400">·</span>
+            <span className="text-gray-600">{entry.readTime}</span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-sans">{entry.title}</h1>
         </div>
-        <h1 className="text-3xl md:text-5xl font-sans">{entry.title}</h1>
       </section>
 
       {/* Banner image placeholder */}
@@ -51,7 +54,7 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
             <p className="text-lg md:text-xl mb-6">{entry.intro}</p>
 
             {/* Divider */}
-            <hr className="border-gray-300 mb-6" />
+            <Separator className="border-t border-gray-300 mb-6" />
 
             {/* Content */}
             <div className="max-w-none">

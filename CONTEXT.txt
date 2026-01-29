@@ -131,7 +131,14 @@ import { Button } from "@/components/ui/Button";
 ```
 
 ### Card (src/components/ui/Card.tsx)
-General-purpose card component for content blocks. Custom component (BaseUI has no Card).
+General-purpose card component for content blocks. Custom component (BaseUI has no Card component).
+
+## BaseUI Usage
+Components using BaseUI as foundation:
+- Button: @base-ui/react/button
+- Separator: @base-ui/react/separator (used in journal entry divider)
+
+BaseUI is focused on interactive/form components. For basic layout elements (cards, containers), custom components with semantic HTML are appropriate.
 
 Props:
 - icon?: ReactNode (optional, rendered above title)
@@ -192,7 +199,7 @@ Current structure:
 
 2. Values Section
    - Extra vertical padding (py-16 md:py-24, px-8 md:px-12)
-   - Title: "Our values" (left-aligned, text-3xl)
+   - Title: "Our values" (centered, text-3xl)
    - Three-column grid of Card components (stacked on mobile/tablet, 3 cols on lg+)
    - Each card (left-aligned content, debug-border):
      - Placeholder icon (gray circle, w-10 h-10)
@@ -209,11 +216,11 @@ Current structure:
 ### Journal Page (src/app/journal/page.tsx)
 Current structure:
 1. Banner
-   - Wide gradient banner (h-48 md:h-64)
+   - Wide gradient banner (h-56 md:h-80)
    - Gradient: purple-100 via blue-100 to green-100 (horizontal)
 
 2. Content Section
-   - Title: "Journal" (text-3xl md:text-4xl)
+   - Title: "Journal" (centered, text-3xl md:text-4xl)
    - Grid of journal entries (1 col mobile, 2 cols md, 3 cols lg)
    - Each entry (p-4, debug-border):
      - Image placeholder (16:9 aspect ratio, gray gradient)
@@ -249,6 +256,42 @@ Structure (text sections: p-8 md:px-24 for narrower content; banner: px-8 md:px-
 Typography notes:
 - Newsreader (font-serif) for: subtitles, sidebar labels, all content text
 - Inclusive Sans (font-sans) for: section headings/titles only
+
+### Chapters Page (src/app/chapters/page.tsx)
+Current structure:
+- Full page gradient background (green-100 via blue-100 to purple-100, vertical)
+- Title: "Chapters" (centered, text-3xl md:text-4xl, pt-12)
+- Table layout (max-w-4xl mx-auto, bg-white/80 backdrop-blur, rounded):
+  - Sticky header row (sticky top-0, bg-white/95 backdrop-blur)
+  - Columns: Chapter, Location (hidden mobile), Founded (hidden mobile/tablet), Members (hidden mobile/tablet), Projects (hidden mobile/tablet)
+  - Chapter name links to /chapters/[slug]
+  - Location shown under chapter name on mobile
+  - Hover state on rows (bg-gray-50)
+  - Font-sans for headings and numbers, font-serif for location
+
+Data file: src/data/chapters.ts
+- Chapter interface: id, slug, name, university, location, founded, description, memberCount, projectCount, website?, github?
+- 13 mock chapters with various universities
+- getChapterBySlug(slug) helper function
+
+### Chapter Page (src/app/chapters/[slug]/page.tsx)
+Dynamic route for individual chapters.
+
+Structure:
+1. Banner
+   - Gradient banner (h-56 md:h-80, blue-100 to green-200)
+
+2. Header Section (centered, max-w-2xl)
+   - Location + founded year (text-base, font-serif)
+   - Chapter name (text-3xl md:text-5xl, font-sans)
+
+3. Content Section (max-w-3xl mx-auto)
+   - Description (text-lg md:text-xl, font-serif, centered)
+   - Stats: member count and project count (centered, gap-12)
+   - Link cards grid (2 cols on md+):
+     - Website card (if available)
+     - GitHub card (if available)
+     - Each card: p-6, debug-border, hover:bg-gray-50
 
 ## Debug Mode
 For development, thin borders are added to sections and .debug-border elements:

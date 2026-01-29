@@ -39,7 +39,7 @@ export default function AboutPage() {
       </section>
 
       <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-3xl font-sans mb-12">Our values</h2>
+        <h2 className="text-3xl font-sans mb-12 text-center">Our values</h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {values.map((value) => (
             <Card

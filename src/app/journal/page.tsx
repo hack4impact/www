@@ -5,11 +5,11 @@ export default function JournalPage() {
   return (
     <>
       {/* Banner */}
-      <section className="h-48 md:h-64 bg-gradient-to-r from-purple-100 via-blue-100 to-green-100" />
+      <section className="h-56 md:h-80 bg-gradient-to-r from-purple-100 via-blue-100 to-green-100" />
 
       {/* Content */}
       <section className="p-8 md:p-12">
-        <h1 className="text-3xl md:text-4xl font-sans mb-12">Journal</h1>
+        <h1 className="text-3xl md:text-4xl font-sans mb-12 text-center">Journal</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {journalEntries.map((entry) => (
