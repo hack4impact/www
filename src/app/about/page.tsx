@@ -27,9 +27,16 @@ const values = [
 
 export default async function AboutPage() {
   const members = await getBoardTeamMembers();
-  const operationsTeam = members.filter((m) => m.team === "Operations Team");
-  const boardOfDirectors = members.filter((m) => m.team === "Board of Directors");
-  const advisoryBoard = members.filter((m) => m.team === "Advisory Board");
+  const opsOrder = ["Khoa", "Govind", "Brian", "Sophia"];
+  const operationsTeam = members
+    .filter((m) => m.team === "Operations Team")
+    .sort((a, b) => {
+      const ai = opsOrder.findIndex((n) => a.name.startsWith(n));
+      const bi = opsOrder.findIndex((n) => b.name.startsWith(n));
+      return (ai === -1 ? opsOrder.length : ai) - (bi === -1 ? opsOrder.length : bi);
+    });
+  const boardOfDirectors = members.filter((m) => m.team === "Board of Directors").sort((a, b) => a.name.localeCompare(b.name));
+  const advisoryBoard = members.filter((m) => m.team === "Advisory Board").sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <>
