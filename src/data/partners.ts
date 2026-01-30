@@ -6,6 +6,9 @@ export interface Partner {
   projectCount: number;
   description: string;
   website?: string;
+  organizationTypes?: string[];
+  populations?: string[];
+  subjects?: string[];
 }
 
 export const partners: Partner[] = [

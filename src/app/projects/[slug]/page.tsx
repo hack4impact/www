@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Separator } from "@base-ui/react/separator";
-import { getProjectBySlug, TeamMember, ProjectSection } from "@/data/projects";
+import { getProjectBySlug } from "@/lib/services/notion";
+import type { TeamMember, ProjectSection } from "@/data/projects";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -82,7 +83,7 @@ function groupTeamByRole(team: TeamMember[]) {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();

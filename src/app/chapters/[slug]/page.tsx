@@ -2,8 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Separator } from "@base-ui/react/separator";
-import { getChapterBySlug } from "@/data/chapters";
-import { projects } from "@/data/projects";
+import { getChapterBySlug, getProjects } from "@/lib/services/notion";
 import { ChapterProjects } from "@/components/ui/ChapterProjects";
 
 interface ChapterPageProps {
@@ -12,14 +11,15 @@ interface ChapterPageProps {
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
   const { slug } = await params;
-  const chapter = getChapterBySlug(slug);
+  const chapter = await getChapterBySlug(slug);
 
   if (!chapter) {
     notFound();
   }
 
   // Filter projects by this chapter
-  const chapterProjects = projects.filter(
+  const allProjects = await getProjects();
+  const chapterProjects = allProjects.filter(
     (project) => project.chapter === chapter.name.replace("Hack4Impact ", "")
   );
 

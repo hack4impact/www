@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { chapters } from "@/data/chapters";
+import { getChapters } from "@/lib/services/notion";
 import { ChaptersDataTable } from "@/components/ui/ChaptersDataTable";
 import { Card } from "@/components/ui/Card";
 import { PageIntro } from "@/components/ui/PageIntro";
@@ -51,7 +51,9 @@ const faqs = [
   },
 ];
 
-export default function ChaptersPage() {
+export default async function ChaptersPage() {
+  const chapters = await getChapters();
+
   return (
     <>
       {/* Banner */}

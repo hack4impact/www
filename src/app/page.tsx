@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { CallToAction } from "@/components/ui/CallToAction";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/lib/services/notion";
 import { journalEntries } from "@/data/journal-entries";
 
-const featuredProject = projects[0];
 const featuredArticles = journalEntries.slice(0, 3);
 
-export default function HomePage() {
+export default async function HomePage() {
+  const projects = await getProjects();
+  const featuredProject = projects.length > 0 ? projects[0] : null;
   return (
     <>
       <section className="relative pb-32">
@@ -158,27 +159,29 @@ export default function HomePage() {
       </section>
 
       {/* Featured Project */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
-          Featured project
-        </h2>
-        <div className="max-w-4xl mx-auto bg-blue-50 rounded-lg grid grid-cols-1 md:grid-cols-2 p-4 md:p-5 gap-4 md:gap-5">
-          <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 rounded-md" />
-          <div className="flex flex-col justify-center p-2 md:p-3">
-            <h3 className="font-sans text-xl md:text-2xl mb-3">
-              {featuredProject.title}
-            </h3>
-            <p className="font-serif text-gray-600 mb-6">
-              {featuredProject.description}
-            </p>
-            <div>
-              <Link href={`/projects/${featuredProject.slug}`}>
-                <Button>View write-up</Button>
-              </Link>
+      {featuredProject && (
+        <section className="px-8 md:px-12 py-16 md:py-24">
+          <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
+            Featured project
+          </h2>
+          <div className="max-w-4xl mx-auto bg-blue-50 rounded-lg grid grid-cols-1 md:grid-cols-2 p-4 md:p-5 gap-4 md:gap-5">
+            <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 rounded-md" />
+            <div className="flex flex-col justify-center p-2 md:p-3">
+              <h3 className="font-sans text-xl md:text-2xl mb-3">
+                {featuredProject.title}
+              </h3>
+              <p className="font-serif text-gray-600 mb-6">
+                {featuredProject.description}
+              </p>
+              <div>
+                <Link href={`/projects/${featuredProject.slug}`}>
+                  <Button>View write-up</Button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Featured Articles */}
       <section className="px-8 md:px-12 py-16 md:py-24">
