@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Separator } from "@base-ui/react/separator";
 import { getProjectBySlug } from "@/lib/services/notion";
+import { LinkCard } from "@/components/ui/LinkCard";
 import type { TeamMember, ProjectSection } from "@/data/projects";
 
 interface ProjectPageProps {
@@ -159,26 +160,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {(project.website || project.github) && (
               <div className={`grid gap-4 mb-6 ${project.website && project.github ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
                 {project.website && (
-                  <a
-                    href={project.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
-                  >
-                    <p className="font-sans text-base mb-1">Website</p>
-                    <p className="font-serif text-gray-500 text-sm truncate">{project.website}</p>
-                  </a>
+                  <LinkCard label="Website" href={project.website} />
                 )}
                 {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
-                  >
-                    <p className="font-sans text-base mb-1">GitHub</p>
-                    <p className="font-serif text-gray-500 text-sm truncate">{project.github}</p>
-                  </a>
+                  <LinkCard label="GitHub" href={project.github} />
                 )}
               </div>
             )}

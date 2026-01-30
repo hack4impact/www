@@ -8,7 +8,7 @@ A minimal website for Hack4Impact (H4I), built with Next.js 15, React 19, Tailwi
 - React 19.0.0
 - Tailwind CSS 4 (configured via CSS @theme, not tailwind.config.js)
 - BaseUI React 1.1.0 (@base-ui/react)
-- Contentful CMS 11.5.5 (for content management)
+- Notion API (for content management)
 - TypeScript 5
 
 ## Directory Structure

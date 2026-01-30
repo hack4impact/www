@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Separator } from "@base-ui/react/separator";
 import { getChapterBySlug, getProjects } from "@/lib/services/notion";
 import { ChapterProjects } from "@/components/ui/ChapterProjects";
+import { LinkCard } from "@/components/ui/LinkCard";
 
 interface ChapterPageProps {
   params: Promise<{ slug: string }>;
@@ -92,37 +93,13 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             {(chapter.website || chapter.github || chapter.instagram) && (
               <div className="flex flex-wrap gap-4 mb-8">
                 {chapter.website && (
-                  <a
-                    href={chapter.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
-                  >
-                    <p className="font-sans text-base mb-1">Website</p>
-                    <p className="font-serif text-gray-500 text-sm truncate">{chapter.website}</p>
-                  </a>
+                  <LinkCard label="Website" href={chapter.website} className="flex-1" />
                 )}
                 {chapter.github && (
-                  <a
-                    href={chapter.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
-                  >
-                    <p className="font-sans text-base mb-1">GitHub</p>
-                    <p className="font-serif text-gray-500 text-sm truncate">{chapter.github}</p>
-                  </a>
+                  <LinkCard label="GitHub" href={chapter.github} className="flex-1" />
                 )}
                 {chapter.instagram && (
-                  <a
-                    href={chapter.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors"
-                  >
-                    <p className="font-sans text-base mb-1">Instagram</p>
-                    <p className="font-serif text-gray-500 text-sm truncate">{chapter.instagram}</p>
-                  </a>
+                  <LinkCard label="Instagram" href={chapter.instagram} className="flex-1" />
                 )}
               </div>
             )}

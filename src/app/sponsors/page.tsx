@@ -1,7 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { Separator } from "@base-ui/react/separator";
+import { SplitHero } from "@/components/ui/SplitHero";
+import { CardGrid } from "@/components/ui/CardGrid";
 import { CallToAction } from "@/components/ui/CallToAction";
 
 const stats = [
@@ -58,23 +57,13 @@ const fundingAreas = [
 export default function SponsorsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 bg-gradient-to-br from-orange-100 to-orange-200" />
-        <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
-          <h1 className="font-sans text-3xl md:text-4xl">
-            Support Hack4Impact
-          </h1>
-          <p className="mt-4 text-base md:text-lg font-serif text-gray-600">
-            Your sponsorship enables student-driven technology for social good. Fund the tools, events, and infrastructure that power our chapters and the nonprofits they serve.
-          </p>
-          <div className="mt-6">
-            <Link href="#contact">
-              <Button>Become a sponsor</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <SplitHero
+        heading="Support Hack4Impact"
+        description="Your sponsorship enables student-driven technology for social good. Fund the tools, events, and infrastructure that power our chapters and the nonprofits they serve."
+        buttonText="Become a sponsor"
+        buttonHref="#contact"
+        gradient="from-orange-100 to-orange-200"
+      />
 
       {/* Impact Numbers */}
       <section className="px-8 md:px-12 py-16 md:py-24">
@@ -89,27 +78,15 @@ export default function SponsorsPage() {
         </div>
       </section>
 
-      {/* Sponsorship Tiers */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-3xl font-sans mb-12 text-center">Sponsorship tiers</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {tiers.map((tier) => (
-            <Card
-              key={tier.title}
-              icon={<Image src={tier.icon} alt="" width={45} height={45} />}
-              title={tier.title}
-              description={tier.description}
-            />
-          ))}
-        </div>
-      </section>
+      <CardGrid heading="Sponsorship tiers" items={tiers} />
 
       {/* Where Your Money Goes */}
       <section className="px-8 md:px-12 py-16 md:py-24">
         <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
           Where your support goes
         </h2>
-        <div className="max-w-3xl mx-auto divide-y divide-gray-200 border-t border-gray-200">
+        <Separator className="max-w-3xl mx-auto border-t border-gray-200" />
+        <div className="max-w-3xl mx-auto divide-y divide-gray-200">
           {fundingAreas.map((area) => (
             <div key={area.title} className="py-6">
               <h3 className="font-sans text-lg mb-1">{area.title}</h3>

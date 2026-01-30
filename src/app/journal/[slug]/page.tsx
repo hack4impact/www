@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { Separator } from "@base-ui/react/separator";
 import { getJournalEntryBySlug } from "@/data/journal-entries";
 
@@ -28,9 +29,20 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
         </div>
       </section>
 
-      {/* Banner image placeholder */}
+      {/* Banner image */}
       <section className="px-8 md:px-12">
-        <div className="w-full aspect-[3/1] bg-gradient-to-br from-blue-100 to-green-200" />
+        {entry.image ? (
+          <div className="w-full aspect-[3/1] relative">
+            <Image
+              src={`/images/${entry.image}`}
+              alt={entry.alt ?? ""}
+              fill
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="w-full aspect-[3/1] bg-gradient-to-br from-blue-100 to-green-200" />
+        )}
       </section>
 
       {/* Content */}

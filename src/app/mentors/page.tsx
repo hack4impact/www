@@ -1,7 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { SplitHero } from "@/components/ui/SplitHero";
+import { CardGrid } from "@/components/ui/CardGrid";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
@@ -74,38 +72,15 @@ const expectations = [
 export default function MentorsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 bg-gradient-to-br from-purple-100 to-purple-200" />
-        <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
-          <h1 className="font-sans text-3xl md:text-4xl">
-            Mentor with Hack4Impact
-          </h1>
-          <p className="mt-4 text-base md:text-lg font-serif text-gray-600">
-            Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student&apos;s career and a nonprofit&apos;s future.
-          </p>
-          <div className="mt-6">
-            <Link href="#sign-up">
-              <Button>Get involved</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <SplitHero
+        heading="Mentor with Hack4Impact"
+        description="Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student&apos;s career and a nonprofit&apos;s future."
+        buttonText="Get involved"
+        buttonHref="#sign-up"
+        gradient="from-purple-100 to-purple-200"
+      />
 
-      {/* What Mentors Do */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-3xl font-sans mb-12 text-center">What mentors do</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {contributions.map((item) => (
-            <Card
-              key={item.title}
-              icon={<Image src={item.icon} alt="" width={45} height={45} />}
-              title={item.title}
-              description={item.description}
-            />
-          ))}
-        </div>
-      </section>
+      <CardGrid heading="What mentors do" items={contributions} />
 
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />

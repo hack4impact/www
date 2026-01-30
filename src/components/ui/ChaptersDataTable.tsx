@@ -1,17 +1,9 @@
 "use client";
 
-import { DataTable } from "@/components/ui/DataTable";
+import { DataTable, type Column } from "@/components/ui/DataTable";
 import type { Chapter } from "@/data/chapters";
 
-const columns: Array<{
-  id: string;
-  header: string;
-  accessor: (row: Chapter) => React.ReactNode;
-  accessorKey?: keyof Chapter;
-  width?: string;
-  className?: string;
-  headerClassName?: string;
-}> = [
+const columns: Column<Chapter>[] = [
   {
     id: "name",
     header: "Chapter",

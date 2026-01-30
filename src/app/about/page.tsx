@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { SplitHero } from "@/components/ui/SplitHero";
+import { CardGrid } from "@/components/ui/CardGrid";
+import { TeamTable } from "@/components/ui/TeamTable";
 import { CallToAction } from "@/components/ui/CallToAction";
 
 const operationsTeam = [
@@ -92,43 +92,14 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        {/* Image */}
-        <div className="min-h-80 md:min-h-0 aspect-[3/4] md:aspect-auto relative">
-          <Image
-            src="/images/surf.jpg"
-            alt="Students surfing"
-            fill
-            className="object-cover"
-          />
-        </div>
+      <SplitHero
+        heading="Creating software to support those supporting their communities"
+        buttonText="Meet the Team"
+        buttonHref="#operations-team"
+        image={{ src: "/images/surf.jpg", alt: "Students surfing" }}
+      />
 
-        {/* Text content */}
-        <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
-          <h1 className="font-sans text-3xl md:text-4xl">
-            Creating software to support those supporting their communities
-          </h1>
-          <div className="mt-6">
-            <Link href="#operations-team">
-              <Button>Meet the Team</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-3xl font-sans mb-12 text-center">Our values</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {values.map((value) => (
-            <Card
-              key={value.title}
-              icon={<Image src={value.icon} alt="" width={45} height={45} />}
-              title={value.title}
-              description={value.description}
-            />
-          ))}
-        </div>
-      </section>
+      <CardGrid heading="Our values" items={values} />
 
       <section className="grid grid-cols-1 lg:grid-cols-2">
         {/* Image */}
@@ -160,85 +131,44 @@ export default function AboutPage() {
 
       {/* Team Sections */}
       <section className="px-8 md:px-12 py-16 md:py-24">
-        {/* Operations Team */}
-        <div id="operations-team" className="mb-16 scroll-mt-8">
-          <h2 className="text-2xl md:text-3xl font-sans mb-8">
-            Operations Team
-          </h2>
-          <div className="divide-y divide-gray-200">
-            <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
-              <span>Name</span>
-              <span>Title</span>
-              <span>Contact</span>
-            </div>
-            {operationsTeam.map((member) => (
-              <div key={member.name} className="grid grid-cols-3 py-4">
-                <span className="font-sans">{member.name}</span>
-                <span className="font-serif text-gray-600">{member.title}</span>
-                <a
-                  href={`mailto:${member.contact}`}
-                  className="font-serif text-gray-600 hover:text-gray-900"
-                >
-                  {member.contact}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
+        <TeamTable
+          id="operations-team"
+          heading="Operations Team"
+          columns={["Name", "Title", "Contact"]}
+          members={operationsTeam.map((m) => ({
+            cells: [
+              { text: m.name },
+              { text: m.title },
+              { text: m.contact, href: `mailto:${m.contact}` },
+            ],
+          }))}
+          className="mb-16"
+        />
 
-        {/* Board of Directors */}
-        <div className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-sans mb-8">
-            Board of Directors
-          </h2>
-          <div className="divide-y divide-gray-200">
-            <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
-              <span>Name</span>
-              <span>Title</span>
-              <span>Contact</span>
-            </div>
-            {boardOfDirectors.map((member) => (
-              <div key={member.name} className="grid grid-cols-3 py-4">
-                <span className="font-sans">{member.name}</span>
-                <span className="font-serif text-gray-600">{member.title}</span>
-                <a
-                  href={`mailto:${member.contact}`}
-                  className="font-serif text-gray-600 hover:text-gray-900"
-                >
-                  {member.contact}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
+        <TeamTable
+          heading="Board of Directors"
+          columns={["Name", "Title", "Contact"]}
+          members={boardOfDirectors.map((m) => ({
+            cells: [
+              { text: m.name },
+              { text: m.title },
+              { text: m.contact, href: `mailto:${m.contact}` },
+            ],
+          }))}
+          className="mb-16"
+        />
 
-        {/* Advisory Board */}
-        <div>
-          <h2 className="text-2xl md:text-3xl font-sans mb-8">
-            Advisory Board
-          </h2>
-          <div className="divide-y divide-gray-200">
-            <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
-              <span>Name</span>
-              <span>Title</span>
-              <span>Website</span>
-            </div>
-            {advisoryBoard.map((member) => (
-              <div key={member.name} className="grid grid-cols-3 py-4">
-                <span className="font-sans">{member.name}</span>
-                <span className="font-serif text-gray-600">{member.title}</span>
-                <a
-                  href={`https://${member.website}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-serif text-gray-600 hover:text-gray-900"
-                >
-                  {member.website}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
+        <TeamTable
+          heading="Advisory Board"
+          columns={["Name", "Title", "Website"]}
+          members={advisoryBoard.map((m) => ({
+            cells: [
+              { text: m.name },
+              { text: m.title },
+              { text: m.website, href: `https://${m.website}` },
+            ],
+          }))}
+        />
       </section>
 
       <CallToAction

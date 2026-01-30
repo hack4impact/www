@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { SplitHero } from "@/components/ui/SplitHero";
+import { CardGrid } from "@/components/ui/CardGrid";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
@@ -86,49 +86,15 @@ const faqs = [
 export default function StudentsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 aspect-[3/4] md:aspect-auto relative">
-          <Image
-            src="/images/cornell_two.jpg"
-            alt="Students surfing"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
-          <h1 className="font-sans text-3xl md:text-4xl">
-            Start a Hack4Impact Chapter
-          </h1>
-          <p className="mt-4 text-base md:text-lg font-serif text-gray-600">
-            Bring Hack4Impact to your campus. Found a chapter, build a team of
-            student technologists, and create real software for nonprofits in
-            your community.
-          </p>
-          <div className="mt-6">
-            <Link href="#start">
-              <Button>Get started</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <SplitHero
+        heading="Start a Hack4Impact Chapter"
+        description="Bring Hack4Impact to your campus. Found a chapter, build a team of student technologists, and create real software for nonprofits in your community."
+        buttonText="Get started"
+        buttonHref="#start"
+        image={{ src: "/images/cornell_two.jpg", alt: "Students surfing" }}
+      />
 
-      {/* Why Start a Chapter */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-3xl font-sans mb-12 text-center">
-          Why start a chapter
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {reasons.map((item) => (
-            <Card
-              key={item.title}
-              icon={<Image src={item.icon} alt="" width={45} height={45} />}
-              title={item.title}
-              description={item.description}
-            />
-          ))}
-        </div>
-      </section>
+      <CardGrid heading="Why start a chapter" items={reasons} />
 
       <NumberedSteps
         heading="How to start a chapter"

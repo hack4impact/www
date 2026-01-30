@@ -1,7 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
+import { SplitHero } from "@/components/ui/SplitHero";
+import { CardGrid } from "@/components/ui/CardGrid";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
@@ -113,38 +111,15 @@ const faqs = [
 export default function NonprofitsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 bg-gradient-to-br from-blue-100 to-blue-200" />
-        <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
-          <h1 className="font-sans text-3xl md:text-4xl">
-            Partner with Hack4Impact
-          </h1>
-          <p className="mt-4 text-base md:text-lg font-serif text-gray-600">
-            We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.
-          </p>
-          <div className="mt-6">
-            <Link href="#apply">
-              <Button>Apply now</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <SplitHero
+        heading="Partner with Hack4Impact"
+        description="We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact."
+        buttonText="Apply now"
+        buttonHref="#apply"
+        gradient="from-blue-100 to-blue-200"
+      />
 
-      {/* What We Build */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-3xl font-sans mb-12 text-center">What we build</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {buildTypes.map((item) => (
-            <Card
-              key={item.title}
-              icon={<Image src={item.icon} alt="" width={45} height={45} />}
-              title={item.title}
-              description={item.description}
-            />
-          ))}
-        </div>
-      </section>
+      <CardGrid heading="What we build" items={buildTypes} />
 
       <NumberedSteps heading="How it works" steps={processSteps} />
 

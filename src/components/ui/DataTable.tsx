@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 
-interface Column<T> {
+export interface Column<T> {
   id: string; // Unique identifier for the column
   header: string;
   accessor: (row: T) => React.ReactNode;

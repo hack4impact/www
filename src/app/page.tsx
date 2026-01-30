@@ -1,11 +1,45 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { getProjects, FEATURED_PROJECT_SLUG } from "@/lib/services/notion";
 import { journalEntries } from "@/data/journal-entries";
 
 const featuredArticles = journalEntries.slice(0, 3);
+
+const processSteps = [
+  {
+    number: "01",
+    title: "Source",
+    description:
+      "We connect with nonprofit organizations facing technical challenges that align with our mission. Partners apply through our network, and we evaluate projects based on community impact and feasibility.",
+  },
+  {
+    number: "02",
+    title: "Define",
+    description:
+      "Our team meets with your organization to understand your goals, users, and constraints. Together we scope the project, identify key requirements, and establish success metrics.",
+  },
+  {
+    number: "03",
+    title: "Design",
+    description:
+      "We create wireframes and prototypes in close collaboration with your team. User research and iterative feedback ensure the solution truly serves your community\u2019s needs.",
+  },
+  {
+    number: "04",
+    title: "Develop",
+    description:
+      "Student developers build your product using modern, maintainable technologies. Regular check-ins keep you informed and involved throughout the development process.",
+  },
+  {
+    number: "05",
+    title: "Maintain",
+    description:
+      "We deliver comprehensive documentation and training so your team can manage the product independently. Ongoing support options ensure long-term success.",
+  },
+];
 
 export default async function HomePage() {
   const projects = await getProjects();
@@ -56,12 +90,11 @@ export default async function HomePage() {
       </section>
 
       {/* Process Section */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center max-w-lg mx-auto">
-          Our process for turning computer science into community science
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Image */}
+      <NumberedSteps
+        heading="Our process for turning computer science into community science"
+        headingClassName="max-w-lg mx-auto"
+        steps={processSteps}
+        aside={
           <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px]">
             <Image
               src="/images/group.jpg"
@@ -70,37 +103,8 @@ export default async function HomePage() {
               className="object-cover"
             />
           </div>
-
-          {/* Process steps */}
-          <div className="flex flex-col justify-between h-full divide-y divide-gray-200 border-t border-gray-200">
-            <div className="flex-1 flex flex-col justify-center py-4 relative">
-              <span className="absolute top-4 right-0 font-mono text-gray-400">01</span>
-              <h3 className="text-lg font-sans mb-1">Source</h3>
-              <p className="font-serif text-gray-600">We connect with nonprofit organizations facing technical challenges that align with our mission. Partners apply through our network, and we evaluate projects based on community impact and feasibility.</p>
-            </div>
-            <div className="flex-1 flex flex-col justify-center py-4 relative">
-              <span className="absolute top-4 right-0 font-mono text-gray-400">02</span>
-              <h3 className="text-lg font-sans mb-1">Define</h3>
-              <p className="font-serif text-gray-600">Our team meets with your organization to understand your goals, users, and constraints. Together we scope the project, identify key requirements, and establish success metrics.</p>
-            </div>
-            <div className="flex-1 flex flex-col justify-center py-4 relative">
-              <span className="absolute top-4 right-0 font-mono text-gray-400">03</span>
-              <h3 className="text-lg font-sans mb-1">Design</h3>
-              <p className="font-serif text-gray-600">We create wireframes and prototypes in close collaboration with your team. User research and iterative feedback ensure the solution truly serves your community&apos;s needs.</p>
-            </div>
-            <div className="flex-1 flex flex-col justify-center py-4 relative">
-              <span className="absolute top-4 right-0 font-mono text-gray-400">04</span>
-              <h3 className="text-lg font-sans mb-1">Develop</h3>
-              <p className="font-serif text-gray-600">Student developers build your product using modern, maintainable technologies. Regular check-ins keep you informed and involved throughout the development process.</p>
-            </div>
-            <div className="flex-1 flex flex-col justify-center py-4 relative">
-              <span className="absolute top-4 right-0 font-mono text-gray-400">05</span>
-              <h3 className="text-lg font-sans mb-1">Maintain</h3>
-              <p className="font-serif text-gray-600">We deliver comprehensive documentation and training so your team can manage the product independently. Ongoing support options ensure long-term success.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Programs Section */}
       <section className="px-8 md:px-12 py-16 md:py-24">
@@ -192,11 +196,18 @@ export default async function HomePage() {
         <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
           Featured articles
         </h2>
-        <div className="max-w-xl mx-auto divide-y divide-gray-200 border-y border-gray-200">
+        <div className="max-w-2xl mx-auto divide-y divide-gray-200 border-y border-gray-200">
           {featuredArticles.map((entry) => (
             <Link key={entry.id} href={`/journal/${entry.slug}`} className="block">
-              <div className="py-6 flex gap-5 items-center">
-                <div className="w-28 h-20 shrink-0 bg-gradient-to-br from-gray-100 to-gray-200" />
+              <div className="py-6 flex gap-6 items-center">
+                <div className="w-48 h-28 shrink-0 relative">
+                  <Image
+                    src={`/images/${entry.image}`}
+                    alt={entry.alt ?? ""}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="min-w-0">
                   <h3 className="font-sans text-lg mb-1 truncate">{entry.title}</h3>
                   <div className="flex items-center gap-2 text-sm font-serif text-gray-600">
