@@ -41,17 +41,24 @@ A minimal website for Hack4Impact (H4I), built with Next.js 15, React 19, Tailwi
 │   │   └── ui/
 │   │       ├── Button.tsx            # Reusable button component
 │   │       ├── Card.tsx              # Reusable card component
-│   │       ├── DataTable.tsx         # Generic sortable data table
+│   │       ├── CardGrid.tsx          # Section heading + card grid (3 or 4 cols)
+│   │       ├── SplitHero.tsx         # Two-column hero: image/gradient + text/CTA
+│   │       ├── LinkCard.tsx          # External link card (label + truncated URL)
+│   │       ├── TeamTable.tsx         # Team table with configurable columns
+│   │       ├── FAQList.tsx           # Collapsible FAQ list (base-ui Collapsible)
+│   │       ├── NumberedSteps.tsx     # Numbered process steps (single or two-column)
+│   │       ├── DataTable.tsx         # Generic sortable data table (exports Column<T>)
 │   │       ├── ChaptersDataTable.tsx # Chapters-specific table configuration
 │   │       └── ChapterProjects.tsx   # Projects table for chapter detail pages
 │   ├── lib/
-│   │   ├── contentful.ts
-│   │   └── types.ts
+│   │   ├── services/
+│   │   │   └── notion.ts          # Notion API integration
+│   │   └── mappers.ts
 │   └── data/
-│       ├── journal-entries.ts   # Mock journal data (4 entries)
-│       ├── chapters.ts          # Mock chapter data (13 chapters)
-│       ├── projects.ts          # Mock project data (15 projects)
-│       └── partners.ts          # Mock partner data (15 partners)
+│       ├── journal-entries.ts   # Journal data (2 entries with images)
+│       ├── chapters.ts          # Chapter type definitions
+│       ├── projects.ts          # Project type definitions
+│       └── partners.ts          # Partner type definitions
 ├── public/
 │   ├── fonts/
 │   │   ├── InclusiveSans.ttf        # Variable font, weight 300-700, from GitHub (has ss01)
@@ -194,7 +201,8 @@ A client component used in the chapter detail page to display a table of project
 Components using BaseUI as foundation:
 - Button: @base-ui/react/button
 - Menu: @base-ui/react/menu (used in Header for dropdown navigation)
-- Separator: @base-ui/react/separator (used in journal, chapter, and project detail pages as dividers)
+- Separator: @base-ui/react/separator (used in journal, chapter, project detail, sponsors pages)
+- Collapsible: @base-ui/react/collapsible (used in FAQList for expand/collapse)
 
 BaseUI is focused on interactive/form components. For basic layout elements (cards, containers), custom components with semantic HTML are appropriate.
 
@@ -248,13 +256,11 @@ Current structure:
    - Full-width image (gt.jpg) that hangs below the gradient
 
 2. Process Section
-   - Extra vertical padding (py-16 md:py-24, px-8 md:px-12)
+   - Uses NumberedSteps component with aside prop for two-column layout
    - Title: centered, max-w-lg to wrap to two lines
-   - Two-column grid (stacked on mobile, 2 cols on lg+)
-   - Left column: group.jpg image (aspect-[4/3] on mobile, fills height on desktop)
-   - Right column: 5 process steps with dividers, height matches image
-     - Steps use flex-1 to distribute evenly: Source, Define, Design, Develop, Maintain
-     - Each step: h3 title (font-sans) + expanded partner-focused description (font-serif, text-gray-600) + number in upper right (font-mono, text-gray-400, 01-05)
+   - Left column (aside): group.jpg image (aspect-[4/3] on mobile, fills height on desktop)
+   - Right column: 5 process steps (stretch mode) with dividers, height matches image
+     - Steps: Source, Define, Design, Develop, Maintain
 
 3. Programs Section
    - Extra vertical padding (py-16 md:py-24, px-8 md:px-12)
@@ -324,15 +330,15 @@ Current structure:
 2. Content Section
    - Title: "Journal" (centered, text-3xl md:text-4xl)
    - Grid of journal entries (1 col mobile, 2 cols md, 3 cols lg)
-   - Each entry (p-4, debug-border):
-     - Image placeholder (16:9 aspect ratio, gray gradient)
+   - Each entry (p-2):
+     - Thumbnail image (16:9 aspect ratio, object-cover)
      - Title (text-xl)
      - Subtitle line: tag + "·" + read time (text-sm, gray)
      - Description paragraph
 
 Data file: src/data/journal-entries.ts
-- JournalEntry interface: id, slug, title, tag, readTime, description, author, publishedDate, intro, content, image?
-- Mock entries with Engineering, Case Study, Opinion, Design tags
+- JournalEntry interface: id, slug, title, tag, readTime, description, author, publishedDate, intro, content, image?, alt?
+- 2 entries: "From Federated to Foundations" (foundations.jpg), "The Importance of Volunteering in Tech" (volunteer.jpg)
 - getJournalEntryBySlug(slug) helper function
 
 ### Journal Entry Page (src/app/journal/[slug]/page.tsx)
@@ -344,7 +350,7 @@ Structure (text sections: p-8 md:px-24 for narrower content; banner: px-8 md:px-
    - Title (text-3xl md:text-5xl, font-sans)
 
 2. Banner Section
-   - Full-width image placeholder (3:1 aspect ratio, gradient)
+   - Entry image (3:1 aspect ratio, object-cover) or gradient fallback
 
 3. Content Section
    - Two-column layout (stacked on mobile/tablet, sidebar + content on lg+)
@@ -460,11 +466,16 @@ Typography notes:
 - Inclusive Sans (font-sans) for: section headings/titles, sidebar values, team member names
 
 ### CTA Pages (Nonprofits, Students, Mentors, Sponsors)
-Simple stub pages with a title and description paragraph. All follow the same pattern:
-- Wrapper: div with p-8
-- Title: h1 with text-3xl md:text-4xl font-sans mb-4 (e.g., "For Nonprofits", "For Students")
-- Description: p with text-base md:text-lg font-serif
+Full CTA pages using shared components. Common pattern:
+- SplitHero: two-column hero with image or gradient + heading/description/button
+- CardGrid: section heading + 3-column card grid
+- NumberedSteps, FAQList, TestimonialCarousel, CallToAction as needed
 - Routes: /nonprofits, /students, /mentors, /sponsors
+
+### About Page Components
+- SplitHero for hero section
+- CardGrid for values section
+- TeamTable for Operations Team, Board of Directors, Advisory Board
 
 ## Debug Mode
 For development, thin borders are added to sections and .debug-border elements:
@@ -514,5 +525,5 @@ Remove these for production.
 - Debug borders during development for visual debugging
 
 ## Notes
-- Contentful integration exists but content structure not yet defined; all pages use hard-coded data
+- Content managed via Notion API (src/lib/services/notion.ts); journal entries use local data
 - Developed pages: Home, About, Journal (list + detail), Chapters (list + detail), Projects (list + detail), Partners (list), Nonprofits, Students, Mentors, Sponsors
