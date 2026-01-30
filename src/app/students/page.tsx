@@ -88,7 +88,14 @@ export default function StudentsPage() {
     <>
       {/* Hero */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 bg-gradient-to-br from-green-100 to-green-300" />
+        <div className="min-h-80 md:min-h-0 aspect-[3/4] md:aspect-auto relative">
+          <Image
+            src="/images/cornell_two.jpg"
+            alt="Students surfing"
+            fill
+            className="object-cover"
+          />
+        </div>
         <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
           <h1 className="font-sans text-3xl md:text-4xl">
             Start a Hack4Impact Chapter
