@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { journalEntries } from "@/data/journal-entries";
+import { getJournalEntries } from "@/lib/services/contentful";
 import { CallToAction } from "@/components/ui/CallToAction";
 
 const thumbnailGradients = [
@@ -9,7 +9,9 @@ const thumbnailGradients = [
   "from-blue-100 to-indigo-200",
 ];
 
-export default function JournalPage() {
+export default async function JournalPage() {
+  const journalEntries = await getJournalEntries();
+
   return (
     <>
       {/* Banner */}

@@ -4,9 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { getProjects, FEATURED_PROJECT_SLUG } from "@/lib/services/notion";
-import { journalEntries } from "@/data/journal-entries";
-
-const featuredArticles = journalEntries.slice(0, 3);
+import { getJournalEntries } from "@/lib/services/contentful";
 
 const processSteps = [
   {
@@ -42,7 +40,11 @@ const processSteps = [
 ];
 
 export default async function HomePage() {
-  const projects = await getProjects();
+  const [projects, journalEntries] = await Promise.all([
+    getProjects(),
+    getJournalEntries(),
+  ]);
+  const featuredArticles = journalEntries.slice(0, 3);
   const featuredProject =
     (FEATURED_PROJECT_SLUG &&
       projects.find((p) => p.slug === FEATURED_PROJECT_SLUG)) ||

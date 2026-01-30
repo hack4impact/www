@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { Separator } from "@base-ui/react/separator";
-import { getJournalEntryBySlug } from "@/data/journal-entries";
+import { getJournalEntryBySlug } from "@/lib/services/contentful";
+import { RichText } from "@/components/ui/RichText";
 
 interface JournalPostPageProps {
   params: Promise<{ slug: string }>;
@@ -8,7 +8,7 @@ interface JournalPostPageProps {
 
 export default async function JournalPostPage({ params }: JournalPostPageProps) {
   const { slug } = await params;
-  const entry = getJournalEntryBySlug(slug);
+  const entry = await getJournalEntryBySlug(slug);
 
   if (!entry) {
     notFound();
@@ -53,25 +53,9 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
             {/* Intro */}
             <p className="text-lg md:text-xl mb-6">{entry.intro}</p>
 
-            {/* Divider */}
-            <Separator className="border-t border-gray-300 mb-6" />
-
             {/* Content */}
             <div className="max-w-none">
-              {entry.content.split("\n\n").map((block, index) => {
-                if (block.startsWith("## ")) {
-                  return (
-                    <h2 key={index} className="text-xl md:text-2xl font-sans mt-8 mb-4">
-                      {block.replace("## ", "")}
-                    </h2>
-                  );
-                }
-                return (
-                  <p key={index} className="mb-4 text-base md:text-lg">
-                    {block}
-                  </p>
-                );
-              })}
+              <RichText document={entry.content} />
             </div>
           </article>
         </div>
