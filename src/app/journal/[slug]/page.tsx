@@ -38,6 +38,7 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
               alt={entry.alt ?? ""}
               fill
               className="object-cover"
+              style={entry.imagePosition ? { objectPosition: entry.imagePosition } : undefined}
             />
           </div>
         ) : (

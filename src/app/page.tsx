@@ -206,6 +206,7 @@ export default async function HomePage() {
                     alt={entry.alt ?? ""}
                     fill
                     className="object-cover"
+                    style={entry.imagePosition ? { objectPosition: entry.imagePosition } : undefined}
                   />
                 </div>
                 <div className="min-w-0">

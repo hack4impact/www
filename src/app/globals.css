@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+::selection {
+  background-color: var(--color-green-300);
+}
+
 @font-face {
   font-family: "Inclusive Sans";
   font-style: normal;

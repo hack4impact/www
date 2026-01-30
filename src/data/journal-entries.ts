@@ -11,6 +11,7 @@ export interface JournalEntry {
   content: string;
   image?: string;
   alt?: string;
+  imagePosition?: string;
 }
 
 export const journalEntries: JournalEntry[] = [
@@ -42,6 +43,7 @@ export const journalEntries: JournalEntry[] = [
     author: "Khoa Ly",
     image: "volunteer.jpg",
     alt: "Volunteers working together",
+    imagePosition: "center 60%",
     publishedDate: "January 29, 2024",
     intro:
       "Every organization remembers their first major project. For Hack4Impact, it was a patient scheduling system for Community Health Partners that taught us lessons we still carry today.",

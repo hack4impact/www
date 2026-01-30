@@ -28,6 +28,7 @@ export default function JournalPage() {
                     alt={entry.alt!}
                     fill
                     className="object-cover"
+                    style={entry.imagePosition ? { objectPosition: entry.imagePosition } : undefined}
                   />
                 </div>
 
