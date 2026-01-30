@@ -15,6 +15,7 @@ const PROGRAMS_DATA_SOURCE_ID = "27b197ab-f07b-80ab-999b-000bc1682f4f";
 const PROJECTS_DATA_SOURCE_ID = "27b197ab-f07b-80cf-8d0e-000b8507cb8f";
 const PARTNERS_DATA_SOURCE_ID = "27b197ab-f07b-80a4-8a5d-000b57c0e149";
 const VOLUNTEERS_DATA_SOURCE_ID = "27b197ab-f07b-8071-9196-000babef012e";
+const TERMS_DATA_SOURCE_ID = "27c197ab-f07b-8077-8044-000b13443d6e";
 
 // Hardcoded chapter images (slug → image path and optional position)
 const CHAPTER_IMAGES: Record<string, { src: string; position?: string }> = {
@@ -97,6 +98,22 @@ async function fetchVolunteers() {
   }
 }
 
+async function fetchTerms() {
+  try {
+    const results = await fetchAllPages(TERMS_DATA_SOURCE_ID);
+    return results.map((page: any) => ({
+      id: page.id,
+      name:
+        page.properties.Name?.title?.[0]?.plain_text ||
+        page.properties.Name?.rich_text?.[0]?.plain_text ||
+        "",
+    }));
+  } catch (error) {
+    console.error("Failed to fetch terms from Notion:", error);
+    return [];
+  }
+}
+
 // --- Cached versions (revalidate every hour) ---
 
 const getCachedPrograms = unstable_cache(fetchPrograms, ["notion-programs"], {
@@ -113,6 +130,9 @@ const getCachedVolunteers = unstable_cache(
   ["notion-volunteers"],
   { revalidate: 3600 },
 );
+const getCachedTerms = unstable_cache(fetchTerms, ["notion-terms"], {
+  revalidate: 86400,
+});
 
 // --- Public API: Chapters (Programs) ---
 
@@ -173,17 +193,19 @@ export async function getChapterBySlug(
 // --- Public API: Projects ---
 
 export async function getProjects(): Promise<Project[]> {
-  const [notionProjects, programs, notionPartners, volunteers] =
+  const [notionProjects, programs, notionPartners, volunteers, terms] =
     await Promise.all([
       getCachedProjects(),
       getCachedPrograms(),
       getCachedPartners(),
       getCachedVolunteers(),
+      getCachedTerms(),
     ]);
 
   const programMap = new Map(programs.map((p: any) => [p.id, p.name]));
   const partnerMap = new Map(notionPartners.map((p: any) => [p.id, p.name]));
   const volunteerMap = new Map(volunteers.map((v: any) => [v.id, v.name]));
+  const termMap = new Map(terms.map((t: any) => [t.id, t.name]));
 
   function resolveTeam(ids: string[], role: TeamMember["role"]): TeamMember[] {
     return ids
@@ -192,7 +214,7 @@ export async function getProjects(): Promise<Project[]> {
       .map((name) => ({ name, role }));
   }
 
-  return notionProjects.map((project: any) => {
+  return notionProjects.filter((p: any) => p.type !== "Leadership").map((project: any) => {
     const slug = toSlug(project.name);
 
     const chapterName = project.relatedIds.chapters
@@ -218,15 +240,20 @@ export async function getProjects(): Promise<Project[]> {
       ...resolveTeam(project.team.developers, "Developer"),
     ];
 
-    // Derive year from terms (e.g. ["Fall 2024", "Spring 2025"] → "2025")
-    const terms: string[] = project.terms ?? [];
-    const years = terms
-      .map((t: string) => t.match(/\d{4}/)?.[0])
+    // Resolve activity relation IDs to term names
+    const activityIds: string[] = project.activityIds ?? [];
+    const termNames = activityIds
+      .map((id: string) => termMap.get(id))
+      .filter((name): name is string => !!name);
+
+    // Derive year from term names (e.g. ["Fall 2024", "Spring 2025"] → "2025")
+    const years = termNames
+      .map((t) => t.match(/\d{4}/)?.[0])
       .filter((y): y is string => !!y);
     const year = years.length > 0 ? years[years.length - 1] : "";
 
-    // Duration is the terms list (e.g. "Fall 2024, Spring 2025")
-    const duration = terms.join(", ");
+    // Duration is the resolved term names (e.g. "Fall 2024, Spring 2025")
+    const duration = termNames.join(", ");
 
     return {
       id: project.id,

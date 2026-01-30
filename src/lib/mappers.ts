@@ -135,7 +135,7 @@ export const mapProject = (page: any) => {
     description: NotionUtils.getText(p.Description),
     status: NotionUtils.getSelect(p.Status),
     type: NotionUtils.getSelect(p.Type),
-    terms: NotionUtils.getMultiSelect(p.Terms),
+    activityIds: NotionUtils.getRelation(p.Activity),
     notes: NotionUtils.getText(p.Notes),
 
     links: {
