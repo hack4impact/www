@@ -37,7 +37,7 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
       <section className="p-8 md:px-24 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-24">
           {/* Sidebar - Author & Date */}
-          <aside className="grid grid-cols-2 lg:block lg:border-r lg:pr-8 debug-border font-serif">
+          <aside className="grid grid-cols-2 lg:block lg:pr-8 font-serif">
             <div className="mb-0 lg:mb-4">
               <p className="text-sm text-gray-500">Written by</p>
               <p className="font-sans">{entry.author}</p>
@@ -49,7 +49,7 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
           </aside>
 
           {/* Article content */}
-          <article className="debug-border font-serif">
+          <article className="font-serif">
             {/* Intro */}
             <p className="text-lg md:text-xl mb-6">{entry.intro}</p>
 

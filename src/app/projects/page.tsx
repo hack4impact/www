@@ -3,6 +3,7 @@
 import { projects, Project } from "@/data/projects";
 
 import { DataTable } from "@/components/ui/DataTable";
+import { PageIntro } from "@/components/ui/PageIntro";
 
 
 
@@ -250,11 +251,13 @@ export default function ProjectsPage() {
 
 
 
-      {/* Content */}
+      <PageIntro
+        heading="Projects"
+        description="Each project represents a semester of collaboration between a student team and a nonprofit partner. Browse our portfolio to see the software we've shipped and the communities we've served."
+      />
 
+      {/* Data Table */}
       <section className="p-8 md:p-12">
-
-        <h1 className="text-3xl md:text-4xl font-sans mb-12 text-center">Projects</h1>
 
         <DataTable
 
@@ -264,7 +267,7 @@ export default function ProjectsPage() {
 
           getRowHref={(row) => `/projects/${row.slug}`}
 
-          wrapperClassName="overflow-auto max-h-[70vh] debug-border bg-white/80 backdrop-blur-sm rounded"
+          wrapperClassName="overflow-auto max-h-[70vh] bg-white/80 backdrop-blur-sm rounded"
 
           theadClassName="sticky top-0 bg-white border-b-2 border-gray-200"
 

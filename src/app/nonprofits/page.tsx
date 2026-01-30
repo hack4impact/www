@@ -2,7 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { NumberedSteps } from "@/components/ui/NumberedSteps";
+import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
+import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
+
+const testimonials = [
+  {
+    quote:
+      "Working with Hack4Impact gave us a tool that fundamentally changed how we serve our community.",
+    name: "Javid Fathi",
+    title: "Software Engineer Lead at Microsoft",
+  },
+  {
+    quote:
+      "The students delivered a product that exceeded our expectations — and they did it with genuine care for our mission.",
+    name: "Sarah Chen",
+    title: "Executive Director, Community Aid Network",
+  },
+  {
+    quote:
+      "We went from spreadsheets to a custom platform in one semester. Our volunteers save hours every week.",
+    name: "Marcus Johnson",
+    title: "Operations Manager, Youth Forward",
+  },
+];
 
 const buildTypes = [
   {
@@ -91,14 +115,7 @@ export default function NonprofitsPage() {
     <>
       {/* Hero */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 relative">
-          <Image
-            src="/images/group.jpg"
-            alt="Students collaborating on a project"
-            fill
-            className="object-cover"
-          />
-        </div>
+        <div className="min-h-80 md:min-h-0 bg-gradient-to-br from-blue-100 to-blue-200" />
         <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
           <h1 className="font-sans text-3xl md:text-4xl">
             Partner with Hack4Impact
@@ -129,67 +146,12 @@ export default function NonprofitsPage() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
-          How it works
-        </h2>
-        <div className="max-w-3xl mx-auto">
-          <div className="flex flex-col divide-y divide-gray-200 border-t border-gray-200">
-            {processSteps.map((step) => (
-              <div key={step.number} className="py-6 relative">
-                <span className="absolute top-6 right-0 font-mono text-gray-400">
-                  {step.number}
-                </span>
-                <h3 className="text-lg font-sans mb-1">{step.title}</h3>
-                <p className="font-serif text-gray-600 pr-12">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <NumberedSteps heading="How it works" steps={processSteps} />
 
-      {/* Testimonial */}
-      <section className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
-          <div className="relative aspect-[4/5] w-full">
-            <Image
-              src="/images/javid.jpg"
-              alt="Javid Fathi"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
-          <blockquote className="font-sans text-2xl md:text-3xl">
-            &ldquo;Working with Hack4Impact gave us a tool that fundamentally changed how we serve our community.&rdquo;
-          </blockquote>
-          <div className="mt-6 md:mt-8">
-            <p className="font-sans text-lg">Javid Fathi</p>
-            <p className="font-serif text-gray-600">
-              Software Engineer Lead at Microsoft
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Testimonials */}
+      <TestimonialCarousel testimonials={testimonials} />
 
-      {/* FAQ */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
-          What to expect
-        </h2>
-        <div className="max-w-3xl mx-auto divide-y divide-gray-200 border-t border-gray-200">
-          {faqs.map((faq) => (
-            <div key={faq.question} className="py-6">
-              <h3 className="font-sans text-lg mb-2">{faq.question}</h3>
-              <p className="font-serif text-gray-600">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <FAQList heading="What to expect" items={faqs} />
 
       {/* Apply CTA */}
       <CallToAction

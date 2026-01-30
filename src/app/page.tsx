@@ -2,6 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { CallToAction } from "@/components/ui/CallToAction";
+import { projects } from "@/data/projects";
+import { journalEntries } from "@/data/journal-entries";
+
+const featuredProject = projects[0];
+const featuredArticles = journalEntries.slice(0, 3);
 
 export default function HomePage() {
   return (
@@ -35,15 +40,13 @@ export default function HomePage() {
 
         {/* Image hanging below gradient */}
         <div className="relative mt-8 flex justify-center px-8">
-          <div className="debug-border">
-            <Image
-              src="/images/gt.jpg"
-              alt="Hack4Impact"
-              width={800}
-              height={500}
-              className="object-cover"
-            />
-          </div>
+          <Image
+            src="/images/gt.jpg"
+            alt="Hack4Impact"
+            width={800}
+            height={500}
+            className="object-cover"
+          />
         </div>
       </section>
 
@@ -101,7 +104,7 @@ export default function HomePage() {
           <p className="text-2xl md:text-3xl font-sans">Community in action</p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="flex flex-col items-start px-6 py-8 debug-border">
+          <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
               <Image src="/icons/nonprofits.svg" alt="" width={45} height={45} />
             </div>
@@ -109,7 +112,7 @@ export default function HomePage() {
             <p className="text-base font-serif mb-4">We build custom software solutions for nonprofit organizations, helping them better serve their communities and amplify their impact.</p>
             <Link href="/nonprofits" className="mt-auto font-mono text-sm hover:underline">Learn more &rarr;</Link>
           </div>
-          <div className="flex flex-col items-start px-6 py-8 debug-border">
+          <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
               <Image src="/icons/students.svg" alt="" width={45} height={45} />
             </div>
@@ -117,7 +120,7 @@ export default function HomePage() {
             <p className="text-base font-serif mb-4">We provide community, education, and service-learning opportunities for students to develop real-world skills while making a difference.</p>
             <Link href="/students" className="mt-auto font-mono text-sm hover:underline">Learn more &rarr;</Link>
           </div>
-          <div className="flex flex-col items-start px-6 py-8 debug-border">
+          <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
               <Image src="/icons/professionals.svg" alt="" width={45} height={45} />
             </div>
@@ -151,6 +154,58 @@ export default function HomePage() {
             <p className="font-sans text-lg">Javid Fathi</p>
             <p className="font-serif text-gray-600">Software Engineer Lead at Microsoft</p>
           </div>
+        </div>
+      </section>
+
+      {/* Featured Project */}
+      <section className="px-8 md:px-12 py-16 md:py-24">
+        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
+          Featured project
+        </h2>
+        <div className="max-w-4xl mx-auto bg-blue-50 rounded-lg grid grid-cols-1 md:grid-cols-2 p-4 md:p-5 gap-4 md:gap-5">
+          <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200" />
+          <div className="flex flex-col justify-center">
+            <h3 className="font-sans text-xl md:text-2xl mb-3">
+              {featuredProject.title}
+            </h3>
+            <p className="font-serif text-gray-600 mb-6">
+              {featuredProject.description}
+            </p>
+            <div>
+              <Link href={`/projects/${featuredProject.slug}`}>
+                <Button>View write-up</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Articles */}
+      <section className="px-8 md:px-12 py-16 md:py-24">
+        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
+          Featured articles
+        </h2>
+        <div className="max-w-xl mx-auto divide-y divide-gray-200 border-y border-gray-200">
+          {featuredArticles.map((entry) => (
+            <Link key={entry.id} href={`/journal/${entry.slug}`} className="block">
+              <div className="py-6 flex gap-5 items-center">
+                <div className="w-28 h-20 shrink-0 bg-gradient-to-br from-gray-100 to-gray-200" />
+                <div className="min-w-0">
+                  <h3 className="font-sans text-lg mb-1 truncate">{entry.title}</h3>
+                  <div className="flex items-center gap-2 text-sm font-serif text-gray-600">
+                    <span>{entry.tag}</span>
+                    <span className="text-gray-400">&middot;</span>
+                    <span>{entry.readTime}</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link href="/journal">
+            <Button>View all articles</Button>
+          </Link>
         </div>
       </section>
 

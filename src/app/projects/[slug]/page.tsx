@@ -123,7 +123,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-24">
           {/* Sidebar - Project Details */}
-          <aside className="grid grid-cols-2 lg:block lg:border-r lg:pr-8 debug-border font-serif">
+          <aside className="grid grid-cols-2 lg:block lg:border-r lg:pr-8 font-serif">
             <div className="mb-4 lg:mb-6">
               <p className="text-sm text-gray-500">Partner</p>
               <p className="font-sans">{project.partner}</p>
@@ -150,7 +150,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </aside>
 
           {/* Article content */}
-          <article className="debug-border font-serif">
+          <article className="font-serif">
             {/* Intro */}
             <p className="text-lg md:text-xl mb-6">{project.intro}</p>
 
@@ -209,7 +209,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           return (
             <div className={`grid ${gridCols} gap-8`}>
               {Object.entries(teamByRole).map(([role, members]) => (
-                <div key={role} className="debug-border">
+                <div key={role}>
                   <p className="text-sm text-gray-500 font-serif mb-2">{role}</p>
                   <ul className="space-y-1">
                     {members.map((name) => (

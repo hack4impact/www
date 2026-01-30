@@ -23,7 +23,7 @@ export default function JournalPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {journalEntries.map((entry) => (
             <Link key={entry.id} href={`/journal/${entry.slug}`}>
-              <article className="p-4 debug-border">
+              <article className="p-4">
                 {/* Image placeholder */}
                 <div className="aspect-[16/9] bg-gradient-to-br from-gray-100 to-gray-200 mb-4" />
 

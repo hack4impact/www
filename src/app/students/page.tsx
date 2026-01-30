@@ -2,72 +2,84 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { NumberedSteps } from "@/components/ui/NumberedSteps";
+import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 
-const benefits = [
+const reasons = [
+  {
+    icon: "/icons/professionals.svg",
+    title: "Leadership",
+    description:
+      "Build and lead a team of developers, designers, and project managers. Gain hands-on experience running a student organization from the ground up.",
+  },
   {
     icon: "/icons/nonprofits.svg",
-    title: "Real-World Experience",
+    title: "Impact",
     description:
-      "Work on production software for real nonprofit clients — not classroom exercises. Ship code that makes a difference.",
+      "Connect your campus to local nonprofits and deliver real software that makes a difference in your community.",
   },
   {
     icon: "/icons/students.svg",
     title: "Community",
     description:
-      "Join a network of mission-driven students across dozens of universities who share your passion for tech and social good.",
-  },
-  {
-    icon: "/icons/professionals.svg",
-    title: "Technical Growth",
-    description:
-      "Learn modern development practices, work in cross-functional teams, and receive mentorship from industry professionals.",
+      "Join a national network of chapter leaders who share resources, advice, and support across dozens of universities.",
   },
 ];
 
-const roles = [
+const steps = [
   {
-    title: "Developer",
+    number: "01",
+    title: "Express Interest",
     description:
-      "Build features, write tests, and ship code using modern frameworks. Most teams use React, Next.js, or React Native.",
+      "Reach out to us with a brief intro about yourself, your school, and why you want to start a chapter.",
   },
   {
-    title: "Designer",
+    number: "02",
+    title: "Apply",
     description:
-      "Lead user research, create wireframes and prototypes, and ensure the final product is intuitive and accessible.",
+      "Fill out a short application so we can learn more about your plans, your team, and your campus community.",
   },
   {
-    title: "Tech Lead",
+    number: "03",
+    title: "Launch",
     description:
-      "Guide technical architecture, conduct code reviews, and mentor developers while keeping the project on track.",
+      "Once approved, you'll receive a starter kit with branding, templates, and onboarding materials to get your chapter off the ground.",
   },
   {
-    title: "Project Manager",
+    number: "04",
+    title: "Build Your Team",
     description:
-      "Coordinate between the team and the nonprofit partner, run standups, and manage scope and timelines.",
+      "Recruit developers, designers, and project managers from your campus. We'll help you run your first recruitment cycle.",
+  },
+  {
+    number: "05",
+    title: "Grow",
+    description:
+      "Partner with local nonprofits, deliver your first project, and establish your chapter as a lasting part of your campus.",
   },
 ];
 
 const faqs = [
   {
-    question: "Do I need prior experience?",
+    question: "Who can start a chapter?",
     answer:
-      "It depends on the chapter and role. Most chapters look for some programming coursework for developers, but designers and PMs come from varied backgrounds. Check with your local chapter for specifics.",
+      "Any current undergraduate or graduate student at an accredited university. You don't need to be a CS major — just passionate about tech and social good.",
   },
   {
-    question: "How much time does it take?",
+    question: "What support does Hack4Impact provide?",
     answer:
-      "Expect around 5–10 hours per week during the semester, including team meetings, development time, and partner check-ins.",
+      "We provide a starter kit with branding assets, operational playbooks, nonprofit outreach templates, and ongoing mentorship from national leadership and other chapter founders.",
   },
   {
-    question: "When can I apply?",
+    question: "How long does it take to get started?",
     answer:
-      "Most chapters recruit at the start of each semester (fall and spring). Applications typically open a few weeks before the semester begins.",
+      "The application and approval process typically takes a few weeks. Most new chapters are ready to recruit members and take on their first project within one semester.",
   },
   {
-    question: "What if there's no chapter at my school?",
+    question: "Are there any costs?",
     answer:
-      "You can start one! We provide a starter kit, mentorship from national leadership, and connections to other chapter founders to help you get up and running.",
+      "No. Hack4Impact is a volunteer-driven organization. There are no fees to start or run a chapter.",
   },
 ];
 
@@ -76,34 +88,31 @@ export default function StudentsPage() {
     <>
       {/* Hero */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 relative">
-          <Image
-            src="/images/gt.jpg"
-            alt="Hack4Impact students"
-            fill
-            className="object-cover"
-          />
-        </div>
+        <div className="min-h-80 md:min-h-0 bg-gradient-to-br from-green-100 to-green-300" />
         <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
           <h1 className="font-sans text-3xl md:text-4xl">
-            Join Hack4Impact
+            Start a Hack4Impact Chapter
           </h1>
           <p className="mt-4 text-base md:text-lg font-serif text-gray-600">
-            Use your technical skills for social good. Work on real projects for nonprofit organizations, grow as a developer, and be part of a community that builds with purpose.
+            Bring Hack4Impact to your campus. Found a chapter, build a team of
+            student technologists, and create real software for nonprofits in
+            your community.
           </p>
           <div className="mt-6">
-            <Link href="/chapters">
-              <Button>Find your chapter</Button>
+            <Link href="#start">
+              <Button>Get started</Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* What You'll Gain */}
+      {/* Why Start a Chapter */}
       <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-3xl font-sans mb-12 text-center">What you&apos;ll gain</h2>
+        <h2 className="text-3xl font-sans mb-12 text-center">
+          Why start a chapter
+        </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {benefits.map((item) => (
+          {reasons.map((item) => (
             <Card
               key={item.title}
               icon={<Image src={item.icon} alt="" width={45} height={45} />}
@@ -114,65 +123,27 @@ export default function StudentsPage() {
         </div>
       </section>
 
-      {/* Roles */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
-          Roles
+      <NumberedSteps heading="How to start a chapter" steps={steps} id="start" />
+
+      {/* Existing Chapters */}
+      <section className="px-8 md:px-12 py-16 md:py-24 bg-gray-50 text-center">
+        <h2 className="text-2xl md:text-3xl font-sans mb-4">
+          Looking to join an existing chapter?
         </h2>
-        <div className="max-w-3xl mx-auto divide-y divide-gray-200 border-t border-gray-200">
-          {roles.map((role) => (
-            <div key={role.title} className="py-6">
-              <h3 className="font-sans text-lg mb-1">{role.title}</h3>
-              <p className="font-serif text-gray-600">{role.description}</p>
-            </div>
-          ))}
-        </div>
+        <p className="font-serif text-gray-600 mb-6">
+          We have chapters at universities across the country. Find one near
+          you.
+        </p>
+        <Link href="/chapters">
+          <Button>Browse chapters</Button>
+        </Link>
       </section>
 
-      {/* Testimonial */}
-      <section className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
-          <div className="relative aspect-[4/5] w-full">
-            <Image
-              src="/images/gt_two.jpg"
-              alt="Hack4Impact team"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
-          <blockquote className="font-sans text-2xl md:text-3xl">
-            &ldquo;Hack4Impact gave me the confidence to call myself a software engineer before I even graduated.&rdquo;
-          </blockquote>
-          <div className="mt-6 md:mt-8">
-            <p className="font-sans text-lg">Former H4I Developer</p>
-            <p className="font-serif text-gray-600">
-              Now Software Engineer at Google
-            </p>
-          </div>
-        </div>
-      </section>
+      <FAQList items={faqs} />
 
-      {/* FAQ */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
-          Common questions
-        </h2>
-        <div className="max-w-3xl mx-auto divide-y divide-gray-200 border-t border-gray-200">
-          {faqs.map((faq) => (
-            <div key={faq.question} className="py-6">
-              <h3 className="font-sans text-lg mb-2">{faq.question}</h3>
-              <p className="font-serif text-gray-600">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
       <CallToAction
-        heading="No chapter at your school?"
-        buttonText="Start one"
+        heading="Ready to start a chapter?"
+        buttonText="Apply"
         href="mailto:contact@hack4impact.org"
         color="bg-green-100"
       />

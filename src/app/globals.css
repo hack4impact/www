@@ -103,11 +103,6 @@
   --color-white: #FCF9F2;
 }
 
-/* Debug borders - remove for production */
-section,
-.debug-border {
-  border: 1px solid #ccc;
-}
 
 html {
   scroll-behavior: smooth;

@@ -2,7 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
+import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
+
+const testimonials = [
+  {
+    quote:
+      "Mentoring at Hack4Impact reminded me why I got into engineering in the first place — to help people.",
+    name: "Javid Fathi",
+    title: "Software Engineer Lead at Microsoft",
+  },
+  {
+    quote:
+      "Watching students grow from nervous beginners to confident engineers over one semester is incredibly rewarding.",
+    name: "Priya Patel",
+    title: "Senior Engineer at Stripe",
+  },
+  {
+    quote:
+      "The teams are sharp, motivated, and building things that matter. It's the most meaningful volunteer work I've done.",
+    name: "David Kim",
+    title: "Staff Engineer at Meta",
+  },
+];
 
 const contributions = [
   {
@@ -53,14 +76,7 @@ export default function MentorsPage() {
     <>
       {/* Hero */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 relative">
-          <Image
-            src="/images/surf.jpg"
-            alt="Hack4Impact community"
-            fill
-            className="object-cover"
-          />
-        </div>
+        <div className="min-h-80 md:min-h-0 bg-gradient-to-br from-purple-100 to-purple-200" />
         <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
           <h1 className="font-sans text-3xl md:text-4xl">
             Mentor with Hack4Impact
@@ -91,45 +107,10 @@ export default function MentorsPage() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
-          <div className="relative aspect-[4/5] w-full">
-            <Image
-              src="/images/javid.jpg"
-              alt="Javid Fathi"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
-          <blockquote className="font-sans text-2xl md:text-3xl">
-            &ldquo;Mentoring at Hack4Impact reminded me why I got into engineering in the first place — to help people.&rdquo;
-          </blockquote>
-          <div className="mt-6 md:mt-8">
-            <p className="font-sans text-lg">Javid Fathi</p>
-            <p className="font-serif text-gray-600">
-              Software Engineer Lead at Microsoft
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Testimonials */}
+      <TestimonialCarousel testimonials={testimonials} />
 
-      {/* Expectations */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
-          What to expect
-        </h2>
-        <div className="max-w-3xl mx-auto divide-y divide-gray-200 border-t border-gray-200">
-          {expectations.map((item) => (
-            <div key={item.question} className="py-6">
-              <h3 className="font-sans text-lg mb-2">{item.question}</h3>
-              <p className="font-serif text-gray-600">{item.answer}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <FAQList heading="What to expect" items={expectations} />
 
       {/* Sign Up CTA */}
       <CallToAction

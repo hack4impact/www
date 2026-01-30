@@ -65,7 +65,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-16">
           {/* Sidebar - Stats */}
-          <aside className="flex flex-row lg:flex-col gap-8 lg:gap-0 lg:border-r lg:pr-8 debug-border font-serif">
+          <aside className="flex flex-row lg:flex-col gap-8 lg:gap-0 lg:pr-8 font-serif">
             <div className="lg:mb-6">
               <p className="text-sm text-gray-500">Members</p>
               <p className="text-2xl font-sans">{chapter.memberCount}</p>
@@ -81,7 +81,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           </aside>
 
           {/* Main content */}
-          <article className="debug-border font-serif">
+          <article className="font-serif">
             {/* Description */}
             <p className="text-lg md:text-xl mb-8">{chapter.description}</p>
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { partners, Partner } from "@/data/partners";
 import { DataTable } from "@/components/ui/DataTable";
+import { PageIntro } from "@/components/ui/PageIntro";
 
 const columns: Array<{
   id: string;
@@ -67,13 +68,17 @@ export default function PartnersPage() {
       {/* Banner */}
       <section className="h-56 md:h-80 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100" />
 
-      {/* Content */}
+      <PageIntro
+        heading="Partners"
+        description="We work with nonprofit organizations across the country to build software that strengthens their missions. Here are the partners we've had the privilege of serving."
+      />
+
+      {/* Data Table */}
       <section className="p-8 md:p-12">
-        <h1 className="text-3xl md:text-4xl font-sans mb-12 text-center">Partners</h1>
         <DataTable
           columns={columns}
           data={partners}
-          wrapperClassName="overflow-auto max-h-[70vh] debug-border bg-[#FCF9F2]/80 backdrop-blur-sm rounded"
+          wrapperClassName="overflow-auto max-h-[70vh] bg-[#FCF9F2]/80 backdrop-blur-sm rounded"
           theadClassName="sticky top-0 bg-[#FCF9F2] border-b-2 border-gray-200"
           initialSort={{ columnId: "name", direction: "asc" }}
         />

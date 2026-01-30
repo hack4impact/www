@@ -60,14 +60,7 @@ export default function SponsorsPage() {
     <>
       {/* Hero */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[70vh]">
-        <div className="min-h-80 md:min-h-0 relative">
-          <Image
-            src="/images/old.jpg"
-            alt="Hack4Impact community"
-            fill
-            className="object-cover"
-          />
-        </div>
+        <div className="min-h-80 md:min-h-0 bg-gradient-to-br from-orange-100 to-orange-200" />
         <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
           <h1 className="font-sans text-3xl md:text-4xl">
             Support Hack4Impact
