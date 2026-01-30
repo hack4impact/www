@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { DataTable } from "@/components/ui/DataTable";
 import type { Partner } from "@/data/partners";
 
@@ -20,7 +19,34 @@ const columns: Array<{
     width: "30%",
     accessor: (row) => (
       <>
-        <span className="font-sans text-base">{row.name}</span>
+        <span className="font-sans text-base inline-flex items-baseline gap-1.5">
+          {row.name}
+          {row.website && (
+            <a
+              href={row.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-gray-700 self-center"
+              onClick={(e) => e.stopPropagation()}
+              aria-label={`Visit ${row.name} website`}
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </a>
+          )}
+        </span>
         <span className="block text-sm text-gray-500 font-serif md:hidden">
           {row.organizationTypes?.join(", ")}
         </span>
@@ -30,6 +56,7 @@ const columns: Array<{
   {
     id: "organizationTypes",
     header: "Type",
+    accessorKey: "organizationTypes",
     width: "20%",
     accessor: (row) => row.organizationTypes?.join(", ") ?? "",
     className: "font-serif text-gray-600 hidden md:table-cell",
@@ -38,7 +65,8 @@ const columns: Array<{
   {
     id: "subjects",
     header: "Subject",
-    width: "20%",
+    accessorKey: "subjects",
+    width: "25%",
     accessor: (row) => row.subjects?.join(", ") ?? "",
     className: "font-serif text-gray-600 hidden lg:table-cell",
     headerClassName: "hidden lg:table-cell",
@@ -46,29 +74,11 @@ const columns: Array<{
   {
     id: "populations",
     header: "Population",
-    width: "15%",
+    accessorKey: "populations",
+    width: "25%",
     accessor: (row) => row.populations?.join(", ") ?? "",
     className: "font-serif text-gray-600 hidden lg:table-cell",
     headerClassName: "hidden lg:table-cell",
-  },
-  {
-    id: "website",
-    header: "",
-    width: "10%",
-    accessor: (row) =>
-      row.website ? (
-        <Link
-          href={row.website}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-sans text-sm text-gray-600 hover:text-gray-900 hover:underline"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Visit &rarr;
-        </Link>
-      ) : null,
-    className: "text-right hidden md:table-cell",
-    headerClassName: "hidden md:table-cell",
   },
 ];
 

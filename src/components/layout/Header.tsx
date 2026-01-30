@@ -72,9 +72,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors ${
-        mobileMenuOpen ? "bg-[#FCF9F2]" : "bg-white/60 backdrop-blur-md"
-      }`}
+      className={`${mobileMenuOpen ? "bg-[#FCF9F2]" : ""}`}
     >
       <nav className="flex items-center justify-between px-8 md:px-12 py-4 text-base">
         <Link href="/">

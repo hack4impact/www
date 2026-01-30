@@ -81,14 +81,14 @@ export function DataTable<T extends { id: string | number }>({
     }
     if (sortConfig.direction === "asc") {
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" className="inline-block ml-1">
-          <path fill="currentColor" d="m7 14l5-5l5 5z" />
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="ml-1 shrink-0">
+          <path d="M9 7.5L6 4.5L3 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
     }
     return (
-      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" className="inline-block ml-1">
-        <path fill="currentColor" d="m7 10l5 5l5-5z" />
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="ml-1 shrink-0">
+        <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     );
   };
@@ -105,7 +105,7 @@ export function DataTable<T extends { id: string | number }>({
                 className={`py-4 px-4 font-sans font-medium cursor-pointer ${column.headerClassName}`}
                 onClick={() => column.accessorKey && handleSort(column.id)}
               >
-                <div className="flex items-center">
+                <div className={`flex items-center ${column.headerClassName?.includes("text-right") ? "justify-end" : ""}`}>
                   {column.header}
                   {getSortIndicator(column.id)}
                 </div>

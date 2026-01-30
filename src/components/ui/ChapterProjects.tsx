@@ -63,8 +63,8 @@ export function ChapterProjects({ projects }: ChapterProjectsProps) {
       columns={projectColumns}
       data={projects}
       getRowHref={(row) => `/projects/${row.slug}`}
-      wrapperClassName="overflow-auto rounded"
-      theadClassName="bg-gray-50"
+      wrapperClassName="overflow-auto max-h-[50vh] rounded"
+      theadClassName="sticky top-0 bg-gray-50"
       initialSort={{ columnId: "year", direction: "desc" }}
     />
   );

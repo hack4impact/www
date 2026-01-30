@@ -46,8 +46,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         <div className="flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]">
           <div className="flex items-center gap-2 text-base font-serif mb-2">
             <span className="text-gray-600">{chapter.location}</span>
-            <span className="text-gray-400">·</span>
-            <span className="text-gray-600">Est. {chapter.founded}</span>
+            {chapter.location && chapter.founded && <span className="text-gray-400">·</span>}
+            {chapter.founded && <span className="text-gray-600">Est. {chapter.founded}</span>}
           </div>
           <h1 className="text-3xl md:text-5xl font-sans">{chapter.name}</h1>
         </div>
