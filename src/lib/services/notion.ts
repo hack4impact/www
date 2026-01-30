@@ -17,6 +17,9 @@ const PARTNERS_DATA_SOURCE_ID = "27b197ab-f07b-80a4-8a5d-000b57c0e149";
 const VOLUNTEERS_DATA_SOURCE_ID = "27b197ab-f07b-8071-9196-000babef012e";
 const TERMS_DATA_SOURCE_ID = "27c197ab-f07b-8077-8044-000b13443d6e";
 
+// Featured project slug for the home page
+export const FEATURED_PROJECT_SLUG = ""; // Set to a project slug to feature it
+
 // Hardcoded chapter images (slug → image path and optional position)
 const CHAPTER_IMAGES: Record<string, { src: string; position?: string }> = {
   "boston-university": { src: "/images/boston.jpg", position: "center 30%" },
@@ -27,6 +30,7 @@ const CHAPTER_IMAGES: Record<string, { src: string; position?: string }> = {
   "university-of-maryland": { src: "/images/umd.jpg" },
   "university-of-illinois-urbana-champaign": { src: "/images/uiuc.jpg" },
 };
+
 
 function toSlug(name: string): string {
   return name
@@ -214,65 +218,67 @@ export async function getProjects(): Promise<Project[]> {
       .map((name) => ({ name, role }));
   }
 
-  return notionProjects.filter((p: any) => p.type !== "Leadership").map((project: any) => {
-    const slug = toSlug(project.name);
+  return notionProjects
+    .filter((p: any) => p.type !== "Leadership")
+    .map((project: any) => {
+      const slug = toSlug(project.name);
 
-    const chapterName = project.relatedIds.chapters
-      .map((id: string) => programMap.get(id))
-      .filter(Boolean)
-      .map((name: string) =>
-        name
-          .replace(/^Hack4Impact\s*/i, "")
-          .replace(/^Hack\s*for\s*Impact\s*/i, ""),
-      )
-      .join(", ");
+      const chapterName = project.relatedIds.chapters
+        .map((id: string) => programMap.get(id))
+        .filter(Boolean)
+        .map((name: string) =>
+          name
+            .replace(/^Hack4Impact\s*/i, "")
+            .replace(/^Hack\s*for\s*Impact\s*/i, ""),
+        )
+        .join(", ");
 
-    const partnerName = project.relatedIds.partners
-      .map((id: string) => partnerMap.get(id))
-      .filter(Boolean)
-      .join(", ");
+      const partnerName = project.relatedIds.partners
+        .map((id: string) => partnerMap.get(id))
+        .filter(Boolean)
+        .join(", ");
 
-    const team: TeamMember[] = [
-      ...resolveTeam(project.team.techLeads, "Tech Lead"),
-      ...resolveTeam(project.team.productManagers, "Project Manager"),
-      ...resolveTeam(project.team.designLeads, "Designer"),
-      ...resolveTeam(project.team.designers, "Designer"),
-      ...resolveTeam(project.team.developers, "Developer"),
-    ];
+      const team: TeamMember[] = [
+        ...resolveTeam(project.team.techLeads, "Tech Lead"),
+        ...resolveTeam(project.team.productManagers, "Project Manager"),
+        ...resolveTeam(project.team.designLeads, "Designer"),
+        ...resolveTeam(project.team.designers, "Designer"),
+        ...resolveTeam(project.team.developers, "Developer"),
+      ];
 
-    // Resolve activity relation IDs to term names
-    const activityIds: string[] = project.activityIds ?? [];
-    const termNames = activityIds
-      .map((id: string) => termMap.get(id))
-      .filter((name): name is string => !!name);
+      // Resolve activity relation IDs to term names
+      const activityIds: string[] = project.activityIds ?? [];
+      const termNames = activityIds
+        .map((id: string) => termMap.get(id))
+        .filter((name): name is string => !!name);
 
-    // Derive year from term names (e.g. ["Fall 2024", "Spring 2025"] → "2025")
-    const years = termNames
-      .map((t) => t.match(/\d{4}/)?.[0])
-      .filter((y): y is string => !!y);
-    const year = years.length > 0 ? years[years.length - 1] : "";
+      // Derive year from term names (e.g. ["Fall 2024", "Spring 2025"] → "2025")
+      const years = termNames
+        .map((t) => t.match(/\d{4}/)?.[0])
+        .filter((y): y is string => !!y);
+      const year = years.length > 0 ? years[years.length - 1] : "";
 
-    // Duration is the resolved term names (e.g. "Fall 2024, Spring 2025")
-    const duration = termNames.join(", ");
+      // Duration is the resolved term names (e.g. "Fall 2024, Spring 2025")
+      const duration = termNames.join(", ");
 
-    return {
-      id: project.id,
-      slug,
-      title: project.name,
-      partner: partnerName,
-      chapter: chapterName,
-      year,
-      tag: project.type ?? "",
-      description: project.description,
-      intro: "",
-      sections: [],
-      team,
-      duration,
-      technologies: undefined,
-      website: undefined,
-      github: project.links.github ?? undefined,
-    } satisfies Project;
-  });
+      return {
+        id: project.id,
+        slug,
+        title: project.name,
+        partner: partnerName,
+        chapter: chapterName,
+        year,
+        tag: project.type ?? "",
+        description: project.description,
+        intro: "",
+        sections: [],
+        team,
+        duration,
+        technologies: undefined,
+        website: undefined,
+        github: project.links.github ?? undefined,
+      } satisfies Project;
+    });
 }
 
 export async function getProjectBySlug(

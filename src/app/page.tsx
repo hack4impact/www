@@ -2,14 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { CallToAction } from "@/components/ui/CallToAction";
-import { getProjects } from "@/lib/services/notion";
+import { getProjects, FEATURED_PROJECT_SLUG } from "@/lib/services/notion";
 import { journalEntries } from "@/data/journal-entries";
 
 const featuredArticles = journalEntries.slice(0, 3);
 
 export default async function HomePage() {
   const projects = await getProjects();
-  const featuredProject = projects.length > 0 ? projects[0] : null;
+  const featuredProject =
+    (FEATURED_PROJECT_SLUG &&
+      projects.find((p) => p.slug === FEATURED_PROJECT_SLUG)) ||
+    projects[0] ||
+    null;
   return (
     <>
       <section className="relative pb-32">

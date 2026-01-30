@@ -7,7 +7,13 @@ const NotionUtils = {
   getMultiSelect: (prop: any) =>
     prop?.multi_select?.map((item: any) => item.name) || [],
 
-  getUrl: (prop: any) => prop?.url || null,
+  getUrl: (prop: any) => {
+    const url = prop?.url?.trim();
+    if (!url) return null;
+    // Some fields contain multiple URLs separated by commas — take the first
+    const first = url.split(",")[0].trim();
+    return first || null;
+  },
 
   getEmail: (prop: any) => prop?.email || null,
 
@@ -21,6 +27,21 @@ const NotionUtils = {
     const file = prop?.files?.[0];
     return file?.file?.url || file?.external?.url || null;
   },
+
+  getPlace: (prop: any) => {
+    const address: string | undefined = prop?.place?.address;
+    if (!address) return null;
+    // Parse "City, ST ZIP" from address like "Name, Street, City, ST ZIP, Country"
+    const parts = address.split(",").map((s: string) => s.trim());
+    // Find the part with a state/province code + optional zip (e.g. "MA 02215-1714" or "QC")
+    for (let i = 1; i < parts.length - 1; i++) {
+      const match = parts[i].match(/^([A-Z]{2})\b/);
+      if (match && i > 0) {
+        return `${parts[i - 1]}, ${match[1]}`;
+      }
+    }
+    return address;
+  },
 };
 
 export const mapProgram = (page: any) => {
@@ -31,7 +52,7 @@ export const mapProgram = (page: any) => {
     name: NotionUtils.getText(p.Name),
     status: NotionUtils.getSelect(p.Status),
     foundedYear: NotionUtils.getNumber(p.Founded),
-    place: NotionUtils.getText(p.Place),
+    place: NotionUtils.getPlace(p.Place),
     coverImage: NotionUtils.getFile(p["Cover Image"]),
 
     // Flattening all links into one object

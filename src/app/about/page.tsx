@@ -5,39 +5,86 @@ import { Card } from "@/components/ui/Card";
 import { CallToAction } from "@/components/ui/CallToAction";
 
 const operationsTeam = [
-  { name: "Sarah Chen", title: "Executive Director", contact: "sarah@hack4impact.org" },
-  { name: "Marcus Johnson", title: "Director of Programs", contact: "marcus@hack4impact.org" },
-  { name: "Emily Rodriguez", title: "Director of Partnerships", contact: "emily@hack4impact.org" },
-  { name: "David Kim", title: "Director of Operations", contact: "david@hack4impact.org" },
+  {
+    name: "Khoa Ly",
+    title: "Executive Officer",
+    contact: "khoa@hack4impact.org",
+  },
+  {
+    name: "Govind Singhal",
+    title: "Programs Officer",
+    contact: "marcus@hack4impact.org",
+  },
+  {
+    name: "Brian Kwong",
+    title: "Finance Officer",
+    contact: "emily@hack4impact.org",
+  },
+  {
+    name: "Sophia Change",
+    title: "Projects Officer",
+    contact: "david@hack4impact.org",
+  },
 ];
 
 const boardOfDirectors = [
-  { name: "Dr. James Mitchell", title: "Board Chair", contact: "james@hack4impact.org" },
-  { name: "Amanda Foster", title: "Vice Chair", contact: "amanda@hack4impact.org" },
-  { name: "Robert Nguyen", title: "Treasurer", contact: "robert@hack4impact.org" },
-  { name: "Lisa Park", title: "Secretary", contact: "lisa@hack4impact.org" },
+  {
+    name: "Ayaan Kazerouni",
+    title: "Professor of Computer Science at Cal Poly",
+    contact: "ayaan@hack4impact.org",
+  },
+  {
+    name: "Dhruv Maheshwari",
+    title: "Co-Founder of Obvio and Hack4Impact",
+    contact: "dhruv@hack4impact.org",
+  },
+  {
+    name: "James Wang",
+    title: "Software Engineer & Ex-Executive Officer",
+    contact: "james@hack4impact.org",
+  },
+  {
+    name: "Jamie Wang",
+    title: "Revenue Ops Manager at Merge",
+    contact: "jamie@hack4impact.org",
+  },
+  {
+    name: "Javid Fathi",
+    title: "Software Engineer Lead at Microsoft",
+    contact: "javid@hack4impact.org",
+  },
 ];
 
 const advisoryBoard = [
-  { name: "Michael Torres", title: "CTO, TechForGood", website: "techforgood.org" },
-  { name: "Jennifer Walsh", title: "VP Engineering, Stripe", website: "stripe.com" },
-  { name: "Daniel Okonkwo", title: "Founder, ImpactLabs", website: "impactlabs.io" },
+  {
+    name: "Aakash Singhal",
+    title: "Ex-Product Manager at Deloitte",
+    website: "stripe.com",
+  },
+  {
+    name: "Chae Eun Park",
+    title: "UX Researcher at ServiceNow",
+    website: "chaeeunpark.com",
+  },
 ];
 
 const values = [
   {
     title: "Sustainable",
-    description: "We build lasting solutions that continue to serve communities long after our initial engagement.",
+    description:
+      "We build lasting solutions that continue to serve communities long after our initial engagement.",
     icon: "/icons/sustain.svg",
   },
   {
     title: "Ethical",
-    description: "We prioritize the needs and privacy of the communities we serve in every decision we make.",
+    description:
+      "We prioritize the needs and privacy of the communities we serve in every decision we make.",
     icon: "/icons/ethics.svg",
   },
   {
     title: "Accessible",
-    description: "We design inclusive software that works for everyone, regardless of ability or background.",
+    description:
+      "We design inclusive software that works for everyone, regardless of ability or background.",
     icon: "/icons/access.svg",
   },
 ];
@@ -100,7 +147,13 @@ export default function AboutPage() {
         <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
           <h2 className="font-sans text-3xl md:text-4xl">Our story</h2>
           <p className="mt-6 md:mt-8 text-base md:text-lg">
-            Founded by students who believed technology could be a force for good, Hack4Impact began as a small group of developers volunteering their skills for local nonprofits. What started as weekend projects quickly grew into a nationwide network of chapters, each dedicated to bridging the gap between student talent and community needs. Today, we continue that mission, empowering the next generation of technologists to build with purpose and impact.
+            Founded by students who believed technology could be a force for
+            good, Hack4Impact began as a small group of developers volunteering
+            their skills for local nonprofits. What started as weekend projects
+            quickly grew into a nationwide network of chapters, each dedicated
+            to bridging the gap between student talent and community needs.
+            Today, we continue that mission, empowering the next generation of
+            technologists to build with purpose and impact.
           </p>
         </div>
       </section>
@@ -109,7 +162,9 @@ export default function AboutPage() {
       <section className="px-8 md:px-12 py-16 md:py-24">
         {/* Operations Team */}
         <div id="operations-team" className="mb-16 scroll-mt-8">
-          <h2 className="text-2xl md:text-3xl font-sans mb-8">Operations Team</h2>
+          <h2 className="text-2xl md:text-3xl font-sans mb-8">
+            Operations Team
+          </h2>
           <div className="divide-y divide-gray-200">
             <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
               <span>Name</span>
@@ -120,7 +175,12 @@ export default function AboutPage() {
               <div key={member.name} className="grid grid-cols-3 py-4">
                 <span className="font-sans">{member.name}</span>
                 <span className="font-serif text-gray-600">{member.title}</span>
-                <a href={`mailto:${member.contact}`} className="font-serif text-gray-600 hover:text-gray-900">{member.contact}</a>
+                <a
+                  href={`mailto:${member.contact}`}
+                  className="font-serif text-gray-600 hover:text-gray-900"
+                >
+                  {member.contact}
+                </a>
               </div>
             ))}
           </div>
@@ -128,7 +188,9 @@ export default function AboutPage() {
 
         {/* Board of Directors */}
         <div className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-sans mb-8">Board of Directors</h2>
+          <h2 className="text-2xl md:text-3xl font-sans mb-8">
+            Board of Directors
+          </h2>
           <div className="divide-y divide-gray-200">
             <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
               <span>Name</span>
@@ -139,7 +201,12 @@ export default function AboutPage() {
               <div key={member.name} className="grid grid-cols-3 py-4">
                 <span className="font-sans">{member.name}</span>
                 <span className="font-serif text-gray-600">{member.title}</span>
-                <a href={`mailto:${member.contact}`} className="font-serif text-gray-600 hover:text-gray-900">{member.contact}</a>
+                <a
+                  href={`mailto:${member.contact}`}
+                  className="font-serif text-gray-600 hover:text-gray-900"
+                >
+                  {member.contact}
+                </a>
               </div>
             ))}
           </div>
@@ -147,7 +214,9 @@ export default function AboutPage() {
 
         {/* Advisory Board */}
         <div>
-          <h2 className="text-2xl md:text-3xl font-sans mb-8">Advisory Board</h2>
+          <h2 className="text-2xl md:text-3xl font-sans mb-8">
+            Advisory Board
+          </h2>
           <div className="divide-y divide-gray-200">
             <div className="grid grid-cols-3 py-3 font-mono text-sm text-gray-500">
               <span>Name</span>
@@ -158,7 +227,14 @@ export default function AboutPage() {
               <div key={member.name} className="grid grid-cols-3 py-4">
                 <span className="font-sans">{member.name}</span>
                 <span className="font-serif text-gray-600">{member.title}</span>
-                <a href={`https://${member.website}`} target="_blank" rel="noopener noreferrer" className="font-serif text-gray-600 hover:text-gray-900">{member.website}</a>
+                <a
+                  href={`https://${member.website}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-serif text-gray-600 hover:text-gray-900"
+                >
+                  {member.website}
+                </a>
               </div>
             ))}
           </div>
