@@ -42,7 +42,7 @@ A minimal website for Hack4Impact (H4I), built with Next.js 15, React 19, Tailwi
 │   │       ├── Button.tsx            # Reusable button component
 │   │       ├── Card.tsx              # Reusable card component
 │   │       ├── CardGrid.tsx          # Section heading + card grid (3 or 4 cols)
-│   │       ├── SplitHero.tsx         # Two-column hero: image/gradient + text/CTA
+│   │       ├── SplitHero.tsx         # Two-column hero: gradient + text/CTA
 │   │       ├── LinkCard.tsx          # External link card (label + truncated URL)
 │   │       ├── TeamTable.tsx         # Team table with configurable columns
 │   │       ├── FAQList.tsx           # Collapsible FAQ list (base-ui Collapsible)
@@ -55,7 +55,7 @@ A minimal website for Hack4Impact (H4I), built with Next.js 15, React 19, Tailwi
 │   │   │   └── notion.ts          # Notion API integration
 │   │   └── mappers.ts
 │   └── data/
-│       ├── journal-entries.ts   # Journal data (2 entries with images)
+│       ├── journal-entries.ts   # Journal data (2 entries)
 │       ├── chapters.ts          # Chapter type definitions
 │       ├── projects.ts          # Project type definitions
 │       └── partners.ts          # Partner type definitions
@@ -65,7 +65,6 @@ A minimal website for Hack4Impact (H4I), built with Next.js 15, React 19, Tailwi
 │   │   ├── InclusiveSans-Italic.ttf # Variable font italic, weight 300-700
 │   │   ├── Newsreader.woff2         # Variable font, weight 200-800
 │   │   └── Newsreader-Italic.woff2
-│   ├── images/                      # Hero/banner images (jpg)
 │   ├── icons/                       # SVG icons (nonprofits, students, professionals, etc.)
 │   ├── logomark.svg
 │   └── logo.svg
@@ -253,12 +252,12 @@ Current structure:
      - Serif sized up for optical balance with sans-serif
    - Subtitle paragraph (text-base md:text-lg) about H4I mission
    - "Partner with us!" button (primary variant)
-   - Full-width image (gt.jpg) that hangs below the gradient
+   - Gradient block (blue-200 to green-100) that hangs below the hero gradient
 
 2. Process Section
    - Uses NumberedSteps component with aside prop for two-column layout
    - Title: centered, max-w-lg to wrap to two lines
-   - Left column (aside): group.jpg image (aspect-[4/3] on mobile, fills height on desktop)
+   - Left column (aside): gradient (purple-100 to blue-200, aspect-[4/3] on mobile, fills height on desktop)
    - Right column: 5 process steps (stretch mode) with dividers, height matches image
      - Steps: Source, Define, Design, Develop, Maintain
 
@@ -271,7 +270,7 @@ Current structure:
 
 4. Quote Callout Section
    - Two-column grid (stacked on mobile, 2 cols on lg+)
-   - Left column: javid.jpg image (aspect-[4/5])
+   - Left column: gradient (green-100 to purple-200, aspect-[4/5])
    - Right column: blockquote (font-sans, text-2xl md:text-3xl) + name (font-sans) + title (font-serif text-gray-600)
 
 ### About Page (src/app/about/page.tsx)
@@ -294,7 +293,7 @@ Current structure:
 
 3. Story Section (callout/highlight)
    - Two-column grid layout (stacked on mobile/tablet, 2 cols on lg+)
-   - Left column: old.jpg image (px-8 on mobile, lg:pl-8 on desktop), aspect-[4/5]
+   - Left column: gradient (orange-100 to pink-200, px-8 on mobile, lg:pl-8 on desktop), aspect-[4/5]
    - Right column: vertically centered, left-aligned content, more horizontal padding (p-8, lg:px-24 lg:py-12)
      - Title: "Our story" (sans-serif, text-3xl md:text-4xl)
      - Paragraph with story placeholder text (mt-6 md:mt-8 gap from title)
@@ -325,20 +324,20 @@ Data file: src/data/partners.ts
 ### Journal Page (src/app/journal/page.tsx)
 Current structure:
 1. Banner
-   - paper.jpg image banner (h-56 md:h-80, object-cover)
+   - Gradient banner (h-56 md:h-80, orange-100 via pink-100 to purple-100)
 
 2. Content Section
    - Title: "Journal" (centered, text-3xl md:text-4xl)
    - Grid of journal entries (1 col mobile, 2 cols md, 3 cols lg)
    - Each entry (p-2):
-     - Thumbnail image (16:9 aspect ratio, object-cover)
+     - Gradient thumbnail (16:9 aspect ratio, unique gradient per entry)
      - Title (text-xl)
      - Subtitle line: tag + "·" + read time (text-sm, gray)
      - Description paragraph
 
 Data file: src/data/journal-entries.ts
-- JournalEntry interface: id, slug, title, tag, readTime, description, author, publishedDate, intro, content, image?, alt?
-- 2 entries: "From Federated to Foundations" (foundations.jpg), "The Importance of Volunteering in Tech" (volunteer.jpg)
+- JournalEntry interface: id, slug, title, tag, readTime, description, author, publishedDate, intro, content
+- 2 entries: "From Federated to Foundations", "The Importance of Volunteering in Tech"
 - getJournalEntryBySlug(slug) helper function
 
 ### Journal Entry Page (src/app/journal/[slug]/page.tsx)
@@ -350,7 +349,7 @@ Structure (text sections: p-8 md:px-24 for narrower content; banner: px-8 md:px-
    - Title (text-3xl md:text-5xl, font-sans)
 
 2. Banner Section
-   - Entry image (3:1 aspect ratio, object-cover) or gradient fallback
+   - Gradient (3:1 aspect ratio, blue-100 to green-200)
 
 3. Content Section
    - Two-column layout (stacked on mobile/tablet, sidebar + content on lg+)
@@ -376,7 +375,7 @@ Current structure:
    - Uses ChaptersDataTable component to display chapters with clickable rows.
 
 Data file: src/data/chapters.ts
-- Chapter interface: id, slug, name, university, location, founded, description, memberCount, projectCount, website?, github?, instagram?, image?
+- Chapter interface: id, slug, name, university, location, founded, description, memberCount, projectCount, website?, github?, instagram?
 - 13 mock chapters with various universities
 - getChapterBySlug(slug) helper function
 
@@ -386,7 +385,7 @@ Dynamic route for individual chapters.
 Structure:
 1. Intro Section (two-column like about page)
    - Two-column grid (stacked on mobile, 2 cols on md+), min-h-[50vh]
-   - Left column: chapter image or placeholder gradient (green-100 to blue-200), aspect-[4/3] on mobile
+   - Left column: gradient (green-100 to blue-200), aspect-[4/3] on mobile
    - Right column: brand white background (#FCF9F2), vertically centered, left-aligned
      - Subtitle: location + "Est." + founded year (font-serif)
      - Title: chapter name (text-3xl md:text-5xl, font-sans)
@@ -419,9 +418,9 @@ Data file: src/data/projects.ts
 - TeamMember interface: name, role ("Tech Lead" | "Developer" | "Designer" | "Project Manager")
 - ProjectSection: discriminated union type for flexible content layouts:
   - `{ type: "text", title: string, content: string }` - Title + paragraph
-  - `{ type: "image", src: string, alt: string, caption?: string }` - Full-width image
-  - `{ type: "two-column", text: string, image: { src, alt }, imagePosition: "left" | "right" }` - Text with image
-  - `{ type: "image-grid", images: Array<{ src, alt }> }` - 2-column image grid
+  - `{ type: "image", caption?: string }` - Full-width gradient placeholder
+  - `{ type: "two-column", text: string, imagePosition: "left" | "right" }` - Text with gradient placeholder
+  - `{ type: "image-grid", count: number }` - 2-column grid of gradient placeholders
 - Project interface: id, slug, title, partner, chapter, year, tag, description, intro, sections (ProjectSection[]), team (TeamMember[]), duration, technologies?, website?, github?
 - 15 mock projects with team members assigned to roles
 - getProjectBySlug(slug) helper function
@@ -467,7 +466,7 @@ Typography notes:
 
 ### CTA Pages (Nonprofits, Students, Mentors, Sponsors)
 Full CTA pages using shared components. Common pattern:
-- SplitHero: two-column hero with image or gradient + heading/description/button
+- SplitHero: two-column hero with gradient + heading/description/button
 - CardGrid: section heading + 3-column card grid
 - NumberedSteps, FAQList, TestimonialCarousel, CallToAction as needed
 - Routes: /nonprofits, /students, /mentors, /sponsors
@@ -519,10 +518,12 @@ Remove these for production.
 
 ## Design Principles
 - Minimal styling approach
+- Gradient-only visuals: no photographic images; all hero banners, thumbnails, and placeholders use CSS gradients from the brand color palette
 - Only create what is explicitly requested
 - Use BaseUI components wherever possible
 - Keep components general and industry-standard
 - Debug borders during development for visual debugging
+- Text selection highlight: green-300 (::selection in globals.css)
 
 ## Notes
 - Content managed via Notion API (src/lib/services/notion.ts); journal entries use local data
