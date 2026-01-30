@@ -1,35 +1,51 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Menu } from '@base-ui/react/menu';
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Menu } from "@base-ui/react/menu";
 
 const navigation = [
-  { label: 'About', href: '/about' },
-  { label: 'Journal', href: '/journal' },
+  { label: "About", href: "/about" },
+  { label: "Journal", href: "/journal" },
 ];
 
 const workItems = [
-  { label: 'Chapters', href: '/chapters' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Partners', href: '/partners' },
+  { label: "Chapters", href: "/chapters" },
+  { label: "Projects", href: "/projects" },
+  { label: "Partners", href: "/partners" },
 ];
 
 const getInvolvedItems = [
-  { label: 'Nonprofit', href: '/nonprofits' },
-  { label: 'Sponsor', href: '/sponsors' },
-  { label: 'Mentor', href: '/mentors' },
-  { label: 'Student', href: '/students' },
+  { label: "Nonprofit", href: "/nonprofits" },
+  { label: "Student", href: "/students" },
+  { label: "Mentor", href: "/mentors" },
+  { label: "Sponsor", href: "/sponsors" },
 ];
 
-function NavDropdown({ label, items }: { label: string; items: { label: string; href: string }[] }) {
+function NavDropdown({
+  label,
+  items,
+}: {
+  label: string;
+  items: { label: string; href: string }[];
+}) {
   return (
     <Menu.Root>
-      <Menu.Trigger openOnHover delay={0} className="flex items-center gap-1 cursor-pointer">
+      <Menu.Trigger
+        openOnHover
+        delay={0}
+        className="flex items-center gap-1 cursor-pointer"
+      >
         {label}
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path
+            d="M3 4.5L6 7.5L9 4.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </Menu.Trigger>
       <Menu.Portal>
@@ -58,8 +74,20 @@ export default function Header() {
     <header>
       <nav className="flex items-center justify-between p-4 border-b">
         <Link href="/">
-          <Image src="/logomark.svg" alt="Hack4Impact" width={32} height={32} className="md:hidden" />
-          <Image src="/logo.svg" alt="Hack4Impact" width={150} height={40} className="hidden md:block" />
+          <Image
+            src="/logomark.svg"
+            alt="Hack4Impact"
+            width={32}
+            height={32}
+            className="md:hidden"
+          />
+          <Image
+            src="/logo.svg"
+            alt="Hack4Impact"
+            width={150}
+            height={40}
+            className="hidden md:block"
+          />
         </Link>
 
         <div className="hidden md:flex items-center gap-6">
@@ -80,7 +108,7 @@ export default function Header() {
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation menu"
         >
-          {mobileMenuOpen ? 'Close' : 'Menu'}
+          {mobileMenuOpen ? "Close" : "Menu"}
         </button>
       </nav>
 

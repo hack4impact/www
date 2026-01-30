@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { journalEntries } from "@/data/journal-entries";
+import { CallToAction } from "@/components/ui/CallToAction";
 
 export default function JournalPage() {
   return (
@@ -40,6 +41,12 @@ export default function JournalPage() {
           ))}
         </div>
       </section>
+
+      <CallToAction
+        heading="Have a story to share?"
+        buttonText="Contact us"
+        href="/about"
+      />
     </>
   );
 }

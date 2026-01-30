@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { CallToAction } from "@/components/ui/CallToAction";
 
 export default function HomePage() {
   return (
@@ -25,7 +27,9 @@ export default function HomePage() {
             community needs.
           </p>
           <div className="mt-6">
-            <Button>Partner with us!</Button>
+            <Link href="/nonprofits">
+              <Button>Partner with us!</Button>
+            </Link>
           </div>
         </div>
 
@@ -102,21 +106,24 @@ export default function HomePage() {
               <Image src="/icons/nonprofits.svg" alt="" width={45} height={45} />
             </div>
             <h3 className="text-xl font-sans mb-2">Non-Profits</h3>
-            <p className="text-base font-serif">We build custom software solutions for nonprofit organizations, helping them better serve their communities and amplify their impact.</p>
+            <p className="text-base font-serif mb-4">We build custom software solutions for nonprofit organizations, helping them better serve their communities and amplify their impact.</p>
+            <Link href="/nonprofits" className="mt-auto font-mono text-sm hover:underline">Learn more &rarr;</Link>
           </div>
           <div className="flex flex-col items-start px-6 py-8 debug-border">
             <div className="mb-6">
               <Image src="/icons/students.svg" alt="" width={45} height={45} />
             </div>
             <h3 className="text-xl font-sans mb-2">Students</h3>
-            <p className="text-base font-serif">We provide community, education, and service-learning opportunities for students to develop real-world skills while making a difference.</p>
+            <p className="text-base font-serif mb-4">We provide community, education, and service-learning opportunities for students to develop real-world skills while making a difference.</p>
+            <Link href="/students" className="mt-auto font-mono text-sm hover:underline">Learn more &rarr;</Link>
           </div>
           <div className="flex flex-col items-start px-6 py-8 debug-border">
             <div className="mb-6">
               <Image src="/icons/professionals.svg" alt="" width={45} height={45} />
             </div>
             <h3 className="text-xl font-sans mb-2">Professionals</h3>
-            <p className="text-base font-serif">Industry professionals mentor our students, sharing expertise and guiding the next generation of socially-conscious technologists.</p>
+            <p className="text-base font-serif mb-4">Industry professionals mentor our students, sharing expertise and guiding the next generation of socially-conscious technologists.</p>
+            <Link href="/mentors" className="mt-auto font-mono text-sm hover:underline">Learn more &rarr;</Link>
           </div>
         </div>
       </section>
@@ -146,6 +153,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <CallToAction
+        heading="Ready to make an impact?"
+        buttonText="Get involved"
+        href="/students"
+      />
     </>
   );
 }

@@ -43,20 +43,21 @@ export function DataTable<T extends { id: string | number }>({
       const sortColumn = columns.find((c) => c.id === columnId);
       const accessorKey = sortColumn?.accessorKey;
 
-                if (accessorKey) {
-                  sortableData.sort((a, b) => {
-                    const aValue = String(a[accessorKey] ?? "").toLowerCase();
-                    const bValue = String(b[accessorKey] ?? "").toLowerCase();
-      
-                    if (aValue < bValue) {
-                      return direction === "asc" ? -1 : 1;
-                    }
-                    if (aValue > bValue) {
-                      return direction === "asc" ? 1 : -1;
-                    }
-                    return 0;
-                  });
-                }    }
+      if (accessorKey) {
+        sortableData.sort((a, b) => {
+          const aValue = String(a[accessorKey] ?? "").toLowerCase();
+          const bValue = String(b[accessorKey] ?? "").toLowerCase();
+
+          if (aValue < bValue) {
+            return direction === "asc" ? -1 : 1;
+          }
+          if (aValue > bValue) {
+            return direction === "asc" ? 1 : -1;
+          }
+          return 0;
+        });
+      }
+    }
     return sortableData;
   }, [data, sortConfig, columns]);
 

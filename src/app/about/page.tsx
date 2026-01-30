@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { CallToAction } from "@/components/ui/CallToAction";
 
 const operationsTeam = [
   { name: "Sarah Chen", title: "Executive Director", contact: "sarah@hack4impact.org" },
@@ -163,6 +164,12 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <CallToAction
+        heading="Want to join our team?"
+        buttonText="Get involved"
+        href="/students"
+      />
     </>
   );
 }
