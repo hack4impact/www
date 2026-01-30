@@ -36,7 +36,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             {chapter.location && chapter.founded && <span className="text-gray-400">·</span>}
             {chapter.founded && <span className="text-gray-600">Est. {chapter.founded}</span>}
           </div>
-          <h1 className="text-3xl md:text-5xl font-sans">{chapter.name}</h1>
+          <h1 className="text-3xl md:text-5xl font-sans max-w-lg">{chapter.name}</h1>
         </div>
       </section>
 

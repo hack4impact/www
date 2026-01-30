@@ -104,7 +104,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <span className="text-gray-400">·</span>
             <span className="text-gray-600">{project.year}</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-sans">{project.title}</h1>
+          <h1 className="text-3xl md:text-5xl font-sans max-w-lg mx-auto">{project.title}</h1>
         </div>
       </section>
 

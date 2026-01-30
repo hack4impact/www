@@ -2,70 +2,7 @@ import { SplitHero } from "@/components/ui/SplitHero";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { TeamTable } from "@/components/ui/TeamTable";
 import { CallToAction } from "@/components/ui/CallToAction";
-
-const operationsTeam = [
-  {
-    name: "Khoa Ly",
-    title: "Executive Officer",
-    contact: "khoa@hack4impact.org",
-  },
-  {
-    name: "Govind Singhal",
-    title: "Programs Officer",
-    contact: "marcus@hack4impact.org",
-  },
-  {
-    name: "Brian Kwong",
-    title: "Finance Officer",
-    contact: "emily@hack4impact.org",
-  },
-  {
-    name: "Sophia Change",
-    title: "Projects Officer",
-    contact: "david@hack4impact.org",
-  },
-];
-
-const boardOfDirectors = [
-  {
-    name: "Ayaan Kazerouni",
-    title: "Professor of Computer Science at Cal Poly",
-    contact: "ayaan@hack4impact.org",
-  },
-  {
-    name: "Dhruv Maheshwari",
-    title: "Co-Founder of Obvio and Hack4Impact",
-    contact: "dhruv@hack4impact.org",
-  },
-  {
-    name: "James Wang",
-    title: "Software Engineer & Ex-Executive Officer",
-    contact: "james@hack4impact.org",
-  },
-  {
-    name: "Jamie Wang",
-    title: "Revenue Ops Manager at Merge",
-    contact: "jamie@hack4impact.org",
-  },
-  {
-    name: "Javid Fathi",
-    title: "Software Engineer Lead at Microsoft",
-    contact: "javid@hack4impact.org",
-  },
-];
-
-const advisoryBoard = [
-  {
-    name: "Aakash Singhal",
-    title: "Ex-Product Manager at Deloitte",
-    website: "stripe.com",
-  },
-  {
-    name: "Chae Eun Park",
-    title: "UX Researcher at ServiceNow",
-    website: "chaeeunpark.com",
-  },
-];
+import { getBoardTeamMembers } from "@/lib/services/contentful";
 
 const values = [
   {
@@ -88,7 +25,12 @@ const values = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const members = await getBoardTeamMembers();
+  const operationsTeam = members.filter((m) => m.team === "Operations Team");
+  const boardOfDirectors = members.filter((m) => m.team === "Board of Directors");
+  const advisoryBoard = members.filter((m) => m.team === "Advisory Board");
+
   return (
     <>
       <SplitHero
@@ -129,7 +71,7 @@ export default function AboutPage() {
             cells: [
               { text: m.name },
               { text: m.title },
-              { text: m.contact, href: `mailto:${m.contact}` },
+              { text: m.email ?? "", href: m.email ? `mailto:${m.email}` : undefined },
             ],
           }))}
           className="mb-16"
@@ -142,7 +84,7 @@ export default function AboutPage() {
             cells: [
               { text: m.name },
               { text: m.title },
-              { text: m.contact, href: `mailto:${m.contact}` },
+              { text: m.email ?? "", href: m.email ? `mailto:${m.email}` : undefined },
             ],
           }))}
           className="mb-16"
@@ -155,7 +97,7 @@ export default function AboutPage() {
             cells: [
               { text: m.name },
               { text: m.title },
-              { text: m.website, href: `https://${m.website}` },
+              { text: m.website ?? "", href: m.website ? m.website : undefined },
             ],
           }))}
         />

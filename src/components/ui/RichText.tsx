@@ -12,6 +12,9 @@ const options: Options = {
     [BLOCKS.PARAGRAPH]: (_node, children) => (
       <p className="mb-4 text-lg md:text-xl">{children}</p>
     ),
+    [BLOCKS.HEADING_1]: (_node, children) => (
+      <h1 className="text-2xl md:text-3xl font-sans mt-10 mb-6">{children}</h1>
+    ),
     [BLOCKS.HEADING_2]: (_node, children) => (
       <h2 className="text-xl md:text-2xl font-sans mt-8 mb-4">{children}</h2>
     ),

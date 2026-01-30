@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Separator } from "@base-ui/react/separator";
 import { getJournalEntryBySlug } from "@/lib/services/contentful";
 import { RichText } from "@/components/ui/RichText";
 
@@ -24,7 +25,7 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
             <span className="text-gray-400">&middot;</span>
             <span className="text-gray-600">{entry.readTime}</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-sans">{entry.title}</h1>
+          <h1 className="text-3xl md:text-5xl font-sans max-w-lg mx-auto">{entry.title}</h1>
         </div>
       </section>
 
@@ -52,6 +53,9 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
           <article className="font-serif">
             {/* Intro */}
             <p className="text-lg md:text-xl mb-6">{entry.intro}</p>
+
+            {/* Divider */}
+            <Separator className="border-t border-gray-300 mb-6" />
 
             {/* Content */}
             <div className="max-w-none">

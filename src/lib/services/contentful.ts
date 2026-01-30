@@ -15,6 +15,14 @@ export interface JournalEntry {
   content: Document;
 }
 
+export interface BoardTeamMember {
+  name: string;
+  team: string;
+  title: string;
+  email?: string;
+  website?: string;
+}
+
 if (!process.env.CONTENTFUL_SPACE_ID) {
   throw new Error("CONTENTFUL_SPACE_ID environment variable is not set");
 }
@@ -82,6 +90,40 @@ async function fetchJournalEntryBySlug(
     return undefined;
   }
 }
+
+// --- Board & Team ---
+
+function mapBoardTeamMember(item: any): BoardTeamMember {
+  const f = item.fields;
+  return {
+    name: f.name,
+    team: f.team,
+    title: f.title,
+    email: f.email || undefined,
+    website: f.website || undefined,
+  };
+}
+
+async function fetchBoardTeamMembers(): Promise<BoardTeamMember[]> {
+  try {
+    const response = await client.getEntries({
+      content_type: "boardTeam",
+      limit: 100,
+    });
+    return response.items.map(mapBoardTeamMember);
+  } catch (error) {
+    console.error("Failed to fetch board/team from Contentful:", error);
+    return [];
+  }
+}
+
+export const getBoardTeamMembers = unstable_cache(
+  fetchBoardTeamMembers,
+  ["contentful-board-team"],
+  { revalidate: 3600 },
+);
+
+// --- Journal ---
 
 export const getJournalEntries = unstable_cache(
   fetchJournalEntries,
