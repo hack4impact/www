@@ -10,7 +10,7 @@ const options: Options = {
   },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (_node, children) => (
-      <p className="mb-4 text-base md:text-lg">{children}</p>
+      <p className="mb-4 text-lg md:text-xl">{children}</p>
     ),
     [BLOCKS.HEADING_2]: (_node, children) => (
       <h2 className="text-xl md:text-2xl font-sans mt-8 mb-4">{children}</h2>
@@ -34,7 +34,7 @@ const options: Options = {
       <ol className="list-decimal pl-6 mb-4 space-y-1">{children}</ol>
     ),
     [BLOCKS.LIST_ITEM]: (_node, children) => (
-      <li className="text-base md:text-lg">{children}</li>
+      <li className="text-lg md:text-xl">{children}</li>
     ),
     [BLOCKS.QUOTE]: (_node, children) => (
       <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">{children}</blockquote>
@@ -42,7 +42,7 @@ const options: Options = {
     [BLOCKS.HR]: () => <hr className="border-t border-gray-300 my-8" />,
     [BLOCKS.TABLE]: (_node, children) => (
       <div className="overflow-x-auto my-4">
-        <table className="min-w-full border-collapse border border-gray-300">{children}</table>
+        <table className="min-w-full border-collapse border border-gray-300"><tbody>{children}</tbody></table>
       </div>
     ),
     [BLOCKS.TABLE_ROW]: (_node, children) => <tr>{children}</tr>,
