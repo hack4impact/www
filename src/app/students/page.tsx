@@ -38,25 +38,25 @@ const steps = [
     number: "02",
     title: "Apply",
     description:
-      "Fill out a short application so we can learn more about your plans, your team, and your campus community.",
+      "Fill out a short application so we can learn more about your plans, your founding team, and your campus community.",
   },
   {
     number: "03",
-    title: "Launch",
+    title: "Learn",
     description:
-      "Once approved, you'll receive a starter kit with branding, templates, and onboarding materials to get your chapter off the ground.",
+      "Join our chapter establishment program as part of a cohort of founders. We provide training, materials, guidance, and support as your founding team completes their first project.",
   },
   {
     number: "04",
-    title: "Build Your Team",
+    title: "Launch",
     description:
-      "Recruit developers, designers, and project managers from your campus. We'll help you run your first recruitment cycle.",
+      "Upon success, you will become an official chapter. Recruit developers, designers, and project managers from your campus. Engage with the greater Hack for Impact community.We'll help you through the first year of being a chapter.",
   },
   {
     number: "05",
     title: "Grow",
     description:
-      "Partner with local nonprofits, deliver your first project, and establish your chapter as a lasting part of your campus.",
+      "Partner with local nonprofits, deliver more projects, engage with the larger Hack for Impact community, and establish your chapter as a lasting part of your campus.",
   },
 ];
 
@@ -64,17 +64,17 @@ const faqs = [
   {
     question: "Who can start a chapter?",
     answer:
-      "Any current undergraduate or graduate student at an accredited university. You don't need to be a CS major — just passionate about tech and social good.",
+      "Any current undergraduate or graduate student at an accredited university. You don't need to be a CS major — just passionate about tech and social good. Starting a chapter is a lot of work and we do ask for unique founder expertise or long-term committment.",
   },
   {
     question: "What support does Hack4Impact provide?",
     answer:
-      "We provide a starter kit with branding assets, operational playbooks, nonprofit outreach templates, and ongoing mentorship from national leadership and other chapter founders.",
+      "We provide hands-on guidance and training for your founding team through our chapter establishment program. As a chapter, you will gain access to branding assets, operational playbooks, technical tools, fundraising capabilites, nonprofit outreach templates, and ongoing mentorship from central leadership and other chapter founders.",
   },
   {
     question: "How long does it take to get started?",
     answer:
-      "The application and approval process typically takes a few weeks. Most new chapters are ready to recruit members and take on their first project within one semester.",
+      "The application and approval process typically takes a few weeks. The chapter establishment program takes about a semester to finish. Most new chapters are ready to recruit members and take on their new projects within one semester.",
   },
   {
     question: "Are there any costs?",
@@ -123,7 +123,11 @@ export default function StudentsPage() {
         </div>
       </section>
 
-      <NumberedSteps heading="How to start a chapter" steps={steps} id="start" />
+      <NumberedSteps
+        heading="How to start a chapter"
+        steps={steps}
+        id="start"
+      />
 
       {/* Existing Chapters */}
       <section className="px-8 md:px-12 py-16 md:py-24 bg-gray-50 text-center">

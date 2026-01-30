@@ -11,8 +11,13 @@ const NotionUtils = {
     const url = prop?.url?.trim();
     if (!url) return null;
     // Some fields contain multiple URLs separated by commas — take the first
-    const first = url.split(",")[0].trim();
-    return first || null;
+    let first = url.split(",")[0].trim();
+    if (!first) return null;
+    // Ensure protocol is present so links don't resolve as relative paths
+    if (!/^https?:\/\//i.test(first)) {
+      first = `https://${first}`;
+    }
+    return first;
   },
 
   getEmail: (prop: any) => prop?.email || null,
