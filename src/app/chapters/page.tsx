@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getChapters } from "@/lib/services/notion";
 import { ChaptersDataTable } from "@/components/ui/ChaptersDataTable";
 import { CardGrid } from "@/components/ui/CardGrid";
@@ -57,14 +56,7 @@ export default async function ChaptersPage() {
   return (
     <>
       {/* Banner */}
-      <section className="h-56 md:h-80 relative">
-        <Image
-          src="/images/umd.jpg"
-          alt="University of Maryland campus"
-          fill
-          className="object-cover"
-        />
-      </section>
+      <section className="h-56 md:h-80 bg-gradient-to-r from-green-100 via-blue-100 to-purple-100" />
 
       <PageIntro
         heading="Chapters"

@@ -77,15 +77,9 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Image hanging below gradient */}
+        {/* Gradient block below hero */}
         <div className="relative mt-8 flex justify-center px-8">
-          <Image
-            src="/images/gt.jpg"
-            alt="Hack4Impact"
-            width={800}
-            height={500}
-            className="object-cover"
-          />
+          <div className="w-full max-w-[800px] aspect-[8/5] bg-gradient-to-br from-blue-200 to-green-100" />
         </div>
       </section>
 
@@ -95,14 +89,7 @@ export default async function HomePage() {
         headingClassName="max-w-lg mx-auto"
         steps={processSteps}
         aside={
-          <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px]">
-            <Image
-              src="/images/group.jpg"
-              alt="Hack4Impact team collaborating"
-              fill
-              className="object-cover"
-            />
-          </div>
+          <div className="aspect-[4/3] lg:aspect-auto lg:min-h-[500px] bg-gradient-to-br from-purple-100 to-blue-200" />
         }
       />
 
@@ -142,19 +129,10 @@ export default async function HomePage() {
 
       {/* Quote Callout Section */}
       <section className="grid grid-cols-1 lg:grid-cols-2">
-        {/* Image */}
         <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
-          <div className="relative aspect-[4/5] w-full">
-            <Image
-              src="/images/javid.jpg"
-              alt="Javid Fathi"
-              fill
-              className="object-cover"
-            />
-          </div>
+          <div className="aspect-[4/5] w-full bg-gradient-to-br from-green-100 to-purple-200" />
         </div>
 
-        {/* Quote content */}
         <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
           <blockquote className="font-sans text-2xl md:text-3xl">
             &ldquo;...the kind of passion for socially-minded engineering our industry desperately needs.&rdquo;
@@ -197,18 +175,14 @@ export default async function HomePage() {
           Featured articles
         </h2>
         <div className="max-w-2xl mx-auto divide-y divide-gray-200 border-y border-gray-200">
-          {featuredArticles.map((entry) => (
+          {featuredArticles.map((entry, i) => (
             <Link key={entry.id} href={`/journal/${entry.slug}`} className="block">
               <div className="py-6 flex gap-6 items-center">
-                <div className="w-48 h-28 shrink-0 relative">
-                  <Image
-                    src={`/images/${entry.image}`}
-                    alt={entry.alt ?? ""}
-                    fill
-                    className="object-cover"
-                    style={entry.imagePosition ? { objectPosition: entry.imagePosition } : undefined}
-                  />
-                </div>
+                <div className={`w-48 h-28 shrink-0 bg-gradient-to-br ${
+                  i === 0
+                    ? "from-orange-100 to-pink-200"
+                    : "from-purple-100 to-blue-200"
+                }`} />
                 <div className="min-w-0">
                   <h3 className="font-sans text-lg mb-1 truncate">{entry.title}</h3>
                   <div className="flex items-center gap-2 text-sm font-serif text-gray-600">

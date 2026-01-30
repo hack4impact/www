@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { SplitHero } from "@/components/ui/SplitHero";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { TeamTable } from "@/components/ui/TeamTable";
@@ -96,25 +95,16 @@ export default function AboutPage() {
         heading="Creating software to support those supporting their communities"
         buttonText="Meet the Team"
         buttonHref="#operations-team"
-        image={{ src: "/images/surf.jpg", alt: "Students surfing" }}
+        gradient="from-blue-100 to-green-200"
       />
 
       <CardGrid heading="Our values" items={values} />
 
       <section className="grid grid-cols-1 lg:grid-cols-2">
-        {/* Image */}
         <div className="px-8 lg:px-0 lg:pl-8 py-8 lg:py-12">
-          <div className="relative aspect-[4/5] w-full">
-            <Image
-              src="/images/old.jpg"
-              alt="Early Hack4Impact team"
-              fill
-              className="object-cover"
-            />
-          </div>
+          <div className="aspect-[4/5] w-full bg-gradient-to-br from-orange-100 to-pink-200" />
         </div>
 
-        {/* Text content */}
         <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
           <h2 className="font-sans text-3xl md:text-4xl">Our story</h2>
           <p className="mt-6 md:mt-8 text-base md:text-lg">

@@ -11,25 +11,16 @@ export type ProjectSection =
     }
   | {
       type: "image";
-      src: string;
-      alt: string;
       caption?: string;
     }
   | {
       type: "two-column";
       text: string;
-      image: {
-        src: string;
-        alt: string;
-      };
       imagePosition: "left" | "right";
     }
   | {
       type: "image-grid";
-      images: Array<{
-        src: string;
-        alt: string;
-      }>;
+      count: number;
     };
 
 export interface Project {
@@ -70,10 +61,6 @@ export const projects: Project[] = [
       {
         type: "two-column",
         text: "We worked closely with warehouse staff to understand their daily workflows. The key insight was that any solution needed to work on mobile devices in the warehouse, not just desktop computers in the office.",
-        image: {
-          src: "/images/surf.jpg",
-          alt: "A person surfing a wave",
-        },
         imagePosition: "left",
       },
       {
@@ -83,16 +70,7 @@ export const projects: Project[] = [
       },
       {
         type: "image-grid",
-        images: [
-          {
-            src: "/images/umd.jpg",
-            alt: "University of Maryland campus",
-          },
-          {
-            src: "/images/gt.jpg",
-            alt: "A group of students working on laptops",
-          },
-        ],
+        count: 2,
       },
       {
         type: "text",

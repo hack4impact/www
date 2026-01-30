@@ -48,7 +48,7 @@ function SectionRenderer({ section }: { section: ProjectSection }) {
     case "image-grid":
       return (
         <div className="grid grid-cols-2 gap-4 mb-8">
-          {section.images.map((_, index) => (
+          {Array.from({ length: section.count }, (_, index) => (
             <div key={index} className="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200" />
           ))}
         </div>

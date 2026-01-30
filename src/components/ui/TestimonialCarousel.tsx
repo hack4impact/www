@@ -1,11 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 interface Testimonial {
-  image?: string;
-  alt?: string;
   gradient?: string;
   quote: string;
   name: string;
@@ -41,18 +38,9 @@ export function TestimonialCarousel({
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="relative aspect-[4/3] w-full max-w-sm mx-auto md:mx-0">
-            {current.image ? (
-              <Image
-                src={current.image}
-                alt={current.alt ?? ""}
-                fill
-                className="object-cover"
-              />
-            ) : (
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${gradient}`}
-              />
-            )}
+            <div
+              className={`absolute inset-0 bg-gradient-to-br ${gradient}`}
+            />
           </div>
 
           <div>

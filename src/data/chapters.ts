@@ -11,8 +11,6 @@ export interface Chapter {
   website?: string;
   github?: string;
   instagram?: string;
-  image?: string;
-  imagePosition?: string;
 }
 
 export const chapters: Chapter[] = [
@@ -28,8 +26,6 @@ export const chapters: Chapter[] = [
     projectCount: 6,
     website: "https://hack4impact.bu.edu",
     github: "https://github.com/hack4impact-bu",
-    image: "/images/boston.jpg",
-    imagePosition: "center 30%",
   },
   {
     id: "2",
@@ -54,7 +50,6 @@ export const chapters: Chapter[] = [
     projectCount: 8,
     website: "https://hack4impact.calpoly.edu",
     github: "https://github.com/hack4impact-calpoly",
-    image: "/images/calpoly.jpg",
   },
   {
     id: "4",
@@ -68,7 +63,6 @@ export const chapters: Chapter[] = [
     projectCount: 15,
     website: "https://hack4impact.cornell.edu",
     github: "https://github.com/hack4impact-cornell",
-    image: "/images/cornell.jpg",
   },
   {
     id: "5",
@@ -105,7 +99,6 @@ export const chapters: Chapter[] = [
     website: "https://hack4impact.gatech.edu",
     github: "https://github.com/hack4impact-gt",
     instagram: "https://instagram.com/hack4impactgt",
-    image: "/images/georgia.jpg",
   },
   {
     id: "8",
@@ -133,7 +126,6 @@ export const chapters: Chapter[] = [
     website: "https://hack4impact.upenn.edu",
     github: "https://github.com/hack4impact-upenn",
     instagram: "https://instagram.com/hack4impactpenn",
-    image: "/images/upenn.jpg",
   },
   {
     id: "10",
@@ -161,7 +153,6 @@ export const chapters: Chapter[] = [
     website: "https://uiuc.hack4impact.org",
     github: "https://github.com/hack4impact-uiuc",
     instagram: "https://instagram.com/hack4impactuiuc",
-    image: "/images/uiuc.jpg",
   },
   {
     id: "12",

@@ -20,18 +20,6 @@ const TERMS_DATA_SOURCE_ID = "27c197ab-f07b-8077-8044-000b13443d6e";
 // Featured project slug for the home page
 export const FEATURED_PROJECT_SLUG = "whistleblower-database"; // Set to a project slug to feature it
 
-// Hardcoded chapter images (slug → image path and optional position)
-const CHAPTER_IMAGES: Record<string, { src: string; position?: string }> = {
-  "boston-university": { src: "/images/boston.jpg", position: "center 30%" },
-  "cal-poly-san-luis-obispo": { src: "/images/calpoly.jpg" },
-  "cornell-university": { src: "/images/cornell.jpg" },
-  "drexel-university": { src: "/images/drexel.jpg" },
-  "georgia-tech": { src: "/images/georgia.jpg" },
-  "university-of-pennsylvania": { src: "/images/upenn.jpg" },
-  "university-of-maryland": { src: "/images/umd.jpg" },
-  "university-of-illinois-urbana-champaign": { src: "/images/uiuc.jpg" },
-};
-
 function toSlug(name: string): string {
   return name
     .replace(/^Hack4Impact\s*/i, "")
@@ -166,8 +154,6 @@ export async function getChapters(): Promise<Chapter[]> {
       .replace(/^Hack4Impact\s*/i, "")
       .replace(/^Hack\s*for\s*Impact\s*/i, "");
 
-    const chapterImage = CHAPTER_IMAGES[slug];
-
     return {
       id: program.id,
       slug,
@@ -181,8 +167,6 @@ export async function getChapters(): Promise<Chapter[]> {
       website: program.links.website ?? undefined,
       github: program.links.github ?? undefined,
       instagram: program.links.instagram ?? undefined,
-      image: chapterImage?.src,
-      imagePosition: chapterImage?.position,
     } satisfies Chapter;
   });
 }

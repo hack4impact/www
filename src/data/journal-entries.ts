@@ -9,9 +9,6 @@ export interface JournalEntry {
   publishedDate: string;
   intro: string;
   content: string;
-  image?: string;
-  alt?: string;
-  imagePosition?: string;
 }
 
 export const journalEntries: JournalEntry[] = [
@@ -25,8 +22,6 @@ export const journalEntries: JournalEntry[] = [
       "How our team approached cleaning up governance debt and re-establishing relationships with our chapters.",
     author: "Khoa Ly",
     publishedDate: "January 28, 2025",
-    image: "foundations.jpg",
-    alt: "A halftone texture of a rocky cliff face",
     intro:
       "Accessibility isn't just a feature—it's a fundamental requirement for software that truly serves everyone. When we partnered with Metro Food Bank, we knew we had to get this right.",
     content:
@@ -41,9 +36,6 @@ export const journalEntries: JournalEntry[] = [
     description:
       "Exploring the need for technologists to exist in their community and to giving back in other ways.",
     author: "Khoa Ly",
-    image: "volunteer.jpg",
-    alt: "Volunteers working together",
-    imagePosition: "center 60%",
     publishedDate: "January 29, 2024",
     intro:
       "Every organization remembers their first major project. For Hack4Impact, it was a patient scheduling system for Community Health Partners that taught us lessons we still carry today.",

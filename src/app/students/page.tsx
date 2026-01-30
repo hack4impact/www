@@ -91,7 +91,7 @@ export default function StudentsPage() {
         description="Bring Hack4Impact to your campus. Found a chapter, build a team of student technologists, and create real software for nonprofits in your community."
         buttonText="Get started"
         buttonHref="#start"
-        image={{ src: "/images/cornell_two.jpg", alt: "Students surfing" }}
+        gradient="from-green-100 to-blue-200"
       />
 
       <CardGrid heading="Why start a chapter" items={reasons} />

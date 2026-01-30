@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { Separator } from "@base-ui/react/separator";
 import { getJournalEntryBySlug } from "@/data/journal-entries";
 
@@ -22,28 +21,16 @@ export default async function JournalPostPage({ params }: JournalPostPageProps) 
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-center gap-2 text-base font-serif mb-2">
             <span className="text-gray-600">{entry.tag}</span>
-            <span className="text-gray-400">·</span>
+            <span className="text-gray-400">&middot;</span>
             <span className="text-gray-600">{entry.readTime}</span>
           </div>
           <h1 className="text-3xl md:text-5xl font-sans">{entry.title}</h1>
         </div>
       </section>
 
-      {/* Banner image */}
+      {/* Banner gradient */}
       <section className="px-8 md:px-12">
-        {entry.image ? (
-          <div className="w-full aspect-[3/1] relative">
-            <Image
-              src={`/images/${entry.image}`}
-              alt={entry.alt ?? ""}
-              fill
-              className="object-cover"
-              style={entry.imagePosition ? { objectPosition: entry.imagePosition } : undefined}
-            />
-          </div>
-        ) : (
-          <div className="w-full aspect-[3/1] bg-gradient-to-br from-blue-100 to-green-200" />
-        )}
+        <div className="w-full aspect-[3/1] bg-gradient-to-br from-blue-100 to-green-200" />
       </section>
 
       {/* Content */}
