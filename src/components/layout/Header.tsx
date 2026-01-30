@@ -35,7 +35,7 @@ function NavDropdown({
       <Menu.Trigger
         openOnHover
         delay={0}
-        className="flex items-center gap-1 cursor-pointer"
+        className="flex items-center gap-1 cursor-pointer text-base"
       >
         {label}
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -50,7 +50,7 @@ function NavDropdown({
       </Menu.Trigger>
       <Menu.Portal>
         <Menu.Positioner className="z-50" sideOffset={8}>
-          <Menu.Popup className="bg-[#FCF9F2] border shadow-lg min-w-[150px] py-2">
+          <Menu.Popup className="bg-[#FCF9F2] shadow-lg min-w-[150px] py-2 text-base">
             {items.map((item) => (
               <Menu.Item
                 key={item.href}
@@ -71,15 +71,19 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header>
-      <nav className="flex items-center justify-between p-4 border-b">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors ${
+        mobileMenuOpen ? "bg-[#FCF9F2]" : "bg-white/60 backdrop-blur-md"
+      }`}
+    >
+      <nav className="flex items-center justify-between px-8 md:px-12 py-4 text-base">
         <Link href="/">
           <Image
             src="/logomark.svg"
             alt="Hack4Impact"
             width={32}
             height={32}
-            className="md:hidden"
+            className="md:hidden brightness-0"
           />
           <Image
             src="/logo.svg"
@@ -90,7 +94,7 @@ export default function Header() {
           />
         </Link>
 
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-6 text-base">
           {navigation.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
@@ -103,7 +107,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="md:hidden"
+          className="md:hidden text-base font-sans"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label="Toggle navigation menu"
@@ -113,7 +117,7 @@ export default function Header() {
       </nav>
 
       {mobileMenuOpen && (
-        <div className="md:hidden p-4 border-b">
+        <div className="md:hidden px-8 md:px-12 pb-6 text-base">
           {navigation.map((item) => (
             <Link
               key={item.href}

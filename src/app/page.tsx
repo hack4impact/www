@@ -163,8 +163,8 @@ export default function HomePage() {
           Featured project
         </h2>
         <div className="max-w-4xl mx-auto bg-blue-50 rounded-lg grid grid-cols-1 md:grid-cols-2 p-4 md:p-5 gap-4 md:gap-5">
-          <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200" />
-          <div className="flex flex-col justify-center">
+          <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 rounded-md" />
+          <div className="flex flex-col justify-center p-2 md:p-3">
             <h3 className="font-sans text-xl md:text-2xl mb-3">
               {featuredProject.title}
             </h3>
