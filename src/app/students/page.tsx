@@ -5,34 +5,20 @@ import { CardGrid } from "@/components/ui/CardGrid";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
-import { getFAQs, getProcess } from "@/lib/contentful/api";
-import { Suitcase, Heart, OpenBook } from "iconoir-react";
+import { getFAQs, getInfoCards, getProcess } from "@/lib/contentful/api";
+import { Heart, UserStar, Community } from "iconoir-react";
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
-const reasons = [
-  {
-    icon: <Suitcase {...iconProps} />,
-    title: "Leadership",
-    description:
-      "Build and lead a team of developers, designers, and project managers. Gain hands-on experience running a student organization from the ground up.",
-  },
-  {
-    icon: <Heart {...iconProps} />,
-    title: "Impact",
-    description:
-      "Connect your campus to local nonprofits and deliver real software that makes a difference in your community.",
-  },
-  {
-    icon: <OpenBook {...iconProps} />,
-    title: "Community",
-    description:
-      "Join a national network of chapter leaders who share resources, advice, and support across dozens of universities.",
-  },
-];
+const reasonsIcons = {
+  UserStar: <UserStar {...iconProps} />,
+  Heart: <Heart {...iconProps} />,
+  Community: <Community {...iconProps} />,
+};
 
 export default async function StudentsPage() {
-  const [faqs, chapterProcess] = await Promise.all([
+  const [reasons, faqs, chapterProcess] = await Promise.all([
+    getInfoCards("Student Reasons"),
     getFAQs("Student Questions"),
     getProcess("Starting Chapter Process"),
   ]);
@@ -47,7 +33,13 @@ export default async function StudentsPage() {
         gradient="from-green-100 to-blue-200"
       />
 
-      <CardGrid heading="Why start a chapter" items={reasons} />
+      {reasons && (
+        <CardGrid
+          heading="Why start a chapter"
+          items={reasons.cards}
+          icons={reasonsIcons}
+        />
+      )}
 
       {chapterProcess && (
         <NumberedSteps
