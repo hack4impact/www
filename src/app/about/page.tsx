@@ -6,7 +6,7 @@ import { CallToAction } from "@/components/ui/CallToAction";
 import { getBoardTeamMembers, getValues } from "@/lib/contentful/api";
 import { Leaf, Compass, Accessibility } from "iconoir-react";
 
-const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
+const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
 const iconMap: Record<string, ReactNode> = {
   Leaf: <Leaf {...iconProps} />,
@@ -31,10 +31,16 @@ export default async function AboutPage() {
     .sort((a, b) => {
       const ai = opsOrder.findIndex((n) => a.name.startsWith(n));
       const bi = opsOrder.findIndex((n) => b.name.startsWith(n));
-      return (ai === -1 ? opsOrder.length : ai) - (bi === -1 ? opsOrder.length : bi);
+      return (
+        (ai === -1 ? opsOrder.length : ai) - (bi === -1 ? opsOrder.length : bi)
+      );
     });
-  const boardOfDirectors = members.filter((m) => m.team === "Board of Directors").sort((a, b) => a.name.localeCompare(b.name));
-  const advisoryBoard = members.filter((m) => m.team === "Advisory Board").sort((a, b) => a.name.localeCompare(b.name));
+  const boardOfDirectors = members
+    .filter((m) => m.team === "Board of Directors")
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const advisoryBoard = members
+    .filter((m) => m.team === "Advisory Board")
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <>
@@ -76,7 +82,10 @@ export default async function AboutPage() {
             cells: [
               { text: m.name },
               { text: m.title },
-              { text: m.email ?? "", href: m.email ? `mailto:${m.email}` : undefined },
+              {
+                text: m.email ?? "",
+                href: m.email ? `mailto:${m.email}` : undefined,
+              },
             ],
           }))}
           className="mb-16"
@@ -89,7 +98,10 @@ export default async function AboutPage() {
             cells: [
               { text: m.name },
               { text: m.title },
-              { text: m.email ?? "", href: m.email ? `mailto:${m.email}` : undefined },
+              {
+                text: m.email ?? "",
+                href: m.email ? `mailto:${m.email}` : undefined,
+              },
             ],
           }))}
           className="mb-16"
