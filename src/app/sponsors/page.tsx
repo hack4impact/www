@@ -9,6 +9,8 @@ import {
   getPartners,
   getVolunteerCounts,
 } from "@/lib/services/notion";
+import { getSponsorshipTiers } from "@/lib/services/contentful";
+import { Check } from "iconoir-react";
 
 async function getStats() {
   const [chapters, projects, partners, volunteerCounts] = await Promise.all([
@@ -27,69 +29,6 @@ async function getStats() {
     { value: chapters.length, label: "University chapters" },
   ];
 }
-
-const sponsorshipTiers = [
-  {
-    benefit: "Annual Contribution",
-    community: "$5,000",
-    partner: "$15,000",
-    champion: "$30,000+",
-  },
-  {
-    benefit: "Logo on Website",
-    community: "✓",
-    partner: "✓",
-    champion: "✓",
-  },
-  {
-    benefit: "Social Media Recognition",
-    community: "✓",
-    partner: "✓",
-    champion: "✓",
-  },
-  {
-    benefit: "Presence at Chapter Events",
-    community: "✓",
-    partner: "✓",
-    champion: "✓",
-  },
-  {
-    benefit: "Access to Talent Network",
-    community: "",
-    partner: "✓",
-    champion: "✓",
-  },
-  {
-    benefit: "Featured Journal Spotlight",
-    community: "",
-    partner: "✓",
-    champion: "✓",
-  },
-  {
-    benefit: "Priority Mentorship Matching",
-    community: "",
-    partner: "✓",
-    champion: "✓",
-  },
-  {
-    benefit: "Co-Branded Events",
-    community: "",
-    partner: "",
-    champion: "✓",
-  },
-  {
-    benefit: "Keynote Speaking Opportunities",
-    community: "",
-    partner: "",
-    champion: "✓",
-  },
-  {
-    benefit: "Strategic Initiative Input",
-    community: "",
-    partner: "",
-    champion: "✓",
-  },
-];
 
 const fundingAreas = [
   {
@@ -114,8 +53,40 @@ const fundingAreas = [
   },
 ];
 
+function formatCost(cost: number): string {
+  return `$${cost.toLocaleString("en-US")}`;
+}
+
 export default async function SponsorsPage() {
-  const stats = await getStats();
+  const [stats, tiers] = await Promise.all([getStats(), getSponsorshipTiers()]);
+
+  // Collect all unique benefits in order of first appearance (lowest tier first)
+  const allBenefits: string[] = [];
+  for (const tier of tiers) {
+    for (const b of tier.benefits) {
+      if (!allBenefits.includes(b)) allBenefits.push(b);
+    }
+  }
+
+  // Build table rows: cost row + one row per benefit
+  const costRow = {
+    cells: [
+      { text: "Annual Contribution", className: "font-sans font-semibold" },
+      ...tiers.map((t) => ({
+        text: formatCost(t.cost),
+        className: "font-serif text-gray-600 font-semibold",
+      })),
+    ],
+  };
+
+  const benefitRows = allBenefits.map((benefit) => ({
+    cells: [
+      { text: benefit },
+      ...tiers.map((t) => ({
+        text: t.benefits.includes(benefit) ? <Check width={18} height={18} strokeWidth={2} /> : "",
+      })),
+    ],
+  }));
 
   return (
     <>
@@ -133,15 +104,8 @@ export default async function SponsorsPage() {
       <section className="px-8 md:px-12 py-16 md:py-24">
         <TeamTable
           heading="Sponsorship tiers"
-          columns={["Benefits", "Community", "Partner", "Champion"]}
-          members={sponsorshipTiers.map((tier, index) => ({
-            cells: [
-              { text: tier.benefit, className: index === 0 ? "font-sans font-semibold" : undefined },
-              { text: tier.community, className: index === 0 ? "font-serif text-gray-600 font-semibold" : undefined },
-              { text: tier.partner, className: index === 0 ? "font-serif text-gray-600 font-semibold" : undefined },
-              { text: tier.champion, className: index === 0 ? "font-serif text-gray-600 font-semibold" : undefined },
-            ],
-          }))}
+          columns={["Benefits", ...tiers.map((t) => t.name)]}
+          members={[costRow, ...benefitRows]}
         />
       </section>
 

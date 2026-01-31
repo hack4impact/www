@@ -5,22 +5,25 @@ import { CardGrid } from "@/components/ui/CardGrid";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
+import { Suitcase, Heart, OpenBook } from "iconoir-react";
+
+const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
 
 const reasons = [
   {
-    icon: "/icons/professionals.svg",
+    icon: <Suitcase {...iconProps} />,
     title: "Leadership",
     description:
       "Build and lead a team of developers, designers, and project managers. Gain hands-on experience running a student organization from the ground up.",
   },
   {
-    icon: "/icons/nonprofits.svg",
+    icon: <Heart {...iconProps} />,
     title: "Impact",
     description:
       "Connect your campus to local nonprofits and deliver real software that makes a difference in your community.",
   },
   {
-    icon: "/icons/students.svg",
+    icon: <OpenBook {...iconProps} />,
     title: "Community",
     description:
       "Join a national network of chapter leaders who share resources, advice, and support across dozens of universities.",

@@ -4,6 +4,7 @@ import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
+import { Heart, OpenBook, Suitcase } from "iconoir-react";
 
 const testimonials = [
   {
@@ -26,21 +27,23 @@ const testimonials = [
   },
 ];
 
+const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
+
 const buildTypes = [
   {
-    icon: "/icons/nonprofits.svg",
+    icon: <Heart {...iconProps} />,
     title: "Web Applications",
     description:
       "Full-stack web apps tailored to your workflows — dashboards, portals, intake systems, and more.",
   },
   {
-    icon: "/icons/students.svg",
+    icon: <OpenBook {...iconProps} />,
     title: "Mobile Apps",
     description:
       "Cross-platform mobile applications that put your services directly in the hands of the people you serve.",
   },
   {
-    icon: "/icons/professionals.svg",
+    icon: <Suitcase {...iconProps} />,
     title: "Data Dashboards",
     description:
       "Interactive visualizations and reporting tools that help you measure outcomes and tell your story with data.",

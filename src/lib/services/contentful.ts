@@ -108,6 +108,48 @@ export const getBoardTeamMembers = unstable_cache(
   { revalidate: 3600 },
 );
 
+// --- Sponsorship ---
+
+export interface SponsorshipTier {
+  name: string;
+  cost: number;
+  benefits: string[];
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapSponsorshipTier(item: any): SponsorshipTier {
+  const f = item.fields;
+  const benefits = (f.benefits ?? [])
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .map((b: any) => b.fields?.name)
+    .filter(Boolean) as string[];
+  return {
+    name: f.name,
+    cost: f.cost,
+    benefits,
+  };
+}
+
+async function fetchSponsorshipTiers(): Promise<SponsorshipTier[]> {
+  try {
+    const response = await client.getEntries({
+      content_type: "sponsorship",
+      include: 2,
+      order: ["fields.cost"],
+    });
+    return response.items.map(mapSponsorshipTier);
+  } catch (error) {
+    console.error("Failed to fetch sponsorship tiers from Contentful:", error);
+    return [];
+  }
+}
+
+export const getSponsorshipTiers = unstable_cache(
+  fetchSponsorshipTiers,
+  ["contentful-sponsorship-tiers"],
+  { revalidate: 3600 },
+);
+
 // --- Journal ---
 
 export const getJournalEntries = unstable_cache(

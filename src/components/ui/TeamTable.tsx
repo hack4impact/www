@@ -1,7 +1,9 @@
+import { type ReactNode } from "react";
+
 interface TeamTableProps {
   heading: string;
   columns: string[];
-  members: { cells: { text: string; href?: string; className?: string }[] }[];
+  members: { cells: { text: string | ReactNode; href?: string; className?: string }[] }[];
   id?: string;
   className?: string;
 }
@@ -31,8 +33,8 @@ export function TeamTable({
             <span key={col}>{col}</span>
           ))}
         </div>
-        {members.map((member) => (
-          <div key={member.cells[0].text} className={`grid ${gridCols} py-4`}>
+        {members.map((member, idx) => (
+          <div key={idx} className={`grid ${gridCols} py-4`}>
             {member.cells.map((cell, i) =>
               cell.href ? (
                 <a

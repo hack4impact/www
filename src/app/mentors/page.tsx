@@ -3,6 +3,7 @@ import { CardGrid } from "@/components/ui/CardGrid";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
+import { Suitcase, OpenBook, Heart } from "iconoir-react";
 
 const testimonials = [
   {
@@ -25,21 +26,23 @@ const testimonials = [
   },
 ];
 
+const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
+
 const contributions = [
   {
-    icon: "/icons/professionals.svg",
+    icon: <Suitcase {...iconProps} />,
     title: "Code Review",
     description:
       "Review pull requests and provide feedback on architecture, code quality, and best practices.",
   },
   {
-    icon: "/icons/students.svg",
+    icon: <OpenBook {...iconProps} />,
     title: "Career Guidance",
     description:
       "Share your experience navigating the tech industry and help students prepare for internships and full-time roles.",
   },
   {
-    icon: "/icons/nonprofits.svg",
+    icon: <Heart {...iconProps} />,
     title: "Project Advice",
     description:
       "Help teams make smart technical decisions, unblock tricky problems, and scope their work realistically.",

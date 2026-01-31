@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { Heart, OpenBook, Suitcase } from "iconoir-react";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { getProjects, FEATURED_PROJECT_SLUG } from "@/lib/services/notion";
@@ -104,7 +104,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
-              <Image src="/icons/nonprofits.svg" alt="" width={45} height={45} />
+              <Heart width={64} height={64} strokeWidth={1} />
             </div>
             <h3 className="text-xl font-sans mb-2">Non-Profits</h3>
             <p className="text-base font-serif mb-4">We build custom software solutions for nonprofit organizations, helping them better serve their communities and amplify their impact.</p>
@@ -112,7 +112,7 @@ export default async function HomePage() {
           </div>
           <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
-              <Image src="/icons/students.svg" alt="" width={45} height={45} />
+              <OpenBook width={64} height={64} strokeWidth={1} />
             </div>
             <h3 className="text-xl font-sans mb-2">Students</h3>
             <p className="text-base font-serif mb-4">We provide community, education, and service-learning opportunities for students to develop real-world skills while making a difference.</p>
@@ -120,7 +120,7 @@ export default async function HomePage() {
           </div>
           <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
-              <Image src="/icons/professionals.svg" alt="" width={45} height={45} />
+              <Suitcase width={64} height={64} strokeWidth={1} />
             </div>
             <h3 className="text-xl font-sans mb-2">Professionals</h3>
             <p className="text-base font-serif mb-4">Industry professionals mentor our students, sharing expertise and guiding the next generation of socially-conscious technologists.</p>
