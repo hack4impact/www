@@ -1,8 +1,9 @@
 import Image from "next/image";
+import { type ReactNode } from "react";
 import { Card } from "@/components/ui/Card";
 
 interface CardGridItem {
-  icon?: string;
+  icon?: string | ReactNode;
   title: string;
   description: string;
 }
@@ -48,9 +49,11 @@ export function CardGrid({
           <Card
             key={item.title}
             icon={
-              item.icon ? (
-                <Image src={item.icon} alt="" width={45} height={45} />
-              ) : undefined
+              item.icon
+                ? typeof item.icon === "string"
+                  ? <Image src={item.icon} alt="" width={45} height={45} />
+                  : item.icon
+                : undefined
             }
             title={item.title}
             description={item.description}

@@ -2,23 +2,29 @@ import { Separator } from "@base-ui/react/separator";
 import { SplitHero } from "@/components/ui/SplitHero";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { StatBar } from "@/components/ui/StatBar";
-import { getChapters, getProjects, getPartners } from "@/lib/services/notion";
+import { TeamTable } from "@/components/ui/TeamTable";
+import {
+  getChapters,
+  getProjects,
+  getPartners,
+  getVolunteerCounts,
+} from "@/lib/services/notion";
 
 async function getStats() {
-  const [chapters, projects, partners] = await Promise.all([
+  const [chapters, projects, partners, volunteerCounts] = await Promise.all([
     getChapters(),
     getProjects(),
     getPartners(),
+    getVolunteerCounts(),
   ]);
 
-  // Calculate unique student count from projects (rough estimate based on team members)
-  const studentCount = projects.reduce((acc, project) => acc + project.team.length, 0);
+  const doneProjects = projects.filter((p) => p.status === "Done");
 
   return [
-    { value: studentCount.toString(), label: "Students supported" },
-    { value: projects.length.toString(), label: "Projects shipped" },
-    { value: partners.length.toString(), label: "Nonprofit partners" },
-    { value: chapters.length.toString(), label: "University chapters" },
+    { value: volunteerCounts.active, label: "Active volunteers" },
+    { value: doneProjects.length, label: "Projects completed" },
+    { value: partners.length, label: "Nonprofit partners" },
+    { value: chapters.length, label: "University chapters" },
   ];
 }
 
@@ -124,53 +130,19 @@ export default async function SponsorsPage() {
       <StatBar heading="Our impact" stats={stats} />
 
       {/* Sponsorship Tiers Table */}
-      <section className="px-8 md:px-12 py-16 md:py-24 bg-gray-50">
-        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
-          Sponsorship tiers
-        </h2>
-        <div className="max-w-5xl mx-auto overflow-x-auto">
-          <table className="w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <thead>
-              <tr className="bg-gray-100 border-b border-gray-200">
-                <th className="px-6 py-4 text-left font-sans text-sm md:text-base">
-                  Benefits
-                </th>
-                <th className="px-6 py-4 text-center font-sans text-sm md:text-base bg-orange-50">
-                  Community
-                </th>
-                <th className="px-6 py-4 text-center font-sans text-sm md:text-base bg-orange-100">
-                  Partner
-                </th>
-                <th className="px-6 py-4 text-center font-sans text-sm md:text-base bg-orange-200">
-                  Champion
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {sponsorshipTiers.map((tier, index) => (
-                <tr
-                  key={tier.benefit}
-                  className={`border-b border-gray-200 ${
-                    index === 0 ? "font-semibold bg-gray-50" : ""
-                  }`}
-                >
-                  <td className="px-6 py-4 font-serif text-sm md:text-base">
-                    {tier.benefit}
-                  </td>
-                  <td className="px-6 py-4 text-center font-serif text-sm md:text-base bg-orange-50/30">
-                    {tier.community}
-                  </td>
-                  <td className="px-6 py-4 text-center font-serif text-sm md:text-base bg-orange-100/30">
-                    {tier.partner}
-                  </td>
-                  <td className="px-6 py-4 text-center font-serif text-sm md:text-base bg-orange-200/30">
-                    {tier.champion}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <section className="px-8 md:px-12 py-16 md:py-24">
+        <TeamTable
+          heading="Sponsorship tiers"
+          columns={["Benefits", "Community", "Partner", "Champion"]}
+          members={sponsorshipTiers.map((tier, index) => ({
+            cells: [
+              { text: tier.benefit, className: index === 0 ? "font-sans font-semibold" : undefined },
+              { text: tier.community, className: index === 0 ? "font-serif text-gray-600 font-semibold" : undefined },
+              { text: tier.partner, className: index === 0 ? "font-serif text-gray-600 font-semibold" : undefined },
+              { text: tier.champion, className: index === 0 ? "font-serif text-gray-600 font-semibold" : undefined },
+            ],
+          }))}
+        />
       </section>
 
       {/* Where Your Money Goes */}

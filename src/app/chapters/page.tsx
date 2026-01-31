@@ -5,28 +5,31 @@ import { PageIntro } from "@/components/ui/PageIntro";
 import { StatBar } from "@/components/ui/StatBar";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
+import { Code, ColorFilter, Agile, KanbanBoard } from "iconoir-react";
+
+const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
 
 const roles = [
   {
-    icon: "/icons/students.svg",
+    icon: <Code {...iconProps} />,
     title: "Developer",
     description:
       "Build features, write tests, and ship code using modern frameworks. Most teams use React, Next.js, or React Native.",
   },
   {
-    icon: "/icons/nonprofits.svg",
+    icon: <ColorFilter {...iconProps} />,
     title: "Designer",
     description:
       "Lead user research, create wireframes and prototypes, and ensure the final product is intuitive and accessible.",
   },
   {
-    icon: "/icons/professionals.svg",
+    icon: <Agile {...iconProps} />,
     title: "Tech Lead",
     description:
       "Guide technical architecture, conduct code reviews, and mentor developers while keeping the project on track.",
   },
   {
-    icon: "/icons/students.svg",
+    icon: <KanbanBoard {...iconProps} />,
     title: "Project Manager",
     description:
       "Coordinate between the team and the nonprofit partner, run standups, and manage scope and timelines.",
