@@ -1,7 +1,4 @@
-interface Stat {
-  label: string;
-  value: string | number;
-}
+import type { Stat } from "@/lib/types/stat";
 
 interface StatBarProps {
   stats: Stat[];

@@ -1,35 +1,30 @@
+import { type ReactNode } from "react";
 import { SplitHero } from "@/components/ui/SplitHero";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { TeamTable } from "@/components/ui/TeamTable";
 import { CallToAction } from "@/components/ui/CallToAction";
-import { getBoardTeamMembers } from "@/lib/services/contentful";
+import { getBoardTeamMembers, getValues } from "@/lib/services/contentful";
 import { Leaf, Compass, Accessibility } from "iconoir-react";
 
 const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
 
-const values = [
-  {
-    title: "Sustainable",
-    description:
-      "We build lasting solutions that continue to serve communities long after our initial engagement.",
-    icon: <Leaf {...iconProps} />,
-  },
-  {
-    title: "Ethical",
-    description:
-      "We prioritize the needs and privacy of the communities we serve in every decision we make.",
-    icon: <Compass {...iconProps} />,
-  },
-  {
-    title: "Accessible",
-    description:
-      "We design inclusive software that works for everyone, regardless of ability or background.",
-    icon: <Accessibility {...iconProps} />,
-  },
-];
+const iconMap: Record<string, ReactNode> = {
+  Leaf: <Leaf {...iconProps} />,
+  Compass: <Compass {...iconProps} />,
+  Accessibility: <Accessibility {...iconProps} />,
+};
 
 export default async function AboutPage() {
-  const members = await getBoardTeamMembers();
+  const [members, contentfulValues] = await Promise.all([
+    getBoardTeamMembers(),
+    getValues(),
+  ]);
+
+  const values = contentfulValues.map((v) => ({
+    title: v.name,
+    description: v.description,
+    icon: iconMap[v.icon],
+  }));
   const opsOrder = ["Khoa", "Govind", "Brian", "Sophia"];
   const operationsTeam = members
     .filter((m) => m.team === "Operations Team")

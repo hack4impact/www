@@ -1,7 +1,7 @@
 "use client";
 
 import { DataTable, type Column } from "@/components/ui/DataTable";
-import type { Partner } from "@/data/partners";
+import type { Partner } from "@/lib/types/partner";
 
 const columns: Column<Partner>[] = [
   {

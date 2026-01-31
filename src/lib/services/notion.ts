@@ -2,9 +2,9 @@
 import { Client } from "@notionhq/client";
 import { unstable_cache } from "next/cache";
 import { mapPartner, mapProgram, mapProject, mapVolunteer } from "../mappers";
-import type { Chapter } from "@/data/chapters";
-import type { Project, TeamMember } from "@/data/projects";
-import type { Partner } from "@/data/partners";
+import type { Chapter } from "@/lib/types/chapter";
+import type { Project, TeamMember } from "@/lib/types/project";
+import type { Partner } from "@/lib/types/partner";
 
 if (!process.env.NOTION_API_KEY) {
   throw new Error("NOTION_API_KEY environment variable is not set");

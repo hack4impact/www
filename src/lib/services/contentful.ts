@@ -1,27 +1,8 @@
 import { createClient } from "contentful";
 import { unstable_cache } from "next/cache";
-import type { Document } from "@contentful/rich-text-types";
+import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier } from "@/lib/types/contentful";
 
-export interface JournalEntry {
-  id: string;
-  slug: string;
-  title: string;
-  tag: string;
-  readTime: string;
-  description: string;
-  author: string;
-  publishedDate: string;
-  intro: string;
-  content: Document;
-}
-
-export interface BoardTeamMember {
-  name: string;
-  team: string;
-  title: string;
-  email?: string;
-  website?: string;
-}
+export type { JournalEntry, BoardTeamMember, Value, SponsorshipTier };
 
 if (!process.env.CONTENTFUL_SPACE_ID) {
   throw new Error("CONTENTFUL_SPACE_ID environment variable is not set");
@@ -108,13 +89,35 @@ export const getBoardTeamMembers = unstable_cache(
   { revalidate: 3600 },
 );
 
-// --- Sponsorship ---
+// --- Values ---
 
-export interface SponsorshipTier {
-  name: string;
-  cost: number;
-  benefits: string[];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapValue(item: any): Value {
+  const f = item.fields;
+  return {
+    name: f.name,
+    description: f.description,
+    icon: f.icon,
+  };
 }
+
+async function fetchValues(): Promise<Value[]> {
+  try {
+    const response = await client.getEntries({
+      content_type: "values",
+    });
+    return response.items.map(mapValue);
+  } catch (error) {
+    console.error("Failed to fetch values from Contentful:", error);
+    return [];
+  }
+}
+
+export const getValues = unstable_cache(fetchValues, ["contentful-values"], {
+  revalidate: 3600,
+});
+
+// --- Sponsorship ---
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapSponsorshipTier(item: any): SponsorshipTier {

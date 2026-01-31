@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Separator } from "@base-ui/react/separator";
 import { getProjectBySlug } from "@/lib/services/notion";
 import { LinkCard } from "@/components/ui/LinkCard";
-import type { TeamMember, ProjectSection } from "@/data/projects";
+import type { TeamMember, ProjectSection } from "@/lib/types/project";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;

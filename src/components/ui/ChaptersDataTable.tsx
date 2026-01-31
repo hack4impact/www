@@ -1,7 +1,7 @@
 "use client";
 
 import { DataTable, type Column } from "@/components/ui/DataTable";
-import type { Chapter } from "@/data/chapters";
+import type { Chapter } from "@/lib/types/chapter";
 
 const columns: Column<Chapter>[] = [
   {
