@@ -250,6 +250,7 @@ export async function getProjects(): Promise<Project[]> {
         id: project.id,
         slug,
         title: project.name,
+        status: project.status ?? "",
         partner: partnerName,
         chapter: chapterName,
         year,

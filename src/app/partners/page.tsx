@@ -1,11 +1,9 @@
-import {
-  getPartners,
-  getVolunteerCounts,
-} from "@/lib/services/notion";
+import { getPartners } from "@/lib/services/notion";
 import { PartnersDataTable } from "@/components/ui/PartnersDataTable";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { StatBar } from "@/components/ui/StatBar";
 import { FAQList } from "@/components/ui/FAQList";
+import { CallToAction } from "@/components/ui/CallToAction";
 
 const faqs = [
   {
@@ -26,19 +24,19 @@ const faqs = [
 ];
 
 export default async function PartnersPage() {
-  const [partners, volunteerCounts] = await Promise.all([
-    getPartners(),
-    getVolunteerCounts(),
-  ]);
+  const partners = await getPartners();
 
   const uniqueSubjects = new Set(
     partners.flatMap((p) => p.subjects ?? []),
+  ).size;
+  const uniquePopulations = new Set(
+    partners.flatMap((p) => p.populations ?? []),
   ).size;
 
   const stats = [
     { label: "Partners", value: partners.length },
     { label: "Focus areas", value: uniqueSubjects },
-    { label: "Active volunteers", value: volunteerCounts.active },
+    { label: "Populations served", value: uniquePopulations },
   ];
 
   return (
@@ -59,6 +57,13 @@ export default async function PartnersPage() {
       </section>
 
       <FAQList items={faqs} />
+
+      <CallToAction
+        heading="Want to work with us?"
+        buttonText="Apply to partner"
+        href="/nonprofits"
+        color="bg-orange-100"
+      />
     </>
   );
 }

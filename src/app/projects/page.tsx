@@ -1,13 +1,9 @@
-import {
-  getProjects,
-  getChapters,
-  getVolunteerCounts,
-  getDoneProjectCount,
-} from "@/lib/services/notion";
+import { getProjects } from "@/lib/services/notion";
 import { ProjectsDataTable } from "@/components/ui/ProjectsDataTable";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { StatBar } from "@/components/ui/StatBar";
 import { FAQList } from "@/components/ui/FAQList";
+import { CallToAction } from "@/components/ui/CallToAction";
 
 const faqs = [
   {
@@ -28,18 +24,19 @@ const faqs = [
 ];
 
 export default async function ProjectsPage() {
-  const [projects, chapters, volunteerCounts, doneProjectCount] =
-    await Promise.all([
-      getProjects(),
-      getChapters(),
-      getVolunteerCounts(),
-      getDoneProjectCount(),
-    ]);
+  const projects = await getProjects();
+  const doneProjects = projects.filter((p) => p.status === "Done");
+
+  const uniquePartners = new Set(doneProjects.map((p) => p.partner)).size;
+  const totalSemesters = doneProjects.reduce((sum, p) => {
+    const terms = p.duration ? p.duration.split(",").filter(Boolean).length : 0;
+    return sum + (terms || 1);
+  }, 0);
 
   const stats = [
-    { label: "Projects completed", value: doneProjectCount },
-    { label: "Active chapters", value: chapters.length },
-    { label: "Total volunteers", value: volunteerCounts.total },
+    { label: "Projects completed", value: doneProjects.length },
+    { label: "Partners served", value: uniquePartners },
+    { label: "Semesters of work", value: totalSemesters },
   ];
 
   return (
@@ -60,6 +57,13 @@ export default async function ProjectsPage() {
       </section>
 
       <FAQList items={faqs} />
+
+      <CallToAction
+        heading="Have a project idea?"
+        buttonText="Become a partner"
+        href="/nonprofits"
+        color="bg-purple-100"
+      />
     </>
   );
 }

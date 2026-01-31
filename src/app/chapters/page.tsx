@@ -1,7 +1,8 @@
-import { getChapters } from "@/lib/services/notion";
+import { getChapters, getVolunteerCounts } from "@/lib/services/notion";
 import { ChaptersDataTable } from "@/components/ui/ChaptersDataTable";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { PageIntro } from "@/components/ui/PageIntro";
+import { StatBar } from "@/components/ui/StatBar";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 
@@ -51,7 +52,16 @@ const faqs = [
 ];
 
 export default async function ChaptersPage() {
-  const chapters = await getChapters();
+  const [chapters, volunteerCounts] = await Promise.all([
+    getChapters(),
+    getVolunteerCounts(),
+  ]);
+
+  const stats = [
+    { label: "Active chapters", value: chapters.length },
+    { label: "Total volunteers", value: volunteerCounts.total },
+    { label: "Active volunteers", value: volunteerCounts.active },
+  ];
 
   return (
     <>
@@ -62,6 +72,8 @@ export default async function ChaptersPage() {
         heading="Chapters"
         description="Hack4Impact operates through student-led chapters at universities across the country. Each chapter partners with local nonprofits to build software that serves their communities."
       />
+
+      <StatBar stats={stats} />
 
       {/* Data Table */}
       <section className="p-8 md:p-12">
