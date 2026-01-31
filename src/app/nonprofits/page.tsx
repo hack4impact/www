@@ -4,8 +4,8 @@ import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
-import { getFAQs, getProcess } from "@/lib/contentful/api";
-import { Heart, OpenBook, Suitcase } from "iconoir-react";
+import { getFAQs, getInfoCards, getProcess } from "@/lib/contentful/api";
+import { SmartphoneDevice, StatsReport, WebWindow } from "iconoir-react";
 
 const testimonials = [
   {
@@ -30,31 +30,17 @@ const testimonials = [
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
-const buildTypes = [
-  {
-    icon: <Heart {...iconProps} />,
-    title: "Web Applications",
-    description:
-      "Full-stack web apps tailored to your workflows — dashboards, portals, intake systems, and more.",
-  },
-  {
-    icon: <OpenBook {...iconProps} />,
-    title: "Mobile Apps",
-    description:
-      "Cross-platform mobile applications that put your services directly in the hands of the people you serve.",
-  },
-  {
-    icon: <Suitcase {...iconProps} />,
-    title: "Data Dashboards",
-    description:
-      "Interactive visualizations and reporting tools that help you measure outcomes and tell your story with data.",
-  },
-];
+const buildsIcons = {
+  WebWindow: <WebWindow {...iconProps} />,
+  SmartphoneDevice: <SmartphoneDevice {...iconProps} />,
+  StatsReport: <StatsReport {...iconProps} />,
+};
 
 export default async function NonprofitsPage() {
-  const [faqs, nonprofitProcess] = await Promise.all([
+  const [faqs, nonprofitProcess, builds] = await Promise.all([
     getFAQs("Nonprofit Questions"),
     getProcess("Nonprofit Process"),
+    getInfoCards("Build Types"),
   ]);
 
   return (
@@ -67,7 +53,13 @@ export default async function NonprofitsPage() {
         gradient="from-blue-100 to-blue-200"
       />
 
-      <CardGrid heading="What we build" items={buildTypes} />
+      {builds && (
+        <CardGrid
+          heading="What we build"
+          items={builds.cards}
+          icons={buildsIcons}
+        />
+      )}
 
       {nonprofitProcess && (
         <NumberedSteps

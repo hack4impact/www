@@ -3,8 +3,8 @@ import { CardGrid } from "@/components/ui/CardGrid";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
-import { getFAQs } from "@/lib/contentful/api";
-import { Suitcase, OpenBook, Heart } from "iconoir-react";
+import { getFAQs, getInfoCards } from "@/lib/contentful/api";
+import { Puzzle, ChatBubbleQuestion, TaskList } from "iconoir-react";
 
 const testimonials = [
   {
@@ -29,29 +29,17 @@ const testimonials = [
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
-const contributions = [
-  {
-    icon: <Suitcase {...iconProps} />,
-    title: "Code Review",
-    description:
-      "Review pull requests and provide feedback on architecture, code quality, and best practices.",
-  },
-  {
-    icon: <OpenBook {...iconProps} />,
-    title: "Career Guidance",
-    description:
-      "Share your experience navigating the tech industry and help students prepare for internships and full-time roles.",
-  },
-  {
-    icon: <Heart {...iconProps} />,
-    title: "Project Advice",
-    description:
-      "Help teams make smart technical decisions, unblock tricky problems, and scope their work realistically.",
-  },
-];
+const tasksIcons = {
+  TaskList: <TaskList {...iconProps} />,
+  ChatBubbleQuestion: <ChatBubbleQuestion {...iconProps} />,
+  Puzzle: <Puzzle {...iconProps} />,
+};
 
 export default async function MentorsPage() {
-  const faqs = await getFAQs("Mentor Questions");
+  const [faqs, tasks] = await Promise.all([
+    getFAQs("Mentor Questions"),
+    getInfoCards("Mentor Tasks"),
+  ]);
 
   return (
     <>
@@ -63,7 +51,13 @@ export default async function MentorsPage() {
         gradient="from-purple-100 to-purple-200"
       />
 
-      <CardGrid heading="What mentors do" items={contributions} />
+      {tasks && (
+        <CardGrid
+          heading="What mentors do"
+          items={tasks.cards}
+          icons={tasksIcons}
+        />
+      )}
 
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />
