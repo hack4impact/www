@@ -10,8 +10,7 @@ import { notion, PROGRAMS_DATA_SOURCE_ID, PROJECTS_DATA_SOURCE_ID, PARTNERS_DATA
 // Featured project slug for the home page
 export const FEATURED_PROJECT_SLUG = "whistleblower-database"; // Set to a project slug to feature it
 
-// --- Paginated fetch helper ---
-
+// Paginates through a Notion data source, collecting all results
 async function fetchAllPages(dataSourceId: string): Promise<any[]> {
   const allResults: any[] = [];
   let cursor: string | undefined;
@@ -28,8 +27,7 @@ async function fetchAllPages(dataSourceId: string): Promise<any[]> {
   return allResults;
 }
 
-// --- Raw fetch functions ---
-
+// Raw fetch functions — each maps Notion pages to domain objects
 async function fetchPrograms() {
   try {
     const results = await fetchAllPages(PROGRAMS_DATA_SOURCE_ID);
@@ -86,8 +84,7 @@ async function fetchTerms() {
   }
 }
 
-// --- Cached versions (revalidate every hour) ---
-
+// Cached fetchers — revalidate hourly (terms daily)
 const getCachedPrograms = unstable_cache(fetchPrograms, ["notion-programs"], {
   revalidate: 3600,
 });
@@ -106,8 +103,7 @@ const getCachedTerms = unstable_cache(fetchTerms, ["notion-terms"], {
   revalidate: 86400,
 });
 
-// --- Common data fetching ---
-
+// Fetches all cached data and builds ID→name lookup maps for relations
 async function getCommonData() {
   const [notionProjects, programs, notionPartners, volunteers, terms] =
     await Promise.all([
@@ -136,12 +132,13 @@ async function getCommonData() {
   };
 }
 
+// Resolves a raw Notion project into a typed Project with related names
 function processProject(
   project: any,
   programMap: Map<string, string>,
   partnerMap: Map<string, string>,
   volunteerMap: Map<string, string>,
-  termMap: Map<string, string>
+  termMap: Map<string, string>,
 ): Project {
   const slug = toSlug(project.name);
 
@@ -210,8 +207,7 @@ function processProject(
   } satisfies Project;
 }
 
-// --- Public API: Chapters (Programs) ---
-
+// Public API: Chapters (active programs with member/project counts)
 export async function getChapters(): Promise<Chapter[]> {
   const { programs, notionProjects, volunteers } = await getCommonData();
 
@@ -258,8 +254,7 @@ export async function getChapterBySlug(
   return chapters.find((c) => c.slug === slug);
 }
 
-// --- Public API: Projects ---
-
+// Public API: Projects (excludes leadership-type projects)
 export async function getProjects(): Promise<Project[]> {
   const { notionProjects, programMap, partnerMap, volunteerMap, termMap } =
     await getCommonData();
@@ -278,8 +273,7 @@ export async function getProjectBySlug(
   return projects.find((p) => p.slug === slug);
 }
 
-// --- Public API: Partners ---
-
+// Public API: Partners
 export async function getPartners(): Promise<Partner[]> {
   const { notionPartners, notionProjects } = await getCommonData();
 
@@ -314,8 +308,7 @@ export async function getPartnerBySlug(
   return partners.find((p) => p.slug === slug);
 }
 
-// --- Public API: Stat helpers ---
-
+// Public API: Aggregate stats
 export async function getVolunteerCounts(): Promise<{
   total: number;
   active: number;

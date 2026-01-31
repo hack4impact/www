@@ -6,6 +6,7 @@ if (!process.env.NOTION_API_KEY) {
 
 export const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
+// Notion Data Source IDs for each database
 export const PROGRAMS_DATA_SOURCE_ID = "27b197ab-f07b-80ab-999b-000bc1682f4f";
 export const PROJECTS_DATA_SOURCE_ID = "27b197ab-f07b-80cf-8d0e-000b8507cb8f";
 export const PARTNERS_DATA_SOURCE_ID = "27b197ab-f07b-80a4-8a5d-000b57c0e149";

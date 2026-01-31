@@ -102,7 +102,7 @@ export default async function AboutPage() {
             cells: [
               { text: m.name },
               { text: m.title },
-              { text: m.website ?? "", href: m.website ? m.website : undefined },
+              { text: m.website ?? "", href: m.website },
             ],
           }))}
         />

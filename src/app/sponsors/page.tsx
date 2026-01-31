@@ -5,26 +5,25 @@ import { StatBar } from "@/components/ui/StatBar";
 import { TeamTable } from "@/components/ui/TeamTable";
 import {
   getChapters,
-  getProjects,
   getPartners,
   getVolunteerCounts,
+  getDoneProjectCount,
 } from "@/lib/notion/api";
 import { getSponsorshipTiers } from "@/lib/contentful/api";
 import { Check } from "iconoir-react";
 
 async function getStats() {
-  const [chapters, projects, partners, volunteerCounts] = await Promise.all([
-    getChapters(),
-    getProjects(),
-    getPartners(),
-    getVolunteerCounts(),
-  ]);
-
-  const doneProjects = projects.filter((p) => p.status === "Done");
+  const [chapters, doneProjectCount, partners, volunteerCounts] =
+    await Promise.all([
+      getChapters(),
+      getDoneProjectCount(),
+      getPartners(),
+      getVolunteerCounts(),
+    ]);
 
   return [
     { value: volunteerCounts.active, label: "Active volunteers" },
-    { value: doneProjects.length, label: "Projects completed" },
+    { value: doneProjectCount, label: "Projects completed" },
     { value: partners.length, label: "Nonprofit partners" },
     { value: chapters.length, label: "University chapters" },
   ];
