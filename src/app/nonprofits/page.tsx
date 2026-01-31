@@ -4,6 +4,7 @@ import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
+import { getFAQs } from "@/lib/contentful/api";
 import { Heart, OpenBook, Suitcase } from "iconoir-react";
 
 const testimonials = [
@@ -83,35 +84,9 @@ const processSteps = [
   },
 ];
 
-const faqs = [
-  {
-    question: "How much does it cost?",
-    answer:
-      "Nothing. Hack4Impact provides its services pro bono. Our student developers volunteer their time as part of a service-learning experience.",
-  },
-  {
-    question: "How long does a project take?",
-    answer:
-      "Most projects run for one academic semester (about 12–14 weeks). Larger projects may span two semesters.",
-  },
-  {
-    question: "What is the time commitment for our team?",
-    answer:
-      "We ask for a point of contact who can meet with us for about an hour each week to provide feedback and answer questions.",
-  },
-  {
-    question: "Who owns the finished product?",
-    answer:
-      "You do. All code and assets are transferred to your organization at the end of the project.",
-  },
-  {
-    question: "What technologies do you use?",
-    answer:
-      "Our stack varies by project needs, but we commonly use React, Next.js, Node.js, Python, and PostgreSQL. We choose whatever best fits your requirements.",
-  },
-];
+export default async function NonprofitsPage() {
+  const faqs = await getFAQs("Nonprofit Questions");
 
-export default function NonprofitsPage() {
   return (
     <>
       <SplitHero

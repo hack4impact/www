@@ -2,11 +2,7 @@
 
 import { Collapsible } from "@base-ui/react/collapsible";
 import { Separator } from "@base-ui/react/separator";
-
-interface FAQ {
-  question: string;
-  answer: string;
-}
+import type { FAQ } from "@/lib/types/contentful";
 
 interface FAQListProps {
   heading?: string;

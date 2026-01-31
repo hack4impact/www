@@ -1,4 +1,4 @@
-import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier } from "@/lib/types/contentful";
+import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier, FAQ } from "@/lib/types/contentful";
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -59,4 +59,17 @@ export function mapSponsorshipTier(item: any): SponsorshipTier {
     cost: f.cost,
     benefits,
   };
+}
+
+// Maps a "Common Questions" entry (with linked question entries) to FAQ[]
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function mapQuestions(item: any): FAQ[] {
+  return (item.fields.questions ?? [])
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .map((q: any) => q.fields)
+    .filter(Boolean)
+    .map((f: { name: string; answer: string }) => ({
+      question: f.name,
+      answer: f.answer,
+    }));
 }

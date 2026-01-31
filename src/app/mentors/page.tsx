@@ -3,6 +3,7 @@ import { CardGrid } from "@/components/ui/CardGrid";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
+import { getFAQs } from "@/lib/contentful/api";
 import { Suitcase, OpenBook, Heart } from "iconoir-react";
 
 const testimonials = [
@@ -49,30 +50,9 @@ const contributions = [
   },
 ];
 
-const expectations = [
-  {
-    question: "How much time does it take?",
-    answer:
-      "A few hours per month. Most mentors join a weekly or biweekly check-in with their team and are available asynchronously for questions.",
-  },
-  {
-    question: "Do I need to be local?",
-    answer:
-      "No. Mentorship is remote-friendly. You can work with a chapter anywhere in the country.",
-  },
-  {
-    question: "What kind of background do I need?",
-    answer:
-      "Any professional experience in software engineering, product design, product management, or data science is valuable. You don't need to be a senior engineer — a few years of industry experience is plenty.",
-  },
-  {
-    question: "How are mentors matched to teams?",
-    answer:
-      "We match based on your skills, interests, and availability. You'll be paired with a project team whose tech stack and domain align with your expertise.",
-  },
-];
+export default async function MentorsPage() {
+  const faqs = await getFAQs("Mentor Questions");
 
-export default function MentorsPage() {
   return (
     <>
       <SplitHero
@@ -88,7 +68,7 @@ export default function MentorsPage() {
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />
 
-      <FAQList heading="What to expect" items={expectations} />
+      <FAQList heading="What to expect" items={faqs} />
 
       {/* Sign Up CTA */}
       <CallToAction

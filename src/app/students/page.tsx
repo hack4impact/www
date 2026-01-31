@@ -5,6 +5,7 @@ import { CardGrid } from "@/components/ui/CardGrid";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
+import { getFAQs } from "@/lib/contentful/api";
 import { Suitcase, Heart, OpenBook } from "iconoir-react";
 
 const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
@@ -63,30 +64,9 @@ const steps = [
   },
 ];
 
-const faqs = [
-  {
-    question: "Who can start a chapter?",
-    answer:
-      "Any current undergraduate or graduate student at an accredited university. You don't need to be a CS major — just passionate about tech and social good. Starting a chapter is a lot of work and we do ask for unique founder expertise or long-term committment.",
-  },
-  {
-    question: "What support does Hack4Impact provide?",
-    answer:
-      "We provide hands-on guidance and training for your founding team through our chapter establishment program. As a chapter, you will gain access to branding assets, operational playbooks, technical tools, fundraising capabilites, nonprofit outreach templates, and ongoing mentorship from central leadership and other chapter founders.",
-  },
-  {
-    question: "How long does it take to get started?",
-    answer:
-      "The application and approval process typically takes a few weeks. The chapter establishment program takes about a semester to finish. Most new chapters are ready to recruit members and take on their new projects within one semester.",
-  },
-  {
-    question: "Are there any costs?",
-    answer:
-      "No. Hack4Impact is a volunteer-driven organization. There are no fees to start or run a chapter.",
-  },
-];
+export default async function StudentsPage() {
+  const faqs = await getFAQs("Student Questions");
 
-export default function StudentsPage() {
   return (
     <>
       <SplitHero

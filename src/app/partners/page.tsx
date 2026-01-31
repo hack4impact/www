@@ -1,30 +1,16 @@
 import { getPartners } from "@/lib/notion/api";
+import { getFAQs } from "@/lib/contentful/api";
 import { PartnersDataTable } from "@/components/ui/PartnersDataTable";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { StatBar } from "@/components/ui/StatBar";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 
-const faqs = [
-  {
-    question: "How do we apply to become a partner?",
-    answer:
-      "Organizations can apply through our website during our open application period each semester. We look for nonprofits with a clear technology need and a willingness to collaborate closely with a student team throughout the project.",
-  },
-  {
-    question: "What does the partnership process look like?",
-    answer:
-      "After selection, partners are matched with a chapter and student team. The process includes a discovery phase to define requirements, regular check-ins throughout the semester, and a final handoff with documentation and training on the delivered product.",
-  },
-  {
-    question: "Is there a cost to partner with Hack4Impact?",
-    answer:
-      "No. Our services are completely free for nonprofit partners. Our mission is to make technology accessible to organizations that are creating social good, regardless of their budget.",
-  },
-];
-
 export default async function PartnersPage() {
-  const partners = await getPartners();
+  const [partners, faqs] = await Promise.all([
+    getPartners(),
+    getFAQs("Partner Questions"),
+  ]);
 
   const uniqueSubjects = new Set(
     partners.flatMap((p) => p.subjects ?? []),

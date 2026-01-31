@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 import { SplitHero } from "@/components/ui/SplitHero";
 import { CardGrid } from "@/components/ui/CardGrid";
-import { TeamTable } from "@/components/ui/TeamTable";
+import { GridTable } from "@/components/ui/GridTable";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { getBoardTeamMembers, getValues } from "@/lib/contentful/api";
 import { Leaf, Compass, Accessibility } from "iconoir-react";
@@ -74,11 +74,11 @@ export default async function AboutPage() {
 
       {/* Team Sections */}
       <section className="px-8 md:px-12 py-16 md:py-24">
-        <TeamTable
+        <GridTable
           id="operations-team"
           heading="Operations Team"
           columns={["Name", "Title", "Contact"]}
-          members={operationsTeam.map((m) => ({
+          rows={operationsTeam.map((m) => ({
             cells: [
               { text: m.name },
               { text: m.title },
@@ -91,10 +91,10 @@ export default async function AboutPage() {
           className="mb-16"
         />
 
-        <TeamTable
+        <GridTable
           heading="Board of Directors"
           columns={["Name", "Title", "Contact"]}
-          members={boardOfDirectors.map((m) => ({
+          rows={boardOfDirectors.map((m) => ({
             cells: [
               { text: m.name },
               { text: m.title },
@@ -107,10 +107,10 @@ export default async function AboutPage() {
           className="mb-16"
         />
 
-        <TeamTable
+        <GridTable
           heading="Advisory Board"
           columns={["Name", "Title", "Website"]}
-          members={advisoryBoard.map((m) => ({
+          rows={advisoryBoard.map((m) => ({
             cells: [
               { text: m.name },
               { text: m.title },

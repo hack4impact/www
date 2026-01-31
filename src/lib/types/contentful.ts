@@ -32,3 +32,8 @@ export interface SponsorshipTier {
   cost: number;
   benefits: string[];
 }
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}

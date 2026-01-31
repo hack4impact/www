@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache";
-import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier } from "@/lib/types/contentful";
+import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier, FAQ } from "@/lib/types/contentful";
 import { contentfulClient } from "./client";
-import { mapEntry, mapBoardTeamMember, mapValue, mapSponsorshipTier } from "./mappers";
+import { mapEntry, mapBoardTeamMember, mapValue, mapSponsorshipTier, mapQuestions } from "./mappers";
 
 async function fetchJournalEntries(): Promise<JournalEntry[]> {
   try {
@@ -104,3 +104,25 @@ export async function getJournalEntryBySlug(
   const entries = await getJournalEntries();
   return entries.find((e) => e.slug === slug);
 }
+
+// Fetches a "Common Questions" entry by name (e.g. "Partner Questions")
+async function fetchFAQs(name: string): Promise<FAQ[]> {
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: "questions",
+      "fields.name": name,
+      include: 2,
+      limit: 1,
+    });
+    const item = response.items[0];
+    if (!item) return [];
+    return mapQuestions(item);
+  } catch (error) {
+    console.error(`Failed to fetch FAQs "${name}" from Contentful:`, error);
+    return [];
+  }
+}
+
+export const getFAQs = unstable_cache(fetchFAQs, ["contentful-faqs"], {
+  revalidate: 3600,
+});

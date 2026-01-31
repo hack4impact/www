@@ -1,30 +1,16 @@
 import { getProjects } from "@/lib/notion/api";
+import { getFAQs } from "@/lib/contentful/api";
 import { ProjectsDataTable } from "@/components/ui/ProjectsDataTable";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { StatBar } from "@/components/ui/StatBar";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 
-const faqs = [
-  {
-    question: "How long does a typical project last?",
-    answer:
-      "Most projects run for one semester (around 14 weeks), though some larger engagements span two semesters. Teams work in agile sprints throughout the term, culminating in a final handoff to the partner organization.",
-  },
-  {
-    question: "What technologies do teams use?",
-    answer:
-      "Our teams choose the best tools for each project. Common choices include React, Next.js, Node.js, Python, and various cloud platforms. Technology decisions are made collaboratively between the team and the partner based on project requirements.",
-  },
-  {
-    question: "How are projects selected?",
-    answer:
-      "Nonprofit partners apply through our partnership process each semester. Projects are selected based on feasibility, social impact potential, and alignment with our chapter's capabilities. We prioritize organizations that serve underrepresented communities.",
-  },
-];
-
 export default async function ProjectsPage() {
-  const projects = await getProjects();
+  const [projects, faqs] = await Promise.all([
+    getProjects(),
+    getFAQs("Project Questions"),
+  ]);
   const doneProjects = projects.filter((p) => p.status === "Done");
 
   const uniquePartners = new Set(doneProjects.map((p) => p.partner)).size;

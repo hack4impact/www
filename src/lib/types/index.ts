@@ -6,5 +6,6 @@ export type {
   BoardTeamMember,
   Value,
   SponsorshipTier,
+  FAQ,
 } from "./contentful";
 export type { Stat } from "./stat";

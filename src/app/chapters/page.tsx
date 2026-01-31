@@ -1,4 +1,5 @@
 import { getChapters, getVolunteerCounts } from "@/lib/notion/api";
+import { getFAQs } from "@/lib/contentful/api";
 import { ChaptersDataTable } from "@/components/ui/ChaptersDataTable";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { PageIntro } from "@/components/ui/PageIntro";
@@ -36,28 +37,11 @@ const roles = [
   },
 ];
 
-const faqs = [
-  {
-    question: "Do I need prior experience?",
-    answer:
-      "It depends on the chapter and role. Most chapters look for some programming coursework for developers, but designers and PMs come from varied backgrounds. Check with your local chapter for specifics.",
-  },
-  {
-    question: "How much time does it take?",
-    answer:
-      "Expect around 5–10 hours per week during the semester, including team meetings, development time, and partner check-ins.",
-  },
-  {
-    question: "When can I apply?",
-    answer:
-      "Most chapters recruit at the start of each semester (fall and spring). Applications typically open a few weeks before the semester begins.",
-  },
-];
-
 export default async function ChaptersPage() {
-  const [chapters, volunteerCounts] = await Promise.all([
+  const [chapters, volunteerCounts, faqs] = await Promise.all([
     getChapters(),
     getVolunteerCounts(),
+    getFAQs("Chapter Questions"),
   ]);
 
   const stats = [

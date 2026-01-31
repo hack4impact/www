@@ -5,4 +5,5 @@ export {
   getValues,
   getSponsorshipTiers,
   getAssetUrl,
+  getFAQs,
 } from "./api";

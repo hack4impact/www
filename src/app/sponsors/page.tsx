@@ -2,7 +2,7 @@ import { Separator } from "@base-ui/react/separator";
 import { SplitHero } from "@/components/ui/SplitHero";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { StatBar } from "@/components/ui/StatBar";
-import { TeamTable } from "@/components/ui/TeamTable";
+import { GridTable } from "@/components/ui/GridTable";
 import {
   getChapters,
   getPartners,
@@ -101,11 +101,15 @@ export default async function SponsorsPage() {
 
       {/* Sponsorship Tiers Table */}
       <section className="px-8 md:px-12 py-16 md:py-24">
-        <TeamTable
-          heading="Sponsorship tiers"
-          columns={["Benefits", ...tiers.map((t) => t.name)]}
-          members={[costRow, ...benefitRows]}
-        />
+        <div className="max-w-3xl mx-auto">
+          <GridTable
+            heading="Sponsorship tiers"
+            headingClassName="text-center"
+            columns={["Benefits", ...tiers.map((t) => t.name)]}
+            rows={[costRow, ...benefitRows]}
+            centerAfterFirst
+          />
+        </div>
       </section>
 
       {/* Where Your Money Goes */}
