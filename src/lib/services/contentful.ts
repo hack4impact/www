@@ -153,6 +153,29 @@ export const getSponsorshipTiers = unstable_cache(
   { revalidate: 3600 },
 );
 
+// --- Media Assets ---
+
+async function fetchAssetUrl(title: string): Promise<string | null> {
+  try {
+    const response = await client.getAssets({
+      "fields.title": title,
+      limit: 1,
+    });
+    const file = response.items[0]?.fields?.file;
+    if (!file?.url) return null;
+    return `https:${file.url}`;
+  } catch (error) {
+    console.error(`Failed to fetch asset "${title}" from Contentful:`, error);
+    return null;
+  }
+}
+
+export const getAssetUrl = unstable_cache(
+  fetchAssetUrl,
+  ["contentful-asset"],
+  { revalidate: 3600 },
+);
+
 // --- Journal ---
 
 export const getJournalEntries = unstable_cache(

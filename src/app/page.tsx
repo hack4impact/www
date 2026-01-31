@@ -4,7 +4,8 @@ import { Heart, OpenBook, Suitcase } from "iconoir-react";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { getProjects, FEATURED_PROJECT_SLUG } from "@/lib/services/notion";
-import { getJournalEntries } from "@/lib/services/contentful";
+import { getJournalEntries, getAssetUrl } from "@/lib/services/contentful";
+import Image from "next/image";
 
 const processSteps = [
   {
@@ -40,9 +41,10 @@ const processSteps = [
 ];
 
 export default async function HomePage() {
-  const [projects, journalEntries] = await Promise.all([
+  const [projects, journalEntries, heroImageUrl] = await Promise.all([
     getProjects(),
     getJournalEntries(),
+    getAssetUrl("halftone_upenn_chapter"),
   ]);
   const featuredArticles = journalEntries.slice(0, 3);
   const featuredProject =
@@ -81,7 +83,18 @@ export default async function HomePage() {
 
         {/* Gradient block below hero */}
         <div className="relative mt-8 flex justify-center px-8">
-          <div className="w-full max-w-[800px] aspect-[8/5] bg-gradient-to-br from-blue-200 to-green-100" />
+          {heroImageUrl ? (
+            <div className="relative w-full max-w-[800px] aspect-[8/5]">
+              <Image
+                fill
+                className="object-cover"
+                src={heroImageUrl}
+                alt="A group photo of students from the UPenn chapter"
+              />
+            </div>
+          ) : (
+            <div className="w-full max-w-[800px] aspect-[8/5] bg-gradient-to-br from-blue-200 to-green-100" />
+          )}
         </div>
       </section>
 
@@ -107,24 +120,50 @@ export default async function HomePage() {
               <Heart width={64} height={64} strokeWidth={1} />
             </div>
             <h3 className="text-xl font-sans mb-2">Non-Profits</h3>
-            <p className="text-base font-serif mb-4">We build custom software solutions for nonprofit organizations, helping them better serve their communities and amplify their impact.</p>
-            <Link href="/nonprofits" className="mt-auto font-mono text-sm hover:underline">Learn more &rarr;</Link>
+            <p className="text-base font-serif mb-4">
+              We build custom software solutions for nonprofit organizations,
+              helping them better serve their communities and amplify their
+              impact.
+            </p>
+            <Link
+              href="/nonprofits"
+              className="mt-auto font-mono text-sm hover:underline"
+            >
+              Learn more &rarr;
+            </Link>
           </div>
           <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
               <OpenBook width={64} height={64} strokeWidth={1} />
             </div>
             <h3 className="text-xl font-sans mb-2">Students</h3>
-            <p className="text-base font-serif mb-4">We provide community, education, and service-learning opportunities for students to develop real-world skills while making a difference.</p>
-            <Link href="/students" className="mt-auto font-mono text-sm hover:underline">Learn more &rarr;</Link>
+            <p className="text-base font-serif mb-4">
+              We provide community, education, and service-learning
+              opportunities for students to develop real-world skills while
+              making a difference.
+            </p>
+            <Link
+              href="/students"
+              className="mt-auto font-mono text-sm hover:underline"
+            >
+              Learn more &rarr;
+            </Link>
           </div>
           <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
               <Suitcase width={64} height={64} strokeWidth={1} />
             </div>
             <h3 className="text-xl font-sans mb-2">Professionals</h3>
-            <p className="text-base font-serif mb-4">Industry professionals mentor our students, sharing expertise and guiding the next generation of socially-conscious technologists.</p>
-            <Link href="/mentors" className="mt-auto font-mono text-sm hover:underline">Learn more &rarr;</Link>
+            <p className="text-base font-serif mb-4">
+              Industry professionals mentor our students, sharing expertise and
+              guiding the next generation of socially-conscious technologists.
+            </p>
+            <Link
+              href="/mentors"
+              className="mt-auto font-mono text-sm hover:underline"
+            >
+              Learn more &rarr;
+            </Link>
           </div>
         </div>
       </section>
@@ -137,11 +176,14 @@ export default async function HomePage() {
 
         <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">
           <blockquote className="font-sans text-2xl md:text-3xl">
-            &ldquo;...the kind of passion for socially-minded engineering our industry desperately needs.&rdquo;
+            &ldquo;...the kind of passion for socially-minded engineering our
+            industry desperately needs.&rdquo;
           </blockquote>
           <div className="mt-6 md:mt-8">
             <p className="font-sans text-lg">Javid Fathi</p>
-            <p className="font-serif text-gray-600">Software Engineer Lead at Microsoft</p>
+            <p className="font-serif text-gray-600">
+              Software Engineer Lead at Microsoft
+            </p>
           </div>
         </div>
       </section>
@@ -178,15 +220,23 @@ export default async function HomePage() {
         </h2>
         <div className="max-w-2xl mx-auto divide-y divide-gray-200 border-y border-gray-200">
           {featuredArticles.map((entry, i) => (
-            <Link key={entry.id} href={`/journal/${entry.slug}`} className="block">
+            <Link
+              key={entry.id}
+              href={`/journal/${entry.slug}`}
+              className="block"
+            >
               <div className="py-6 flex gap-6 items-center">
-                <div className={`w-48 h-28 shrink-0 bg-gradient-to-br ${
-                  i === 0
-                    ? "from-orange-100 to-pink-200"
-                    : "from-purple-100 to-blue-200"
-                }`} />
+                <div
+                  className={`w-48 h-28 shrink-0 bg-gradient-to-br ${
+                    i === 0
+                      ? "from-orange-100 to-pink-200"
+                      : "from-purple-100 to-blue-200"
+                  }`}
+                />
                 <div className="min-w-0">
-                  <h3 className="font-sans text-lg mb-1 truncate">{entry.title}</h3>
+                  <h3 className="font-sans text-lg mb-1 truncate">
+                    {entry.title}
+                  </h3>
                   <div className="flex items-center gap-2 text-sm font-serif text-gray-600">
                     <span>{entry.tag}</span>
                     <span className="text-gray-400">&middot;</span>
