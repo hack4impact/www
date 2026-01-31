@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Client } from "@notionhq/client";
 import { unstable_cache } from "next/cache";
 import { mapPartner, mapProgram, mapProject, mapVolunteer } from "../mappers";
@@ -309,4 +310,22 @@ export async function getPartnerBySlug(
 ): Promise<Partner | undefined> {
   const partners = await getPartners();
   return partners.find((p) => p.slug === slug);
+}
+
+// --- Public API: Stat helpers ---
+
+export async function getVolunteerCounts(): Promise<{
+  total: number;
+  active: number;
+}> {
+  const volunteers = await getCachedVolunteers();
+  const active = volunteers.filter(
+    (v: any) => v.status === "Active",
+  ).length;
+  return { total: volunteers.length, active };
+}
+
+export async function getDoneProjectCount(): Promise<number> {
+  const projects = await getCachedProjects();
+  return projects.filter((p: any) => p.status === "Done").length;
 }

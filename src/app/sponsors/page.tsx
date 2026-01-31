@@ -1,33 +1,87 @@
 import { Separator } from "@base-ui/react/separator";
 import { SplitHero } from "@/components/ui/SplitHero";
-import { CardGrid } from "@/components/ui/CardGrid";
 import { CallToAction } from "@/components/ui/CallToAction";
+import { StatBar } from "@/components/ui/StatBar";
+import { getChapters, getProjects, getPartners } from "@/lib/services/notion";
 
-const stats = [
-  { value: "500+", label: "Students supported" },
-  { value: "80+", label: "Projects shipped" },
-  { value: "50+", label: "Nonprofit partners" },
-  { value: "13", label: "University chapters" },
-];
+async function getStats() {
+  const [chapters, projects, partners] = await Promise.all([
+    getChapters(),
+    getProjects(),
+    getPartners(),
+  ]);
 
-const tiers = [
+  // Calculate unique student count from projects (rough estimate based on team members)
+  const studentCount = projects.reduce((acc, project) => acc + project.team.length, 0);
+
+  return [
+    { value: studentCount.toString(), label: "Students supported" },
+    { value: projects.length.toString(), label: "Projects shipped" },
+    { value: partners.length.toString(), label: "Nonprofit partners" },
+    { value: chapters.length.toString(), label: "University chapters" },
+  ];
+}
+
+const sponsorshipTiers = [
   {
-    icon: "/icons/sustain.svg",
-    title: "Community",
-    description:
-      "Logo on our website, shout-outs on social media, and a presence at chapter events. A great way to show your support.",
+    benefit: "Annual Contribution",
+    community: "$5,000",
+    partner: "$15,000",
+    champion: "$30,000+",
   },
   {
-    icon: "/icons/ethics.svg",
-    title: "Partner",
-    description:
-      "Everything in Community, plus access to our talent network for recruiting, a featured sponsor spotlight in our journal, and priority mentorship matching.",
+    benefit: "Logo on Website",
+    community: "✓",
+    partner: "✓",
+    champion: "✓",
   },
   {
-    icon: "/icons/access.svg",
-    title: "Champion",
-    description:
-      "Everything in Partner, plus co-branded events, keynote opportunities at our national showcase, and direct input on strategic initiatives.",
+    benefit: "Social Media Recognition",
+    community: "✓",
+    partner: "✓",
+    champion: "✓",
+  },
+  {
+    benefit: "Presence at Chapter Events",
+    community: "✓",
+    partner: "✓",
+    champion: "✓",
+  },
+  {
+    benefit: "Access to Talent Network",
+    community: "",
+    partner: "✓",
+    champion: "✓",
+  },
+  {
+    benefit: "Featured Journal Spotlight",
+    community: "",
+    partner: "✓",
+    champion: "✓",
+  },
+  {
+    benefit: "Priority Mentorship Matching",
+    community: "",
+    partner: "✓",
+    champion: "✓",
+  },
+  {
+    benefit: "Co-Branded Events",
+    community: "",
+    partner: "",
+    champion: "✓",
+  },
+  {
+    benefit: "Keynote Speaking Opportunities",
+    community: "",
+    partner: "",
+    champion: "✓",
+  },
+  {
+    benefit: "Strategic Initiative Input",
+    community: "",
+    partner: "",
+    champion: "✓",
   },
 ];
 
@@ -54,7 +108,9 @@ const fundingAreas = [
   },
 ];
 
-export default function SponsorsPage() {
+export default async function SponsorsPage() {
+  const stats = await getStats();
+
   return (
     <>
       <SplitHero
@@ -65,20 +121,57 @@ export default function SponsorsPage() {
         gradient="from-orange-100 to-orange-200"
       />
 
-      {/* Impact Numbers */}
-      <section className="px-8 md:px-12 py-16 md:py-24">
-        <h2 className="text-3xl font-sans mb-12 text-center">Our impact</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-          {stats.map((stat) => (
-            <div key={stat.label}>
-              <p className="text-4xl md:text-5xl font-sans">{stat.value}</p>
-              <p className="mt-2 font-serif text-gray-600">{stat.label}</p>
-            </div>
-          ))}
+      <StatBar heading="Our impact" stats={stats} />
+
+      {/* Sponsorship Tiers Table */}
+      <section className="px-8 md:px-12 py-16 md:py-24 bg-gray-50">
+        <h2 className="text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center">
+          Sponsorship tiers
+        </h2>
+        <div className="max-w-5xl mx-auto overflow-x-auto">
+          <table className="w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-gray-100 border-b border-gray-200">
+                <th className="px-6 py-4 text-left font-sans text-sm md:text-base">
+                  Benefits
+                </th>
+                <th className="px-6 py-4 text-center font-sans text-sm md:text-base bg-orange-50">
+                  Community
+                </th>
+                <th className="px-6 py-4 text-center font-sans text-sm md:text-base bg-orange-100">
+                  Partner
+                </th>
+                <th className="px-6 py-4 text-center font-sans text-sm md:text-base bg-orange-200">
+                  Champion
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {sponsorshipTiers.map((tier, index) => (
+                <tr
+                  key={tier.benefit}
+                  className={`border-b border-gray-200 ${
+                    index === 0 ? "font-semibold bg-gray-50" : ""
+                  }`}
+                >
+                  <td className="px-6 py-4 font-serif text-sm md:text-base">
+                    {tier.benefit}
+                  </td>
+                  <td className="px-6 py-4 text-center font-serif text-sm md:text-base bg-orange-50/30">
+                    {tier.community}
+                  </td>
+                  <td className="px-6 py-4 text-center font-serif text-sm md:text-base bg-orange-100/30">
+                    {tier.partner}
+                  </td>
+                  <td className="px-6 py-4 text-center font-serif text-sm md:text-base bg-orange-200/30">
+                    {tier.champion}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
-
-      <CardGrid heading="Sponsorship tiers" items={tiers} />
 
       {/* Where Your Money Goes */}
       <section className="px-8 md:px-12 py-16 md:py-24">

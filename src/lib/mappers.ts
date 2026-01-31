@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const NotionUtils = {
   getText: (prop: any) =>
     prop?.title?.[0]?.plain_text || prop?.rich_text?.[0]?.plain_text || "",

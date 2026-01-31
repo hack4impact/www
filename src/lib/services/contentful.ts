@@ -45,6 +45,7 @@ function formatDate(iso: string): string {
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapEntry(item: any): JournalEntry {
   const f = item.fields;
   return {
@@ -74,25 +75,9 @@ async function fetchJournalEntries(): Promise<JournalEntry[]> {
   }
 }
 
-async function fetchJournalEntryBySlug(
-  slug: string,
-): Promise<JournalEntry | undefined> {
-  try {
-    const response = await client.getEntries({
-      content_type: "journalEntry",
-      "fields.slug": slug,
-      limit: 1,
-    });
-    if (response.items.length === 0) return undefined;
-    return mapEntry(response.items[0]);
-  } catch (error) {
-    console.error("Failed to fetch journal entry from Contentful:", error);
-    return undefined;
-  }
-}
-
 // --- Board & Team ---
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapBoardTeamMember(item: any): BoardTeamMember {
   const f = item.fields;
   return {
