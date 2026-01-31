@@ -1,7 +1,23 @@
 import { unstable_cache } from "next/cache";
-import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier, FAQ, ContentfulProcess } from "@/lib/types/contentful";
+import type {
+  JournalEntry,
+  BoardTeamMember,
+  Value,
+  SponsorshipTier,
+  FAQ,
+  ContentfulProcess,
+  ContentfulInfoCards,
+} from "@/lib/types/contentful";
 import { contentfulClient } from "./client";
-import { mapEntry, mapBoardTeamMember, mapValue, mapSponsorshipTier, mapQuestions, mapProcess } from "./mappers";
+import {
+  mapEntry,
+  mapBoardTeamMember,
+  mapValue,
+  mapSponsorshipTier,
+  mapQuestions,
+  mapProcess,
+  mapInfoCards,
+} from "./mappers";
 
 async function fetchJournalEntries(): Promise<JournalEntry[]> {
   try {
@@ -34,22 +50,6 @@ export const getBoardTeamMembers = unstable_cache(
   ["contentful-board-team"],
   { revalidate: 3600 },
 );
-
-async function fetchValues(): Promise<Value[]> {
-  try {
-    const response = await contentfulClient.getEntries({
-      content_type: "values",
-    });
-    return response.items.map(mapValue);
-  } catch (error) {
-    console.error("Failed to fetch values from Contentful:", error);
-    return [];
-  }
-}
-
-export const getValues = unstable_cache(fetchValues, ["contentful-values"], {
-  revalidate: 3600,
-});
 
 async function fetchSponsorshipTiers(): Promise<SponsorshipTier[]> {
   try {
@@ -86,11 +86,9 @@ async function fetchAssetUrl(title: string): Promise<string | null> {
   }
 }
 
-export const getAssetUrl = unstable_cache(
-  fetchAssetUrl,
-  ["contentful-asset"],
-  { revalidate: 3600 },
-);
+export const getAssetUrl = unstable_cache(fetchAssetUrl, ["contentful-asset"], {
+  revalidate: 3600,
+});
 
 export const getJournalEntries = unstable_cache(
   fetchJournalEntries,
@@ -148,3 +146,31 @@ async function fetchProcess(name: string): Promise<ContentfulProcess | null> {
 export const getProcess = unstable_cache(fetchProcess, ["contentful-process"], {
   revalidate: 3600,
 });
+
+async function fetchInfoCards(
+  name: string,
+): Promise<ContentfulInfoCards | null> {
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: "cards",
+      "fields.name": name,
+      include: 2,
+      limit: 1,
+    });
+
+    const item = response.items[0];
+    if (!item) return null;
+    return mapInfoCards(item);
+  } catch (error) {
+    console.error("Failed to fetch values from Contentful:", error);
+    return null;
+  }
+}
+
+export const getInfoCards = unstable_cache(
+  fetchInfoCards,
+  ["contentful-values"],
+  {
+    revalidate: 3600,
+  },
+);

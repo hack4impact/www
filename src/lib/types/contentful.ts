@@ -48,3 +48,14 @@ export interface ContentfulProcess {
   numbered: boolean;
   steps: ProcessStep[];
 }
+
+export interface InfoCard {
+  name: string;
+  description: string;
+  icon?: string;
+}
+
+export interface ContentfulInfoCards {
+  name: string;
+  cards: InfoCard[];
+}

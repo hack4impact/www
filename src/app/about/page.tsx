@@ -3,7 +3,7 @@ import { SplitHero } from "@/components/ui/SplitHero";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { GridTable } from "@/components/ui/GridTable";
 import { CallToAction } from "@/components/ui/CallToAction";
-import { getBoardTeamMembers, getValues } from "@/lib/contentful/api";
+import { getBoardTeamMembers, getInfoCards } from "@/lib/contentful/api";
 import { Leaf, Compass, Accessibility } from "iconoir-react";
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
@@ -15,16 +15,11 @@ const iconMap: Record<string, ReactNode> = {
 };
 
 export default async function AboutPage() {
-  const [members, contentfulValues] = await Promise.all([
+  const [members, values] = await Promise.all([
     getBoardTeamMembers(),
-    getValues(),
+    getInfoCards("Values"),
   ]);
 
-  const values = contentfulValues.map((v) => ({
-    title: v.name,
-    description: v.description,
-    icon: iconMap[v.icon],
-  }));
   const opsOrder = ["Khoa", "Govind", "Brian", "Sophia"];
   const operationsTeam = members
     .filter((m) => m.team === "Operations Team")
@@ -51,7 +46,9 @@ export default async function AboutPage() {
         gradient="from-blue-100 to-green-200"
       />
 
-      <CardGrid heading="Our values" items={values} />
+      {values && (
+        <CardGrid heading="Our values" icons={iconMap} items={values?.cards} />
+      )}
 
       <section className="grid grid-cols-1 lg:grid-cols-2">
         <div className="px-8 lg:px-0 lg:pl-8 py-8 lg:py-12">
