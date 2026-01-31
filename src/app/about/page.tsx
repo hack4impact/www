@@ -8,7 +8,7 @@ import { Leaf, Compass, Accessibility } from "iconoir-react";
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
-const iconMap: Record<string, ReactNode> = {
+const valuesIcons: Record<string, ReactNode> = {
   Leaf: <Leaf {...iconProps} />,
   Compass: <Compass {...iconProps} />,
   Accessibility: <Accessibility {...iconProps} />,
@@ -47,7 +47,11 @@ export default async function AboutPage() {
       />
 
       {values && (
-        <CardGrid heading="Our values" icons={iconMap} items={values?.cards} />
+        <CardGrid
+          heading="Our values"
+          icons={valuesIcons}
+          items={values.cards}
+        />
       )}
 
       <section className="grid grid-cols-1 lg:grid-cols-2">

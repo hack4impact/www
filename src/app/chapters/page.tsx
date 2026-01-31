@@ -1,5 +1,5 @@
 import { getChapters, getVolunteerCounts } from "@/lib/notion/api";
-import { getFAQs } from "@/lib/contentful/api";
+import { getFAQs, getInfoCards } from "@/lib/contentful/api";
 import { ChaptersDataTable } from "@/components/ui/ChaptersDataTable";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { PageIntro } from "@/components/ui/PageIntro";
@@ -10,37 +10,18 @@ import { Code, ColorFilter, Agile, KanbanBoard } from "iconoir-react";
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
-const roles = [
-  {
-    icon: <Code {...iconProps} />,
-    title: "Developer",
-    description:
-      "Build features, write tests, and ship code using modern frameworks. Most teams use React, Next.js, or React Native.",
-  },
-  {
-    icon: <ColorFilter {...iconProps} />,
-    title: "Designer",
-    description:
-      "Lead user research, create wireframes and prototypes, and ensure the final product is intuitive and accessible.",
-  },
-  {
-    icon: <Agile {...iconProps} />,
-    title: "Tech Lead",
-    description:
-      "Guide technical architecture, conduct code reviews, and mentor developers while keeping the project on track.",
-  },
-  {
-    icon: <KanbanBoard {...iconProps} />,
-    title: "Project Manager",
-    description:
-      "Coordinate between the team and the nonprofit partner, run standups, and manage scope and timelines.",
-  },
-];
+const rolesIcons = {
+  Code: <Code {...iconProps} />,
+  ColorFilter: <ColorFilter {...iconProps} />,
+  Agile: <Agile {...iconProps} />,
+  KanbanBoard: <KanbanBoard {...iconProps} />,
+};
 
 export default async function ChaptersPage() {
-  const [chapters, volunteerCounts, faqs] = await Promise.all([
+  const [chapters, volunteerCounts, roles, faqs] = await Promise.all([
     getChapters(),
     getVolunteerCounts(),
+    getInfoCards("Chapter Roles"),
     getFAQs("Chapter Questions"),
   ]);
 
@@ -67,12 +48,15 @@ export default async function ChaptersPage() {
         <ChaptersDataTable chapters={chapters} />
       </section>
 
-      <CardGrid
-        heading="Join a chapter"
-        description="Each chapter is made up of students filling different roles. Here are the positions you can apply for at your local chapter."
-        items={roles}
-        columns={4}
-      />
+      {roles && (
+        <CardGrid
+          heading="Join a chapter"
+          description="Each chapter is made up of students filling different roles. Here are the positions you can apply for at your local chapter."
+          icons={rolesIcons}
+          items={roles.cards}
+          columns={4}
+        />
+      )}
 
       <FAQList items={faqs} />
 
