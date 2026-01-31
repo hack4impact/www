@@ -8,7 +8,7 @@ import { CallToAction } from "@/components/ui/CallToAction";
 import { getFAQs, getProcess } from "@/lib/contentful/api";
 import { Suitcase, Heart, OpenBook } from "iconoir-react";
 
-const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
+const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
 const reasons = [
   {
