@@ -4,7 +4,7 @@ import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
-import { getFAQs } from "@/lib/contentful/api";
+import { getFAQs, getProcess } from "@/lib/contentful/api";
 import { Heart, OpenBook, Suitcase } from "iconoir-react";
 
 const testimonials = [
@@ -28,7 +28,7 @@ const testimonials = [
   },
 ];
 
-const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
+const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
 const buildTypes = [
   {
@@ -51,41 +51,11 @@ const buildTypes = [
   },
 ];
 
-const processSteps = [
-  {
-    number: "01",
-    title: "Apply",
-    description:
-      "Submit a brief application describing your organization and the challenge you're facing. We review applications on a rolling basis.",
-  },
-  {
-    number: "02",
-    title: "Scope",
-    description:
-      "Our team meets with you to understand your goals, users, and constraints. Together we define the project scope and success criteria.",
-  },
-  {
-    number: "03",
-    title: "Design",
-    description:
-      "We create wireframes and prototypes in close collaboration with your team, iterating on feedback until the solution fits your needs.",
-  },
-  {
-    number: "04",
-    title: "Build",
-    description:
-      "A student team develops your product over the course of a semester, with regular check-ins to keep you informed and involved.",
-  },
-  {
-    number: "05",
-    title: "Deliver",
-    description:
-      "We hand off the finished product with documentation and training so your team can manage it independently going forward.",
-  },
-];
-
 export default async function NonprofitsPage() {
-  const faqs = await getFAQs("Nonprofit Questions");
+  const [faqs, nonprofitProcess] = await Promise.all([
+    getFAQs("Nonprofit Questions"),
+    getProcess("Nonprofit Process"),
+  ]);
 
   return (
     <>
@@ -99,7 +69,13 @@ export default async function NonprofitsPage() {
 
       <CardGrid heading="What we build" items={buildTypes} />
 
-      <NumberedSteps heading="How it works" steps={processSteps} />
+      {nonprofitProcess && (
+        <NumberedSteps
+          heading={nonprofitProcess.title ?? "How it works"}
+          steps={nonprofitProcess.steps}
+          numbered={nonprofitProcess.numbered}
+        />
+      )}
 
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />

@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache";
-import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier, FAQ } from "@/lib/types/contentful";
+import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier, FAQ, ContentfulProcess } from "@/lib/types/contentful";
 import { contentfulClient } from "./client";
-import { mapEntry, mapBoardTeamMember, mapValue, mapSponsorshipTier, mapQuestions } from "./mappers";
+import { mapEntry, mapBoardTeamMember, mapValue, mapSponsorshipTier, mapQuestions, mapProcess } from "./mappers";
 
 async function fetchJournalEntries(): Promise<JournalEntry[]> {
   try {
@@ -124,5 +124,27 @@ async function fetchFAQs(name: string): Promise<FAQ[]> {
 }
 
 export const getFAQs = unstable_cache(fetchFAQs, ["contentful-faqs"], {
+  revalidate: 3600,
+});
+
+// Fetches a "Process" entry by name (e.g. "Main Process")
+async function fetchProcess(name: string): Promise<ContentfulProcess | null> {
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: "process",
+      "fields.name": name,
+      include: 2,
+      limit: 1,
+    });
+    const item = response.items[0];
+    if (!item) return null;
+    return mapProcess(item);
+  } catch (error) {
+    console.error(`Failed to fetch process "${name}" from Contentful:`, error);
+    return null;
+  }
+}
+
+export const getProcess = unstable_cache(fetchProcess, ["contentful-process"], {
   revalidate: 3600,
 });

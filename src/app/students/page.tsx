@@ -5,7 +5,7 @@ import { CardGrid } from "@/components/ui/CardGrid";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
-import { getFAQs } from "@/lib/contentful/api";
+import { getFAQs, getProcess } from "@/lib/contentful/api";
 import { Suitcase, Heart, OpenBook } from "iconoir-react";
 
 const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
@@ -31,41 +31,11 @@ const reasons = [
   },
 ];
 
-const steps = [
-  {
-    number: "01",
-    title: "Express Interest",
-    description:
-      "Reach out to us with a brief intro about yourself, your school, and why you want to start a chapter.",
-  },
-  {
-    number: "02",
-    title: "Apply",
-    description:
-      "Fill out a short application so we can learn more about your plans, your founding team, and your campus community.",
-  },
-  {
-    number: "03",
-    title: "Learn",
-    description:
-      "Join our chapter establishment program as part of a cohort of founders. We provide training, materials, guidance, and support as your founding team completes their first project.",
-  },
-  {
-    number: "04",
-    title: "Launch",
-    description:
-      "Upon success, you will become an official chapter. Recruit developers, designers, and project managers from your campus. Engage with the greater Hack for Impact community.We'll help you through the first year of being a chapter.",
-  },
-  {
-    number: "05",
-    title: "Grow",
-    description:
-      "Partner with local nonprofits, deliver more projects, engage with the larger Hack for Impact community, and establish your chapter as a lasting part of your campus.",
-  },
-];
-
 export default async function StudentsPage() {
-  const faqs = await getFAQs("Student Questions");
+  const [faqs, chapterProcess] = await Promise.all([
+    getFAQs("Student Questions"),
+    getProcess("Starting Chapter Process"),
+  ]);
 
   return (
     <>
@@ -79,11 +49,14 @@ export default async function StudentsPage() {
 
       <CardGrid heading="Why start a chapter" items={reasons} />
 
-      <NumberedSteps
-        heading="How to start a chapter"
-        steps={steps}
-        id="start"
-      />
+      {chapterProcess && (
+        <NumberedSteps
+          heading={chapterProcess.title ?? "How to start a chapter"}
+          steps={chapterProcess.steps}
+          numbered={chapterProcess.numbered}
+          id="start"
+        />
+      )}
 
       {/* Existing Chapters */}
       <section className="px-8 md:px-12 py-16 md:py-24 bg-gray-50 text-center">

@@ -1,4 +1,4 @@
-import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier, FAQ } from "@/lib/types/contentful";
+import type { JournalEntry, BoardTeamMember, Value, SponsorshipTier, FAQ, ContentfulProcess } from "@/lib/types/contentful";
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -72,4 +72,22 @@ export function mapQuestions(item: any): FAQ[] {
       question: f.name,
       answer: f.answer,
     }));
+}
+
+// Maps a "Process" entry (with linked step entries) to ContentfulProcess
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function mapProcess(item: any): ContentfulProcess {
+  const f = item.fields;
+  return {
+    title: f.title || undefined,
+    numbered: f.numbered ?? false,
+    steps: (f.steps ?? [])
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .map((s: any) => s.fields)
+      .filter(Boolean)
+      .map((s: { name: string; description: string }) => ({
+        name: s.name,
+        description: s.description,
+      })),
+  };
 }

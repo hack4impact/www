@@ -7,5 +7,7 @@ export type {
   Value,
   SponsorshipTier,
   FAQ,
+  ProcessStep,
+  ContentfulProcess,
 } from "./contentful";
 export type { Stat } from "./stat";

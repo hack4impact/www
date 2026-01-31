@@ -4,41 +4,12 @@ import { Heart, OpenBook, Suitcase } from "iconoir-react";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { getProjects, FEATURED_PROJECT_SLUG } from "@/lib/notion/api";
-import { getJournalEntries, getAssetUrl } from "@/lib/contentful/api";
+import {
+  getJournalEntries,
+  getAssetUrl,
+  getProcess,
+} from "@/lib/contentful/api";
 import Image from "next/image";
-
-const processSteps = [
-  {
-    number: "01",
-    title: "Source",
-    description:
-      "We connect with nonprofit organizations facing technical challenges that align with our mission. Partners apply through our network, and we evaluate projects based on community impact and feasibility.",
-  },
-  {
-    number: "02",
-    title: "Define",
-    description:
-      "Our team meets with your organization to understand your goals, users, and constraints. Together we scope the project, identify key requirements, and establish success metrics.",
-  },
-  {
-    number: "03",
-    title: "Design",
-    description:
-      "We create wireframes and prototypes in close collaboration with your team. User research and iterative feedback ensure the solution truly serves your community\u2019s needs.",
-  },
-  {
-    number: "04",
-    title: "Develop",
-    description:
-      "Student developers build your product using modern, maintainable technologies. Regular check-ins keep you informed and involved throughout the development process.",
-  },
-  {
-    number: "05",
-    title: "Maintain",
-    description:
-      "We deliver comprehensive documentation and training so your team can manage the product independently. Ongoing support options ensure long-term success.",
-  },
-];
 
 export default async function HomePage() {
   const [
@@ -47,13 +18,17 @@ export default async function HomePage() {
     heroImageUrl,
     calloutImageUrl,
     processImageUrl,
+    mainProcess,
   ] = await Promise.all([
     getProjects(),
     getJournalEntries(),
     getAssetUrl("halftone_upenn_chapter"),
     getAssetUrl("halftone_javid"),
     getAssetUrl("halftone_calpoly_outside"),
+    getProcess("Main Process"),
   ]);
+
+  const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
   const featuredArticles = journalEntries.slice(0, 3);
   const featuredProject =
@@ -100,21 +75,24 @@ export default async function HomePage() {
       </section>
 
       {/* Process Section */}
-      <NumberedSteps
-        heading="Our process for turning computer science into community science"
-        headingClassName="max-w-lg mx-auto"
-        steps={processSteps}
-        aside={
-          <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px] bg-gradient-to-br from-purple-100 to-blue-200">
-            <Image
-              fill
-              className="object-cover"
-              src={processImageUrl ? processImageUrl : ""}
-              alt="A group photo of students from the UPenn chapter"
-            />
-          </div>
-        }
-      />
+      {mainProcess && (
+        <NumberedSteps
+          heading="Our process for turning computer science into community science"
+          headingClassName="max-w-lg mx-auto"
+          steps={mainProcess.steps}
+          numbered={mainProcess.numbered}
+          aside={
+            <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px] bg-gradient-to-br from-purple-100 to-blue-200">
+              <Image
+                fill
+                className="object-cover"
+                src={processImageUrl ? processImageUrl : ""}
+                alt="A group photo of students from the UPenn chapter"
+              />
+            </div>
+          }
+        />
+      )}
 
       {/* Programs Section */}
       <section className="px-8 md:px-12 py-16 md:py-24">
@@ -125,7 +103,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
-              <Heart width={64} height={64} strokeWidth={1} />
+              <Heart {...iconProps} />
             </div>
             <h3 className="text-xl font-sans mb-2">Non-Profits</h3>
             <p className="text-base font-serif mb-4">
@@ -142,7 +120,7 @@ export default async function HomePage() {
           </div>
           <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
-              <OpenBook width={64} height={64} strokeWidth={1} />
+              <OpenBook {...iconProps} />
             </div>
             <h3 className="text-xl font-sans mb-2">Students</h3>
             <p className="text-base font-serif mb-4">
@@ -159,7 +137,7 @@ export default async function HomePage() {
           </div>
           <div className="flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg">
             <div className="mb-6">
-              <Suitcase width={64} height={64} strokeWidth={1} />
+              <Suitcase {...iconProps} />
             </div>
             <h3 className="text-xl font-sans mb-2">Professionals</h3>
             <p className="text-base font-serif mb-4">

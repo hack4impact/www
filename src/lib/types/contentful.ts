@@ -37,3 +37,14 @@ export interface FAQ {
   question: string;
   answer: string;
 }
+
+export interface ProcessStep {
+  name: string;
+  description: string;
+}
+
+export interface ContentfulProcess {
+  title?: string;
+  numbered: boolean;
+  steps: ProcessStep[];
+}

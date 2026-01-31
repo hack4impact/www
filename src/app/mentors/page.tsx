@@ -27,7 +27,7 @@ const testimonials = [
   },
 ];
 
-const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
+const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
 const contributions = [
   {
@@ -57,7 +57,7 @@ export default async function MentorsPage() {
     <>
       <SplitHero
         heading="Mentor with Hack4Impact"
-        description="Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student&apos;s career and a nonprofit&apos;s future."
+        description="Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student's career and a nonprofit's future."
         buttonText="Get involved"
         buttonHref="#sign-up"
         gradient="from-purple-100 to-purple-200"

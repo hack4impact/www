@@ -1,51 +1,67 @@
 import { ReactNode } from "react";
-
-interface Step {
-  number: string;
-  title: string;
-  description: string;
-}
+import type { ProcessStep } from "@/lib/types/contentful";
 
 interface NumberedStepsProps {
   heading: string;
-  steps: Step[];
+  steps: ProcessStep[];
+  /** Show step numbers (01, 02, ...) in the top-right corner */
+  numbered?: boolean;
   id?: string;
   aside?: ReactNode;
   headingClassName?: string;
 }
 
-function StepsList({ steps, stretch }: { steps: Step[]; stretch?: boolean }) {
+function StepsList({
+  steps,
+  numbered,
+  stretch,
+}: {
+  steps: ProcessStep[];
+  numbered: boolean;
+  stretch?: boolean;
+}) {
   return (
     <div
       className={`flex flex-col divide-y divide-gray-200 border-t border-gray-200${
         stretch ? " justify-between h-full" : ""
       }`}
     >
-      {steps.map((step) => (
+      {steps.map((step, i) => (
         <div
-          key={step.number}
+          key={step.name}
           className={`relative${
             stretch
               ? " flex-1 flex flex-col justify-center py-4"
               : " py-6"
           }`}
         >
-          <span
-            className={`absolute right-0 font-mono text-gray-400${
-              stretch ? " top-4" : " top-6"
-            }`}
-          >
-            {step.number}
-          </span>
-          <h3 className="text-lg font-sans mb-1">{step.title}</h3>
-          <p className="font-serif text-gray-600 pr-12">{step.description}</p>
+          {numbered && (
+            <span
+              className={`absolute right-0 font-mono text-gray-400${
+                stretch ? " top-4" : " top-6"
+              }`}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+          )}
+          <h3 className="text-lg font-sans mb-1">{step.name}</h3>
+          <p className={`font-serif text-gray-600${numbered ? " pr-12" : ""}`}>
+            {step.description}
+          </p>
         </div>
       ))}
     </div>
   );
 }
 
-export function NumberedSteps({ heading, steps, id, aside, headingClassName }: NumberedStepsProps) {
+export function NumberedSteps({
+  heading,
+  steps,
+  numbered = true,
+  id,
+  aside,
+  headingClassName,
+}: NumberedStepsProps) {
   return (
     <section
       id={id}
@@ -57,11 +73,11 @@ export function NumberedSteps({ heading, steps, id, aside, headingClassName }: N
       {aside ? (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {aside}
-          <StepsList steps={steps} stretch />
+          <StepsList steps={steps} numbered={numbered} stretch />
         </div>
       ) : (
         <div className="max-w-3xl mx-auto">
-          <StepsList steps={steps} />
+          <StepsList steps={steps} numbered={numbered} />
         </div>
       )}
     </section>

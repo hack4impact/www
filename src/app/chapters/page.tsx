@@ -8,7 +8,7 @@ import { FAQList } from "@/components/ui/FAQList";
 import { CallToAction } from "@/components/ui/CallToAction";
 import { Code, ColorFilter, Agile, KanbanBoard } from "iconoir-react";
 
-const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;
+const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
 
 const roles = [
   {
