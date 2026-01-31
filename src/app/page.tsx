@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/Button";
 import { Heart, OpenBook, Suitcase } from "iconoir-react";
 import { NumberedSteps } from "@/components/ui/NumberedSteps";
 import { CallToAction } from "@/components/ui/CallToAction";
-import { getProjects, FEATURED_PROJECT_SLUG } from "@/lib/services/notion";
-import { getJournalEntries, getAssetUrl } from "@/lib/services/contentful";
+import { getProjects, FEATURED_PROJECT_SLUG } from "@/lib/notion/api";
+import { getJournalEntries, getAssetUrl } from "@/lib/contentful/api";
 import Image from "next/image";
 
 const processSteps = [
@@ -41,11 +41,20 @@ const processSteps = [
 ];
 
 export default async function HomePage() {
-  const [projects, journalEntries, heroImageUrl] = await Promise.all([
+  const [
+    projects,
+    journalEntries,
+    heroImageUrl,
+    calloutImageUrl,
+    processImageUrl,
+  ] = await Promise.all([
     getProjects(),
     getJournalEntries(),
     getAssetUrl("halftone_upenn_chapter"),
+    getAssetUrl("halftone_javid"),
+    getAssetUrl("halftone_calpoly_outside"),
   ]);
+
   const featuredArticles = journalEntries.slice(0, 3);
   const featuredProject =
     (FEATURED_PROJECT_SLUG &&
@@ -61,12 +70,8 @@ export default async function HomePage() {
         {/* Content */}
         <div className="relative text-center pt-24 px-8">
           <h1 className="flex flex-col">
-            <span className="font-serif text-5xl md:text-7xl">
-              Code &amp; community
-            </span>
-            <span className="font-sans text-4xl md:text-6xl">
-              for the common good
-            </span>
+            <span className="font-serif text-5xl ">Code &amp; community</span>
+            <span className="font-sans text-4xl ">for the common good</span>
           </h1>
           <p className="mt-4 text-base md:text-lg max-w-2xl mx-auto">
             Committed to supporting nonprofits and social good initiatives, Hack
@@ -83,18 +88,14 @@ export default async function HomePage() {
 
         {/* Gradient block below hero */}
         <div className="relative mt-8 flex justify-center px-8">
-          {heroImageUrl ? (
-            <div className="relative w-full max-w-[800px] aspect-[8/5]">
-              <Image
-                fill
-                className="object-cover"
-                src={heroImageUrl}
-                alt="A group photo of students from the UPenn chapter"
-              />
-            </div>
-          ) : (
-            <div className="w-full max-w-[800px] aspect-[8/5] bg-gradient-to-br from-blue-200 to-green-100" />
-          )}
+          <div className="relative w-full max-w-[800px] aspect-[8/5] bg-gradient-to-br from-blue-200 to-green-100">
+            <Image
+              fill
+              className="object-cover"
+              src={heroImageUrl ? heroImageUrl : ""}
+              alt="A group photo of students from the UPenn chapter"
+            />
+          </div>
         </div>
       </section>
 
@@ -104,7 +105,14 @@ export default async function HomePage() {
         headingClassName="max-w-lg mx-auto"
         steps={processSteps}
         aside={
-          <div className="aspect-[4/3] lg:aspect-auto lg:min-h-[500px] bg-gradient-to-br from-purple-100 to-blue-200" />
+          <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px] bg-gradient-to-br from-purple-100 to-blue-200">
+            <Image
+              fill
+              className="object-cover"
+              src={processImageUrl ? processImageUrl : ""}
+              alt="A group photo of students from the UPenn chapter"
+            />
+          </div>
         }
       />
 
@@ -171,7 +179,14 @@ export default async function HomePage() {
       {/* Quote Callout Section */}
       <section className="grid grid-cols-1 lg:grid-cols-2">
         <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
-          <div className="aspect-[4/5] w-full bg-gradient-to-br from-green-100 to-purple-200" />
+          <div className="aspect-[4/5] w-full bg-gradient-to-br relative from-green-100 to-purple-200">
+            <Image
+              fill
+              className="object-cover"
+              src={calloutImageUrl ? calloutImageUrl : ""}
+              alt="A group photo of students from the UPenn chapter"
+            />
+          </div>
         </div>
 
         <div className="flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12">

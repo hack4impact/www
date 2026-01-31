@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Separator } from "@base-ui/react/separator";
-import { getJournalEntryBySlug } from "@/lib/services/contentful";
+import { getJournalEntryBySlug } from "@/lib/contentful/api";
 import { RichText } from "@/components/ui/RichText";
 
 interface JournalPostPageProps {

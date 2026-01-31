@@ -8,8 +8,8 @@ import {
   getProjects,
   getPartners,
   getVolunteerCounts,
-} from "@/lib/services/notion";
-import { getSponsorshipTiers } from "@/lib/services/contentful";
+} from "@/lib/notion/api";
+import { getSponsorshipTiers } from "@/lib/contentful/api";
 import { Check } from "iconoir-react";
 
 async function getStats() {

@@ -1,4 +1,4 @@
-import { getProjects } from "@/lib/services/notion";
+import { getProjects } from "@/lib/notion/api";
 import { ProjectsDataTable } from "@/components/ui/ProjectsDataTable";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { StatBar } from "@/components/ui/StatBar";

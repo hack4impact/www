@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Separator } from "@base-ui/react/separator";
-import { getProjectBySlug } from "@/lib/services/notion";
+import { getProjectBySlug } from "@/lib/notion/api";
 import { LinkCard } from "@/components/ui/LinkCard";
 import type { TeamMember, ProjectSection } from "@/lib/types/project";
 

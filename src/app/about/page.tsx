@@ -3,7 +3,7 @@ import { SplitHero } from "@/components/ui/SplitHero";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { TeamTable } from "@/components/ui/TeamTable";
 import { CallToAction } from "@/components/ui/CallToAction";
-import { getBoardTeamMembers, getValues } from "@/lib/services/contentful";
+import { getBoardTeamMembers, getValues } from "@/lib/contentful/api";
 import { Leaf, Compass, Accessibility } from "iconoir-react";
 
 const iconProps = { width: 64, height: 64, strokeWidth: 1 } as const;

@@ -1,4 +1,4 @@
-import { getChapters, getVolunteerCounts } from "@/lib/services/notion";
+import { getChapters, getVolunteerCounts } from "@/lib/notion/api";
 import { ChaptersDataTable } from "@/components/ui/ChaptersDataTable";
 import { CardGrid } from "@/components/ui/CardGrid";
 import { PageIntro } from "@/components/ui/PageIntro";

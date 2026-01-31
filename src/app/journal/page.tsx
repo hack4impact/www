@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getJournalEntries } from "@/lib/services/contentful";
+import { getJournalEntries } from "@/lib/contentful/api";
 import { CallToAction } from "@/components/ui/CallToAction";
 
 const thumbnailGradients = [

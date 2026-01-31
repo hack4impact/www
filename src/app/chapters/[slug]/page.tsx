@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Separator } from "@base-ui/react/separator";
-import { getChapterBySlug, getProjects } from "@/lib/services/notion";
+import { getChapterBySlug, getProjects } from "@/lib/notion/api";
 import { ChapterProjects } from "@/components/ui/ChapterProjects";
 import { LinkCard } from "@/components/ui/LinkCard";
 
