@@ -9,21 +9,9 @@ import { Puzzle, ChatBubbleQuestion, TaskList } from 'iconoir-react'
 const testimonials = [
   {
     quote:
-      'Mentoring at Hack for Impact reminded me why I got into engineering in the first place — to help people.',
+      'I am beyond proud of the work of these students and their continued partnership with me and my colleagues.',
     name: 'Javid Fathi',
     title: 'Software Engineer Lead at Microsoft',
-  },
-  {
-    quote:
-      'Watching students grow from nervous beginners to confident engineers over one semester is incredibly rewarding.',
-    name: 'Priya Patel',
-    title: 'Senior Engineer at Stripe',
-  },
-  {
-    quote:
-      "The teams are sharp, motivated, and building things that matter. It's the most meaningful volunteer work I've done.",
-    name: 'David Kim',
-    title: 'Staff Engineer at Meta',
   },
 ]
 
