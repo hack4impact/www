@@ -4,43 +4,9 @@
   background-color: var(--color-green-300);
 }
 
-@font-face {
-  font-family: 'Inclusive Sans';
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  font-feature-settings: 'ss01' 1;
-  src: url('/fonts/InclusiveSans.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Inclusive Sans';
-  font-style: italic;
-  font-weight: 300 700;
-  font-display: swap;
-  font-feature-settings: 'ss01' 1;
-  src: url('/fonts/InclusiveSans-Italic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Newsreader';
-  font-style: normal;
-  font-weight: 200 800;
-  font-display: swap;
-  src: url('/fonts/Newsreader.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Newsreader';
-  font-style: italic;
-  font-weight: 200 800;
-  font-display: swap;
-  src: url('/fonts/Newsreader-Italic.woff2') format('woff2');
-}
-
 @theme {
-  --font-sans: 'Inclusive Sans', system-ui, sans-serif;
-  --font-serif: 'Newsreader', Georgia, serif;
+  --font-sans: var(--font-inclusive-sans), system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
 
   /* Brand Colors */
   --color-blue-50: #edf4fd;
@@ -112,6 +78,5 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
   line-height: 1.5;
 }
