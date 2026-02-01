@@ -9,7 +9,7 @@ import { Puzzle, ChatBubbleQuestion, TaskList } from 'iconoir-react'
 const testimonials = [
   {
     quote:
-      'Mentoring at Hack4Impact reminded me why I got into engineering in the first place — to help people.',
+      'Mentoring at Hack for Impact reminded me why I got into engineering in the first place — to help people.',
     name: 'Javid Fathi',
     title: 'Software Engineer Lead at Microsoft',
   },

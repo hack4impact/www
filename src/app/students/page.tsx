@@ -27,8 +27,8 @@ export default async function StudentsPage() {
   return (
     <>
       <SplitHero
-        heading='Start a Hack4Impact Chapter'
-        description='Bring Hack4Impact to your campus. Found a chapter, build a team of student technologists, and create real software for nonprofits in your community.'
+        heading='Start a Hack for Impact Chapter'
+        description='Bring Hack for Impact to your campus. Found a chapter, build a team of student technologists, and create real software for nonprofits in your community.'
         buttonText='Get started'
         buttonHref='#start'
         gradient='from-green-100 to-blue-200'

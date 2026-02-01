@@ -10,7 +10,7 @@ import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
 const testimonials = [
   {
     quote:
-      'Working with Hack4Impact gave us a tool that fundamentally changed how we serve our community.',
+      'Working with Hack for Impact gave us a tool that fundamentally changed how we serve our community.',
     name: 'Javid Fathi',
     title: 'Software Engineer Lead at Microsoft',
   },
@@ -46,7 +46,7 @@ export default async function NonprofitsPage() {
   return (
     <>
       <SplitHero
-        heading='Partner with Hack4Impact'
+        heading='Partner with Hack for Impact'
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
         buttonHref='#apply'
@@ -90,4 +90,3 @@ export default async function NonprofitsPage() {
     </>
   )
 }
-

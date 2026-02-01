@@ -55,26 +55,27 @@ export default async function AboutPage() {
       )}
 
       <section className='grid grid-cols-1 lg:grid-cols-2'>
-        <div className='px-8 lg:px-0 lg:pl-8 py-8 lg:py-12'>
+        <div className='px-8 py-8 lg:px-0 lg:py-12 lg:pl-8'>
           <div className='aspect-[4/5] w-full bg-gradient-to-br from-orange-100 to-pink-200' />
         </div>
 
-        <div className='flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12'>
+        <div className='flex flex-col items-start justify-center p-8 lg:px-24 lg:py-12'>
           <h2 className='font-sans text-3xl md:text-4xl'>Our story</h2>
-          <p className='mt-6 md:mt-8 text-base md:text-lg'>
-            Founded by students who believed technology could be a force for
-            good, Hack4Impact began as a small group of developers volunteering
-            their skills for local nonprofits. What started as weekend projects
-            quickly grew into a nationwide network of chapters, each dedicated
-            to bridging the gap between student talent and community needs.
-            Today, we continue that mission, empowering the next generation of
-            technologists to build with purpose and impact.
+          <p className='mt-6 text-base md:mt-8 md:text-lg'>
+            Hack for Impact began at the University of Pennsylvania in 2014 and
+            became an official 501(c)(3) non-profit in 2016. It began as a small
+            group of developers volunteering their skills for local nonprofits.
+            What started as a student organization quickly grew into a
+            nationwide network of chapters, each dedicated to bridging the gap
+            between student technical skills, desires to do good and community
+            needs. Today, we continue that mission, building a community of
+            socially-conscious technologists.
           </p>
         </div>
       </section>
 
       {/* Team Sections */}
-      <section className='px-8 md:px-12 py-16 md:py-24'>
+      <section className='px-8 py-16 md:px-12 md:py-24'>
         <GridTable
           id='operations-team'
           heading='Operations Team'
