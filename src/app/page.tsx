@@ -76,7 +76,7 @@ export default async function HomePage() {
             {heroImageUrl && (
               <Image
                 fill
-                className='object-cover'
+                className='object-contain object-bottom'
                 src={heroImageUrl}
                 alt='A group photo of students from the UPenn chapter'
               />
