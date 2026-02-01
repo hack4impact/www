@@ -27,7 +27,7 @@ export default async function PartnersPage() {
   return (
     <>
       {/* Banner */}
-      <section className='relative h-56 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100 md:h-80' />
+      <section className='relative h-56 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100 md:h-80'></section>
 
       <PageIntro
         heading='Partners'

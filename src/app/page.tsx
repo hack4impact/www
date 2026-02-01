@@ -39,7 +39,6 @@ export default async function HomePage() {
     Suitcase: <Suitcase {...iconProps} />,
   }
 
-
   const featuredProject =
     (FEATURED_PROJECT_SLUG &&
       projects.find((p) => p.slug === FEATURED_PROJECT_SLUG)) ||
@@ -53,12 +52,12 @@ export default async function HomePage() {
         <div className='absolute inset-0 bottom-1/3 bg-gradient-to-b from-blue-100 via-blue-100 via-60% to-green-50' />
 
         {/* Content */}
-        <div className='relative text-center pt-24 px-8'>
+        <div className='relative px-8 pt-24 text-center'>
           <h1 className='flex flex-col'>
-            <span className='font-serif text-5xl '>Code &amp; community</span>
-            <span className='font-serif text-5xl '>for the common good</span>
+            <span className='font-serif text-5xl'>Code &amp; community</span>
+            <span className='font-serif text-5xl'>for the common good</span>
           </h1>
-          <p className='mt-4 text-base md:text-lg max-w-2xl mx-auto'>
+          <p className='mx-auto mt-4 max-w-2xl text-base md:text-lg'>
             Committed to supporting nonprofits and social good initiatives, Hack
             for Impact educates and connects student volunteers, in search of
             real-world experience, with nonprofit partners that address crucial
@@ -73,7 +72,7 @@ export default async function HomePage() {
 
         {/* Gradient block below hero */}
         <div className='relative mt-8 flex justify-center px-8'>
-          <div className='relative w-full max-w-[800px] aspect-[8/5] bg-gradient-to-br from-blue-200 to-green-100'>
+          <div className='relative aspect-[8/5] w-full max-w-[800px] bg-gradient-to-br from-blue-200 to-green-100'>
             {heroImageUrl && (
               <Image
                 fill
@@ -94,7 +93,7 @@ export default async function HomePage() {
           steps={mainProcess.steps}
           numbered={mainProcess.numbered}
           aside={
-            <div className='relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px] bg-gradient-to-br from-purple-100 to-blue-200'>
+            <div className='relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-200 lg:aspect-auto lg:min-h-[500px]'>
               {processImageUrl && (
                 <Image
                   fill
@@ -109,18 +108,18 @@ export default async function HomePage() {
       )}
 
       {/* Programs Section */}
-      <section className='px-8 md:px-12 py-16 md:py-24'>
-        <div className='text-center mb-0'>
-          <h2 className='text-3xl md:text-4xl font-serif'>Our programs</h2>
-          <p className='text-2xl md:text-3xl font-sans'>Community in action</p>
+      <section className='px-8 py-16 md:px-12 md:py-24'>
+        <div className='mb-0 text-center'>
+          <h2 className='font-serif text-3xl md:text-4xl'>Our programs</h2>
+          <p className='font-sans text-2xl md:text-3xl'>Community in action</p>
         </div>
         {programs && <CardGrid items={programs.cards} icons={programsIcons} />}
       </section>
 
       {/* Quote Callout Section */}
       <section className='grid grid-cols-1 lg:grid-cols-2'>
-        <div className='px-8 lg:px-0 lg:pl-12 py-8 lg:py-12'>
-          <div className='aspect-[4/5] w-full bg-gradient-to-br relative from-green-100 to-purple-200'>
+        <div className='px-8 py-8 lg:px-0 lg:py-12 lg:pl-12'>
+          <div className='relative aspect-[4/5] w-full bg-gradient-to-br from-green-100 to-purple-200'>
             {calloutImageUrl && (
               <Image
                 fill
@@ -132,7 +131,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className='flex flex-col justify-center items-start p-8 lg:px-24 lg:py-12'>
+        <div className='flex flex-col items-start justify-center p-8 lg:px-24 lg:py-12'>
           <blockquote className='font-sans text-2xl md:text-3xl'>
             &ldquo;...the kind of passion for socially-minded engineering our
             industry desperately needs.&rdquo;
@@ -148,17 +147,17 @@ export default async function HomePage() {
 
       {/* Featured Project */}
       {featuredProject && (
-        <section className='px-8 md:px-12 py-16 md:py-24'>
-          <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
+        <section className='px-8 py-16 md:px-12 md:py-24'>
+          <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
             Featured project
           </h2>
-          <div className='max-w-4xl mx-auto bg-blue-50 rounded-lg grid grid-cols-1 md:grid-cols-2 p-4 md:p-5 gap-4 md:gap-5'>
-            <div className='aspect-[4/3] bg-gradient-to-br from-blue-100 to-blue-200 rounded-md' />
+          <div className='mx-auto grid max-w-4xl grid-cols-1 gap-4 rounded-lg bg-blue-50 p-4 md:grid-cols-2 md:gap-5 md:p-5'>
+            <div className='aspect-[4/3] rounded-md bg-gradient-to-br from-blue-100 to-blue-200' />
             <div className='flex flex-col justify-center p-2 md:p-3'>
-              <h3 className='font-sans text-xl md:text-2xl mb-3'>
+              <h3 className='mb-3 font-sans text-xl md:text-2xl'>
                 {featuredProject.title}
               </h3>
-              <p className='font-serif text-gray-600 mb-6'>
+              <p className='mb-6 font-serif text-gray-600'>
                 {featuredProject.description}
               </p>
               <div>
@@ -172,30 +171,30 @@ export default async function HomePage() {
       )}
 
       {/* Featured Articles */}
-      <section className='px-8 md:px-12 py-16 md:py-24'>
-        <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
+      <section className='px-8 py-16 md:px-12 md:py-24'>
+        <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
           Featured articles
         </h2>
-        <div className='max-w-2xl mx-auto divide-y divide-gray-200 border-y border-gray-200'>
+        <div className='mx-auto max-w-2xl divide-y divide-gray-200 border-y border-gray-200'>
           {featuredArticles.map((entry, i) => (
             <Link
               key={entry.id}
               href={`/journal/${entry.slug}`}
               className='block'
             >
-              <div className='py-6 flex gap-6 items-center'>
+              <div className='flex items-center gap-6 py-6'>
                 <div
-                  className={`w-48 h-28 shrink-0 bg-gradient-to-br ${
+                  className={`h-28 w-48 shrink-0 bg-gradient-to-br ${
                     i === 0
                       ? 'from-orange-100 to-pink-200'
                       : 'from-purple-100 to-blue-200'
                   }`}
                 />
                 <div className='min-w-0'>
-                  <h3 className='font-sans text-lg mb-1 truncate'>
+                  <h3 className='mb-1 truncate font-sans text-lg'>
                     {entry.title}
                   </h3>
-                  <div className='flex items-center gap-2 text-sm font-serif text-gray-600'>
+                  <div className='flex items-center gap-2 font-serif text-sm text-gray-600'>
                     <span>{entry.tag}</span>
                     <span className='text-gray-400'>&middot;</span>
                     <span>{entry.readTime}</span>
@@ -205,7 +204,7 @@ export default async function HomePage() {
             </Link>
           ))}
         </div>
-        <div className='text-center mt-8'>
+        <div className='mt-8 text-center'>
           <Link href='/journal'>
             <Button>View all articles</Button>
           </Link>

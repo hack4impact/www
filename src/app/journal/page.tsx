@@ -20,7 +20,7 @@ export default async function JournalPage() {
   return (
     <>
       {/* Banner */}
-      <section className='h-56 md:h-80 relative bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100'>
+      <section className='relative h-56 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100 md:h-80'>
         {journalBanner && (
           <Image
             fill
@@ -33,16 +33,16 @@ export default async function JournalPage() {
 
       {/* Content */}
       <section className='p-8 md:p-12'>
-        <h1 className='text-3xl md:text-4xl font-sans mb-12 text-center'>
+        <h1 className='mb-12 text-center font-sans text-3xl md:text-4xl'>
           Journal
         </h1>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
           {journalEntries.map((entry: JournalEntry, i: number) => (
             <Link key={entry.id} href={`/journal/${entry.slug}`}>
               <article className='p-2'>
                 <div
-                  className={`relative aspect-[16/9] mb-4 bg-gradient-to-br ${thumbnailGradients[i % thumbnailGradients.length]}`}
+                  className={`relative mb-4 aspect-[16/9] bg-gradient-to-br ${thumbnailGradients[i % thumbnailGradients.length]}`}
                 >
                   {entry.thumbnailUrl || entry.bannerUrl ? (
                     <Image
@@ -54,15 +54,15 @@ export default async function JournalPage() {
                   ) : null}
                 </div>
 
-                <h2 className='text-xl font-sans mb-2'>{entry.title}</h2>
+                <h2 className='mb-2 font-sans text-xl'>{entry.title}</h2>
 
-                <div className='flex items-center gap-2 text-sm font-serif mb-2'>
+                <div className='mb-2 flex items-center gap-2 font-serif text-sm'>
                   <span className='text-gray-600'>{entry.tag}</span>
                   <span className='text-gray-400'>&middot;</span>
                   <span className='text-gray-600'>{entry.readTime}</span>
                 </div>
 
-                <p className='text-base text-gray-700 font-serif'>
+                <p className='font-serif text-base text-gray-700'>
                   {entry.description}
                 </p>
               </article>
