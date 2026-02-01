@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getJournalEntries } from '@/lib/contentful/api'
+import { getAssetUrl, getJournalEntries } from '@/lib/contentful/api'
 import { CallToAction } from '@/components/ui/CallToAction'
+import { JournalEntry } from '@/lib/types'
 
 const thumbnailGradients = [
   'from-orange-100 to-pink-200',
@@ -11,12 +12,19 @@ const thumbnailGradients = [
 ]
 
 export default async function JournalPage() {
-  const journalEntries = await getJournalEntries()
+  const [journalEntries, journalBanner] = await Promise.all([
+    getJournalEntries(),
+    getAssetUrl('journal-banner'),
+  ])
 
   return (
     <>
       {/* Banner */}
-      <section className='h-56 md:h-80 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100' />
+      <section className='h-56 md:h-80 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100'>
+        {journalBanner && (
+          <Image src={journalBanner} alt='Banner for journal page' />
+        )}
+      </section>
 
       {/* Content */}
       <section className='p-8 md:p-12'>
@@ -25,16 +33,16 @@ export default async function JournalPage() {
         </h1>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {journalEntries.map((entry, i) => (
+          {journalEntries.map((entry: JournalEntry, i: number) => (
             <Link key={entry.id} href={`/journal/${entry.slug}`}>
               <article className='p-2'>
                 <div
                   className={`relative aspect-[16/9] mb-4 bg-gradient-to-br ${thumbnailGradients[i % thumbnailGradients.length]}`}
                 >
-                  {entry.thumbnailUrl ? (
+                  {entry.thumbnailUrl || entry.bannerUrl ? (
                     <Image
-                      src={entry.thumbnailUrl}
-                      alt={entry.title}
+                      alt='Journal thumbnail image'
+                      src={entry.thumbnailUrl || entry.bannerUrl!}
                       fill
                       className='object-cover'
                     />

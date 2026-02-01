@@ -22,13 +22,13 @@ export default async function JournalPostPage({
     <>
       {/* Header */}
       <section className='p-8 md:px-24 md:py-12 text-center'>
-        <div className='max-w-2xl mx-auto'>
+        <div className='max-w-4xl mx-auto'>
           <div className='flex items-center justify-center gap-2 text-base font-serif mb-2'>
             <span className='text-gray-600'>{entry.tag}</span>
             <span className='text-gray-400'>&middot;</span>
             <span className='text-gray-600'>{entry.readTime}</span>
           </div>
-          <h1 className='text-3xl md:text-5xl font-sans max-w-lg mx-auto overflow-hidden text-ellipsis line-clamp-2'>
+          <h1 className='text-3xl md:text-5xl font-sans mx-auto'>
             {entry.title}
           </h1>
         </div>
