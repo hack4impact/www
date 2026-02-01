@@ -1,5 +1,30 @@
+'use client'
+
 import { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 import type { ProcessStep } from '@/lib/types/contentful'
+
+// Animation Variants
+const listContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+}
+
+const stepVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+}
 
 interface NumberedStepsProps {
   heading: string
@@ -21,17 +46,22 @@ function StepsList({
   stretch?: boolean
 }) {
   return (
-    <div
+    <motion.div
       className={`flex flex-col divide-y divide-gray-200 border-t border-gray-200${
         stretch ? ' justify-between h-full' : ''
       }`}
+      variants={listContainerVariants}
+      initial='hidden'
+      whileInView='visible'
+      viewport={{ once: true, amount: 0.1 }}
     >
       {steps.map((step, i) => (
-        <div
+        <motion.div
           key={step.name}
           className={`relative${
             stretch ? ' flex-1 flex flex-col justify-center py-4' : ' py-6'
           }`}
+          variants={stepVariants}
         >
           {numbered && (
             <span
@@ -46,9 +76,9 @@ function StepsList({
           <p className={`font-serif text-gray-600${numbered ? ' pr-12' : ''}`}>
             {step.description}
           </p>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   )
 }
 
