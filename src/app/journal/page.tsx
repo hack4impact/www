@@ -74,7 +74,7 @@ export default async function JournalPage() {
       <CallToAction
         heading='Have a story to share?'
         buttonText='Contact us'
-        href='/about'
+        href='/mailto:contact@hack4impact.org?subject=Journal Proposal'
       />
     </>
   )

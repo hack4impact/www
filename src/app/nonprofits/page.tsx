@@ -79,7 +79,7 @@ export default async function NonprofitsPage() {
         id='apply'
         heading='Ready to get started?'
         buttonText='Apply now'
-        href='mailto:contact@hack4impact.org?subject=Project for [Non-Profit Name]'
+        href='mailto:contact@hack4impact.org?subject=[Non-Profit Name] Project Proposal'
       />
     </>
   )

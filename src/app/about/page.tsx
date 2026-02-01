@@ -125,7 +125,7 @@ export default async function AboutPage() {
       <CallToAction
         heading='Want to join our team?'
         buttonText='Get involved'
-        href='/students'
+        href='mailto:contact@hack4impact.org?subject=Operations Team Interest'
       />
     </>
   )
