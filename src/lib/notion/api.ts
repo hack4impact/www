@@ -257,9 +257,46 @@ export async function getChapters(): Promise<Chapter[]> {
 export async function getChapterBySlug(
   slug: string,
 ): Promise<Chapter | undefined> {
-  const chapters = await getChapters()
-  return chapters.find((c) => c.slug === slug)
+  const programs = await getCachedPrograms()
+  const program = programs.find((p: any) => toSlug(p.name) === slug)
+
+  if (!program) {
+    return undefined
+  }
+
+  const [notionProjects, volunteers] = await Promise.all([
+    getCachedProjects(),
+    getCachedVolunteers(),
+  ])
+
+  const memberCount = volunteers.filter(
+    (v: any) => v.chapterId === program.id && v.status === 'Active',
+  ).length
+
+  const projectCount = notionProjects.filter((p: any) =>
+    p.relatedIds.chapters.includes(program.id),
+  ).length
+
+  const university = program.name
+    .replace(/^Hack4Impact\s*/i, '')
+    .replace(/^Hack\s*for\s*Impact\s*/i, '')
+
+  return {
+    id: program.id,
+    slug,
+    name: program.name,
+    university,
+    location: program.place || '',
+    founded: program.foundedYear?.toString() ?? '',
+    description: '',
+    memberCount,
+    projectCount,
+    website: program.links.website ?? undefined,
+    github: program.links.github ?? undefined,
+    instagram: program.links.instagram ?? undefined,
+  }
 }
+
 
 // Public API: Projects (excludes leadership-type projects)
 export async function getProjects(): Promise<Project[]> {
@@ -276,9 +313,18 @@ export async function getProjects(): Promise<Project[]> {
 export async function getProjectBySlug(
   slug: string,
 ): Promise<Project | undefined> {
-  const projects = await getProjects()
-  return projects.find((p) => p.slug === slug)
+  const { notionProjects, programMap, partnerMap, volunteerMap, termMap } =
+    await getCommonData()
+
+  const project = notionProjects.find((p: any) => toSlug(p.name) === slug)
+
+  if (!project || project.type === 'Leadership') {
+    return undefined
+  }
+
+  return processProject(project, programMap, partnerMap, volunteerMap, termMap)
 }
+
 
 // Public API: Partners
 export async function getPartners(): Promise<Partner[]> {
@@ -311,9 +357,34 @@ export async function getPartners(): Promise<Partner[]> {
 export async function getPartnerBySlug(
   slug: string,
 ): Promise<Partner | undefined> {
-  const partners = await getPartners()
-  return partners.find((p) => p.slug === slug)
+  const partners = await getCachedPartners()
+  const partner = partners.find((p: any) => toSlug(p.name) === slug)
+
+  if (!partner) {
+    return undefined
+  }
+
+  const notionProjects = await getCachedProjects()
+  const projectCount =
+    partner.relatedIds.projects.length ||
+    notionProjects.filter((p: any) =>
+      p.relatedIds.partners.includes(partner.id),
+    ).length
+
+  return {
+    id: partner.id,
+    slug,
+    name: partner.name,
+    location: '',
+    projectCount,
+    description: partner.description,
+    website: partner.links.website ?? undefined,
+    organizationTypes: partner.organizationTypes ?? [],
+    populations: partner.populations ?? [],
+    subjects: partner.subjects ?? [],
+  }
 }
+
 
 // Public API: Aggregate stats
 export async function getVolunteerCounts(): Promise<{

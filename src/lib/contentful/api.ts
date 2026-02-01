@@ -96,12 +96,33 @@ export const getJournalEntries = unstable_cache(
   { revalidate: 3600 },
 )
 
-export async function getJournalEntryBySlug(
+async function fetchJournalEntryBySlug(
   slug: string,
 ): Promise<JournalEntry | undefined> {
-  const entries = await getJournalEntries()
-  return entries.find((e) => e.slug === slug)
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: 'journalEntry',
+      'fields.slug': slug,
+      limit: 1,
+    })
+    const item = response.items[0]
+    if (!item) return undefined
+    return mapEntry(item)
+  } catch (error) {
+    console.error(
+      `Failed to fetch journal entry with slug "${slug}" from Contentful:`,
+      error,
+    )
+    return undefined
+  }
 }
+
+export const getJournalEntryBySlug = unstable_cache(
+  fetchJournalEntryBySlug,
+  ['contentful-journal-entry-by-slug'],
+  { revalidate: 3600 },
+)
+
 
 // Fetches a "Common Questions" entry by name (e.g. "Partner Questions")
 async function fetchFAQs(name: string): Promise<FAQ[]> {
