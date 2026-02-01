@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAssetUrl, getJournalEntries } from '@/lib/contentful/api'
+import { contentfulApi } from '@/lib/contentful'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { JournalEntry } from '@/lib/types'
 
@@ -13,8 +13,8 @@ const thumbnailGradients = [
 
 export default async function JournalPage() {
   const [journalEntries, journalBanner] = await Promise.all([
-    getJournalEntries(),
-    getAssetUrl('journal-banner'),
+    contentfulApi.getJournalEntries(),
+    contentfulApi.getAssetUrl('journal-banner'),
   ])
 
   return (

@@ -1,5 +1,5 @@
 import { getPartners } from '@/lib/notion/api'
-import { getAssetUrl, getFAQs } from '@/lib/contentful/api'
+import { contentfulApi } from '@/lib/contentful'
 import { PartnersDataTable } from '@/components/ui/PartnersDataTable'
 import { PageIntro } from '@/components/ui/PageIntro'
 import { StatBar } from '@/components/ui/StatBar'
@@ -9,9 +9,9 @@ import Image from 'next/image'
 
 export default async function PartnersPage() {
   const [partnersBanner, partners, faqs] = await Promise.all([
-    getAssetUrl('partners-banner'),
+    contentfulApi.getAssetUrl('partners-banner'),
     getPartners(),
-    getFAQs('Partner Questions'),
+    contentfulApi.getFAQs('Partner Questions'),
   ])
 
   const uniqueSubjects = new Set(partners.flatMap((p) => p.subjects ?? [])).size

@@ -5,12 +5,7 @@ import { CardGrid } from '@/components/ui/CardGrid'
 import { NumberedSteps } from '@/components/ui/NumberedSteps'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
-import {
-  getAssetUrl,
-  getFAQs,
-  getInfoCards,
-  getProcess,
-} from '@/lib/contentful/api'
+import { contentfulApi } from '@/lib/contentful'
 import { Heart, UserStar, Community } from 'iconoir-react'
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
@@ -23,10 +18,10 @@ const reasonsIcons = {
 
 export default async function StudentsPage() {
   const [reasons, faqs, chapterProcess, studentBanner] = await Promise.all([
-    getInfoCards('Student Reasons'),
-    getFAQs('Student Questions'),
-    getProcess('Starting Chapter Process'),
-    getAssetUrl('student-banner'),
+    contentfulApi.getInfoCards('Student Reasons'),
+    contentfulApi.getFAQs('Student Questions'),
+    contentfulApi.getProcess('Starting Chapter Process'),
+    contentfulApi.getAssetUrl('student-banner'),
   ])
 
   return (

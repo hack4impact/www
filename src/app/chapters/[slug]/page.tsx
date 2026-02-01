@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Separator } from '@base-ui/react/separator'
-import { getChapterBySlug, getProjects } from '@/lib/notion/api'
+import { notionApi } from '@/lib/notion'
 import { ChapterProjects } from '@/components/ui/ChapterProjects'
 import { LinkCard } from '@/components/ui/LinkCard'
-import { getAssetUrl } from '@/lib/contentful'
+import { contentfulApi } from '@/lib/contentful'
 import Image from 'next/image'
 
 interface ChapterPageProps {
@@ -14,8 +14,8 @@ interface ChapterPageProps {
 export default async function ChapterPage({ params }: ChapterPageProps) {
   const { slug } = await params
   const [chapter, chapterImage] = await Promise.all([
-    getChapterBySlug(slug),
-    getAssetUrl(slug),
+    notionApi.getChapterBySlug(slug),
+    contentfulApi.getAssetUrl(slug),
   ])
 
   if (!chapter) {
@@ -23,7 +23,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   }
 
   // Filter projects by this chapter
-  const allProjects = await getProjects()
+  const allProjects = await notionApi.getProjects()
   const chapterProjects = allProjects.filter(
     (project) => project.chapter === chapter.name.replace('Hack4Impact ', ''),
   )

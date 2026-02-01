@@ -1,5 +1,5 @@
-import { getProjects } from '@/lib/notion/api'
-import { getFAQs } from '@/lib/contentful/api'
+import { notionApi } from '@/lib/notion'
+import { contentfulApi } from '@/lib/contentful'
 import { ProjectsDataTable } from '@/components/ui/ProjectsDataTable'
 import { PageIntro } from '@/components/ui/PageIntro'
 import { StatBar } from '@/components/ui/StatBar'
@@ -8,8 +8,8 @@ import { CallToAction } from '@/components/ui/CallToAction'
 
 export default async function ProjectsPage() {
   const [projects, faqs] = await Promise.all([
-    getProjects(),
-    getFAQs('Project Questions'),
+    notionApi.getProjects(),
+    contentfulApi.getFAQs('Project Questions'),
   ])
   const doneProjects = projects.filter((p) => p.status === 'Done')
 

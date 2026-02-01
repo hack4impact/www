@@ -1,5 +1,5 @@
-import { getChapters, getVolunteerCounts } from '@/lib/notion/api'
-import { getAssetUrl, getFAQs, getInfoCards } from '@/lib/contentful/api'
+import { notionApi } from '@/lib/notion'
+import { contentfulApi } from '@/lib/contentful'
 import { ChaptersDataTable } from '@/components/ui/ChaptersDataTable'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { PageIntro } from '@/components/ui/PageIntro'
@@ -21,11 +21,11 @@ const rolesIcons = {
 export default async function ChaptersPage() {
   const [chapters, volunteerCounts, roles, faqs, chapterBanner] =
     await Promise.all([
-      getChapters(),
-      getVolunteerCounts(),
-      getInfoCards('Chapter Roles'),
-      getFAQs('Chapter Questions'),
-      getAssetUrl('chapter-banner'),
+      notionApi.getChapters(),
+      notionApi.getVolunteerCounts(),
+      contentfulApi.getInfoCards('Chapter Roles'),
+      contentfulApi.getFAQs('Chapter Questions'),
+      contentfulApi.getAssetUrl('chapter-banner'),
     ])
 
   const stats = [

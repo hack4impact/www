@@ -4,7 +4,7 @@ import { NumberedSteps } from '@/components/ui/NumberedSteps'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
-import { getFAQs, getInfoCards, getProcess } from '@/lib/contentful/api'
+import { contentfulApi } from '@/lib/contentful'
 import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
 
 const testimonials = [
@@ -38,9 +38,9 @@ const buildsIcons = {
 
 export default async function NonprofitsPage() {
   const [faqs, nonprofitProcess, builds] = await Promise.all([
-    getFAQs('Nonprofit Questions'),
-    getProcess('Nonprofit Process'),
-    getInfoCards('Build Types'),
+    contentfulApi.getFAQs('Nonprofit Questions'),
+    contentfulApi.getProcess('Nonprofit Process'),
+    contentfulApi.getInfoCards('Build Types'),
   ])
 
   return (

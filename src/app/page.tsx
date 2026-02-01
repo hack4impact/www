@@ -4,14 +4,9 @@ import { Button } from '@/components/ui/Button'
 import { Heart, OpenBook, Suitcase } from 'iconoir-react'
 import { NumberedSteps } from '@/components/ui/NumberedSteps'
 import { CallToAction } from '@/components/ui/CallToAction'
-import { getProjects, FEATURED_PROJECT_SLUG } from '@/lib/notion/api'
+import { notionApi, FEATURED_PROJECT_SLUG } from '@/lib/notion'
 import { CardGrid } from '@/components/ui/CardGrid'
-import {
-  getPaginatedJournalEntries,
-  getAssetUrl,
-  getProcess,
-  getInfoCards,
-} from '@/lib/contentful/api'
+import { contentfulApi } from '@/lib/contentful'
 
 export default async function HomePage() {
   const [
@@ -23,13 +18,13 @@ export default async function HomePage() {
     calloutImageUrl,
     mainProcess,
   ] = await Promise.all([
-    getInfoCards('Programs'),
-    getProjects(),
-    getPaginatedJournalEntries({ limit: 3, skip: 0 }),
-    getAssetUrl('home-one'),
-    getAssetUrl('home-two'),
-    getAssetUrl('home-three'),
-    getProcess('Main Process'),
+    contentfulApi.getInfoCards('Programs'),
+    notionApi.getProjects(),
+    contentfulApi.getPaginatedJournalEntries({ limit: 3, skip: 0 }),
+    contentfulApi.getAssetUrl('home-one'),
+    contentfulApi.getAssetUrl('home-two'),
+    contentfulApi.getAssetUrl('home-three'),
+    contentfulApi.getProcess('Main Process'),
   ])
 
   const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Separator } from '@base-ui/react/separator'
-import { getJournalEntryBySlug } from '@/lib/contentful/api'
+import { contentfulApi } from '@/lib/contentful'
 import { RichText } from '@/components/ui/RichText'
 
 interface JournalPostPageProps {
@@ -12,7 +12,7 @@ export default async function JournalPostPage({
   params,
 }: JournalPostPageProps) {
   const { slug } = await params
-  const entry = await getJournalEntryBySlug(slug)
+  const entry = await contentfulApi.getJournalEntryBySlug(slug)
 
   if (!entry) {
     notFound()

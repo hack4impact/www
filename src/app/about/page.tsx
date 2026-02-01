@@ -3,7 +3,7 @@ import { SplitHero } from '@/components/ui/SplitHero'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { GridTable } from '@/components/ui/GridTable'
 import { CallToAction } from '@/components/ui/CallToAction'
-import { getBoardTeamMembers, getInfoCards } from '@/lib/contentful/api'
+import { contentfulApi } from '@/lib/contentful'
 import { Leaf, Compass, Accessibility } from 'iconoir-react'
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
@@ -16,8 +16,8 @@ const valuesIcons: Record<string, ReactNode> = {
 
 export default async function AboutPage() {
   const [members, values] = await Promise.all([
-    getBoardTeamMembers(),
-    getInfoCards('Values'),
+    contentfulApi.getBoardTeamMembers(),
+    contentfulApi.getInfoCards('Values'),
   ])
 
   const opsOrder = ['Khoa', 'Govind', 'Brian', 'Sophia']

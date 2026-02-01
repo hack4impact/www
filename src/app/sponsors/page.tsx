@@ -3,26 +3,17 @@ import { CallToAction } from '@/components/ui/CallToAction'
 import { StatBar } from '@/components/ui/StatBar'
 import { GridTable } from '@/components/ui/GridTable'
 import { NumberedSteps } from '@/components/ui/NumberedSteps'
-import {
-  getChapters,
-  getPartners,
-  getVolunteerCounts,
-  getDoneProjectCount,
-} from '@/lib/notion/api'
-import {
-  getSponsorshipTiers,
-  getProcess,
-  getAssetUrl,
-} from '@/lib/contentful/api'
+import { notionApi } from '@/lib/notion'
+import { contentfulApi } from '@/lib/contentful'
 import { Check } from 'iconoir-react'
 
 async function getStats() {
   const [chapters, doneProjectCount, partners, volunteerCounts] =
     await Promise.all([
-      getChapters(),
-      getDoneProjectCount(),
-      getPartners(),
-      getVolunteerCounts(),
+      notionApi.getChapters(),
+      notionApi.getDoneProjectCount(),
+      notionApi.getPartners(),
+      notionApi.getVolunteerCounts(),
     ])
 
   return [
@@ -40,9 +31,9 @@ function formatCost(cost: number): string {
 export default async function SponsorsPage() {
   const [stats, tiers, sponsorProcess, sponsorBanner] = await Promise.all([
     getStats(),
-    getSponsorshipTiers(),
-    getProcess('Sponsor Process'),
-    getAssetUrl('sponsor-banner'),
+    contentfulApi.getSponsorshipTiers(),
+    contentfulApi.getProcess('Sponsor Process'),
+    contentfulApi.getAssetUrl('sponsor-banner'),
   ])
 
   // Collect all unique benefits in order of first appearance (lowest tier first)

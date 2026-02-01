@@ -3,7 +3,7 @@ import { CardGrid } from '@/components/ui/CardGrid'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
-import { getFAQs, getInfoCards } from '@/lib/contentful/api'
+import { contentfulApi } from '@/lib/contentful'
 import { Puzzle, ChatBubbleQuestion, TaskList } from 'iconoir-react'
 
 const testimonials = [
@@ -37,8 +37,8 @@ const tasksIcons = {
 
 export default async function MentorsPage() {
   const [faqs, tasks] = await Promise.all([
-    getFAQs('Mentor Questions'),
-    getInfoCards('Mentor Tasks'),
+    contentfulApi.getFAQs('Mentor Questions'),
+    contentfulApi.getInfoCards('Mentor Tasks'),
   ])
 
   return (
