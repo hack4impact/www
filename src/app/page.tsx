@@ -7,7 +7,7 @@ import { CallToAction } from '@/components/ui/CallToAction'
 import { getProjects, FEATURED_PROJECT_SLUG } from '@/lib/notion/api'
 import { CardGrid } from '@/components/ui/CardGrid'
 import {
-  getJournalEntries,
+  getPaginatedJournalEntries,
   getAssetUrl,
   getProcess,
   getInfoCards,
@@ -17,7 +17,7 @@ export default async function HomePage() {
   const [
     programs,
     projects,
-    journalEntries,
+    featuredArticles,
     heroImageUrl,
     processImageUrl,
     calloutImageUrl,
@@ -25,7 +25,7 @@ export default async function HomePage() {
   ] = await Promise.all([
     getInfoCards('Programs'),
     getProjects(),
-    getJournalEntries(),
+    getPaginatedJournalEntries({ limit: 3, skip: 0 }),
     getAssetUrl('home-one'),
     getAssetUrl('home-two'),
     getAssetUrl('home-three'),
@@ -39,7 +39,7 @@ export default async function HomePage() {
     Suitcase: <Suitcase {...iconProps} />,
   }
 
-  const featuredArticles = journalEntries.slice(0, 3)
+
   const featuredProject =
     (FEATURED_PROJECT_SLUG &&
       projects.find((p) => p.slug === FEATURED_PROJECT_SLUG)) ||

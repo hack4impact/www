@@ -7,6 +7,7 @@ import type {
   ContentfulProcess,
   ContentfulInfoCards,
 } from '@/lib/types/contentful'
+import { buildContentfulImageUrl } from '../utils'
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -30,6 +31,18 @@ export function mapEntry(item: any): JournalEntry {
     publishedDate: formatDate(f.published),
     intro: f.intro,
     content: f.content,
+    thumbnailUrl: f.thumbnail?.fields?.file?.url
+      ? buildContentfulImageUrl(`https:${f.thumbnail.fields.file.url}`, {
+          w: 400,
+          q: 75,
+        })
+      : undefined,
+    bannerUrl: f.banner?.fields?.file?.url
+      ? buildContentfulImageUrl(`https:${f.banner.fields.file.url}`, {
+          w: 1200,
+          q: 75,
+        })
+      : undefined,
   }
 }
 

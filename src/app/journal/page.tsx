@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { getJournalEntries } from '@/lib/contentful/api'
 import { CallToAction } from '@/components/ui/CallToAction'
 
@@ -28,8 +29,17 @@ export default async function JournalPage() {
             <Link key={entry.id} href={`/journal/${entry.slug}`}>
               <article className='p-2'>
                 <div
-                  className={`aspect-[16/9] mb-4 bg-gradient-to-br ${thumbnailGradients[i % thumbnailGradients.length]}`}
-                />
+                  className={`relative aspect-[16/9] mb-4 bg-gradient-to-br ${thumbnailGradients[i % thumbnailGradients.length]}`}
+                >
+                  {entry.thumbnailUrl ? (
+                    <Image
+                      src={entry.thumbnailUrl}
+                      alt={entry.title}
+                      fill
+                      className='object-cover'
+                    />
+                  ) : null}
+                </div>
 
                 <h2 className='text-xl font-sans mb-2'>{entry.title}</h2>
 

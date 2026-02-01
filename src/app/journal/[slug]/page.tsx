@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Separator } from '@base-ui/react/separator'
 import { getJournalEntryBySlug } from '@/lib/contentful/api'
@@ -27,15 +28,24 @@ export default async function JournalPostPage({
             <span className='text-gray-400'>&middot;</span>
             <span className='text-gray-600'>{entry.readTime}</span>
           </div>
-          <h1 className='text-3xl md:text-5xl font-sans max-w-lg mx-auto'>
+          <h1 className='text-3xl md:text-5xl font-sans max-w-lg mx-auto overflow-hidden text-ellipsis line-clamp-2'>
             {entry.title}
           </h1>
         </div>
       </section>
 
-      {/* Banner gradient */}
+      {/* Banner Image */}
       <section className='px-8 md:px-12'>
-        <div className='w-full aspect-[3/1] bg-gradient-to-br from-blue-100 to-green-200' />
+        <div className='relative w-full aspect-[3/1] bg-gradient-to-br from-blue-100 to-green-200'>
+          {entry.thumbnailUrl || entry.bannerUrl ? (
+            <Image
+              src={entry.thumbnailUrl || entry.bannerUrl!}
+              alt={entry.title}
+              fill
+              className='object-cover'
+            />
+          ) : null}
+        </div>
       </section>
 
       {/* Content */}

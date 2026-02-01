@@ -32,6 +32,30 @@ async function fetchJournalEntries(): Promise<JournalEntry[]> {
   }
 }
 
+async function fetchPaginatedJournalEntries({
+  limit,
+  skip,
+}: {
+  limit: number
+  skip: number
+}): Promise<JournalEntry[]> {
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: 'journalEntry',
+      order: ['-fields.published'],
+      limit: limit,
+      skip: skip,
+    })
+    return response.items.map(mapEntry)
+  } catch (error) {
+    console.error(
+      `Failed to fetch paginated journal entries (limit: ${limit}, skip: ${skip}) from Contentful:`,
+      error,
+    )
+    return []
+  }
+}
+
 async function fetchBoardTeamMembers(): Promise<BoardTeamMember[]> {
   try {
     const response = await contentfulClient.getEntries({
@@ -93,6 +117,12 @@ export const getAssetUrl = unstable_cache(fetchAssetUrl, ['contentful-asset'], {
 export const getJournalEntries = unstable_cache(
   fetchJournalEntries,
   ['contentful-journal-entries'],
+  { revalidate: 3600 },
+)
+
+export const getPaginatedJournalEntries = unstable_cache(
+  fetchPaginatedJournalEntries,
+  ['contentful-paginated-journal-entries'],
   { revalidate: 3600 },
 )
 

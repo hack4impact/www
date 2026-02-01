@@ -11,6 +11,8 @@ export interface JournalEntry {
   publishedDate: string
   intro: string
   content: Document
+  thumbnailUrl?: string
+  bannerUrl?: string
 }
 
 export interface BoardTeamMember {

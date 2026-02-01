@@ -1,5 +1,6 @@
 export {
   getJournalEntries,
+  getPaginatedJournalEntries,
   getJournalEntryBySlug,
   getBoardTeamMembers,
   getValues,
