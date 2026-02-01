@@ -72,11 +72,11 @@ export default async function HomePage() {
 
         {/* Gradient block below hero */}
         <div className='relative mt-8 flex justify-center px-8'>
-          <div className='relative aspect-[8/5] w-full max-w-[800px] bg-gradient-to-br from-blue-200 to-green-100'>
+          <div className='relative aspect-[8/5] w-full max-w-[800px] overflow-hidden bg-gradient-to-br from-blue-200 to-green-100'>
             {heroImageUrl && (
               <Image
                 fill
-                className='object-contain object-bottom'
+                className='scale-110 object-contain object-bottom'
                 src={heroImageUrl}
                 alt='A group photo of students from the UPenn chapter'
               />

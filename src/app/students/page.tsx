@@ -5,7 +5,12 @@ import { CardGrid } from '@/components/ui/CardGrid'
 import { NumberedSteps } from '@/components/ui/NumberedSteps'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
-import { getFAQs, getInfoCards, getProcess } from '@/lib/contentful/api'
+import {
+  getAssetUrl,
+  getFAQs,
+  getInfoCards,
+  getProcess,
+} from '@/lib/contentful/api'
 import { Heart, UserStar, Community } from 'iconoir-react'
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
@@ -17,10 +22,11 @@ const reasonsIcons = {
 }
 
 export default async function StudentsPage() {
-  const [reasons, faqs, chapterProcess] = await Promise.all([
+  const [reasons, faqs, chapterProcess, studentBanner] = await Promise.all([
     getInfoCards('Student Reasons'),
     getFAQs('Student Questions'),
     getProcess('Starting Chapter Process'),
+    getAssetUrl('student-banner'),
   ])
 
   return (
@@ -31,6 +37,8 @@ export default async function StudentsPage() {
         buttonText='Get started'
         buttonHref='#start'
         gradient='from-green-100 to-blue-200'
+        image={studentBanner || undefined}
+        alt='A close up of a student speaking into a microphone looking outwards while giving a lecture'
       />
 
       {reasons && (
@@ -51,11 +59,11 @@ export default async function StudentsPage() {
       )}
 
       {/* Existing Chapters */}
-      <section className='px-8 md:px-12 py-16 md:py-24 bg-gray-50 text-center'>
-        <h2 className='text-2xl md:text-3xl font-sans mb-4'>
+      <section className='bg-gray-50 px-8 py-16 text-center md:px-12 md:py-24'>
+        <h2 className='mb-4 font-sans text-2xl md:text-3xl'>
           Looking to join an existing chapter?
         </h2>
-        <p className='font-serif text-gray-600 mb-6'>
+        <p className='mb-6 font-serif text-gray-600'>
           We have chapters at universities across the country. Find one near
           you.
         </p>

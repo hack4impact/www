@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import Image from 'next/image'
 
 interface SplitHeroProps {
   heading: string
@@ -7,6 +8,8 @@ interface SplitHeroProps {
   buttonText?: string
   buttonHref?: string
   gradient?: string
+  image?: string
+  alt?: string
 }
 
 export function SplitHero({
@@ -15,15 +18,28 @@ export function SplitHero({
   buttonText,
   buttonHref,
   gradient = 'from-gray-100 to-gray-200',
+  image,
+  alt,
 }: SplitHeroProps) {
   return (
-    <section className='grid grid-cols-1 md:grid-cols-2 min-h-[70vh]'>
-      <div className={`min-h-80 md:min-h-0 bg-gradient-to-br ${gradient}`} />
+    <section className='grid min-h-[70vh] grid-cols-1 md:grid-cols-2'>
+      <div
+        className={`relative min-h-80 bg-gradient-to-br md:min-h-0 ${gradient}`}
+      >
+        {image && (
+          <Image
+            fill
+            className='object-cover'
+            src={image}
+            alt={alt || 'Side banner image for hero section'}
+          />
+        )}
+      </div>
 
-      <div className='flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]'>
+      <div className='flex flex-col items-start justify-center bg-[#FCF9F2] p-8 md:p-12'>
         <h1 className='font-sans text-3xl md:text-4xl'>{heading}</h1>
         {description && (
-          <p className='mt-4 text-base md:text-lg font-serif text-gray-600'>
+          <p className='mt-4 font-serif text-base text-gray-600 md:text-lg'>
             {description}
           </p>
         )}
