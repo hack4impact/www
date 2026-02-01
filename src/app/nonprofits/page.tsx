@@ -50,7 +50,7 @@ export default async function NonprofitsPage() {
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
         buttonHref='#apply'
-        gradient='from-blue-100 to-blue-200'
+        gradient='from-pink-300 to-blue-100'
       />
 
       {builds && (

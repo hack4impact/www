@@ -1,5 +1,5 @@
 import { getChapters, getVolunteerCounts } from '@/lib/notion/api'
-import { getFAQs, getInfoCards } from '@/lib/contentful/api'
+import { getAssetUrl, getFAQs, getInfoCards } from '@/lib/contentful/api'
 import { ChaptersDataTable } from '@/components/ui/ChaptersDataTable'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { PageIntro } from '@/components/ui/PageIntro'
@@ -7,6 +7,7 @@ import { StatBar } from '@/components/ui/StatBar'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { Code, ColorFilter, Agile, KanbanBoard } from 'iconoir-react'
+import Image from 'next/image'
 
 const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
 
@@ -18,12 +19,14 @@ const rolesIcons = {
 }
 
 export default async function ChaptersPage() {
-  const [chapters, volunteerCounts, roles, faqs] = await Promise.all([
-    getChapters(),
-    getVolunteerCounts(),
-    getInfoCards('Chapter Roles'),
-    getFAQs('Chapter Questions'),
-  ])
+  const [chapters, volunteerCounts, roles, faqs, chapterBanner] =
+    await Promise.all([
+      getChapters(),
+      getVolunteerCounts(),
+      getInfoCards('Chapter Roles'),
+      getFAQs('Chapter Questions'),
+      getAssetUrl('chapter-banner'),
+    ])
 
   const stats = [
     { label: 'Active chapters', value: chapters.length },
@@ -34,7 +37,16 @@ export default async function ChaptersPage() {
   return (
     <>
       {/* Banner */}
-      <section className='h-56 md:h-80 bg-gradient-to-r from-green-100 via-blue-100 to-purple-100' />
+      <section className='relative h-56 bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 md:h-80'>
+        {chapterBanner && (
+          <Image
+            src={chapterBanner}
+            alt='A group panorama of all the students from the University of Maryland chapter spanning the banner. '
+            fill
+            className='object-contain object-bottom'
+          />
+        )}
+      </section>
 
       <PageIntro
         heading='Chapters'
