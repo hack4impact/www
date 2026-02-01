@@ -16,15 +16,15 @@ export default async function HomePage() {
     projects,
     journalEntries,
     heroImageUrl,
-    calloutImageUrl,
     processImageUrl,
+    calloutImageUrl,
     mainProcess,
   ] = await Promise.all([
     getProjects(),
     getJournalEntries(),
-    getAssetUrl("halftone_upenn_chapter"),
-    getAssetUrl("halftone_javid"),
-    getAssetUrl("halftone_calpoly_outside"),
+    getAssetUrl("home-one"),
+    getAssetUrl("home-two"),
+    getAssetUrl("home-three"),
     getProcess("Main Process"),
   ]);
 
@@ -64,12 +64,14 @@ export default async function HomePage() {
         {/* Gradient block below hero */}
         <div className="relative mt-8 flex justify-center px-8">
           <div className="relative w-full max-w-[800px] aspect-[8/5] bg-gradient-to-br from-blue-200 to-green-100">
-            <Image
-              fill
-              className="object-cover"
-              src={heroImageUrl ? heroImageUrl : ""}
-              alt="A group photo of students from the UPenn chapter"
-            />
+            {heroImageUrl && (
+              <Image
+                fill
+                className="object-cover"
+                src={heroImageUrl}
+                alt="A group photo of students from the UPenn chapter"
+              />
+            )}
           </div>
         </div>
       </section>
@@ -83,12 +85,14 @@ export default async function HomePage() {
           numbered={mainProcess.numbered}
           aside={
             <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px] bg-gradient-to-br from-purple-100 to-blue-200">
-              <Image
-                fill
-                className="object-cover"
-                src={processImageUrl ? processImageUrl : ""}
-                alt="A group photo of students from the UPenn chapter"
-              />
+              {processImageUrl && (
+                <Image
+                  fill
+                  className="object-cover"
+                  src={processImageUrl}
+                  alt="A group photo of students from the UPenn chapter"
+                />
+              )}
             </div>
           }
         />
@@ -158,12 +162,14 @@ export default async function HomePage() {
       <section className="grid grid-cols-1 lg:grid-cols-2">
         <div className="px-8 lg:px-0 lg:pl-12 py-8 lg:py-12">
           <div className="aspect-[4/5] w-full bg-gradient-to-br relative from-green-100 to-purple-200">
-            <Image
-              fill
-              className="object-cover"
-              src={calloutImageUrl ? calloutImageUrl : ""}
-              alt="A group photo of students from the UPenn chapter"
-            />
+            {calloutImageUrl && (
+              <Image
+                fill
+                className="object-cover"
+                src={calloutImageUrl}
+                alt="A group photo of students from the UPenn chapter"
+              />
+            )}
           </div>
         </div>
 
