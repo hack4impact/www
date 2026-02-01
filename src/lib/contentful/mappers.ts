@@ -112,10 +112,18 @@ export function mapInfoCards(item: any): ContentfulInfoCards {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((s: any) => s.fields)
       .filter(Boolean)
-      .map((s: { name: string; description: string; icon?: string }) => ({
-        name: s.name,
-        description: s.description,
-        icon: s.icon,
-      })),
+      .map(
+        (s: {
+          name: string
+          description: string
+          icon?: string
+          link?: string
+        }) => ({
+          name: s.name,
+          description: s.description,
+          icon: s.icon,
+          link: s.link,
+        }),
+      ),
   }
 }

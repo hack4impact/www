@@ -17,7 +17,7 @@ const workItems = [
 ]
 
 const getInvolvedItems = [
-  { label: 'Nonprofit', href: '/nonprofits' },
+  { label: 'Non-Profit', href: '/nonprofits' },
   { label: 'Student', href: '/students' },
   { label: 'Mentor', href: '/mentors' },
   { label: 'Sponsor', href: '/sponsors' },

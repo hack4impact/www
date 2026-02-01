@@ -1,18 +1,21 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Heart, OpenBook, Suitcase } from 'iconoir-react'
 import { NumberedSteps } from '@/components/ui/NumberedSteps'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { getProjects, FEATURED_PROJECT_SLUG } from '@/lib/notion/api'
+import { CardGrid } from '@/components/ui/CardGrid'
 import {
   getJournalEntries,
   getAssetUrl,
   getProcess,
+  getInfoCards,
 } from '@/lib/contentful/api'
-import Image from 'next/image'
 
 export default async function HomePage() {
   const [
+    programs,
     projects,
     journalEntries,
     heroImageUrl,
@@ -20,6 +23,7 @@ export default async function HomePage() {
     calloutImageUrl,
     mainProcess,
   ] = await Promise.all([
+    getInfoCards('Programs'),
     getProjects(),
     getJournalEntries(),
     getAssetUrl('home-one'),
@@ -29,6 +33,11 @@ export default async function HomePage() {
   ])
 
   const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
+  const programsIcons = {
+    Heart: <Heart {...iconProps} />,
+    OpenBook: <OpenBook {...iconProps} />,
+    Suitcase: <Suitcase {...iconProps} />,
+  }
 
   const featuredArticles = journalEntries.slice(0, 3)
   const featuredProject =
@@ -36,6 +45,7 @@ export default async function HomePage() {
       projects.find((p) => p.slug === FEATURED_PROJECT_SLUG)) ||
     projects[0] ||
     null
+
   return (
     <>
       <section className='relative pb-32'>
@@ -79,7 +89,7 @@ export default async function HomePage() {
       {/* Process Section */}
       {mainProcess && (
         <NumberedSteps
-          heading='Our process for turning computer science into community science'
+          heading={mainProcess.title!}
           headingClassName='max-w-lg mx-auto'
           steps={mainProcess.steps}
           numbered={mainProcess.numbered}
@@ -90,7 +100,7 @@ export default async function HomePage() {
                   fill
                   className='object-cover'
                   src={processImageUrl}
-                  alt='A group photo of students from the UPenn chapter'
+                  alt='A group photo of students from the Cal Poly chapter'
                 />
               )}
             </div>
@@ -100,62 +110,11 @@ export default async function HomePage() {
 
       {/* Programs Section */}
       <section className='px-8 md:px-12 py-16 md:py-24'>
-        <div className='text-center mb-12'>
+        <div className='text-center'>
           <h2 className='text-3xl md:text-4xl font-serif'>Our programs</h2>
           <p className='text-2xl md:text-3xl font-sans'>Community in action</p>
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-          <div className='flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg'>
-            <div className='mb-6'>
-              <Heart {...iconProps} />
-            </div>
-            <h3 className='text-xl font-sans mb-2'>Non-Profits</h3>
-            <p className='text-base font-serif mb-4'>
-              We build custom software solutions for nonprofit organizations,
-              helping them better serve their communities and amplify their
-              impact.
-            </p>
-            <Link
-              href='/nonprofits'
-              className='mt-auto font-mono text-sm hover:underline'
-            >
-              Learn more &rarr;
-            </Link>
-          </div>
-          <div className='flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg'>
-            <div className='mb-6'>
-              <OpenBook {...iconProps} />
-            </div>
-            <h3 className='text-xl font-sans mb-2'>Students</h3>
-            <p className='text-base font-serif mb-4'>
-              We provide community, education, and service-learning
-              opportunities for students to develop real-world skills while
-              making a difference.
-            </p>
-            <Link
-              href='/students'
-              className='mt-auto font-mono text-sm hover:underline'
-            >
-              Learn more &rarr;
-            </Link>
-          </div>
-          <div className='flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg'>
-            <div className='mb-6'>
-              <Suitcase {...iconProps} />
-            </div>
-            <h3 className='text-xl font-sans mb-2'>Professionals</h3>
-            <p className='text-base font-serif mb-4'>
-              Industry professionals mentor our students, sharing expertise and
-              guiding the next generation of socially-conscious technologists.
-            </p>
-            <Link
-              href='/mentors'
-              className='mt-auto font-mono text-sm hover:underline'
-            >
-              Learn more &rarr;
-            </Link>
-          </div>
-        </div>
+        {programs && <CardGrid items={programs.cards} icons={programsIcons} />}
       </section>
 
       {/* Quote Callout Section */}

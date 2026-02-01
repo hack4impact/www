@@ -53,6 +53,7 @@ export interface InfoCard {
   name: string
   description: string
   icon?: string
+  link?: string
 }
 
 export interface ContentfulInfoCards {
