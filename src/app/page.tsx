@@ -110,7 +110,7 @@ export default async function HomePage() {
 
       {/* Programs Section */}
       <section className='px-8 md:px-12 py-16 md:py-24'>
-        <div className='text-center'>
+        <div className='text-center mb-0'>
           <h2 className='text-3xl md:text-4xl font-serif'>Our programs</h2>
           <p className='text-2xl md:text-3xl font-sans'>Community in action</p>
         </div>
@@ -124,7 +124,7 @@ export default async function HomePage() {
             {calloutImageUrl && (
               <Image
                 fill
-                className='object-cover'
+                className='object-cover object-top pt-8'
                 src={calloutImageUrl}
                 alt='A group photo of students from the UPenn chapter'
               />
