@@ -1,6 +1,6 @@
 import { SplitHero } from '@/components/ui/SplitHero'
 import { CardGrid } from '@/components/ui/CardGrid'
-import { NumberedSteps } from '@/components/ui/NumberedSteps'
+import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
@@ -62,11 +62,17 @@ export default async function NonprofitsPage() {
       )}
 
       {nonprofitProcess && (
-        <NumberedSteps
-          heading={nonprofitProcess.title ?? 'How it works'}
-          steps={nonprofitProcess.steps}
-          numbered={nonprofitProcess.numbered}
-        />
+        <section className='px-8 md:px-12 py-16 md:py-24'>
+          <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
+            {nonprofitProcess.title ?? 'How it works'}
+          </h2>
+          <div className='max-w-3xl mx-auto'>
+            <StepsList
+              steps={nonprofitProcess.steps}
+              numbered={nonprofitProcess.numbered}
+            />
+          </div>
+        </section>
       )}
 
       {/* Testimonials */}

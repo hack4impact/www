@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Heart, OpenBook, Suitcase } from 'iconoir-react'
-import { NumberedSteps } from '@/components/ui/NumberedSteps'
+import { StepsList } from '@/components/ui/StepsList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { HomeIntro } from '@/components/ui/HomeIntro'
 import { notionApi, FEATURED_PROJECT_SLUG } from '@/lib/notion'
@@ -47,13 +47,12 @@ export default async function HomePage() {
 
       {/* Process Section */}
       {mainProcess && (
-        <NumberedSteps
-          heading={mainProcess.title!}
-          headingClassName='max-w-lg mx-auto'
-          steps={mainProcess.steps}
-          numbered={mainProcess.numbered}
-          aside={
-            <div className='relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-200 lg:aspect-auto lg:min-h-[500px]'>
+        <section className='px-8 md:px-12 py-16 md:py-24'>
+          <h2 className='text-2xl md:text-3xl font-sans mb-12 text-center max-w-lg mx-auto'>
+            {mainProcess.title!}
+          </h2>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+            <div className='relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-200 lg:aspect-auto'>
               {processImageUrl && (
                 <Image
                   fill
@@ -63,8 +62,13 @@ export default async function HomePage() {
                 />
               )}
             </div>
-          }
-        />
+            <StepsList
+              steps={mainProcess.steps}
+              numbered={mainProcess.numbered}
+              stretch
+            />
+          </div>
+        </section>
       )}
 
       {/* Programs Section */}

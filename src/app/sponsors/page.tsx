@@ -2,7 +2,7 @@ import { SplitHero } from '@/components/ui/SplitHero'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { StatBar } from '@/components/ui/StatBar'
 import { GridTable } from '@/components/ui/GridTable'
-import { NumberedSteps } from '@/components/ui/NumberedSteps'
+import { StepsList } from '@/components/ui/StepsList'
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
 import { Check } from 'iconoir-react'
@@ -98,11 +98,17 @@ export default async function SponsorsPage() {
 
       {/* Where Your Money Goes */}
       {sponsorProcess && (
-        <NumberedSteps
-          heading={sponsorProcess.title ?? 'Where your support goes'}
-          steps={sponsorProcess.steps}
-          numbered={sponsorProcess.numbered}
-        />
+        <section className='px-8 md:px-12 py-16 md:py-24'>
+          <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
+            {sponsorProcess.title ?? 'Where your support goes'}
+          </h2>
+          <div className='max-w-3xl mx-auto'>
+            <StepsList
+              steps={sponsorProcess.steps}
+              numbered={sponsorProcess.numbered}
+            />
+          </div>
+        </section>
       )}
 
       {/* Contact CTA */}

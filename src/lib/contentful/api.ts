@@ -2,7 +2,6 @@ import { unstable_cache } from 'next/cache'
 import type {
   JournalEntry,
   BoardTeamMember,
-  Value,
   SponsorshipTier,
   FAQ,
   ContentfulProcess,
@@ -12,7 +11,6 @@ import { contentfulClient } from './client'
 import {
   mapEntry,
   mapBoardTeamMember,
-  mapValue,
   mapSponsorshipTier,
   mapQuestions,
   mapProcess,

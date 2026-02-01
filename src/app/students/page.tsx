@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { SplitHero } from '@/components/ui/SplitHero'
 import { CardGrid } from '@/components/ui/CardGrid'
-import { NumberedSteps } from '@/components/ui/NumberedSteps'
+import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { contentfulApi } from '@/lib/contentful'
@@ -45,12 +45,17 @@ export default async function StudentsPage() {
       )}
 
       {chapterProcess && (
-        <NumberedSteps
-          heading={chapterProcess.title ?? 'How to start a chapter'}
-          steps={chapterProcess.steps}
-          numbered={chapterProcess.numbered}
-          id='start'
-        />
+        <section id='start' className='px-8 md:px-12 py-16 md:py-24 scroll-mt-8'>
+          <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
+            {chapterProcess.title ?? 'How to start a chapter'}
+          </h2>
+          <div className='max-w-3xl mx-auto'>
+            <StepsList
+              steps={chapterProcess.steps}
+              numbered={chapterProcess.numbered}
+            />
+          </div>
+        </section>
       )}
 
       {/* Existing Chapters */}
