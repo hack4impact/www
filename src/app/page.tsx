@@ -47,11 +47,11 @@ export default async function HomePage() {
 
       {/* Process Section */}
       {mainProcess && (
-        <section className='px-8 md:px-12 py-16 md:py-24'>
-          <h2 className='text-2xl md:text-3xl font-sans mb-12 text-center max-w-lg mx-auto'>
+        <section className='px-8 py-16 md:px-12 md:py-24'>
+          <h2 className='mx-auto mb-12 max-w-lg text-center font-sans text-2xl md:text-3xl'>
             {mainProcess.title!}
           </h2>
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+          <div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
             <div className='relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-200 lg:aspect-auto'>
               {processImageUrl && (
                 <Image

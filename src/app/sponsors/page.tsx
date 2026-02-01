@@ -98,11 +98,11 @@ export default async function SponsorsPage() {
 
       {/* Where Your Money Goes */}
       {sponsorProcess && (
-        <section className='px-8 md:px-12 py-16 md:py-24'>
-          <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
+        <section className='px-8 py-16 md:px-12 md:py-24'>
+          <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
             {sponsorProcess.title ?? 'Where your support goes'}
           </h2>
-          <div className='max-w-3xl mx-auto'>
+          <div className='mx-auto max-w-3xl'>
             <StepsList
               steps={sponsorProcess.steps}
               numbered={sponsorProcess.numbered}
@@ -116,7 +116,7 @@ export default async function SponsorsPage() {
         id='contact'
         heading='Interested in sponsoring?'
         buttonText='Get in touch'
-        href='mailto:contact@hack4impact.org'
+        href='mailto:contact@hack4impact.org?subject=Interest in Sponsoring'
         color='bg-orange-100'
       />
     </>

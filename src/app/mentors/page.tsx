@@ -69,7 +69,7 @@ export default async function MentorsPage() {
         id='sign-up'
         heading='Ready to mentor?'
         buttonText='Sign up'
-        href='mailto:contact@hack4impact.org'
+        href='mailto:contact@hack4impact.org?subject=Interest in Mentoring'
         color='bg-purple-100'
       />
     </>

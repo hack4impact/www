@@ -62,11 +62,11 @@ export default async function NonprofitsPage() {
       )}
 
       {nonprofitProcess && (
-        <section className='px-8 md:px-12 py-16 md:py-24'>
-          <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
+        <section className='px-8 py-16 md:px-12 md:py-24'>
+          <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
             {nonprofitProcess.title ?? 'How it works'}
           </h2>
-          <div className='max-w-3xl mx-auto'>
+          <div className='mx-auto max-w-3xl'>
             <StepsList
               steps={nonprofitProcess.steps}
               numbered={nonprofitProcess.numbered}
@@ -85,8 +85,9 @@ export default async function NonprofitsPage() {
         id='apply'
         heading='Ready to get started?'
         buttonText='Apply now'
-        href='mailto:contact@hack4impact.org'
+        href='mailto:contact@hack4impact.org?subject=Project for [Non-Profit Name]'
       />
     </>
   )
 }
+

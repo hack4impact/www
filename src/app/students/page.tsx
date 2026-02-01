@@ -45,11 +45,14 @@ export default async function StudentsPage() {
       )}
 
       {chapterProcess && (
-        <section id='start' className='px-8 md:px-12 py-16 md:py-24 scroll-mt-8'>
-          <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
+        <section
+          id='start'
+          className='scroll-mt-8 px-8 py-16 md:px-12 md:py-24'
+        >
+          <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
             {chapterProcess.title ?? 'How to start a chapter'}
           </h2>
-          <div className='max-w-3xl mx-auto'>
+          <div className='mx-auto max-w-3xl'>
             <StepsList
               steps={chapterProcess.steps}
               numbered={chapterProcess.numbered}
@@ -77,7 +80,7 @@ export default async function StudentsPage() {
       <CallToAction
         heading='Ready to start a chapter?'
         buttonText='Apply'
-        href='mailto:contact@hack4impact.org'
+        href='mailto:contact@hack4impact.org?subject=Starting a Chapter at [University Name]'
         color='bg-green-100'
       />
     </>
