@@ -9,7 +9,11 @@ import {
   getVolunteerCounts,
   getDoneProjectCount,
 } from '@/lib/notion/api'
-import { getSponsorshipTiers, getProcess } from '@/lib/contentful/api'
+import {
+  getSponsorshipTiers,
+  getProcess,
+  getAssetUrl,
+} from '@/lib/contentful/api'
 import { Check } from 'iconoir-react'
 
 async function getStats() {
@@ -34,10 +38,11 @@ function formatCost(cost: number): string {
 }
 
 export default async function SponsorsPage() {
-  const [stats, tiers, sponsorProcess] = await Promise.all([
+  const [stats, tiers, sponsorProcess, sponsorBanner] = await Promise.all([
     getStats(),
     getSponsorshipTiers(),
     getProcess('Sponsor Process'),
+    getAssetUrl('sponsor-banner'),
   ])
 
   // Collect all unique benefits in order of first appearance (lowest tier first)
@@ -79,14 +84,17 @@ export default async function SponsorsPage() {
         description='Your sponsorship enables student-driven technology for social good. Fund the tools, events, and infrastructure that power our chapters and the nonprofits they serve.'
         buttonText='Become a sponsor'
         buttonHref='#contact'
-        gradient='from-orange-100 to-orange-200'
+        gradient='from-orange-100 to-purple-200'
+        image={sponsorBanner || undefined}
+        imageClassName='object-contain'
+        alt='A hand giving a heart paper cut-out to another hand reaching out to take it.'
       />
 
       <StatBar heading='Our impact' stats={stats} />
 
       {/* Sponsorship Tiers Table */}
-      <section className='px-8 md:px-12 py-16 md:py-24'>
-        <div className='max-w-3xl mx-auto'>
+      <section className='px-8 py-16 md:px-12 md:py-24'>
+        <div className='mx-auto max-w-3xl'>
           <GridTable
             heading='Sponsorship tiers'
             headingClassName='text-center'

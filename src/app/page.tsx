@@ -152,7 +152,7 @@ export default async function HomePage() {
             Featured project
           </h2>
           <div className='mx-auto grid max-w-4xl grid-cols-1 gap-4 rounded-lg bg-blue-50 p-4 md:grid-cols-2 md:gap-5 md:p-5'>
-            <div className='aspect-[4/3] rounded-md bg-gradient-to-br from-blue-100 to-blue-200' />
+            <div className='aspect-[4/3] rounded-md bg-gradient-to-br from-blue-100 to-purple-200' />
             <div className='flex flex-col justify-center p-2 md:p-3'>
               <h3 className='mb-3 font-sans text-xl md:text-2xl'>
                 {featuredProject.title}
@@ -162,7 +162,7 @@ export default async function HomePage() {
               </p>
               <div>
                 <Link href={`/projects/${featuredProject.slug}`}>
-                  <Button>View write-up</Button>
+                  <Button>View project</Button>
                 </Link>
               </div>
             </div>
@@ -184,12 +184,22 @@ export default async function HomePage() {
             >
               <div className='flex items-center gap-6 py-6'>
                 <div
-                  className={`h-28 w-48 shrink-0 bg-gradient-to-br ${
+                  className={`relative h-28 w-48 shrink-0 bg-gradient-to-br ${
                     i === 0
                       ? 'from-orange-100 to-pink-200'
                       : 'from-purple-100 to-blue-200'
                   }`}
-                />
+                >
+                  {entry.thumbnailUrl ||
+                    (entry.bannerUrl && (
+                      <Image
+                        src={entry.thumbnailUrl || entry.bannerUrl}
+                        alt='Thumnail image of a journal entry and article'
+                        fill
+                        className='object-cover'
+                      />
+                    ))}
+                </div>
                 <div className='min-w-0'>
                   <h3 className='mb-1 truncate font-sans text-lg'>
                     {entry.title}

@@ -10,6 +10,7 @@ interface SplitHeroProps {
   gradient?: string
   image?: string
   alt?: string
+  imageClassName?: string
 }
 
 export function SplitHero({
@@ -20,6 +21,7 @@ export function SplitHero({
   gradient = 'from-gray-100 to-gray-200',
   image,
   alt,
+  imageClassName,
 }: SplitHeroProps) {
   return (
     <section className='grid min-h-[70vh] grid-cols-1 md:grid-cols-2'>
@@ -29,7 +31,7 @@ export function SplitHero({
         {image && (
           <Image
             fill
-            className='object-cover'
+            className={imageClassName || 'object-cover'}
             src={image}
             alt={alt || 'Side banner image for hero section'}
           />
