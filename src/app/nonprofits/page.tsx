@@ -10,9 +10,9 @@ import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
 const testimonials = [
   {
     quote:
-      'Working with Hack for Impact gave us a tool that fundamentally changed how we serve our community.',
-    name: 'Javid Fathi',
-    title: 'Software Engineer Lead at Microsoft',
+      'As Executive Director of 7000 Languages, I had the pleasure of working with Hack4Impact UIUC on the development of a mobile application for our organization. This breakthrough mobile application will be the first of its kind, helping speakers of endangered languages create language learning materials using only their mobile phone. The impact of this project allows our organization to serve more communities, better meet our partner’s needs, and empower individuals to revitalize their endangered languages.',
+    name: 'Stephanie Witkowski',
+    title: ' Executive Director / CEO of 7000 Languages',
   },
   {
     quote:
