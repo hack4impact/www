@@ -9,6 +9,10 @@ export const metadata: Metadata = {
     template: '%s | Hack4Impact',
   },
   description: 'Code for the common good.',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    title: 'Hack for Impact',
+  },
 }
 
 export default function RootLayout({
