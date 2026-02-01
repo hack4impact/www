@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 export interface Column<T> {
   id: string // Unique identifier for the column
@@ -130,11 +131,19 @@ export function DataTable<T extends { id: string | number }>({
               <th
                 key={column.id}
                 style={{ width: column.width }}
-                className={`py-4 px-4 font-sans font-medium cursor-pointer ${column.headerClassName}`}
+                className={cn(
+                  'py-4 px-4 font-sans font-medium cursor-pointer',
+                  column.headerClassName,
+                )}
                 onClick={() => column.accessorKey && handleSort(column.id)}
               >
                 <div
-                  className={`flex items-center ${column.headerClassName?.includes('text-right') ? 'justify-end' : ''}`}
+                  className={cn(
+                    'flex items-center',
+                    column.headerClassName?.includes('text-right')
+                      ? 'justify-end'
+                      : '',
+                  )}
                 >
                   {column.header}
                   {getSortIndicator(column.id)}
@@ -147,11 +156,14 @@ export function DataTable<T extends { id: string | number }>({
           {sortedData.map((row) => (
             <tr
               key={row.id}
-              className={`border-b border-gray-100 ${getRowHref ? 'hover:bg-gray-50 cursor-pointer' : ''}`}
+              className={cn(
+                'border-b border-gray-100',
+                getRowHref ? 'hover:bg-gray-50 cursor-pointer' : '',
+              )}
               onClick={() => handleRowClick(row)}
             >
               {columns.map((column) => (
-                <td key={column.id} className={`py-4 px-4 ${column.className}`}>
+                <td key={column.id} className={cn('py-4 px-4', column.className)}>
                   {column.accessor(row)}
                 </td>
               ))}

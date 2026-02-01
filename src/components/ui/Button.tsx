@@ -2,6 +2,7 @@
 
 import { Button as BaseButton } from '@base-ui/react/button'
 import { ComponentProps } from 'react'
+import { cn } from '@/lib/utils'
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline'
 type ButtonSize = 'sm' | 'md' | 'lg'
@@ -28,13 +29,18 @@ const sizeStyles: Record<ButtonSize, string> = {
 export function Button({
   variant = 'primary',
   size = 'md',
-  className = '',
+  className,
   children,
   ...props
 }: ButtonProps) {
   return (
     <BaseButton
-      className={`inline-flex items-center justify-center font-mono font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={cn(
+        'inline-flex items-center justify-center font-mono font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none',
+        variantStyles[variant],
+        sizeStyles[size],
+        className,
+      )}
       {...props}
     >
       {children}
