@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { Heart, OpenBook, Suitcase } from 'iconoir-react'
 import { NumberedSteps } from '@/components/ui/NumberedSteps'
 import { CallToAction } from '@/components/ui/CallToAction'
+import { HomeIntro } from '@/components/ui/HomeIntro'
 import { notionApi, FEATURED_PROJECT_SLUG } from '@/lib/notion'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { contentfulApi } from '@/lib/contentful'
@@ -42,43 +43,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className='relative pb-32'>
-        {/* Gradient background */}
-        <div className='absolute inset-0 bottom-1/3 bg-gradient-to-b from-blue-100 via-blue-100 via-60% to-green-50' />
-
-        {/* Content */}
-        <div className='relative px-8 pt-24 text-center'>
-          <h1 className='flex flex-col'>
-            <span className='font-serif text-5xl'>Code &amp; community</span>
-            <span className='font-serif text-5xl'>for the common good</span>
-          </h1>
-          <p className='mx-auto mt-4 max-w-2xl text-base md:text-lg'>
-            Committed to supporting nonprofits and social good initiatives, Hack
-            for Impact educates and connects student volunteers, in search of
-            real-world experience, with nonprofit partners that address crucial
-            community needs.
-          </p>
-          <div className='mt-6'>
-            <Link href='/nonprofits'>
-              <Button>Partner with us!</Button>
-            </Link>
-          </div>
-        </div>
-
-        {/* Gradient block below hero */}
-        <div className='relative mt-8 flex justify-center px-8'>
-          <div className='relative aspect-[8/5] w-full max-w-[800px] overflow-hidden bg-gradient-to-br from-blue-200 to-green-100'>
-            {heroImageUrl && (
-              <Image
-                fill
-                className='scale-110 object-contain object-bottom'
-                src={heroImageUrl}
-                alt='A group photo of students from the UPenn chapter'
-              />
-            )}
-          </div>
-        </div>
-      </section>
+      <HomeIntro heroImageUrl={heroImageUrl ?? undefined} />
 
       {/* Process Section */}
       {mainProcess && (
