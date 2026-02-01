@@ -1,5 +1,5 @@
 import { getPartners } from '@/lib/notion/api'
-import { getFAQs } from '@/lib/contentful/api'
+import { getAssetUrl, getFAQs } from '@/lib/contentful/api'
 import { PartnersDataTable } from '@/components/ui/PartnersDataTable'
 import { PageIntro } from '@/components/ui/PageIntro'
 import { StatBar } from '@/components/ui/StatBar'
@@ -7,7 +7,8 @@ import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 
 export default async function PartnersPage() {
-  const [partners, faqs] = await Promise.all([
+  const [partnersBanner, partners, faqs] = await Promise.all([
+    getAssetUrl('partners-banners'),
     getPartners(),
     getFAQs('Partner Questions'),
   ])
@@ -26,7 +27,7 @@ export default async function PartnersPage() {
   return (
     <>
       {/* Banner */}
-      <section className='h-56 md:h-80 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100' />
+      <section className='relative h-56 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100 md:h-80' />
 
       <PageIntro
         heading='Partners'

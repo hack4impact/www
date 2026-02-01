@@ -20,9 +20,14 @@ export default async function JournalPage() {
   return (
     <>
       {/* Banner */}
-      <section className='h-56 md:h-80 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100'>
+      <section className='h-56 md:h-80 relative bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100'>
         {journalBanner && (
-          <Image src={journalBanner} alt='Banner for journal page' />
+          <Image
+            fill
+            src={journalBanner}
+            alt='Banner for journal page'
+            className='object-cover'
+          />
         )}
       </section>
 

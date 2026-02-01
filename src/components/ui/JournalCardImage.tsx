@@ -7,7 +7,7 @@ export function JournalCardImage({ src }: { src: string }) {
   const [isReady, setIsReady] = useState(false)
 
   return (
-    <div className='relative w-full h-full overflow-hidden'>
+    <div className='relative h-full w-full overflow-hidden'>
       {/* 1. Pre-load the image in the background */}
       <img
         src={src}
@@ -23,13 +23,13 @@ export function JournalCardImage({ src }: { src: string }) {
           scale={1}
           // Using object-cover here ensures the shader canvas
           // scales to fill the parent without distortion
-          className='absolute inset-0 w-full h-full object-cover'
+          className='absolute inset-0 h-full w-full object-cover'
         />
       )}
 
       {/* 3. Placeholder to prevent layout shift */}
       {!isReady && (
-        <div className='absolute inset-0 w-full h-full bg-gray-100 animate-pulse' />
+        <div className='absolute inset-0 h-full w-full animate-pulse bg-gray-100' />
       )}
     </div>
   )
