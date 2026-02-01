@@ -10,21 +10,15 @@ import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
 const testimonials = [
   {
     quote:
-      'As Executive Director of 7000 Languages, I had the pleasure of working with Hack4Impact UIUC on the development of a mobile application for our organization. This breakthrough mobile application will be the first of its kind, helping speakers of endangered languages create language learning materials using only their mobile phone. The impact of this project allows our organization to serve more communities, better meet our partner’s needs, and empower individuals to revitalize their endangered languages.',
+      'The impact of this project allows our organization to serve more communities, better meet our partner’s needs, and empower individuals to revitalize their endangered languages.',
     name: 'Stephanie Witkowski',
     title: ' Executive Director / CEO of 7000 Languages',
   },
   {
     quote:
-      'The students delivered a product that exceeded our expectations — and they did it with genuine care for our mission.',
-    name: 'Sarah Chen',
-    title: 'Executive Director, Community Aid Network',
-  },
-  {
-    quote:
-      'We went from spreadsheets to a custom platform in one semester. Our volunteers save hours every week.',
-    name: 'Marcus Johnson',
-    title: 'Operations Manager, Youth Forward',
+      "Their team's dedication and professionalism impressed us...I strongly recommend Hack for Impact to any nonprofit seeking meaningful, mission-driven support.",
+    name: 'Vision Academy',
+    title: '',
   },
 ]
 
