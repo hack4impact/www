@@ -5,10 +5,11 @@ import { PageIntro } from '@/components/ui/PageIntro'
 import { StatBar } from '@/components/ui/StatBar'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
+import Image from 'next/image'
 
 export default async function PartnersPage() {
   const [partnersBanner, partners, faqs] = await Promise.all([
-    getAssetUrl('partners-banners'),
+    getAssetUrl('partners-banner'),
     getPartners(),
     getFAQs('Partner Questions'),
   ])
@@ -27,7 +28,16 @@ export default async function PartnersPage() {
   return (
     <>
       {/* Banner */}
-      <section className='relative h-56 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100 md:h-80'></section>
+      <section className='relative h-56 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100 md:h-80'>
+        {partnersBanner && (
+          <Image
+            fill
+            src={partnersBanner}
+            alt='Banner for the partners page'
+            className='object-cover'
+          />
+        )}
+      </section>
 
       <PageIntro
         heading='Partners'

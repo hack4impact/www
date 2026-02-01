@@ -31,12 +31,12 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   return (
     <>
       {/* Intro - Two column */}
-      <section className='grid grid-cols-1 md:grid-cols-2 min-h-[50vh]'>
-        <div className='bg-gradient-to-br relative from-green-100 to-blue-200 min-h-64 md:min-h-0 aspect-[4/3] md:aspect-auto'>
+      <section className='grid min-h-[50vh] grid-cols-1 md:grid-cols-2'>
+        <div className='relative aspect-[4/3] min-h-64 bg-gradient-to-br from-green-100 to-blue-200 md:aspect-auto md:min-h-0'>
           {chapterImage && (
             <Image
               fill
-              className='object-cover'
+              className='object-cover object-top pt-5'
               src={chapterImage}
               alt={`An image of ${chapter.name}'s student volunteers`}
             />
@@ -44,8 +44,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         </div>
 
         {/* Header content */}
-        <div className='flex flex-col justify-center items-start p-8 md:p-12 bg-[#FCF9F2]'>
-          <div className='flex items-center gap-2 text-base font-serif mb-2'>
+        <div className='flex flex-col items-start justify-center bg-[#FCF9F2] p-8 md:p-12'>
+          <div className='mb-2 flex items-center gap-2 font-serif text-base'>
             <span className='text-gray-600'>{chapter.location}</span>
             {chapter.location && chapter.founded && (
               <span className='text-gray-400'>·</span>
@@ -54,7 +54,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
               <span className='text-gray-600'>Est. {chapter.founded}</span>
             )}
           </div>
-          <h1 className='text-3xl md:text-5xl font-sans max-w-lg'>
+          <h1 className='max-w-lg font-sans text-3xl md:text-5xl'>
             {chapter.name}
           </h1>
         </div>
@@ -73,16 +73,16 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           </Link>
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-16'>
+        <div className='grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr] lg:gap-16'>
           {/* Sidebar - Stats */}
-          <aside className='flex flex-row lg:flex-col gap-8 lg:gap-0 lg:pr-8 font-serif'>
+          <aside className='flex flex-row gap-8 font-serif lg:flex-col lg:gap-0 lg:pr-8'>
             <div className='lg:mb-6'>
               <p className='text-sm text-gray-500'>Members</p>
-              <p className='text-2xl font-sans'>{chapter.memberCount}</p>
+              <p className='font-sans text-2xl'>{chapter.memberCount}</p>
             </div>
             <div className='lg:mb-6'>
               <p className='text-sm text-gray-500'>Projects</p>
-              <p className='text-2xl font-sans'>{chapter.projectCount}</p>
+              <p className='font-sans text-2xl'>{chapter.projectCount}</p>
             </div>
             <div>
               <p className='text-sm text-gray-500'>University</p>
@@ -93,14 +93,14 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           {/* Main content */}
           <article className='font-serif'>
             {/* Description */}
-            <p className='text-lg md:text-xl mb-8'>{chapter.description}</p>
+            <p className='mb-8 text-lg md:text-xl'>{chapter.description}</p>
 
             {/* Divider */}
-            <Separator className='border-t border-gray-300 mb-8' />
+            <Separator className='mb-8 border-t border-gray-300' />
 
             {/* Link Cards */}
             {(chapter.website || chapter.github || chapter.instagram) && (
-              <div className='flex flex-wrap gap-4 mb-8'>
+              <div className='mb-8 flex flex-wrap gap-4'>
                 {chapter.website && (
                   <LinkCard
                     label='Website'
@@ -128,8 +128,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             {/* Projects Table */}
             {chapterProjects.length > 0 && (
               <>
-                <Separator className='border-t border-gray-300 mb-8' />
-                <h2 className='text-xl md:text-2xl font-sans mb-4'>Projects</h2>
+                <Separator className='mb-8 border-t border-gray-300' />
+                <h2 className='mb-4 font-sans text-xl md:text-2xl'>Projects</h2>
                 <ChapterProjects projects={chapterProjects} />
               </>
             )}

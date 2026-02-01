@@ -21,14 +21,14 @@ export default async function JournalPostPage({
   return (
     <>
       {/* Header */}
-      <section className='p-8 md:px-24 md:py-12 text-center'>
-        <div className='max-w-4xl mx-auto'>
-          <div className='flex items-center justify-center gap-2 text-base font-serif mb-2'>
+      <section className='p-8 text-center md:px-24 md:py-12'>
+        <div className='mx-auto max-w-4xl'>
+          <div className='mb-2 flex items-center justify-center gap-2 font-serif text-base'>
             <span className='text-gray-600'>{entry.tag}</span>
             <span className='text-gray-400'>&middot;</span>
             <span className='text-gray-600'>{entry.readTime}</span>
           </div>
-          <h1 className='text-3xl md:text-5xl font-sans mx-auto'>
+          <h1 className='mx-auto font-sans text-3xl md:text-5xl'>
             {entry.title}
           </h1>
         </div>
@@ -36,7 +36,7 @@ export default async function JournalPostPage({
 
       {/* Banner Image */}
       <section className='px-8 md:px-12'>
-        <div className='relative w-full aspect-[3/1] bg-gradient-to-br from-blue-100 to-green-200'>
+        <div className='relative aspect-[3/1] w-full bg-gradient-to-br from-blue-100 to-green-200'>
           {entry.thumbnailUrl || entry.bannerUrl ? (
             <Image
               src={entry.thumbnailUrl || entry.bannerUrl!}
@@ -50,9 +50,9 @@ export default async function JournalPostPage({
 
       {/* Content */}
       <section className='p-8 md:px-24 md:py-12'>
-        <div className='grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 lg:gap-24'>
+        <div className='grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr] lg:gap-24'>
           {/* Sidebar - Author & Date */}
-          <aside className='grid grid-cols-2 lg:block lg:pr-8 font-serif'>
+          <aside className='grid grid-cols-2 font-serif lg:block lg:pr-8'>
             <div className='mb-0 lg:mb-4'>
               <p className='text-sm text-gray-500'>Written by</p>
               <p className='font-sans'>{entry.author}</p>
@@ -66,10 +66,10 @@ export default async function JournalPostPage({
           {/* Article content */}
           <article className='font-serif'>
             {/* Intro */}
-            <p className='text-lg md:text-xl mb-6'>{entry.intro}</p>
+            <p className='mb-6 text-lg md:text-xl'>{entry.intro}</p>
 
             {/* Divider */}
-            <Separator className='border-t border-gray-300 mb-6' />
+            <Separator className='mb-6 border-t border-gray-300' />
 
             {/* Content */}
             <div className='max-w-none'>
