@@ -1,7 +1,36 @@
-import Image from 'next/image'
+'use client'
+
 import { type ReactNode } from 'react'
+import { motion } from 'framer-motion'
 import { Card } from '@/components/ui/Card'
 import { InfoCard } from '@/lib/types/contentful'
+
+// Animation variants
+const gridContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+}
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
 
 interface CardGridProps {
   heading?: string
@@ -28,32 +57,53 @@ export function CardGrid({
   return (
     <section className={`px-8 md:px-12 py-16 md:py-24 ${className}`}>
       {heading && (
-        <h2
+        <motion.h2
           className={`font-sans text-center ${
             description ? 'text-2xl md:text-3xl mb-4' : 'text-3xl mb-12'
           }`}
+          variants={headerVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.2 }}
         >
           {heading}
-        </h2>
+        </motion.h2>
       )}
       {description && (
-        <p className='font-serif text-gray-600 text-center max-w-2xl mx-auto mb-12'>
+        <motion.p
+          className='font-serif text-gray-600 text-center max-w-2xl mx-auto mb-12'
+          variants={headerVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {description}
-        </p>
+        </motion.p>
       )}
-      <div className={`grid ${gridCols} gap-8`}>
+      <motion.div
+        className={`grid ${gridCols} gap-8`}
+        variants={gridContainerVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.1 }}
+      >
         {items.map((item) => (
-          <Card
+          <motion.div
             key={item.name}
-            icon={
-              icons ? (item.icon ? icons[item.icon] : undefined) : undefined
-            }
-            title={item.name}
-            description={item.description}
-            href={item.link}
-          />
+            variants={cardVariants}
+            className='h-full'
+          >
+            <Card
+              icon={
+                icons ? (item.icon ? icons[item.icon] : undefined) : undefined
+              }
+              title={item.name}
+              description={item.description}
+              href={item.link}
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }
