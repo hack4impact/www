@@ -66,7 +66,9 @@ export function NumberedSteps({
       className={`px-8 md:px-12 py-16 md:py-24${id ? ' scroll-mt-8' : ''}`}
     >
       <h2
-        className={`text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center ${headingClassName ?? ''}`}
+        className={`text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center ${
+          headingClassName ?? ''
+        }`}
       >
         {heading}
       </h2>
