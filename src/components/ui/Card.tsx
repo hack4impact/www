@@ -1,18 +1,20 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
 interface CardProps {
-  icon?: ReactNode;
-  title: string;
-  description: string;
-  className?: string;
+  icon?: ReactNode
+  title: string
+  description: string
+  className?: string
 }
 
-export function Card({ icon, title, description, className = "" }: CardProps) {
+export function Card({ icon, title, description, className = '' }: CardProps) {
   return (
-    <div className={`flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg ${className}`}>
-      {icon && <div className="mb-6">{icon}</div>}
-      <h3 className="text-xl font-sans mb-2">{title}</h3>
-      <p className="text-base font-serif">{description}</p>
+    <div
+      className={`flex flex-col items-start px-6 py-8 bg-blue-50 rounded-lg ${className}`}
+    >
+      {icon && <div className='mb-6'>{icon}</div>}
+      <h3 className='text-xl font-sans mb-2'>{title}</h3>
+      <p className='text-base font-serif'>{description}</p>
     </div>
-  );
+  )
 }

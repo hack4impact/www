@@ -8,4 +8,4 @@ export {
   getPartnerBySlug,
   getVolunteerCounts,
   getDoneProjectCount,
-} from "./api";
+} from './api'

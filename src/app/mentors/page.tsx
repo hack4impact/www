@@ -1,59 +1,59 @@
-import { SplitHero } from "@/components/ui/SplitHero";
-import { CardGrid } from "@/components/ui/CardGrid";
-import { FAQList } from "@/components/ui/FAQList";
-import { CallToAction } from "@/components/ui/CallToAction";
-import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
-import { getFAQs, getInfoCards } from "@/lib/contentful/api";
-import { Puzzle, ChatBubbleQuestion, TaskList } from "iconoir-react";
+import { SplitHero } from '@/components/ui/SplitHero'
+import { CardGrid } from '@/components/ui/CardGrid'
+import { FAQList } from '@/components/ui/FAQList'
+import { CallToAction } from '@/components/ui/CallToAction'
+import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
+import { getFAQs, getInfoCards } from '@/lib/contentful/api'
+import { Puzzle, ChatBubbleQuestion, TaskList } from 'iconoir-react'
 
 const testimonials = [
   {
     quote:
-      "Mentoring at Hack4Impact reminded me why I got into engineering in the first place — to help people.",
-    name: "Javid Fathi",
-    title: "Software Engineer Lead at Microsoft",
+      'Mentoring at Hack4Impact reminded me why I got into engineering in the first place — to help people.',
+    name: 'Javid Fathi',
+    title: 'Software Engineer Lead at Microsoft',
   },
   {
     quote:
-      "Watching students grow from nervous beginners to confident engineers over one semester is incredibly rewarding.",
-    name: "Priya Patel",
-    title: "Senior Engineer at Stripe",
+      'Watching students grow from nervous beginners to confident engineers over one semester is incredibly rewarding.',
+    name: 'Priya Patel',
+    title: 'Senior Engineer at Stripe',
   },
   {
     quote:
       "The teams are sharp, motivated, and building things that matter. It's the most meaningful volunteer work I've done.",
-    name: "David Kim",
-    title: "Staff Engineer at Meta",
+    name: 'David Kim',
+    title: 'Staff Engineer at Meta',
   },
-];
+]
 
-const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
+const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
 
 const tasksIcons = {
   TaskList: <TaskList {...iconProps} />,
   ChatBubbleQuestion: <ChatBubbleQuestion {...iconProps} />,
   Puzzle: <Puzzle {...iconProps} />,
-};
+}
 
 export default async function MentorsPage() {
   const [faqs, tasks] = await Promise.all([
-    getFAQs("Mentor Questions"),
-    getInfoCards("Mentor Tasks"),
-  ]);
+    getFAQs('Mentor Questions'),
+    getInfoCards('Mentor Tasks'),
+  ])
 
   return (
     <>
       <SplitHero
-        heading="Mentor with Hack4Impact"
+        heading='Mentor with Hack4Impact'
         description="Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student's career and a nonprofit's future."
-        buttonText="Get involved"
-        buttonHref="#sign-up"
-        gradient="from-purple-100 to-purple-200"
+        buttonText='Get involved'
+        buttonHref='#sign-up'
+        gradient='from-purple-100 to-purple-200'
       />
 
       {tasks && (
         <CardGrid
-          heading="What mentors do"
+          heading='What mentors do'
           items={tasks.cards}
           icons={tasksIcons}
         />
@@ -62,16 +62,16 @@ export default async function MentorsPage() {
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />
 
-      <FAQList heading="What to expect" items={faqs} />
+      <FAQList heading='What to expect' items={faqs} />
 
       {/* Sign Up CTA */}
       <CallToAction
-        id="sign-up"
-        heading="Ready to mentor?"
-        buttonText="Sign up"
-        href="mailto:contact@hack4impact.org"
-        color="bg-purple-100"
+        id='sign-up'
+        heading='Ready to mentor?'
+        buttonText='Sign up'
+        href='mailto:contact@hack4impact.org'
+        color='bg-purple-100'
       />
     </>
-  );
+  )
 }

@@ -1,61 +1,61 @@
-import { SplitHero } from "@/components/ui/SplitHero";
-import { CardGrid } from "@/components/ui/CardGrid";
-import { NumberedSteps } from "@/components/ui/NumberedSteps";
-import { FAQList } from "@/components/ui/FAQList";
-import { CallToAction } from "@/components/ui/CallToAction";
-import { TestimonialCarousel } from "@/components/ui/TestimonialCarousel";
-import { getFAQs, getInfoCards, getProcess } from "@/lib/contentful/api";
-import { SmartphoneDevice, StatsReport, WebWindow } from "iconoir-react";
+import { SplitHero } from '@/components/ui/SplitHero'
+import { CardGrid } from '@/components/ui/CardGrid'
+import { NumberedSteps } from '@/components/ui/NumberedSteps'
+import { FAQList } from '@/components/ui/FAQList'
+import { CallToAction } from '@/components/ui/CallToAction'
+import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
+import { getFAQs, getInfoCards, getProcess } from '@/lib/contentful/api'
+import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
 
 const testimonials = [
   {
     quote:
-      "Working with Hack4Impact gave us a tool that fundamentally changed how we serve our community.",
-    name: "Javid Fathi",
-    title: "Software Engineer Lead at Microsoft",
+      'Working with Hack4Impact gave us a tool that fundamentally changed how we serve our community.',
+    name: 'Javid Fathi',
+    title: 'Software Engineer Lead at Microsoft',
   },
   {
     quote:
-      "The students delivered a product that exceeded our expectations — and they did it with genuine care for our mission.",
-    name: "Sarah Chen",
-    title: "Executive Director, Community Aid Network",
+      'The students delivered a product that exceeded our expectations — and they did it with genuine care for our mission.',
+    name: 'Sarah Chen',
+    title: 'Executive Director, Community Aid Network',
   },
   {
     quote:
-      "We went from spreadsheets to a custom platform in one semester. Our volunteers save hours every week.",
-    name: "Marcus Johnson",
-    title: "Operations Manager, Youth Forward",
+      'We went from spreadsheets to a custom platform in one semester. Our volunteers save hours every week.',
+    name: 'Marcus Johnson',
+    title: 'Operations Manager, Youth Forward',
   },
-];
+]
 
-const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const;
+const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
 
 const buildsIcons = {
   WebWindow: <WebWindow {...iconProps} />,
   SmartphoneDevice: <SmartphoneDevice {...iconProps} />,
   StatsReport: <StatsReport {...iconProps} />,
-};
+}
 
 export default async function NonprofitsPage() {
   const [faqs, nonprofitProcess, builds] = await Promise.all([
-    getFAQs("Nonprofit Questions"),
-    getProcess("Nonprofit Process"),
-    getInfoCards("Build Types"),
-  ]);
+    getFAQs('Nonprofit Questions'),
+    getProcess('Nonprofit Process'),
+    getInfoCards('Build Types'),
+  ])
 
   return (
     <>
       <SplitHero
-        heading="Partner with Hack4Impact"
-        description="We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact."
-        buttonText="Apply now"
-        buttonHref="#apply"
-        gradient="from-blue-100 to-blue-200"
+        heading='Partner with Hack4Impact'
+        description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
+        buttonText='Apply now'
+        buttonHref='#apply'
+        gradient='from-blue-100 to-blue-200'
       />
 
       {builds && (
         <CardGrid
-          heading="What we build"
+          heading='What we build'
           items={builds.cards}
           icons={buildsIcons}
         />
@@ -63,7 +63,7 @@ export default async function NonprofitsPage() {
 
       {nonprofitProcess && (
         <NumberedSteps
-          heading={nonprofitProcess.title ?? "How it works"}
+          heading={nonprofitProcess.title ?? 'How it works'}
           steps={nonprofitProcess.steps}
           numbered={nonprofitProcess.numbered}
         />
@@ -72,15 +72,15 @@ export default async function NonprofitsPage() {
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />
 
-      <FAQList heading="What to expect" items={faqs} />
+      <FAQList heading='What to expect' items={faqs} />
 
       {/* Apply CTA */}
       <CallToAction
-        id="apply"
-        heading="Ready to get started?"
-        buttonText="Apply now"
-        href="mailto:contact@hack4impact.org"
+        id='apply'
+        heading='Ready to get started?'
+        buttonText='Apply now'
+        href='mailto:contact@hack4impact.org'
       />
     </>
-  );
+  )
 }

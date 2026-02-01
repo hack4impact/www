@@ -7,4 +7,4 @@ export {
   getAssetUrl,
   getFAQs,
   getProcess,
-} from "./api";
+} from './api'
