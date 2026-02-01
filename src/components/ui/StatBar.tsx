@@ -1,4 +1,5 @@
 import type { Stat } from '@/lib/types/stat'
+import { AnimatedCounter } from './AnimatedCounter'
 
 interface StatBarProps {
   stats: Stat[]
@@ -21,11 +22,16 @@ export function StatBar({ stats, heading }: StatBarProps) {
         <h2 className='text-3xl font-sans mb-12 text-center'>{heading}</h2>
       )}
       <div
-        className={`grid grid-cols-2 ${lgGridCols[stats.length] ?? 'lg:grid-cols-3'} gap-8 max-w-4xl mx-auto text-center`}
+        className={`grid grid-cols-2 ${
+          lgGridCols[stats.length] ?? 'lg:grid-cols-3'
+        } gap-8 max-w-4xl mx-auto text-center`}
       >
         {stats.map((stat) => (
           <div key={stat.label}>
-            <p className='text-4xl md:text-5xl font-sans'>{stat.value}</p>
+            <AnimatedCounter
+              to={stat.value}
+              className='text-4xl md:text-5xl font-sans'
+            />
             <p className='mt-2 font-serif text-gray-600'>{stat.label}</p>
           </div>
         ))}
