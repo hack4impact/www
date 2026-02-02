@@ -188,7 +188,7 @@ export default async function HomePage() {
       <CallToAction
         heading='Ready to make an impact?'
         buttonText='Get involved'
-        href='/students'
+        href='/get-involved/students'
       />
     </>
   )

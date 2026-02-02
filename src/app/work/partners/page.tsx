@@ -56,7 +56,7 @@ export default async function PartnersPage() {
       <CallToAction
         heading='Want to work with us?'
         buttonText='Apply to partner'
-        href='/nonprofits'
+        href='/get-involved/nonprofits'
         color='bg-orange-100'
       />
     </>

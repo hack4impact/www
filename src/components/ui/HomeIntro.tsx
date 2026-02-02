@@ -72,7 +72,7 @@ export function HomeIntro({ heroImageUrl }: HomeIntroProps) {
           community needs.
         </motion.p>
         <motion.div className='mt-6' variants={itemVariants}>
-          <Link href='/nonprofits'>
+          <Link href='/get-involved/nonprofits'>
             <Button>Partner with us!</Button>
           </Link>
         </motion.div>

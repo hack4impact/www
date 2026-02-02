@@ -47,7 +47,7 @@ export default async function ProjectsPage() {
       <CallToAction
         heading='Have a project idea?'
         buttonText='Become a partner'
-        href='/nonprofits'
+        href='/get-involved/nonprofits'
         color='bg-purple-100'
       />
     </>

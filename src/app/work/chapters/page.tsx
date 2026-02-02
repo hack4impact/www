@@ -75,7 +75,7 @@ export default async function ChaptersPage() {
       <CallToAction
         heading='No chapter at your school?'
         buttonText='Start one'
-        href='/students'
+        href='/get-involved/students'
         color='bg-green-100'
       />
     </>
