@@ -65,7 +65,7 @@ export function ChaptersDataTable({ chapters }: ChaptersDataTableProps) {
     <DataTable
       columns={columns}
       data={chapters}
-      getRowHref={(row) => `/chapters/${row.slug}`}
+      getRowHref={(row) => `/work/chapters/${row.slug}`}
       wrapperClassName='overflow-auto max-h-[70vh] bg-white/80 backdrop-blur-sm rounded'
       theadClassName='sticky top-0 bg-white border-b-2 border-gray-200'
       initialSort={{ columnId: 'name', direction: 'asc' }}

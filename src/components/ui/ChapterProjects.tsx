@@ -56,7 +56,7 @@ export function ChapterProjects({ projects }: ChapterProjectsProps) {
     <DataTable
       columns={projectColumns}
       data={projects}
-      getRowHref={(row) => `/projects/${row.slug}`}
+      getRowHref={(row) => `/work/projects/${row.slug}`}
       wrapperClassName='overflow-auto max-h-[50vh] rounded'
       theadClassName='sticky top-0 bg-gray-50'
       initialSort={{ columnId: 'year', direction: 'desc' }}

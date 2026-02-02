@@ -132,7 +132,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {/* Back link */}
         <div className='mb-8'>
           <Link
-            href='/projects'
+            href='/work/projects'
             className='inline-flex items-center gap-2 font-sans text-gray-600 hover:text-gray-900'
           >
             <span>←</span>

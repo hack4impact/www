@@ -125,7 +125,7 @@ export default async function HomePage() {
                 {featuredProject.description}
               </p>
               <div>
-                <Link href={`/projects/${featuredProject.slug}`}>
+                <Link href={`/work/projects/${featuredProject.slug}`}>
                   <Button>View project</Button>
                 </Link>
               </div>

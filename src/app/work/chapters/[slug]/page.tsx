@@ -65,7 +65,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         {/* Back link */}
         <div className='mb-8'>
           <Link
-            href='/chapters'
+            href='/work/chapters'
             className='inline-flex items-center gap-2 font-sans text-gray-600 hover:text-gray-900'
           >
             <span>←</span>
