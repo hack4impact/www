@@ -127,8 +127,22 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Logomark */}
-          <div className='flex items-start justify-center lg:justify-end'>
+          {/* Logomark and seal */}
+          <div className='flex items-start justify-center gap-6 lg:justify-end'>
+            <a
+              aria-label='Hack4Impact'
+              href='https://app.candid.org/profile/9565390/hack4impact-81-0790890/?pkId=ed396921-76d9-4a6a-a362-b68f17102c35'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt=''
+                src='https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9565390/svg'
+                width={100}
+                height={100}
+              />
+            </a>
             <Link href='/'>
               <Image
                 src='/logomark.svg'
