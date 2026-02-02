@@ -4,29 +4,29 @@ import Image from 'next/image'
 const footerLinks = {
   organization: [
     { label: 'About', href: '/about' },
-    { label: 'Chapters', href: '/chapters' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Partners', href: '/partners' },
+    { label: 'Chapters', href: '/work/chapters' },
+    { label: 'Projects', href: '/work/projects' },
+    { label: 'Partners', href: '/work/partners' },
   ],
   getInvolved: [
-    { label: 'Start a Chapter', href: '/students' },
-    { label: 'Be a Mentor', href: '/mentors' },
-    { label: 'Partner With Us', href: '/nonprofits' },
-    { label: 'Sponsor Us', href: '/sponsors' },
+    { label: 'Start a Chapter', href: '/get-involved/students' },
+    { label: 'Be a Mentor', href: '/get-involved/mentors' },
+    { label: 'Partner With Us', href: '/get-involved/nonprofits' },
+    { label: 'Sponsor Us', href: '/get-involved/sponsors' },
   ],
   resources: [{ label: 'Journal', href: '/journal' }],
 }
 
 export default function Footer() {
   return (
-    <footer className='bg-green-300 mt-auto text-green-600'>
-      <div className='px-8 md:px-12 py-8 md:py-12'>
-        <div className='flex flex-col lg:flex-row lg:justify-between gap-8'>
+    <footer className='mt-auto bg-green-300 text-green-600'>
+      <div className='px-8 py-8 md:px-12 md:py-12'>
+        <div className='flex flex-col gap-8 lg:flex-row lg:justify-between'>
           {/* Links and social */}
           <div className='flex-1'>
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-8'>
+            <div className='grid grid-cols-2 gap-8 md:grid-cols-3'>
               <div>
-                <h3 className='font-semibold mb-3'>Organization</h3>
+                <h3 className='mb-3 font-semibold'>Organization</h3>
                 <ul className='space-y-2'>
                   {footerLinks.organization.map((link) => (
                     <li key={link.href}>
@@ -42,7 +42,7 @@ export default function Footer() {
               </div>
 
               <div>
-                <h3 className='font-semibold mb-3'>Get Involved</h3>
+                <h3 className='mb-3 font-semibold'>Get Involved</h3>
                 <ul className='space-y-2'>
                   {footerLinks.getInvolved.map((link) => (
                     <li key={link.href}>
@@ -58,7 +58,7 @@ export default function Footer() {
               </div>
 
               <div>
-                <h3 className='font-semibold mb-3'>Resources</h3>
+                <h3 className='mb-3 font-semibold'>Resources</h3>
                 <ul className='space-y-2'>
                   {footerLinks.resources.map((link) => (
                     <li key={link.href}>
@@ -75,7 +75,7 @@ export default function Footer() {
             </div>
 
             {/* Social icons */}
-            <div className='flex gap-4 mt-8'>
+            <div className='mt-8 flex gap-4'>
               <a
                 href='https://linkedin.com/company/hack4impact'
                 target='_blank'
@@ -140,7 +140,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className='border-t border-green-400 mt-8 pt-6 text-sm text-center'>
+        <div className='mt-8 border-t border-green-400 pt-6 text-center text-sm'>
           <p>
             &copy; {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for
             Impact ▪ EIN 81-0790890

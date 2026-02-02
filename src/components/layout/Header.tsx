@@ -11,16 +11,16 @@ const navigation = [
 ]
 
 const workItems = [
-  { label: 'Chapters', href: '/chapters' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Partners', href: '/partners' },
+  { label: 'Chapters', href: '/work/chapters' },
+  { label: 'Projects', href: '/work/projects' },
+  { label: 'Partners', href: '/work/partners' },
 ]
 
 const getInvolvedItems = [
-  { label: 'Non-Profit', href: '/nonprofits' },
-  { label: 'Student', href: '/students' },
-  { label: 'Mentor', href: '/mentors' },
-  { label: 'Sponsor', href: '/sponsors' },
+  { label: 'Non-Profit', href: '/get-involved/nonprofits' },
+  { label: 'Student', href: '/get-involved/students' },
+  { label: 'Mentor', href: '/get-involved/mentors' },
+  { label: 'Sponsor', href: '/get-involved/sponsors' },
 ]
 
 function NavDropdown({
