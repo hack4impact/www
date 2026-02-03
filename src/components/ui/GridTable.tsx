@@ -62,15 +62,11 @@ export function GridTable({
                   ? 'text-center flex items-center justify-center'
                   : ''
 
-              // On mobile, show column label inline for non-first cells
-              const mobileLabel = i > 0 ? (
-                <span className='md:hidden font-mono text-xs text-gray-400 mr-1'>
-                  {columns[i]}:{' '}
-                </span>
-              ) : null
+              // On mobile stacked layout, secondary cells render smaller
+              const mobileSecondary = i > 0 ? 'md:text-base text-sm' : ''
 
               const defaultClass =
-                i === 0 ? 'font-sans text-gray-900' : 'text-gray-600'
+                i === 0 ? 'font-sans text-gray-900' : 'font-serif text-gray-600'
 
               return cell.href ? (
                 <a
@@ -84,17 +80,15 @@ export function GridTable({
                       ? undefined
                       : 'noopener noreferrer'
                   }
-                  className={`${cell.className ?? `${defaultClass} hover:text-gray-900`} ${centered}`}
+                  className={`${cell.className ?? `${defaultClass} hover:text-gray-900`} ${centered} ${mobileSecondary}`}
                 >
-                  {mobileLabel}
                   {cell.text}
                 </a>
               ) : (
                 <span
                   key={i}
-                  className={`${cell.className ?? defaultClass} ${centered}`}
+                  className={`${cell.className ?? defaultClass} ${centered} ${mobileSecondary}`}
                 >
-                  {mobileLabel}
                   {cell.text}
                 </span>
               )
