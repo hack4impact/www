@@ -69,6 +69,8 @@ function NavDropdown({
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [workOpen, setWorkOpen] = useState(false)
+  const [getInvolvedOpen, setGetInvolvedOpen] = useState(false)
 
   return (
     <header className={`${mobileMenuOpen ? 'bg-[#FCF9F2]' : ''}`}>
@@ -99,6 +101,14 @@ export default function Header() {
 
           <NavDropdown label='Work' items={workItems} />
           <NavDropdown label='Get Involved' items={getInvolvedItems} />
+          <a
+            href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-flex items-center justify-center font-mono font-medium bg-green-300 text-black hover:bg-green-400 active:bg-green-500 transition-colors px-3 py-1.5 text-sm'
+          >
+            Donate
+          </a>
         </div>
 
         <button
@@ -113,39 +123,99 @@ export default function Header() {
       </nav>
 
       {mobileMenuOpen && (
-        <div className='md:hidden px-8 md:px-12 pb-6 text-base'>
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className='block py-2'
-              onClick={() => setMobileMenuOpen(false)}
+        <div className='md:hidden px-8 pb-8'>
+          <div className='divide-y divide-gray-200'>
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className='block py-4 text-xl'
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div>
+              <button
+                type='button'
+                className='flex w-full items-center justify-between py-4 text-xl font-semibold'
+                onClick={() => setWorkOpen(!workOpen)}
+                aria-expanded={workOpen}
+              >
+                Work
+                <svg
+                  width='16'
+                  height='16'
+                  viewBox='0 0 12 12'
+                  fill='none'
+                  className={`transition-transform ${workOpen ? 'rotate-180' : ''}`}
+                >
+                  <path
+                    d='M3 4.5L6 7.5L9 4.5'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </button>
+              {workOpen &&
+                workItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className='block py-3 pl-4 text-lg'
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+            </div>
+            <div>
+              <button
+                type='button'
+                className='flex w-full items-center justify-between py-4 text-xl font-semibold'
+                onClick={() => setGetInvolvedOpen(!getInvolvedOpen)}
+                aria-expanded={getInvolvedOpen}
+              >
+                Get Involved
+                <svg
+                  width='16'
+                  height='16'
+                  viewBox='0 0 12 12'
+                  fill='none'
+                  className={`transition-transform ${getInvolvedOpen ? 'rotate-180' : ''}`}
+                >
+                  <path
+                    d='M3 4.5L6 7.5L9 4.5'
+                    stroke='currentColor'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
+              </button>
+              {getInvolvedOpen &&
+                getInvolvedItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className='block py-3 pl-4 text-lg'
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+            </div>
+            <a
+              href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='mt-4 block w-full font-mono font-medium bg-green-300 text-black hover:bg-green-400 active:bg-green-500 transition-colors py-3 text-center text-lg'
             >
-              {item.label}
-            </Link>
-          ))}
-          <div className='py-2 font-semibold'>Work</div>
-          {workItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className='block py-2 pl-4'
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <div className='py-2 font-semibold'>Get Involved</div>
-          {getInvolvedItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className='block py-2 pl-4'
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+              Donate
+            </a>
+          </div>
         </div>
       )}
     </header>

@@ -61,7 +61,7 @@ export default async function AboutPage() {
 
         <div className='flex flex-col items-start justify-center p-8 lg:px-24 lg:py-12'>
           <h2 className='font-sans text-3xl md:text-4xl'>Our story</h2>
-          <p className='mt-6 text-base md:mt-8 md:text-lg'>
+          <p className='mt-6 font-serif text-base md:mt-8 md:text-lg'>
             Hack for Impact began at the University of Pennsylvania in 2014 and
             became an official 501(c)(3) non-profit in 2016. It began as a small
             group of developers volunteering their skills for local nonprofits.
