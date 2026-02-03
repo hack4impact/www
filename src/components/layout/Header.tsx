@@ -101,6 +101,14 @@ export default function Header() {
 
           <NavDropdown label='Work' items={workItems} />
           <NavDropdown label='Get Involved' items={getInvolvedItems} />
+          <a
+            href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-flex items-center justify-center font-mono font-medium bg-green-300 text-black hover:bg-green-400 active:bg-green-500 transition-colors px-3 py-1.5 text-sm'
+          >
+            Donate
+          </a>
         </div>
 
         <button
@@ -199,6 +207,14 @@ export default function Header() {
                   </Link>
                 ))}
             </div>
+            <a
+              href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='mt-4 block w-full font-mono font-medium bg-green-300 text-black hover:bg-green-400 active:bg-green-500 transition-colors py-3 text-center text-lg'
+            >
+              Donate
+            </a>
           </div>
         </div>
       )}
