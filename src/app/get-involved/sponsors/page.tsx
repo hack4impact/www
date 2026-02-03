@@ -50,7 +50,7 @@ export default async function SponsorsPage() {
       { text: 'Annual Contribution', className: 'font-sans font-semibold' },
       ...tiers.map((t) => ({
         text: formatCost(t.cost),
-        className: 'font-serif text-gray-600 font-semibold',
+        className: 'font-serif text-gray-600',
       })),
     ],
   }
@@ -86,13 +86,46 @@ export default async function SponsorsPage() {
       {/* Sponsorship Tiers Table */}
       <section className='px-8 py-16 md:px-12 md:py-24'>
         <div className='mx-auto max-w-3xl'>
-          <GridTable
-            heading='Sponsorship tiers'
-            headingClassName='text-center'
-            columns={['Benefits', ...tiers.map((t) => t.name)]}
-            rows={[costRow, ...benefitRows]}
-            centerAfterFirst
-          />
+          {/* Desktop: comparison grid */}
+          <div className='hidden md:block'>
+            <GridTable
+              heading='Sponsorship tiers'
+              headingClassName='text-center'
+              columns={['Benefits', ...tiers.map((t) => t.name)]}
+              rows={[costRow, ...benefitRows]}
+              centerAfterFirst
+            />
+          </div>
+
+          {/* Mobile: stacked tier sections */}
+          <div className='md:hidden'>
+            <h2 className='text-2xl font-sans mb-8 text-center'>
+              Sponsorship tiers
+            </h2>
+            <div className='divide-y divide-gray-200'>
+              {tiers.map((tier) => (
+                <div key={tier.name} className='py-6'>
+                  <h3 className='font-sans text-lg'>{tier.name}</h3>
+                  <p className='font-serif text-gray-600 mt-1'>
+                    {formatCost(tier.cost)}
+                  </p>
+                  <ul className='mt-4 space-y-2'>
+                    {tier.benefits.map((b) => (
+                      <li key={b} className='flex items-start gap-2 font-serif text-gray-600'>
+                        <Check
+                          width={16}
+                          height={16}
+                          strokeWidth={2}
+                          className='mt-0.5 shrink-0 text-gray-500'
+                        />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
