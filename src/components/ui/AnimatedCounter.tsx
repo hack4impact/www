@@ -15,7 +15,8 @@ export function AnimatedCounter({ to, className }: AnimatedCounterProps) {
   useEffect(() => {
     if (!inView || !ref.current) return
 
-    const numericValue = typeof to === 'number' ? to : parseInt(to.replace(/,/g, ''), 10)
+    const numericValue =
+      typeof to === 'number' ? to : parseInt(to.replace(/,/g, ''), 10)
 
     // If it's not a parsable number, just set the text content and exit.
     if (isNaN(numericValue)) {

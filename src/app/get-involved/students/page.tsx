@@ -70,7 +70,7 @@ export default async function StudentsPage() {
           We have chapters at universities across the country. Find one near
           you.
         </p>
-        <Link href='/chapters'>
+        <Link href='/work/chapters'>
           <Button>Browse chapters</Button>
         </Link>
       </section>
