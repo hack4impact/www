@@ -41,6 +41,7 @@ export default async function StudentsPage() {
           heading='Why start a chapter'
           items={reasons.cards}
           icons={reasonsIcons}
+          className='xl:mx-auto xl:max-w-[80vw]'
         />
       )}
 

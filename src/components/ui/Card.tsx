@@ -14,17 +14,17 @@ export function Card({ icon, title, description, className, href }: CardProps) {
   return (
     <div
       className={cn(
-        'flex h-full flex-col items-start px-6 py-8 bg-blue-50 rounded-lg',
+        'flex h-full flex-col items-start rounded-lg bg-blue-50 px-6 py-8',
         className,
       )}
     >
       {icon && <div className='mb-6'>{icon}</div>}
-      <h3 className='text-xl font-sans mb-2'>{title}</h3>
-      <p className='text-base font-serif'>{description}</p>
+      <h3 className='mb-2 font-sans text-xl'>{title}</h3>
+      <p className='font-serif text-base'>{description}</p>
       {href && (
         <Link
           href={href}
-          className='mt-auto font-mono text-sm hover:underline pt-4'
+          className='mt-auto pt-4 font-mono text-sm hover:underline'
         >
           Learn more &rarr;
         </Link>

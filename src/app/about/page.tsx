@@ -51,6 +51,7 @@ export default async function AboutPage() {
           heading='Our values'
           icons={valuesIcons}
           items={values.cards}
+          className='xl:mx-auto xl:max-w-[80vw]'
         />
       )}
 

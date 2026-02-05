@@ -67,6 +67,7 @@ export default async function ChaptersPage() {
           icons={rolesIcons}
           items={roles.cards}
           columns={4}
+          className='xl:mx-auto xl:max-w-[80vw]'
         />
       )}
 
