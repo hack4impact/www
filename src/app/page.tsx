@@ -81,7 +81,7 @@ export default async function HomePage() {
       </section>
 
       {/* Quote Callout Section */}
-      <section className='grid grid-cols-1 lg:grid-cols-2'>
+      <section className='grid grid-cols-1 lg:grid-cols-2 xl:mx-auto xl:max-w-[80vw]'>
         <div className='px-8 py-8 lg:px-0 lg:py-12 lg:pl-12'>
           <div className='relative aspect-[4/5] w-full bg-gradient-to-br from-green-100 to-purple-200'>
             {calloutImageUrl && (
