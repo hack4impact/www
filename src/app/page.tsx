@@ -47,7 +47,7 @@ export default async function HomePage() {
 
       {/* Process Section */}
       {mainProcess && (
-        <section className='px-8 py-16 md:px-12 md:py-24'>
+        <section className='px-8 py-16 md:px-12 md:py-24 xl:mx-auto xl:max-w-[80vw]'>
           <h2 className='mx-auto mb-12 max-w-lg text-center font-sans text-2xl md:text-3xl'>
             {mainProcess.title!}
           </h2>
@@ -72,7 +72,7 @@ export default async function HomePage() {
       )}
 
       {/* Programs Section */}
-      <section className='px-8 py-16 md:px-12 md:py-24'>
+      <section className='px-8 py-16 md:px-12 md:py-24 xl:mx-auto xl:max-w-[80vw]'>
         <div className='mb-0 text-center'>
           <h2 className='font-serif text-3xl md:text-4xl'>Our programs</h2>
           <p className='font-sans text-2xl md:text-3xl'>Community in action</p>
@@ -81,7 +81,7 @@ export default async function HomePage() {
       </section>
 
       {/* Quote Callout Section */}
-      <section className='grid grid-cols-1 lg:grid-cols-2'>
+      <section className='grid grid-cols-1 lg:grid-cols-2 xl:mx-auto xl:max-w-[80vw]'>
         <div className='px-8 py-8 lg:px-0 lg:py-12 lg:pl-12'>
           <div className='relative aspect-[4/5] w-full bg-gradient-to-br from-green-100 to-purple-200'>
             {calloutImageUrl && (

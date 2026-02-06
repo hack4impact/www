@@ -41,6 +41,7 @@ export default async function StudentsPage() {
           heading='Why start a chapter'
           items={reasons.cards}
           icons={reasonsIcons}
+          className='xl:mx-auto xl:max-w-[80vw]'
         />
       )}
 
@@ -70,7 +71,7 @@ export default async function StudentsPage() {
           We have chapters at universities across the country. Find one near
           you.
         </p>
-        <Link href='/chapters'>
+        <Link href='/work/chapters'>
           <Button>Browse chapters</Button>
         </Link>
       </section>

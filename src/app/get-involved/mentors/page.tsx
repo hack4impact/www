@@ -44,6 +44,7 @@ export default async function MentorsPage() {
           heading='What mentors do'
           items={tasks.cards}
           icons={tasksIcons}
+          className='xl:mx-auto xl:max-w-[80vw]'
         />
       )}
 

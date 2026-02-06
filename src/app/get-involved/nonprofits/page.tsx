@@ -52,6 +52,7 @@ export default async function NonprofitsPage() {
           heading='What we build'
           items={builds.cards}
           icons={buildsIcons}
+          className='xl:mx-auto xl:max-w-[80vw]'
         />
       )}
 
