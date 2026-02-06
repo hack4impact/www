@@ -35,7 +35,7 @@ function NavDropdown({
       <Menu.Trigger
         openOnHover
         delay={0}
-        className='flex items-center gap-1 cursor-pointer text-base'
+        className='flex cursor-pointer items-center gap-1 text-base'
       >
         {label}
         <svg width='12' height='12' viewBox='0 0 12 12' fill='none'>
@@ -50,11 +50,11 @@ function NavDropdown({
       </Menu.Trigger>
       <Menu.Portal>
         <Menu.Positioner className='z-50' sideOffset={8}>
-          <Menu.Popup className='bg-[#FCF9F2] shadow-lg min-w-[150px] py-2 text-base'>
+          <Menu.Popup className='min-w-[150px] bg-[#FCF9F2] py-2 text-base shadow-lg'>
             {items.map((item) => (
               <Menu.Item
                 key={item.href}
-                className='block px-4 py-2 hover:bg-gray-50 cursor-pointer'
+                className='block cursor-pointer px-4 py-2 hover:bg-gray-50'
                 render={<Link href={item.href} />}
               >
                 {item.label}
@@ -74,14 +74,14 @@ export default function Header() {
 
   return (
     <header className={`${mobileMenuOpen ? 'bg-[#FCF9F2]' : ''}`}>
-      <nav className='flex items-center justify-between px-8 md:px-12 py-4 text-base'>
+      <nav className='flex items-center justify-between px-8 py-4 text-base md:px-12'>
         <Link href='/'>
           <Image
             src='/logomark.svg'
             alt='Hack4Impact'
             width={32}
             height={32}
-            className='md:hidden brightness-0'
+            className='brightness-0 md:hidden'
           />
           <Image
             src='/logo.svg'
@@ -92,7 +92,7 @@ export default function Header() {
           />
         </Link>
 
-        <div className='hidden md:flex items-center gap-6 text-base'>
+        <div className='hidden items-center gap-6 text-base md:flex'>
           {navigation.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
@@ -101,11 +101,19 @@ export default function Header() {
 
           <NavDropdown label='Work' items={workItems} />
           <NavDropdown label='Get Involved' items={getInvolvedItems} />
+          <Link
+            key={'/shop'}
+            href={'https://www.bonfire.com/store/hackforimpact'}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Shop
+          </Link>
           <a
             href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
             target='_blank'
             rel='noopener noreferrer'
-            className='inline-flex items-center justify-center font-mono font-medium bg-green-300 text-black hover:bg-green-400 active:bg-green-500 transition-colors px-3 py-1.5 text-sm'
+            className='inline-flex items-center justify-center bg-green-300 px-3 py-1.5 font-mono text-sm font-medium text-black transition-colors hover:bg-green-400 active:bg-green-500'
           >
             Donate
           </a>
@@ -113,7 +121,7 @@ export default function Header() {
 
         <button
           type='button'
-          className='md:hidden text-base font-sans'
+          className='font-sans text-base md:hidden'
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label='Toggle navigation menu'
@@ -123,7 +131,7 @@ export default function Header() {
       </nav>
 
       {mobileMenuOpen && (
-        <div className='md:hidden px-8 pb-8'>
+        <div className='px-8 pb-8 md:hidden'>
           <div className='divide-y divide-gray-200'>
             {navigation.map((item) => (
               <Link
@@ -138,7 +146,7 @@ export default function Header() {
             <div>
               <button
                 type='button'
-                className='flex w-full items-center justify-between py-4 text-xl font-semibold'
+                className='flex w-full items-center justify-between py-4 text-xl'
                 onClick={() => setWorkOpen(!workOpen)}
                 aria-expanded={workOpen}
               >
@@ -174,7 +182,7 @@ export default function Header() {
             <div>
               <button
                 type='button'
-                className='flex w-full items-center justify-between py-4 text-xl font-semibold'
+                className='flex w-full items-center justify-between py-4 text-xl'
                 onClick={() => setGetInvolvedOpen(!getInvolvedOpen)}
                 aria-expanded={getInvolvedOpen}
               >
@@ -207,11 +215,21 @@ export default function Header() {
                   </Link>
                 ))}
             </div>
+            <Link
+              key={'/shop'}
+              href={'https://www.bonfire.com/company/hackforimpact'}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='block py-4 text-xl'
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Shop
+            </Link>
             <a
               href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
               target='_blank'
               rel='noopener noreferrer'
-              className='mt-4 block w-full font-mono font-medium bg-green-300 text-black hover:bg-green-400 active:bg-green-500 transition-colors py-3 text-center text-lg'
+              className='mt-4 block w-full bg-green-300 py-3 text-center font-mono text-lg font-medium text-black transition-colors hover:bg-green-400 active:bg-green-500'
             >
               Donate
             </a>
