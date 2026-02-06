@@ -47,7 +47,10 @@ export default async function SponsorsPage() {
   // Build table rows: cost row + one row per benefit
   const costRow = {
     cells: [
-      { text: 'Annual Contribution', className: 'font-sans font-semibold' },
+      {
+        text: 'Annual Contribution',
+        className: 'font-mono text-sm text-gray-500',
+      },
       ...tiers.map((t) => ({
         text: formatCost(t.cost),
         className: 'font-serif text-gray-600',
@@ -99,19 +102,22 @@ export default async function SponsorsPage() {
 
           {/* Mobile: stacked tier sections */}
           <div className='md:hidden'>
-            <h2 className='text-2xl font-sans mb-8 text-center'>
+            <h2 className='mb-8 text-center font-sans text-2xl'>
               Sponsorship tiers
             </h2>
             <div className='divide-y divide-gray-200'>
               {tiers.map((tier) => (
                 <div key={tier.name} className='py-6'>
                   <h3 className='font-sans text-lg'>{tier.name}</h3>
-                  <p className='font-serif text-gray-600 mt-1'>
+                  <p className='mt-1 font-serif text-gray-600'>
                     {formatCost(tier.cost)}
                   </p>
                   <ul className='mt-4 space-y-2'>
                     {tier.benefits.map((b) => (
-                      <li key={b} className='flex items-start gap-2 font-serif text-gray-600'>
+                      <li
+                        key={b}
+                        className='flex items-start gap-2 font-serif text-gray-600'
+                      >
                         <Check
                           width={16}
                           height={16}
