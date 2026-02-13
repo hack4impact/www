@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { Atkinson_Hyperlegible_Mono } from 'next/font/google'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import './globals.css'
@@ -38,6 +39,12 @@ const newsreader = localFont({
   variable: '--font-newsreader',
 })
 
+const atkinsonHyperlegibleMono = Atkinson_Hyperlegible_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-atkinson-mono',
+})
+
 export const metadata: Metadata = {
   title: {
     default: 'Hack4Impact',
@@ -58,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={`${inclusiveSans.variable} ${newsreader.variable}`}
+      className={`${inclusiveSans.variable} ${newsreader.variable} ${atkinsonHyperlegibleMono.variable}`}
     >
       <body className='flex min-h-screen flex-col relative'>
         <Header />
