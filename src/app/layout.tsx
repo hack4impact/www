@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import { Atkinson_Hyperlegible_Mono } from 'next/font/google'
+
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import './globals.css'
@@ -39,11 +39,22 @@ const newsreader = localFont({
   variable: '--font-newsreader',
 })
 
-const atkinsonHyperlegibleMono = Atkinson_Hyperlegible_Mono({
-  subsets: ['latin'],
+const atkinsonHyperlegibleMono = localFont({
+  src: [
+    {
+      path: '../fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf',
+      style: 'italic',
+    },
+  ],
   display: 'swap',
   variable: '--font-atkinson-mono',
 })
+
+
 
 export const metadata: Metadata = {
   title: {

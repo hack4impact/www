@@ -8,8 +8,7 @@ import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { Code, ColorFilter, Agile, KanbanBoard } from 'iconoir-react'
 import Image from 'next/image'
-
-const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
+import { iconProps } from '@/lib/constants'
 
 const rolesIcons = {
   Code: <Code {...iconProps} />,

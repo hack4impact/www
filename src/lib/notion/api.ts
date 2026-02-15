@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { unstable_cache } from 'next/cache'
 import { mapPartner, mapProgram, mapProject, mapVolunteer } from './mappers'
-import { toSlug } from './utils'
+import { toSlug, stripOrgPrefix } from './utils'
 import type { Chapter } from '@/lib/types/chapter'
 import type { Project, TeamMember } from '@/lib/types/project'
 import type { Partner } from '@/lib/types/partner'
@@ -152,11 +152,7 @@ function processProject(
   const chapterName = project.relatedIds.chapters
     .map((id: string) => programMap.get(id))
     .filter(Boolean)
-    .map((name: string) =>
-      name
-        .replace(/^Hack4Impact\s*/i, '')
-        .replace(/^Hack\s*for\s*Impact\s*/i, ''),
-    )
+    .map((name: string) => stripOrgPrefix(name))
     .join(', ')
 
   const partnerName = project.relatedIds.partners
@@ -233,9 +229,7 @@ export async function getChapters(): Promise<Chapter[]> {
       p.relatedIds.chapters.includes(program.id),
     ).length
 
-    const university = program.name
-      .replace(/^Hack4Impact\s*/i, '')
-      .replace(/^Hack\s*for\s*Impact\s*/i, '')
+    const university = stripOrgPrefix(program.name)
 
     return {
       id: program.id,

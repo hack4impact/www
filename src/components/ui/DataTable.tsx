@@ -46,16 +46,19 @@ export function DataTable<T extends { id: string | number }>({
 
       if (accessorKey) {
         sortableData.sort((a, b) => {
-          const aValue = String(a[accessorKey] ?? '').toLowerCase()
-          const bValue = String(b[accessorKey] ?? '').toLowerCase()
+          const aRaw = a[accessorKey]
+          const bRaw = b[accessorKey]
 
-          if (aValue < bValue) {
-            return direction === 'asc' ? -1 : 1
+          let cmp: number
+          if (typeof aRaw === 'number' && typeof bRaw === 'number') {
+            cmp = aRaw - bRaw
+          } else {
+            const aStr = String(aRaw ?? '').toLowerCase()
+            const bStr = String(bRaw ?? '').toLowerCase()
+            cmp = aStr < bStr ? -1 : aStr > bStr ? 1 : 0
           }
-          if (aValue > bValue) {
-            return direction === 'asc' ? 1 : -1
-          }
-          return 0
+
+          return direction === 'asc' ? cmp : -cmp
         })
       }
     }

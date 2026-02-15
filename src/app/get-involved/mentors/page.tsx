@@ -5,6 +5,7 @@ import { CallToAction } from '@/components/ui/CallToAction'
 import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
 import { contentfulApi } from '@/lib/contentful'
 import { Puzzle, ChatBubbleQuestion, TaskList } from 'iconoir-react'
+import { iconProps } from '@/lib/constants'
 
 const testimonials = [
   {
@@ -14,8 +15,6 @@ const testimonials = [
     title: 'Software Engineer Lead at Microsoft',
   },
 ]
-
-const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
 
 const tasksIcons = {
   TaskList: <TaskList {...iconProps} />,

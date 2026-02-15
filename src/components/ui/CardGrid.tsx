@@ -4,33 +4,11 @@ import { type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { Card } from '@/components/ui/Card'
 import { InfoCard } from '@/lib/types/contentful'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
 
-// Animation variants
-const gridContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-}
-
-const headerVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
+const gridContainerVariants = staggerContainer(0.15)
+const cardVariants = fadeInUp()
+const headerVariants = fadeInUp()
 
 interface CardGridProps {
   heading?: string

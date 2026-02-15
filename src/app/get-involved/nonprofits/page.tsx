@@ -6,6 +6,7 @@ import { CallToAction } from '@/components/ui/CallToAction'
 import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
 import { contentfulApi } from '@/lib/contentful'
 import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
+import { iconProps } from '@/lib/constants'
 
 const testimonials = [
   {
@@ -21,8 +22,6 @@ const testimonials = [
     title: '',
   },
 ]
-
-const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
 
 const buildsIcons = {
   WebWindow: <WebWindow {...iconProps} />,

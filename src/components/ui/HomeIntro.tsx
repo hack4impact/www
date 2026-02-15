@@ -4,30 +4,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
 
 interface HomeIntroProps {
   heroImageUrl?: string
 }
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-}
+const containerVariants = staggerContainer(0.2, false)
+const itemVariants = fadeInUp()
 
 const imageVariants = {
   hidden: { opacity: 0, scale: 0.9 },

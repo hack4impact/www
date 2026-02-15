@@ -5,8 +5,7 @@ import { GridTable } from '@/components/ui/GridTable'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { contentfulApi } from '@/lib/contentful'
 import { Leaf, Compass, Accessibility } from 'iconoir-react'
-
-const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
+import { iconProps } from '@/lib/constants'
 
 const valuesIcons: Record<string, ReactNode> = {
   Leaf: <Leaf {...iconProps} />,
