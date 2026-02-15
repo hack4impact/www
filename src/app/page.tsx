@@ -8,6 +8,7 @@ import { HomeIntro } from '@/components/ui/HomeIntro'
 import { notionApi, FEATURED_PROJECT_SLUG } from '@/lib/notion'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { contentfulApi } from '@/lib/contentful'
+import { iconProps } from '@/lib/constants'
 
 export default async function HomePage() {
   const [
@@ -28,7 +29,6 @@ export default async function HomePage() {
     contentfulApi.getProcess('Main Process'),
   ])
 
-  const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
   const programsIcons = {
     Heart: <Heart {...iconProps} />,
     OpenBook: <OpenBook {...iconProps} />,

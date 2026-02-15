@@ -22,12 +22,3 @@ export const contentfulApi = {
   getInfoCards,
 }
 
-export {
-  mapEntry,
-  mapBoardTeamMember,
-  mapValue,
-  mapSponsorshipTier,
-  mapQuestions,
-  mapProcess,
-  mapInfoCards,
-} from './mappers'

@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export function toSlug(name: string): string {
+export function stripOrgPrefix(name: string): string {
   return name
     .replace(/^Hack4Impact\s*/i, '')
     .replace(/^Hack\s*for\s*Impact\s*/i, '')
+}
+
+export function toSlug(name: string): string {
+  return stripOrgPrefix(name)
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')

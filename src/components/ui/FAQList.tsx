@@ -4,32 +4,15 @@ import { Collapsible } from '@base-ui/react/collapsible'
 import { Separator } from '@base-ui/react/separator'
 import { motion } from 'framer-motion'
 import type { FAQ } from '@/lib/types/contentful'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
 
 interface FAQListProps {
   heading?: string
   items: FAQ[]
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-}
+const containerVariants = staggerContainer(0.1)
+const itemVariants = fadeInUp()
 
 export function FAQList({ heading = 'Common questions', items }: FAQListProps) {
   return (

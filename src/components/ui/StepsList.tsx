@@ -2,28 +2,10 @@
 
 import type { ProcessStep } from '@/lib/types/contentful'
 import { motion } from 'framer-motion'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
 
-// Animation Variants
-const listContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-}
-
-const stepVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-    },
-  },
-}
+const listContainerVariants = staggerContainer(0.2)
+const stepVariants = fadeInUp(0.6)
 
 interface StepsListProps {
   steps: ProcessStep[]
@@ -72,4 +54,3 @@ export function StepsList({
     </motion.div>
   )
 }
-

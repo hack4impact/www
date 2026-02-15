@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
 
 interface SplitHeroProps {
   heading: string
@@ -16,25 +17,8 @@ interface SplitHeroProps {
   imageClassName?: string
 }
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-}
+const containerVariants = staggerContainer(0.1, false)
+const itemVariants = fadeInUp()
 
 export function SplitHero({
   heading,

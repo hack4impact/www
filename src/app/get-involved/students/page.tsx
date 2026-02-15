@@ -7,8 +7,7 @@ import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { contentfulApi } from '@/lib/contentful'
 import { Heart, UserStar, Community } from 'iconoir-react'
-
-const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
+import { iconProps } from '@/lib/constants'
 
 const reasonsIcons = {
   UserStar: <UserStar {...iconProps} />,
