@@ -46,7 +46,7 @@ export default async function JournalPage() {
                 >
                   {entry.thumbnailUrl || entry.bannerUrl ? (
                     <Image
-                      alt='Journal thumbnail image'
+                      alt={entry.title}
                       src={entry.thumbnailUrl || entry.bannerUrl!}
                       fill
                       className='object-cover'
