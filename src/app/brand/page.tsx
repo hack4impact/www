@@ -558,8 +558,8 @@ export default async function BrandPage() {
                   Request your chapter&apos;s logo
                 </h4>
                 <p className='mb-6 font-serif text-gray-600'>
-                  Chapter leads can request logo files — including SVG, PNG, and
-                  dark-mode variants — by emailing our operations team. Please
+                  Chapter leads can request logo files, including SVG, PNG, and
+                  dark-mode variants, by emailing our operations team. Please
                   include your chapter name and intended use in your message.
                 </p>
                 <a
