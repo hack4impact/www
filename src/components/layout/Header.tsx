@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menu } from '@base-ui/react/menu'
@@ -68,6 +69,7 @@ function NavDropdown({
 }
 
 export default function Header() {
+  const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [workOpen, setWorkOpen] = useState(false)
   const [getInvolvedOpen, setGetInvolvedOpen] = useState(false)
@@ -94,7 +96,12 @@ export default function Header() {
 
         <div className='hidden items-center gap-6 text-base md:flex'>
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href}>
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={pathname === item.href ? 'page' : undefined}
+              className='focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2'
+            >
               {item.label}
             </Link>
           ))}
@@ -137,7 +144,8 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className='block py-4 text-xl'
+                aria-current={pathname === item.href ? 'page' : undefined}
+                className='block py-4 text-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2'
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
