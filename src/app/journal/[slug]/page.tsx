@@ -37,9 +37,9 @@ export default async function JournalPostPage({
       {/* Banner Image */}
       <section className='px-8 md:px-12'>
         <div className='relative aspect-[3/1] w-full bg-gradient-to-br from-blue-100 to-green-200'>
-          {entry.thumbnailUrl || entry.bannerUrl ? (
+          {entry.bannerUrl || entry.thumbnailUrl ? (
             <Image
-              src={entry.thumbnailUrl || entry.bannerUrl!}
+              src={entry.bannerUrl || entry.thumbnailUrl!}
               alt={entry.title}
               fill
               className='object-cover'
