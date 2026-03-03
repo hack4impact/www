@@ -42,6 +42,7 @@ export default async function JournalPostPage({
               src={entry.bannerUrl || entry.thumbnailUrl!}
               alt={entry.title}
               fill
+              priority
               className='object-cover'
             />
           ) : null}

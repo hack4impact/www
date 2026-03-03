@@ -24,6 +24,7 @@ export default async function JournalPage() {
         {journalBanner && (
           <Image
             fill
+            priority
             src={journalBanner}
             alt='Banner for journal page'
             className='object-cover'
