@@ -158,7 +158,7 @@ export default async function HomePage() {
                     (entry.bannerUrl && (
                       <Image
                         src={entry.thumbnailUrl || entry.bannerUrl}
-                        alt='Thumnail image of a journal entry and article'
+                        alt='Thumbnail image of a journal entry and article'
                         fill
                         className='object-cover'
                       />
