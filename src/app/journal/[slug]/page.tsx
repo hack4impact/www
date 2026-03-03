@@ -43,6 +43,7 @@ export default async function JournalPostPage({
               alt={entry.title}
               fill
               priority
+              sizes='(max-width: 768px) calc(100vw - 4rem), calc(100vw - 6rem)'
               className='object-cover'
             />
           ) : null}
