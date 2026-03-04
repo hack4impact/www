@@ -8,6 +8,7 @@ import {
   getFAQs,
   getProcess,
   getInfoCards,
+  getChapterLogos,
 } from './api'
 
 export const contentfulApi = {
@@ -20,5 +21,6 @@ export const contentfulApi = {
   getFAQs,
   getProcess,
   getInfoCards,
+  getChapterLogos,
 }
 
