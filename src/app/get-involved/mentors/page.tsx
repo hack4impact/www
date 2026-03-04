@@ -31,6 +31,7 @@ export default async function MentorsPage() {
   return (
     <>
       <SplitHero
+        tag='Mentors'
         heading='Mentor with Hack4Impact'
         description="Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student's career and a nonprofit's future."
         buttonText='Get involved'

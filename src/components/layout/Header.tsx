@@ -19,10 +19,10 @@ const workItems = [
 ]
 
 const getInvolvedItems = [
-  { label: 'Nonprofit', href: '/get-involved/nonprofits' },
-  { label: 'Student', href: '/get-involved/students' },
-  { label: 'Mentor', href: '/get-involved/mentors' },
-  { label: 'Sponsor', href: '/get-involved/sponsors' },
+  { label: 'Nonprofits', href: '/get-involved/nonprofits' },
+  { label: 'Students', href: '/get-involved/students' },
+  { label: 'Mentors', href: '/get-involved/mentors' },
+  { label: 'Sponsors', href: '/get-involved/sponsors' },
 ]
 
 const chevronSvg = (

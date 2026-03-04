@@ -74,6 +74,7 @@ export default async function SponsorsPage() {
   return (
     <>
       <SplitHero
+        tag='Sponsors'
         heading='Support Hack for Impact'
         description='Your sponsorship enables student-driven technology for social good. Fund the tools, events, and infrastructure that power our chapters and the nonprofits they serve.'
         buttonText='Become a sponsor'

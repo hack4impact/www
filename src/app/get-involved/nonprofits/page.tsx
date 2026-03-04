@@ -39,6 +39,7 @@ export default async function NonprofitsPage() {
   return (
     <>
       <SplitHero
+        tag='Nonprofits'
         heading='Partner with Hack for Impact'
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
