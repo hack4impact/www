@@ -577,11 +577,21 @@ export default async function BrandPage() {
             <div className='space-y-12'>
               {/* Inclusive Sans */}
               <div className='border-t border-gray-200 pt-10'>
-                <div className='mb-6'>
-                  <h4 className='font-sans text-xl'>Inclusive Sans</h4>
-                  <p className='mt-1 font-mono text-xs text-gray-400'>
-                    font-sans · UI / Body · 400 Regular, Italic
-                  </p>
+                <div className='mb-6 flex items-start justify-between gap-4'>
+                  <div>
+                    <h4 className='font-sans text-xl'>Inclusive Sans</h4>
+                    <p className='mt-1 font-mono text-xs text-gray-400'>
+                      font-sans · UI / Body · 400 Regular, Italic
+                    </p>
+                  </div>
+                  <a
+                    href='https://fonts.google.com/specimen/Inclusive+Sans'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='shrink-0 font-mono text-xs text-gray-400 underline underline-offset-2 hover:text-black'
+                  >
+                    Google Fonts ↗
+                  </a>
                 </div>
                 <p className='font-sans text-sm tracking-wide text-gray-400'>
                   ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz ·
@@ -602,11 +612,21 @@ export default async function BrandPage() {
 
               {/* Newsreader */}
               <div className='border-t border-gray-200 pt-10'>
-                <div className='mb-6'>
-                  <h4 className='font-serif text-xl'>Newsreader</h4>
-                  <p className='mt-1 font-mono text-xs text-gray-400'>
-                    font-serif · Editorial / Accent · 400 Regular, Italic
-                  </p>
+                <div className='mb-6 flex items-start justify-between gap-4'>
+                  <div>
+                    <h4 className='font-serif text-xl'>Newsreader</h4>
+                    <p className='mt-1 font-mono text-xs text-gray-400'>
+                      font-serif · Editorial / Accent · 400 Regular, Italic
+                    </p>
+                  </div>
+                  <a
+                    href='https://fonts.google.com/specimen/Newsreader'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='shrink-0 font-mono text-xs text-gray-400 underline underline-offset-2 hover:text-black'
+                  >
+                    Google Fonts ↗
+                  </a>
                 </div>
                 <p className='font-serif text-sm tracking-wide text-gray-400'>
                   ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz ·
@@ -627,11 +647,21 @@ export default async function BrandPage() {
 
               {/* Paper Mono */}
               <div id='mono' className='border-t border-gray-200 pt-10'>
-                <div className='mb-6'>
-                  <h4 className='font-mono text-xl'>Paper Mono</h4>
-                  <p className='mt-1 font-mono text-xs text-gray-400'>
-                    font-mono · Labels / Code · 400 Regular
-                  </p>
+                <div className='mb-6 flex items-start justify-between gap-4'>
+                  <div>
+                    <h4 className='font-mono text-xl'>Paper Mono</h4>
+                    <p className='mt-1 font-mono text-xs text-gray-400'>
+                      font-mono · Labels / Code · 400 Regular
+                    </p>
+                  </div>
+                  <a
+                    href='https://github.com/paper-design/paper-mono/releases'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='shrink-0 font-mono text-xs text-gray-400 underline underline-offset-2 hover:text-black'
+                  >
+                    GitHub ↗
+                  </a>
                 </div>
                 <p className='font-mono text-sm tracking-wide text-gray-400'>
                   ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz ·
