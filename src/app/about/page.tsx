@@ -40,7 +40,7 @@ export default async function AboutPage() {
     <>
       <SplitHero
         heading='Creating software to support those supporting their communities'
-        buttonText='Meet the Team'
+        buttonText='Meet the team'
         buttonHref='#operations-team'
         gradient='from-blue-100 to-green-200'
       />
