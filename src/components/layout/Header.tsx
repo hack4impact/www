@@ -140,7 +140,7 @@ export default function Header() {
             href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
             target='_blank'
             rel='noopener noreferrer'
-            className='inline-flex items-center justify-center bg-green-300 px-3 py-1.5 font-mono text-sm font-medium text-black transition-colors hover:bg-green-400 active:bg-green-500'
+            className='inline-flex items-center justify-center rounded bg-green-300 px-3 py-1.5 font-mono text-sm font-medium text-black transition-colors hover:bg-green-400 active:bg-green-500'
           >
             Donate
           </a>
