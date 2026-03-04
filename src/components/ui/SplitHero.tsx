@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 
 interface SplitHeroProps {
+  tag?: string
   heading: string
   description?: string
   buttonText?: string
@@ -21,6 +22,7 @@ const containerVariants = staggerContainer(0.1, false)
 const itemVariants = fadeInUp()
 
 export function SplitHero({
+  tag,
   heading,
   description,
   buttonText,
@@ -53,6 +55,14 @@ export function SplitHero({
         initial='hidden'
         animate='visible'
       >
+        {tag && (
+          <motion.p
+            className='mb-3 font-mono text-xs tracking-widest text-gray-400 uppercase'
+            variants={itemVariants}
+          >
+            {tag}
+          </motion.p>
+        )}
         <motion.h1 className='font-sans text-3xl md:text-4xl' variants={itemVariants}>
           {heading}
         </motion.h1>

@@ -39,19 +39,16 @@ const newsreader = localFont({
   variable: '--font-newsreader',
 })
 
-const atkinsonHyperlegibleMono = localFont({
+const paperMono = localFont({
   src: [
     {
-      path: '../fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf',
+      path: '../fonts/PaperMono-Regular.woff2',
+      weight: '400',
       style: 'normal',
-    },
-    {
-      path: '../fonts/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf',
-      style: 'italic',
     },
   ],
   display: 'swap',
-  variable: '--font-atkinson-mono',
+  variable: '--font-paper-mono',
 })
 
 
@@ -76,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={`${inclusiveSans.variable} ${newsreader.variable} ${atkinsonHyperlegibleMono.variable}`}
+      className={`${inclusiveSans.variable} ${newsreader.variable} ${paperMono.variable}`}
     >
       <body className='flex min-h-screen flex-col relative'>
         <Header />

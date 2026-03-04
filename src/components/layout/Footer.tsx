@@ -13,7 +13,10 @@ const footerLinks = {
     { label: 'Partner With Us', href: '/get-involved/nonprofits' },
     { label: 'Sponsor Us', href: '/get-involved/sponsors' },
   ],
-  resources: [{ label: 'Journal', href: '/journal' }],
+  resources: [
+    { label: 'Journal', href: '/journal' },
+    { label: 'Brand', href: '/brand' },
+  ],
 }
 
 export default function Footer() {

@@ -223,3 +223,95 @@ export const getInfoCards = unstable_cache(
     revalidate: 3600,
   },
 )
+
+export interface ChapterLogoData {
+  shortName: string
+  name: string
+  lightSvgUrl: string
+  lightPng2xUrl: string
+  lightPng1xUrl: string
+  darkSvgUrl: string
+  darkPng2xUrl: string
+  darkPng1xUrl: string
+}
+
+const CHAPTER_NAMES: Record<string, string> = {
+  bu: 'Boston University',
+  calpoly: 'Cal Poly',
+  carleton: 'Carleton College',
+  cornell: 'Cornell University',
+  drexel: 'Drexel University',
+  emory: 'Emory University',
+  gt: 'Georgia Tech',
+  upenn: 'University of Pennsylvania',
+  umd: 'University of Maryland',
+  uiuc: 'University of Illinois',
+  utk: 'University of Tennessee',
+  mcgill: 'McGill University',
+  rutgers: 'Rutgers University',
+}
+
+const CHAPTER_SHORT_NAMES = Object.keys(CHAPTER_NAMES)
+
+async function fetchChapterLogos(): Promise<ChapterLogoData[]> {
+  try {
+    const allTitles = CHAPTER_SHORT_NAMES.flatMap((s) => [
+      `chapter-logo-${s}`,
+      `chapter-logo-dark-${s}`,
+      `chapter-logo-2x-${s}`,
+      `chapter-logo-dark-2x-${s}`,
+    ])
+
+    const response = await contentfulClient.getAssets({
+      'fields.title[in]': allTitles,
+      limit: 200,
+    })
+
+    type AssetEntry = { url: string; width?: number }
+    const assetMap = new Map<string, AssetEntry>()
+    for (const item of response.items) {
+      const title = item.fields.title as string
+      const file = item.fields.file as
+        | { url?: string; details?: { image?: { width: number } } }
+        | undefined
+      if (file?.url) {
+        assetMap.set(title, {
+          url: `https:${file.url}`,
+          width: file.details?.image?.width,
+        })
+      }
+    }
+
+    return CHAPTER_SHORT_NAMES.map((shortName) => {
+      const lightSvg = assetMap.get(`chapter-logo-${shortName}`)
+      const darkSvg = assetMap.get(`chapter-logo-dark-${shortName}`)
+      const lightPng2x = assetMap.get(`chapter-logo-2x-${shortName}`)
+      const darkPng2x = assetMap.get(`chapter-logo-dark-2x-${shortName}`)
+
+      const lightPng2xUrl = lightPng2x?.url ?? ''
+      const darkPng2xUrl = darkPng2x?.url ?? ''
+      const lightHalfW = lightPng2x?.width ? Math.round(lightPng2x.width / 2) : 400
+      const darkHalfW = darkPng2x?.width ? Math.round(darkPng2x.width / 2) : 400
+
+      return {
+        shortName,
+        name: CHAPTER_NAMES[shortName],
+        lightSvgUrl: lightSvg?.url ?? '',
+        lightPng2xUrl,
+        lightPng1xUrl: lightPng2xUrl ? `${lightPng2xUrl}?w=${lightHalfW}&fm=png` : '',
+        darkSvgUrl: darkSvg?.url ?? '',
+        darkPng2xUrl,
+        darkPng1xUrl: darkPng2xUrl ? `${darkPng2xUrl}?w=${darkHalfW}&fm=png` : '',
+      }
+    })
+  } catch (error) {
+    console.error('Failed to fetch chapter logos from Contentful:', error)
+    return []
+  }
+}
+
+export const getChapterLogos = unstable_cache(
+  fetchChapterLogos,
+  ['contentful-chapter-logos'],
+  { revalidate: 3600 },
+)
