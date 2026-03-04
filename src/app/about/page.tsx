@@ -39,6 +39,7 @@ export default async function AboutPage() {
   return (
     <>
       <SplitHero
+        tag='About'
         heading='Creating software to support those supporting their communities'
         buttonText='Meet the team'
         buttonHref='#operations-team'
