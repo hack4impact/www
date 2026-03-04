@@ -147,7 +147,7 @@ export default function Header() {
 
           <NavigationMenu.Portal>
             <NavigationMenu.Positioner className='z-50' sideOffset={8}>
-              <NavigationMenu.Popup className='min-w-[150px] bg-[#FCF9F2] py-2 text-base shadow-lg'>
+              <NavigationMenu.Popup className='min-w-[150px] rounded border border-gray-200 bg-[#FCF9F2] py-2 text-base'>
                 <NavigationMenu.Viewport />
               </NavigationMenu.Popup>
             </NavigationMenu.Positioner>
