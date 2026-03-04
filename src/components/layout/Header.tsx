@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menu } from '@base-ui/react/menu'
+import { Collapsible } from '@base-ui/react/collapsible'
 
 const navigation = [
   { label: 'About', href: '/about' },
@@ -18,11 +19,23 @@ const workItems = [
 ]
 
 const getInvolvedItems = [
-  { label: 'Non-Profit', href: '/get-involved/nonprofits' },
+  { label: 'Nonprofit', href: '/get-involved/nonprofits' },
   { label: 'Student', href: '/get-involved/students' },
   { label: 'Mentor', href: '/get-involved/mentors' },
   { label: 'Sponsor', href: '/get-involved/sponsors' },
 ]
+
+const chevron = (
+  <svg width='12' height='12' viewBox='0 0 12 12' fill='none'>
+    <path
+      d='M3 4.5L6 7.5L9 4.5'
+      stroke='currentColor'
+      strokeWidth='1.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+)
 
 function NavDropdown({
   label,
@@ -39,27 +52,19 @@ function NavDropdown({
         className='flex cursor-pointer items-center gap-1 text-base'
       >
         {label}
-        <svg width='12' height='12' viewBox='0 0 12 12' fill='none'>
-          <path
-            d='M3 4.5L6 7.5L9 4.5'
-            stroke='currentColor'
-            strokeWidth='1.5'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-          />
-        </svg>
+        {chevron}
       </Menu.Trigger>
       <Menu.Portal>
         <Menu.Positioner className='z-50' sideOffset={8}>
           <Menu.Popup className='min-w-[150px] bg-[#FCF9F2] py-2 text-base shadow-lg'>
             {items.map((item) => (
-              <Menu.Item
+              <Menu.LinkItem
                 key={item.href}
-                className='block cursor-pointer px-4 py-2 hover:bg-gray-50'
+                className='block cursor-pointer px-4 py-2 focus:outline-none data-[highlighted]:bg-gray-100'
                 render={<Link href={item.href} />}
               >
                 {item.label}
-              </Menu.Item>
+              </Menu.LinkItem>
             ))}
           </Menu.Popup>
         </Menu.Positioner>
@@ -71,8 +76,6 @@ function NavDropdown({
 export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [workOpen, setWorkOpen] = useState(false)
-  const [getInvolvedOpen, setGetInvolvedOpen] = useState(false)
 
   return (
     <header className={`${mobileMenuOpen ? 'bg-[#FCF9F2]' : ''}`}>
@@ -100,7 +103,7 @@ export default function Header() {
               key={item.href}
               href={item.href}
               aria-current={pathname === item.href ? 'page' : undefined}
-              className='focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2'
+              className=''
             >
               {item.label}
             </Link>
@@ -109,8 +112,7 @@ export default function Header() {
           <NavDropdown label='Work' items={workItems} />
           <NavDropdown label='Get Involved' items={getInvolvedItems} />
           <Link
-            key={'/shop'}
-            href={'https://www.bonfire.com/store/hackforimpact'}
+            href='https://www.bonfire.com/store/hackforimpact'
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -145,26 +147,22 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={pathname === item.href ? 'page' : undefined}
-                className='block py-4 text-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2'
+                className='block py-4 text-xl focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:outline-none'
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div>
-              <button
-                type='button'
-                className='flex w-full items-center justify-between py-4 text-xl'
-                onClick={() => setWorkOpen(!workOpen)}
-                aria-expanded={workOpen}
-              >
+
+            <Collapsible.Root>
+              <Collapsible.Trigger className='group flex w-full items-center justify-between py-4 text-xl'>
                 Work
                 <svg
                   width='16'
                   height='16'
                   viewBox='0 0 12 12'
                   fill='none'
-                  className={`transition-transform ${workOpen ? 'rotate-180' : ''}`}
+                  className='transition-transform group-data-[panel-open]:rotate-180'
                 >
                   <path
                     d='M3 4.5L6 7.5L9 4.5'
@@ -174,9 +172,9 @@ export default function Header() {
                     strokeLinejoin='round'
                   />
                 </svg>
-              </button>
-              {workOpen &&
-                workItems.map((item) => (
+              </Collapsible.Trigger>
+              <Collapsible.Panel>
+                {workItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -186,21 +184,18 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
-            </div>
-            <div>
-              <button
-                type='button'
-                className='flex w-full items-center justify-between py-4 text-xl'
-                onClick={() => setGetInvolvedOpen(!getInvolvedOpen)}
-                aria-expanded={getInvolvedOpen}
-              >
+              </Collapsible.Panel>
+            </Collapsible.Root>
+
+            <Collapsible.Root>
+              <Collapsible.Trigger className='group flex w-full items-center justify-between py-4 text-xl'>
                 Get Involved
                 <svg
                   width='16'
                   height='16'
                   viewBox='0 0 12 12'
                   fill='none'
-                  className={`transition-transform ${getInvolvedOpen ? 'rotate-180' : ''}`}
+                  className='transition-transform group-data-[panel-open]:rotate-180'
                 >
                   <path
                     d='M3 4.5L6 7.5L9 4.5'
@@ -210,9 +205,9 @@ export default function Header() {
                     strokeLinejoin='round'
                   />
                 </svg>
-              </button>
-              {getInvolvedOpen &&
-                getInvolvedItems.map((item) => (
+              </Collapsible.Trigger>
+              <Collapsible.Panel>
+                {getInvolvedItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -222,10 +217,11 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
-            </div>
+              </Collapsible.Panel>
+            </Collapsible.Root>
+
             <Link
-              key={'/shop'}
-              href={'https://www.bonfire.com/company/hackforimpact'}
+              href='https://www.bonfire.com/company/hackforimpact'
               target='_blank'
               rel='noopener noreferrer'
               className='block py-4 text-xl'
