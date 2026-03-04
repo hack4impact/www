@@ -82,6 +82,8 @@ export default function Footer() {
               <img
                 alt=''
                 src='https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9565390/svg'
+                width={80}
+                height={80}
                 className='h-20 w-20'
               />
             </a>

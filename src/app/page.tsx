@@ -59,6 +59,7 @@ export default async function HomePage() {
                   className='object-cover'
                   src={processImageUrl}
                   alt='A group photo of students from the Cal Poly chapter'
+                  sizes='(max-width: 1024px) calc(100vw - 4rem), (min-width: 1280px) calc(40vw), calc(50vw - 6rem)'
                 />
               )}
             </div>
@@ -90,6 +91,7 @@ export default async function HomePage() {
                 className='object-cover object-top pt-8'
                 src={calloutImageUrl}
                 alt='A group photo of students from the UPenn chapter'
+                sizes='(max-width: 1024px) calc(100vw - 4rem), (min-width: 1280px) calc(40vw), calc(50vw - 6rem)'
               />
             )}
           </div>
@@ -158,8 +160,9 @@ export default async function HomePage() {
                     (entry.bannerUrl && (
                       <Image
                         src={entry.thumbnailUrl || entry.bannerUrl}
-                        alt='Thumnail image of a journal entry and article'
+                        alt='Thumbnail image of a journal entry and article'
                         fill
+                        sizes='192px'
                         className='object-cover'
                       />
                     ))}

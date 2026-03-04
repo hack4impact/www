@@ -24,8 +24,10 @@ export default async function JournalPage() {
         {journalBanner && (
           <Image
             fill
+            priority
             src={journalBanner}
             alt='Banner for journal page'
+            sizes='100vw'
             className='object-cover'
           />
         )}
@@ -46,9 +48,10 @@ export default async function JournalPage() {
                 >
                   {entry.thumbnailUrl || entry.bannerUrl ? (
                     <Image
-                      alt='Journal thumbnail image'
+                      alt={entry.title}
                       src={entry.thumbnailUrl || entry.bannerUrl!}
                       fill
+                      sizes='(max-width: 768px) calc(100vw - 4rem), (max-width: 1024px) calc(50vw - 4rem), calc(33vw - 4rem)'
                       className='object-cover'
                     />
                   ) : null}
@@ -74,7 +77,7 @@ export default async function JournalPage() {
       <CallToAction
         heading='Have a story to share?'
         buttonText='Contact us'
-        href='/mailto:contact@hack4impact.org?subject=Journal Proposal'
+        href='mailto:contact@hack4impact.org?subject=Journal Proposal'
       />
     </>
   )

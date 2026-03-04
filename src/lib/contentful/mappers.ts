@@ -32,16 +32,10 @@ export function mapEntry(item: any): JournalEntry {
     intro: f.intro,
     content: f.content,
     thumbnailUrl: f.thumbnail?.fields?.file?.url
-      ? buildContentfulImageUrl(`https:${f.thumbnail.fields.file.url}`, {
-          w: 400,
-          q: 75,
-        })
+      ? buildContentfulImageUrl(`https:${f.thumbnail.fields.file.url}`, {})
       : undefined,
     bannerUrl: f.banner?.fields?.file?.url
-      ? buildContentfulImageUrl(`https:${f.banner.fields.file.url}`, {
-          w: 1200,
-          q: 75,
-        })
+      ? buildContentfulImageUrl(`https:${f.banner.fields.file.url}`, {})
       : undefined,
   }
 }

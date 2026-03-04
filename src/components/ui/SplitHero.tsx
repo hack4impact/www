@@ -42,6 +42,7 @@ export function SplitHero({
             src={image}
             alt={alt || 'Side banner image for hero section'}
             priority
+            sizes='(max-width: 768px) 100vw, 50vw'
           />
         )}
       </div>

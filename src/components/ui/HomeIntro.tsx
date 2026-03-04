@@ -77,6 +77,7 @@ export function HomeIntro({ heroImageUrl }: HomeIntroProps) {
               src={heroImageUrl}
               alt='A group photo of students from the UPenn chapter'
               priority
+              sizes='(max-width: 800px) calc(100vw - 4rem), 800px'
             />
           )}
         </div>

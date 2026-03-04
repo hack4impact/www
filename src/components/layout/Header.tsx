@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu } from '@base-ui/react/menu'
+import { NavigationMenu } from '@base-ui/react/navigation-menu'
+import { Collapsible } from '@base-ui/react/collapsible'
 
 const navigation = [
   { label: 'About', href: '/about' },
@@ -17,60 +19,33 @@ const workItems = [
 ]
 
 const getInvolvedItems = [
-  { label: 'Non-Profit', href: '/get-involved/nonprofits' },
+  { label: 'Nonprofit', href: '/get-involved/nonprofits' },
   { label: 'Student', href: '/get-involved/students' },
   { label: 'Mentor', href: '/get-involved/mentors' },
   { label: 'Sponsor', href: '/get-involved/sponsors' },
 ]
 
-function NavDropdown({
-  label,
-  items,
-}: {
-  label: string
-  items: { label: string; href: string }[]
-}) {
-  return (
-    <Menu.Root>
-      <Menu.Trigger
-        openOnHover
-        delay={0}
-        className='flex cursor-pointer items-center gap-1 text-base'
-      >
-        {label}
-        <svg width='12' height='12' viewBox='0 0 12 12' fill='none'>
-          <path
-            d='M3 4.5L6 7.5L9 4.5'
-            stroke='currentColor'
-            strokeWidth='1.5'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-          />
-        </svg>
-      </Menu.Trigger>
-      <Menu.Portal>
-        <Menu.Positioner className='z-50' sideOffset={8}>
-          <Menu.Popup className='min-w-[150px] bg-[#FCF9F2] py-2 text-base shadow-lg'>
-            {items.map((item) => (
-              <Menu.Item
-                key={item.href}
-                className='block cursor-pointer px-4 py-2 hover:bg-gray-50'
-                render={<Link href={item.href} />}
-              >
-                {item.label}
-              </Menu.Item>
-            ))}
-          </Menu.Popup>
-        </Menu.Positioner>
-      </Menu.Portal>
-    </Menu.Root>
-  )
-}
+const chevronSvg = (
+  <svg
+    width='12'
+    height='12'
+    viewBox='0 0 12 12'
+    fill='none'
+    className='transition-transform group-data-[open]:rotate-180'
+  >
+    <path
+      d='M3 4.5L6 7.5L9 4.5'
+      stroke='currentColor'
+      strokeWidth='1.5'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+)
 
 export default function Header() {
+  const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [workOpen, setWorkOpen] = useState(false)
-  const [getInvolvedOpen, setGetInvolvedOpen] = useState(false)
 
   return (
     <header className={`${mobileMenuOpen ? 'bg-[#FCF9F2]' : ''}`}>
@@ -92,23 +67,75 @@ export default function Header() {
           />
         </Link>
 
-        <div className='hidden items-center gap-6 text-base md:flex'>
-          {navigation.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
+        <NavigationMenu.Root
+          render={<div />}
+          className='hidden items-center gap-6 text-base md:flex'
+        >
+          <NavigationMenu.List className='m-0 flex list-none items-center gap-6 p-0'>
+            {navigation.map((item) => (
+              <NavigationMenu.Item key={item.href}>
+                <NavigationMenu.Link
+                  render={<Link href={item.href} />}
+                  active={pathname === item.href}
+                >
+                  {item.label}
+                </NavigationMenu.Link>
+              </NavigationMenu.Item>
+            ))}
 
-          <NavDropdown label='Work' items={workItems} />
-          <NavDropdown label='Get Involved' items={getInvolvedItems} />
-          <Link
-            key={'/shop'}
-            href={'https://www.bonfire.com/store/hackforimpact'}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Shop
-          </Link>
+            <NavigationMenu.Item value='work'>
+              <NavigationMenu.Trigger className='group flex cursor-pointer items-center gap-1'>
+                Work
+                {chevronSvg}
+              </NavigationMenu.Trigger>
+              <NavigationMenu.Content>
+                {workItems.map((item) => (
+                  <NavigationMenu.Link
+                    key={item.href}
+                    render={<Link href={item.href} />}
+                    closeOnClick
+                    className='block px-4 py-2 hover:bg-gray-100'
+                  >
+                    {item.label}
+                  </NavigationMenu.Link>
+                ))}
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
+            <NavigationMenu.Item value='get-involved'>
+              <NavigationMenu.Trigger className='group flex cursor-pointer items-center gap-1'>
+                Get Involved
+                {chevronSvg}
+              </NavigationMenu.Trigger>
+              <NavigationMenu.Content>
+                {getInvolvedItems.map((item) => (
+                  <NavigationMenu.Link
+                    key={item.href}
+                    render={<Link href={item.href} />}
+                    closeOnClick
+                    className='block px-4 py-2 hover:bg-gray-100'
+                  >
+                    {item.label}
+                  </NavigationMenu.Link>
+                ))}
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
+            <NavigationMenu.Item>
+              <NavigationMenu.Link
+                render={
+                  <a
+                    href='https://www.bonfire.com/store/hackforimpact'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  />
+                }
+              >
+                Shop
+              </NavigationMenu.Link>
+            </NavigationMenu.Item>
+          </NavigationMenu.List>
+
           <a
             href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
             target='_blank'
@@ -117,7 +144,15 @@ export default function Header() {
           >
             Donate
           </a>
-        </div>
+
+          <NavigationMenu.Portal>
+            <NavigationMenu.Positioner className='z-50' sideOffset={8}>
+              <NavigationMenu.Popup className='min-w-[150px] bg-[#FCF9F2] py-2 text-base shadow-lg'>
+                <NavigationMenu.Viewport />
+              </NavigationMenu.Popup>
+            </NavigationMenu.Positioner>
+          </NavigationMenu.Portal>
+        </NavigationMenu.Root>
 
         <button
           type='button'
@@ -137,26 +172,23 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className='block py-4 text-xl'
+                aria-current={pathname === item.href ? 'page' : undefined}
+                className='block py-4 text-xl focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:outline-none'
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div>
-              <button
-                type='button'
-                className='flex w-full items-center justify-between py-4 text-xl'
-                onClick={() => setWorkOpen(!workOpen)}
-                aria-expanded={workOpen}
-              >
+
+            <Collapsible.Root>
+              <Collapsible.Trigger className='group flex w-full items-center justify-between py-4 text-xl'>
                 Work
                 <svg
                   width='16'
                   height='16'
                   viewBox='0 0 12 12'
                   fill='none'
-                  className={`transition-transform ${workOpen ? 'rotate-180' : ''}`}
+                  className='transition-transform group-data-[panel-open]:rotate-180'
                 >
                   <path
                     d='M3 4.5L6 7.5L9 4.5'
@@ -166,9 +198,9 @@ export default function Header() {
                     strokeLinejoin='round'
                   />
                 </svg>
-              </button>
-              {workOpen &&
-                workItems.map((item) => (
+              </Collapsible.Trigger>
+              <Collapsible.Panel>
+                {workItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -178,21 +210,18 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
-            </div>
-            <div>
-              <button
-                type='button'
-                className='flex w-full items-center justify-between py-4 text-xl'
-                onClick={() => setGetInvolvedOpen(!getInvolvedOpen)}
-                aria-expanded={getInvolvedOpen}
-              >
+              </Collapsible.Panel>
+            </Collapsible.Root>
+
+            <Collapsible.Root>
+              <Collapsible.Trigger className='group flex w-full items-center justify-between py-4 text-xl'>
                 Get Involved
                 <svg
                   width='16'
                   height='16'
                   viewBox='0 0 12 12'
                   fill='none'
-                  className={`transition-transform ${getInvolvedOpen ? 'rotate-180' : ''}`}
+                  className='transition-transform group-data-[panel-open]:rotate-180'
                 >
                   <path
                     d='M3 4.5L6 7.5L9 4.5'
@@ -202,9 +231,9 @@ export default function Header() {
                     strokeLinejoin='round'
                   />
                 </svg>
-              </button>
-              {getInvolvedOpen &&
-                getInvolvedItems.map((item) => (
+              </Collapsible.Trigger>
+              <Collapsible.Panel>
+                {getInvolvedItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
@@ -214,10 +243,11 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
-            </div>
+              </Collapsible.Panel>
+            </Collapsible.Root>
+
             <Link
-              key={'/shop'}
-              href={'https://www.bonfire.com/company/hackforimpact'}
+              href='https://www.bonfire.com/company/hackforimpact'
               target='_blank'
               rel='noopener noreferrer'
               className='block py-4 text-xl'
