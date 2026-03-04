@@ -549,7 +549,7 @@ export default async function BrandPage() {
             <h3 className='mb-4 font-sans text-3xl md:text-4xl'>Gradients</h3>
             <p className='mb-10 max-w-2xl font-serif text-gray-600'>
               Soft gradients are used for image placeholders, hero backgrounds,
-              and decorative panels.
+              and decorative panels. Below are some examples.
             </p>
 
             <div className='grid grid-cols-2 gap-6 md:grid-cols-4'>
@@ -584,7 +584,8 @@ export default async function BrandPage() {
                   </p>
                 </div>
                 <p className='font-sans text-sm tracking-wide text-gray-400'>
-                  ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789
+                  ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz ·
+                  0123456789
                 </p>
                 <p className='mt-4 font-sans text-2xl leading-snug md:text-3xl'>
                   Cwm fjord bank glyphs vext quiz
@@ -608,7 +609,8 @@ export default async function BrandPage() {
                   </p>
                 </div>
                 <p className='font-serif text-sm tracking-wide text-gray-400'>
-                  ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789
+                  ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz ·
+                  0123456789
                 </p>
                 <p className='mt-4 font-serif text-2xl leading-snug md:text-3xl'>
                   Cwm fjord bank glyphs vext quiz
@@ -632,7 +634,8 @@ export default async function BrandPage() {
                   </p>
                 </div>
                 <p className='font-mono text-sm tracking-wide text-gray-400'>
-                  ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789
+                  ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz ·
+                  0123456789
                 </p>
                 <p className='mt-4 font-mono text-2xl leading-snug md:text-3xl'>
                   Cwm fjord bank glyphs vext quiz
