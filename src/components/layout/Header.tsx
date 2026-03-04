@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu } from '@base-ui/react/menu'
+import { NavigationMenu } from '@base-ui/react/navigation-menu'
 import { Collapsible } from '@base-ui/react/collapsible'
 
 const navigation = [
@@ -25,8 +25,14 @@ const getInvolvedItems = [
   { label: 'Sponsor', href: '/get-involved/sponsors' },
 ]
 
-const chevron = (
-  <svg width='12' height='12' viewBox='0 0 12 12' fill='none'>
+const chevronSvg = (
+  <svg
+    width='12'
+    height='12'
+    viewBox='0 0 12 12'
+    fill='none'
+    className='transition-transform group-data-[open]:rotate-180'
+  >
     <path
       d='M3 4.5L6 7.5L9 4.5'
       stroke='currentColor'
@@ -36,42 +42,6 @@ const chevron = (
     />
   </svg>
 )
-
-function NavDropdown({
-  label,
-  items,
-}: {
-  label: string
-  items: { label: string; href: string }[]
-}) {
-  return (
-    <Menu.Root>
-      <Menu.Trigger
-        openOnHover
-        delay={0}
-        className='flex cursor-pointer items-center gap-1 text-base'
-      >
-        {label}
-        {chevron}
-      </Menu.Trigger>
-      <Menu.Portal>
-        <Menu.Positioner className='z-50' sideOffset={8}>
-          <Menu.Popup className='min-w-[150px] bg-[#FCF9F2] py-2 text-base shadow-lg'>
-            {items.map((item) => (
-              <Menu.LinkItem
-                key={item.href}
-                className='block cursor-pointer px-4 py-2 focus:outline-none data-[highlighted]:bg-gray-100'
-                render={<Link href={item.href} />}
-              >
-                {item.label}
-              </Menu.LinkItem>
-            ))}
-          </Menu.Popup>
-        </Menu.Positioner>
-      </Menu.Portal>
-    </Menu.Root>
-  )
-}
 
 export default function Header() {
   const pathname = usePathname()
@@ -97,27 +67,75 @@ export default function Header() {
           />
         </Link>
 
-        <div className='hidden items-center gap-6 text-base md:flex'>
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={pathname === item.href ? 'page' : undefined}
-              className=''
-            >
-              {item.label}
-            </Link>
-          ))}
+        <NavigationMenu.Root
+          render={<div />}
+          className='hidden items-center gap-6 text-base md:flex'
+        >
+          <NavigationMenu.List className='m-0 flex list-none items-center gap-6 p-0'>
+            {navigation.map((item) => (
+              <NavigationMenu.Item key={item.href}>
+                <NavigationMenu.Link
+                  render={<Link href={item.href} />}
+                  active={pathname === item.href}
+                >
+                  {item.label}
+                </NavigationMenu.Link>
+              </NavigationMenu.Item>
+            ))}
 
-          <NavDropdown label='Work' items={workItems} />
-          <NavDropdown label='Get Involved' items={getInvolvedItems} />
-          <Link
-            href='https://www.bonfire.com/store/hackforimpact'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Shop
-          </Link>
+            <NavigationMenu.Item value='work'>
+              <NavigationMenu.Trigger className='group flex cursor-pointer items-center gap-1'>
+                Work
+                {chevronSvg}
+              </NavigationMenu.Trigger>
+              <NavigationMenu.Content>
+                {workItems.map((item) => (
+                  <NavigationMenu.Link
+                    key={item.href}
+                    render={<Link href={item.href} />}
+                    closeOnClick
+                    className='block px-4 py-2 hover:bg-gray-100'
+                  >
+                    {item.label}
+                  </NavigationMenu.Link>
+                ))}
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
+            <NavigationMenu.Item value='get-involved'>
+              <NavigationMenu.Trigger className='group flex cursor-pointer items-center gap-1'>
+                Get Involved
+                {chevronSvg}
+              </NavigationMenu.Trigger>
+              <NavigationMenu.Content>
+                {getInvolvedItems.map((item) => (
+                  <NavigationMenu.Link
+                    key={item.href}
+                    render={<Link href={item.href} />}
+                    closeOnClick
+                    className='block px-4 py-2 hover:bg-gray-100'
+                  >
+                    {item.label}
+                  </NavigationMenu.Link>
+                ))}
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
+            <NavigationMenu.Item>
+              <NavigationMenu.Link
+                render={
+                  <a
+                    href='https://www.bonfire.com/store/hackforimpact'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  />
+                }
+              >
+                Shop
+              </NavigationMenu.Link>
+            </NavigationMenu.Item>
+          </NavigationMenu.List>
+
           <a
             href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
             target='_blank'
@@ -126,7 +144,15 @@ export default function Header() {
           >
             Donate
           </a>
-        </div>
+
+          <NavigationMenu.Portal>
+            <NavigationMenu.Positioner className='z-50' sideOffset={8}>
+              <NavigationMenu.Popup className='min-w-[150px] bg-[#FCF9F2] py-2 text-base shadow-lg'>
+                <NavigationMenu.Viewport />
+              </NavigationMenu.Popup>
+            </NavigationMenu.Positioner>
+          </NavigationMenu.Portal>
+        </NavigationMenu.Root>
 
         <button
           type='button'
