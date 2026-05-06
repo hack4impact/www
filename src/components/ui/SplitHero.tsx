@@ -50,7 +50,7 @@ export function SplitHero({
       </div>
 
       <motion.div
-        className='flex flex-col items-start justify-center bg-[#FCF9F2] p-8 md:p-12'
+        className='flex flex-col items-start justify-center bg-white p-8 md:p-12'
         variants={containerVariants}
         initial='hidden'
         animate='visible'

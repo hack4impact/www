@@ -44,7 +44,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         </div>
 
         {/* Header content */}
-        <div className='flex flex-col items-start justify-center bg-[#FCF9F2] p-8 md:p-12'>
+        <div className='flex flex-col items-start justify-center bg-white p-8 md:p-12'>
           <div className='mb-2 flex items-center gap-2 font-serif text-base'>
             <span className='text-gray-600'>{chapter.location}</span>
             {chapter.location && chapter.founded && (

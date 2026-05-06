@@ -48,7 +48,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className={`${mobileMenuOpen ? 'bg-[#FCF9F2]' : ''}`}>
+    <header className={`${mobileMenuOpen ? 'bg-white' : ''}`}>
       <nav className='flex items-center justify-between px-8 py-4 text-base md:px-12'>
         <Link href='/'>
           <Image
@@ -147,7 +147,7 @@ export default function Header() {
 
           <NavigationMenu.Portal>
             <NavigationMenu.Positioner className='z-50' sideOffset={8}>
-              <NavigationMenu.Popup className='min-w-[150px] rounded border border-gray-200 bg-[#FCF9F2] py-2 text-base'>
+              <NavigationMenu.Popup className='min-w-[150px] rounded border border-gray-200 bg-white py-2 text-base'>
                 <NavigationMenu.Viewport />
               </NavigationMenu.Popup>
             </NavigationMenu.Positioner>

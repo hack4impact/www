@@ -75,7 +75,7 @@ export default function RootLayout({
       lang='en'
       className={`${inclusiveSans.variable} ${newsreader.variable} ${paperMono.variable}`}
     >
-      <body className='flex min-h-screen flex-col relative'>
+      <body className='flex min-h-screen flex-col relative font-sans'>
         <Header />
         <main className='flex-1'>{children}</main>
         <Footer />

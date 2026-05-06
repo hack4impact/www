@@ -83,8 +83,8 @@ export function PartnersDataTable({ partners }: PartnersDataTableProps) {
     <DataTable
       columns={columns}
       data={partners}
-      wrapperClassName='overflow-auto max-h-[70vh] bg-[#FCF9F2]/80 backdrop-blur-sm rounded'
-      theadClassName='sticky top-0 bg-[#FCF9F2] border-b-2 border-gray-200'
+      wrapperClassName='overflow-auto max-h-[70vh] bg-white/80 backdrop-blur-sm rounded'
+      theadClassName='sticky top-0 bg-white border-b-2 border-gray-200'
       initialSort={{ columnId: 'name', direction: 'asc' }}
     />
   )
