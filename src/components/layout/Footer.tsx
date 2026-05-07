@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 const footerLinks = {
@@ -91,14 +92,7 @@ export default function Footer() {
               />
             </a>
             <Link href='/' aria-label='Hack4Impact' className='shrink-0'>
-              <svg
-                className='h-20 w-20'
-                viewBox='0 0 200 200'
-                fill='currentColor'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path d='M0 25C8.48807 25 16.8349 25.605 25 26.7729V175H173.227C174.395 183.165 175 191.512 175 200H0V25ZM200 175H173.227C162.264 98.3578 101.642 37.7358 25 26.7729V0H200V175Z' />
-              </svg>
+              <Image src='/logomark.svg' alt='' width={80} height={80} className='h-20 w-20' />
             </Link>
           </div>
         </div>
