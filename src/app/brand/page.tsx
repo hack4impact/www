@@ -173,12 +173,12 @@ export default async function BrandPage() {
       {/* Page header */}
       <header className='mb-20 border-b border-gray-200 pb-16'>
         <p className='mb-4 font-mono text-sm tracking-widest text-gray-500 uppercase'>
-          Hack for Impact
+          Hack4Impact
         </p>
         <h1 className='font-sans text-5xl md:text-7xl'>Brand Guidelines</h1>
         <p className='mt-6 max-w-2xl font-serif text-lg text-gray-600 md:text-xl'>
           A reference for our visual identity. Logos, colors, typography, and
-          usage guidance for anyone representing Hack for Impact.
+          usage guidance for anyone representing Hack4Impact.
         </p>
       </header>
 
@@ -222,7 +222,7 @@ export default async function BrandPage() {
             </p>
 
             <p className='max-w-2xl font-serif text-lg text-gray-600'>
-              Hack for Impact exists to connect student technologists with
+              Hack4Impact exists to connect student technologists with
               nonprofits and social impact organizations. We believe software
               can be a powerful force for good and that learning to build it
               responsibly, collaboratively, and with empathy is the foundation
@@ -230,7 +230,7 @@ export default async function BrandPage() {
             </p>
             <p className='mt-4 max-w-2xl font-serif text-lg text-gray-600'>
               Founded at the University of Pennsylvania in 2014 and incorporated
-              as a 501(c)(3) nonprofit in 2016, Hack for Impact has grown into a
+              as a 501(c)(3) nonprofit in 2016, Hack4Impact has grown into a
               nationwide network of student chapters dedicated to bridging the
               gap between technical skill and community need.
             </p>
@@ -272,7 +272,7 @@ export default async function BrandPage() {
                 <div className='flex flex-1 items-center justify-center border border-gray-200 bg-white p-12'>
                   <Image
                     src='/logo.svg'
-                    alt='Hack for Impact wordmark on light'
+                    alt='Hack4Impact wordmark on light'
                     width={280}
                     height={38}
                     className='brightness-0'
@@ -296,7 +296,7 @@ export default async function BrandPage() {
                 <div className='flex flex-1 items-center justify-center bg-black p-12'>
                   <Image
                     src='/logo.svg'
-                    alt='Hack for Impact wordmark on dark'
+                    alt='Hack4Impact wordmark on dark'
                     width={280}
                     height={38}
                     className='brightness-0 invert'
@@ -320,7 +320,7 @@ export default async function BrandPage() {
                 <div className='flex flex-1 items-center justify-center border border-gray-200 bg-white p-12'>
                   <Image
                     src='/logomark.svg'
-                    alt='Hack for Impact logomark on light'
+                    alt='Hack4Impact logomark on light'
                     width={80}
                     height={80}
                     className='brightness-0'
@@ -344,7 +344,7 @@ export default async function BrandPage() {
                 <div className='flex flex-1 items-center justify-center bg-black p-12'>
                   <Image
                     src='/logomark.svg'
-                    alt='Hack for Impact logomark on dark'
+                    alt='Hack4Impact logomark on dark'
                     width={80}
                     height={80}
                     className='brightness-0 invert'
@@ -688,8 +688,8 @@ export default async function BrandPage() {
               Chapter Logos
             </h3>
             <p className='mb-10 max-w-2xl font-serif text-gray-600'>
-              Each Hack for Impact chapter has its own co-branded logo that
-              pairs the chapter&apos;s university name with the Hack for Impact
+              Each Hack4Impact chapter has its own co-branded logo that
+              pairs the chapter&apos;s university name with the Hack4Impact
               wordmark. These are maintained centrally to ensure consistency
               across our network.
             </p>

@@ -17,7 +17,7 @@ const testimonials = [
   },
   {
     quote:
-      "Their team's dedication and professionalism impressed us...I strongly recommend Hack for Impact to any nonprofit seeking meaningful, mission-driven support.",
+      "Their team's dedication and professionalism impressed us...I strongly recommend Hack4Impact to any nonprofit seeking meaningful, mission-driven support.",
     name: 'Vision Academy',
     title: '',
   },
@@ -40,7 +40,7 @@ export default async function NonprofitsPage() {
     <>
       <SplitHero
         tag='Nonprofits'
-        heading='Partner with Hack for Impact'
+        heading='Partner with Hack4Impact'
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
         buttonHref='#apply'

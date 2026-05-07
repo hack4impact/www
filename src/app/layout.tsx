@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   description: 'Code for the common good.',
   manifest: '/manifest.json',
   appleWebApp: {
-    title: 'Hack for Impact',
+    title: 'Hack4Impact',
   },
 }
 

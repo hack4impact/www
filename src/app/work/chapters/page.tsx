@@ -49,7 +49,7 @@ export default async function ChaptersPage() {
 
       <PageIntro
         heading='Chapters'
-        description='Hack for Impact operates through student-led chapters at universities across the country. Each chapter partners with local nonprofits to build software that serves their communities.'
+        description='Hack4Impact operates through student-led chapters at universities across the country. Each chapter partners with local nonprofits to build software that serves their communities.'
       />
 
       <StatBar stats={stats} />
