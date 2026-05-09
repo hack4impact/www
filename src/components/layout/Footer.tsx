@@ -15,7 +15,7 @@ const footerLinks = {
     { label: 'Sponsor Us', href: '/get-involved/sponsors' },
   ],
   resources: [
-    { label: 'Journal', href: '/journal' },
+    // { label: 'Journal', href: '/journal' },
     // { label: 'Brand', href: '/brand' },
   ],
 }
@@ -57,21 +57,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className='mb-3 font-semibold'>Resources</h3>
-            <ul className='space-y-2'>
-              {footerLinks.resources.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className='text-sm hover:text-green-800'
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* <div> */}
+          {/*   <h3 className='mb-3 font-semibold'>Resources</h3> */}
+          {/*   <ul className='space-y-2'> */}
+          {/*     {footerLinks.resources.map((link) => ( */}
+          {/*       <li key={link.href}> */}
+          {/*         <Link */}
+          {/*           href={link.href} */}
+          {/*           className='text-sm hover:text-green-800' */}
+          {/*         > */}
+          {/*           {link.label} */}
+          {/*         </Link> */}
+          {/*       </li> */}
+          {/*     ))} */}
+          {/*   </ul> */}
+          {/* </div> */}
 
           {/* Seal and logomark — in grid on md+ */}
           <div className='hidden items-start gap-5 md:flex lg:col-start-5 lg:justify-end'>
@@ -92,7 +92,13 @@ export default function Footer() {
               />
             </a>
             <Link href='/' aria-label='Hack4Impact' className='shrink-0'>
-              <Image src='/logomark.svg' alt='' width={80} height={80} className='h-20 w-20' />
+              <Image
+                src='/logomark.svg'
+                alt=''
+                width={80}
+                height={80}
+                className='h-20 w-20'
+              />
             </Link>
           </div>
         </div>

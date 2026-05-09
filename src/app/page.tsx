@@ -136,57 +136,57 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Featured Articles */}
-      <section className='px-8 py-16 md:px-12 md:py-24'>
-        <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
-          Featured articles
-        </h2>
-        <div className='mx-auto max-w-2xl divide-y divide-gray-200 border-y border-gray-200'>
-          {featuredArticles.map((entry, i) => (
-            <Link
-              key={entry.id}
-              href={`/journal/${entry.slug}`}
-              className='block'
-            >
-              <div className='flex items-center gap-6 py-6'>
-                <div
-                  className={`relative h-28 w-48 shrink-0 bg-gradient-to-br ${
-                    i === 0
-                      ? 'from-orange-100 to-pink-200'
-                      : 'from-purple-100 to-blue-200'
-                  }`}
-                >
-                  {entry.thumbnailUrl ||
-                    (entry.bannerUrl && (
-                      <Image
-                        src={entry.thumbnailUrl || entry.bannerUrl}
-                        alt='Thumbnail image of a journal entry and article'
-                        fill
-                        sizes='192px'
-                        className='object-cover'
-                      />
-                    ))}
-                </div>
-                <div className='min-w-0'>
-                  <h3 className='mb-1 truncate font-sans text-lg'>
-                    {entry.title}
-                  </h3>
-                  <div className='flex items-center gap-2 font-serif text-sm text-gray-600'>
-                    <span>{entry.tag}</span>
-                    <span className='text-gray-400'>&middot;</span>
-                    <span>{entry.readTime}</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className='mt-8 text-center'>
-          <Link href='/journal'>
-            <Button>View all articles</Button>
-          </Link>
-        </div>
-      </section>
+      {/* Featured A
+      {/* <section className='px-8 py-16 md:px-12 md:py-24'> */}
+      {/*   <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'> */}
+      {/*     Featured articles */}
+      {/*   </h2> */}
+      {/*   <div className='mx-auto max-w-2xl divide-y divide-gray-200 border-y border-gray-200'> */}
+      {/*     {featuredArticles.map((entry, i) => ( */}
+      {/*       <Link */}
+      {/*         key={entry.id} */}
+      {/*         href={`/journal/${entry.slug}`} */}
+      {/*         className='block' */}
+      {/*       > */}
+      {/*         <div className='flex items-center gap-6 py-6'> */}
+      {/*           <div */}
+      {/*             className={`relative h-28 w-48 shrink-0 bg-gradient-to-br ${ */}
+      {/*               i === 0 */}
+      {/*                 ? 'from-orange-100 to-pink-200' */}
+      {/*                 : 'from-purple-100 to-blue-200' */}
+      {/*             }`} */}
+      {/*           > */}
+      {/*             {entry.thumbnailUrl || */}
+      {/*               (entry.bannerUrl && ( */}
+      {/*                 <Image */}
+      {/*                   src={entry.thumbnailUrl || entry.bannerUrl} */}
+      {/*                   alt='Thumbnail image of a journal entry and article' */}
+      {/*                   fill */}
+      {/*                   sizes='192px' */}
+      {/*                   className='object-cover' */}
+      {/*                 /> */}
+      {/*               ))} */}
+      {/*           </div> */}
+      {/*           <div className='min-w-0'> */}
+      {/*             <h3 className='mb-1 truncate font-sans text-lg'> */}
+      {/*               {entry.title} */}
+      {/*             </h3> */}
+      {/*             <div className='flex items-center gap-2 font-serif text-sm text-gray-600'> */}
+      {/*               <span>{entry.tag}</span> */}
+      {/*               <span className='text-gray-400'>&middot;</span> */}
+      {/*               <span>{entry.readTime}</span> */}
+      {/*             </div> */}
+      {/*           </div> */}
+      {/*         </div> */}
+      {/*       </Link> */}
+      {/*     ))} */}
+      {/*   </div> */}
+      {/*   <div className='mt-8 text-center'> */}
+      {/*     <Link href='/journal'> */}
+      {/*       <Button>View all articles</Button> */}
+      {/*     </Link> */}
+      {/*   </div> */}
+      {/* </section> */}
 
       <CallToAction
         heading='Ready to make an impact?'

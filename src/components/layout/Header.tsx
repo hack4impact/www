@@ -9,7 +9,7 @@ import { Collapsible } from '@base-ui/react/collapsible'
 
 const navigation = [
   { label: 'About', href: '/about' },
-  { label: 'Journal', href: '/journal' },
+  // { label: 'Journal', href: '/journal' },
 ]
 
 const workItems = [
