@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { NavigationMenu } from '@base-ui/react/navigation-menu'
 import { Collapsible } from '@base-ui/react/collapsible'
+import { Button } from '../ui/Button'
 
 const navigation = [
   { label: 'About', href: '/about' },
@@ -136,14 +137,15 @@ export default function Header() {
             {/* </NavigationMenu.Item> */}
           </NavigationMenu.List>
 
-          <a
-            href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='inline-flex items-center justify-center rounded bg-green-300 px-3 py-1.5 font-mono text-sm font-medium text-black transition-colors hover:bg-green-400 active:bg-green-500'
-          >
-            Donate
-          </a>
+          <Button size='sm'>
+            <a
+              href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              Donate
+            </a>
+          </Button>
 
           <NavigationMenu.Portal>
             <NavigationMenu.Positioner className='z-50' sideOffset={8}>
@@ -259,7 +261,7 @@ export default function Header() {
               href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
               target='_blank'
               rel='noopener noreferrer'
-              className='mt-4 block w-full bg-green-300 py-3 text-center font-mono text-lg font-medium text-black transition-colors hover:bg-green-400 active:bg-green-500'
+              className='mt-4 block w-full bg-blue-300 py-3 text-center font-mono text-lg font-medium text-black transition-colors hover:bg-blue-400 active:bg-blue-500'
             >
               Donate
             </a>

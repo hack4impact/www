@@ -22,7 +22,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className='mt-auto bg-green-300 text-green-600'>
+    <footer className='mt-auto bg-blue-500 text-white'>
       <div className='px-8 py-8 md:px-12 md:py-12'>
         <div className='grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5'>
           <div>
@@ -32,7 +32,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className='text-sm hover:text-green-800'
+                    className='text-sm decoration-white hover:underline'
                   >
                     {link.label}
                   </Link>
@@ -48,7 +48,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className='text-sm hover:text-green-800'
+                    className='text-sm decoration-white hover:underline'
                   >
                     {link.label}
                   </Link>
@@ -64,7 +64,7 @@ export default function Footer() {
           {/*       <li key={link.href}> */}
           {/*         <Link */}
           {/*           href={link.href} */}
-          {/*           className='text-sm hover:text-green-800' */}
+          {/*           className='text-sm hover:underline decoration-white' */}
           {/*         > */}
           {/*           {link.label} */}
           {/*         </Link> */}
@@ -92,13 +92,14 @@ export default function Footer() {
               />
             </a>
             <Link href='/' aria-label='Hack4Impact' className='shrink-0'>
-              <Image
-                src='/logomark.svg'
-                alt=''
-                width={80}
-                height={80}
-                className='h-20 w-20'
-              />
+              <svg className='h-20 w-20'>
+                <use
+                  href='logomark.svg'
+                  width={80}
+                  height={80}
+                  fill='white'
+                ></use>
+              </svg>
             </Link>
           </div>
         </div>
@@ -120,14 +121,13 @@ export default function Footer() {
             />
           </a>
           <Link href='/' aria-label='Hack4Impact' className='shrink-0'>
-            <svg
+            <Image
+              src='/logomark.svg'
+              alt=''
+              width={80}
+              height={80}
               className='h-20 w-20'
-              viewBox='0 0 200 200'
-              fill='currentColor'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path d='M0 25C8.48807 25 16.8349 25.605 25 26.7729V175H173.227C174.395 183.165 175 191.512 175 200H0V25ZM200 175H173.227C162.264 98.3578 101.642 37.7358 25 26.7729V0H200V175Z' />
-            </svg>
+            />
           </Link>
         </div>
 
@@ -137,7 +137,7 @@ export default function Footer() {
             href='https://linkedin.com/company/hack4impact'
             target='_blank'
             rel='noopener noreferrer'
-            className='hover:text-green-800'
+            className='decoration-white hover:underline'
             aria-label='LinkedIn'
           >
             <svg width='24' height='24' viewBox='0 0 24 24' fill='currentColor'>
@@ -148,7 +148,7 @@ export default function Footer() {
             href='https://github.com/hack4impact'
             target='_blank'
             rel='noopener noreferrer'
-            className='hover:text-green-800'
+            className='decoration-white hover:underline'
             aria-label='GitHub'
           >
             <svg width='24' height='24' viewBox='0 0 24 24' fill='currentColor'>
@@ -159,7 +159,7 @@ export default function Footer() {
             href='https://instagram.com/hack4impact'
             target='_blank'
             rel='noopener noreferrer'
-            className='hover:text-green-800'
+            className='decoration-white hover:underline'
             aria-label='Instagram'
           >
             <svg width='24' height='24' viewBox='0 0 24 24' fill='currentColor'>
@@ -168,7 +168,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className='mt-8 border-t border-green-400 pt-6 text-center text-sm'>
+        <div className='mt-8 border-t border-white pt-6 text-center text-sm'>
           <p>
             &copy; {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for
             Impact ▪ EIN 81-0790890

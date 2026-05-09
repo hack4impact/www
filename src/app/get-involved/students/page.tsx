@@ -82,7 +82,7 @@ export default async function StudentsPage() {
         heading='Ready to start a chapter?'
         buttonText='Apply'
         href='mailto:contact@hack4impact.org?subject=Starting a Chapter at [University Name]'
-        color='bg-green-100'
+        color='bg-blue-100'
       />
     </>
   )

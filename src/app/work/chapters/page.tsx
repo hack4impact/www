@@ -76,7 +76,7 @@ export default async function ChaptersPage() {
         heading='No chapter at your school?'
         buttonText='Start one'
         href='/get-involved/students'
-        color='bg-green-100'
+        color='bg-blue-100'
       />
     </>
   )

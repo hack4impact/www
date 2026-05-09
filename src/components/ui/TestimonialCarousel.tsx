@@ -71,7 +71,7 @@ export function TestimonialCarousel({
                 onClick={() => setIndex(i)}
                 aria-label={`Go to testimonial ${i + 1}`}
                 className={`flex-1 h-1 rounded-full transition-colors ${
-                  i === index ? 'bg-green-300' : 'bg-gray-200'
+                  i === index ? 'bg-blue-300' : 'bg-gray-200'
                 }`}
               />
             ))}
