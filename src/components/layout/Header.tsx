@@ -121,19 +121,19 @@ export default function Header() {
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
-            <NavigationMenu.Item>
-              <NavigationMenu.Link
-                render={
-                  <a
-                    href='https://www.bonfire.com/store/hackforimpact'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  />
-                }
-              >
-                Shop
-              </NavigationMenu.Link>
-            </NavigationMenu.Item>
+            {/* <NavigationMenu.Item> */}
+            {/*   <NavigationMenu.Link */}
+            {/*     render={ */}
+            {/*       <a */}
+            {/*         href='https://www.bonfire.com/store/hackforimpact' */}
+            {/*         target='_blank' */}
+            {/*         rel='noopener noreferrer' */}
+            {/*       /> */}
+            {/*     } */}
+            {/*   > */}
+            {/*     Shop */}
+            {/*   </NavigationMenu.Link> */}
+            {/* </NavigationMenu.Item> */}
           </NavigationMenu.List>
 
           <a
