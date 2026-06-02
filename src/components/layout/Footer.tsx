@@ -17,7 +17,7 @@ const GET_INVOLVED_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className='border-t border-[#e8e8e8] bg-white'>
+    <footer className='border-t border-border-subtle bg-white'>
       {/* Main content */}
       <div className='px-8 py-10 md:px-16'>
         <div className='mx-auto flex max-w-[1312px] items-end justify-between gap-12'>
@@ -89,7 +89,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className='border-t border-[#e8e8e8] px-8 py-4 md:px-16'>
+      <div className='border-t border-border-subtle px-8 py-4 md:px-16'>
         <div className='mx-auto flex max-w-[1312px] items-center justify-between'>
           <p className='font-mono text-[10px] tracking-[0.04em] text-gray-400'>
             © {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for Impact
