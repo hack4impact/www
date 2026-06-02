@@ -29,7 +29,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
     <>
       {/* Page header */}
       <section
-        className='relative overflow-hidden border-b border-[#E8E8E4] px-8 pb-14 pt-16 md:px-16'
+        className='relative overflow-hidden border-b border-[#E8E8E4] px-8 pt-16 pb-14 md:px-16'
         style={{
           backgroundColor: '#FFFFFF',
           backgroundImage:
@@ -38,14 +38,14 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         }}
       >
         <div className='mx-auto max-w-[1312px]'>
-          <p className='mb-6 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
+          <p className='mb-6 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
             Our Chapters
           </p>
           <h1>
-            <span className='block font-serif text-[40px] font-light leading-[1.1] tracking-[-0.02em] text-black md:text-[56px] md:leading-[62px]'>
+            <span className='block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] text-black md:text-[56px] md:leading-[62px]'>
               Hack4Impact
             </span>
-            <span className='block font-serif text-[40px] font-light italic leading-[1.1] tracking-[-0.02em] text-blue-500 md:text-[56px] md:leading-[62px]'>
+            <span className='block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] text-blue-500 italic md:text-[56px] md:leading-[62px]'>
               {chapter.university}
             </span>
           </h1>
@@ -68,24 +68,6 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       {/* Stats bar */}
       <section className='px-8 md:px-16'>
         <div className='mx-auto flex max-w-[1312px]'>
-          {[
-            { value: chapter.memberCount, label: 'Active Members' },
-            { value: chapter.projectCount, label: 'Projects Delivered' },
-            { value: chapter.founded || '—', label: 'Year Founded' },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className='flex flex-1 flex-col items-center justify-center gap-1.5 border-r border-[#e8e8e8] py-7'
-            >
-              <span className='font-serif text-[32px] font-light leading-[40px] tracking-[-0.01em] text-black'>
-                {stat.value}
-              </span>
-              <span className='font-mono text-[11px] uppercase tracking-[0.1em] text-gray-500'>
-                {stat.label}
-              </span>
-            </div>
-          ))}
-
           {/* Status */}
           <div
             className={[
@@ -100,7 +82,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             {chapter.status ? (
               <span
                 className={[
-                  'rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em]',
+                  'rounded-full px-3 py-1 font-mono text-[11px] tracking-[0.1em] uppercase',
                   chapter.status === 'Active'
                     ? 'bg-green-50 text-green-600'
                     : chapter.status === 'Forming'
@@ -111,14 +93,32 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 {chapter.status}
               </span>
             ) : (
-              <span className='font-serif text-[32px] font-light leading-[40px] tracking-[-0.01em] text-black'>
+              <span className='font-serif text-[32px] leading-[40px] font-light tracking-[-0.01em] text-black'>
                 —
               </span>
             )}
-            <span className='font-mono text-[11px] uppercase tracking-[0.1em] text-gray-500'>
+            <span className='font-mono text-[11px] tracking-[0.1em] text-gray-500 uppercase'>
               Status
             </span>
           </div>
+
+          {[
+            { value: chapter.founded || '—', label: 'Year Founded' },
+            { value: chapter.memberCount, label: 'Active Members' },
+            { value: chapter.projectCount, label: 'Projects Delivered' },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className='flex flex-1 flex-col items-center justify-center gap-1.5 border-r border-[#e8e8e8] py-7'
+            >
+              <span className='font-serif text-[32px] leading-[40px] font-light tracking-[-0.01em] text-black'>
+                {stat.value}
+              </span>
+              <span className='font-mono text-[11px] tracking-[0.1em] text-gray-500 uppercase'>
+                {stat.label}
+              </span>
+            </div>
+          ))}
 
           {/* Links */}
           {(chapter.website || chapter.github || chapter.instagram) && (
@@ -128,10 +128,12 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                   href={chapter.website}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-black transition-colors hover:text-blue-500'
+                  className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
                 >
                   <span>Website</span>
-                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>↗</span>
+                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                    ↗
+                  </span>
                 </a>
               )}
               {chapter.github && (
@@ -139,10 +141,12 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                   href={chapter.github}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-black transition-colors hover:text-blue-500'
+                  className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
                 >
                   <span>GitHub</span>
-                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>↗</span>
+                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                    ↗
+                  </span>
                 </a>
               )}
               {chapter.instagram && (
@@ -150,10 +154,12 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                   href={chapter.instagram}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='group flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-black transition-colors hover:text-blue-500'
+                  className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
                 >
                   <span>Instagram</span>
-                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>↗</span>
+                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                    ↗
+                  </span>
                 </a>
               )}
             </div>

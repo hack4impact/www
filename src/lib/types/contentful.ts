@@ -24,12 +24,6 @@ export interface BoardTeamMember {
   imageUrl?: string
 }
 
-export interface Value {
-  name: string
-  description: string
-  icon: string
-}
-
 export interface SponsorshipTier {
   name: string
   cost: number

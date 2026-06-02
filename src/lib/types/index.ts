@@ -4,7 +4,6 @@ export type { Partner } from './partner'
 export type {
   JournalEntry,
   BoardTeamMember,
-  Value,
   SponsorshipTier,
   FAQ,
   ProcessStep,

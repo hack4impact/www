@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getProjectBySlug } from '@/lib/notion/api'
+import { notionApi } from '@/lib/notion'
 import type { TeamMember, ProjectSection } from '@/lib/types/project'
 
 interface ProjectPageProps {
@@ -77,7 +77,7 @@ function sortTeamByRole(team: TeamMember[]): TeamMember[] {
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params
-  const project = await getProjectBySlug(slug)
+  const project = await notionApi.getProjectBySlug(slug)
 
   if (!project) {
     notFound()

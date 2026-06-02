@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { unstable_cache } from 'next/cache'
 import { mapPartner, mapProgram, mapProject, mapVolunteer } from './mappers'
-import { toSlug, stripOrgPrefix } from './utils'
+import { toSlug, stripOrgPrefix, normalizeLocation } from './utils'
 import type { Chapter } from '@/lib/types/chapter'
 import type { Project, TeamMember } from '@/lib/types/project'
 import type { Partner } from '@/lib/types/partner'
@@ -236,7 +236,7 @@ export async function getChapters(): Promise<Chapter[]> {
       slug,
       name: program.name,
       university,
-      location: program.place || '',
+      location: normalizeLocation(program.place || ''),
       founded: program.foundedYear?.toString() ?? '',
       status: program.status ?? '',
       description: '',
@@ -272,16 +272,14 @@ export async function getChapterBySlug(
     p.relatedIds.chapters.includes(program.id),
   ).length
 
-  const university = program.name
-    .replace(/^Hack4Impact\s*/i, '')
-    .replace(/^Hack\s*for\s*Impact\s*/i, '')
+  const university = stripOrgPrefix(program.name)
 
   return {
     id: program.id,
     slug,
     name: program.name,
     university,
-    location: program.place || '',
+    location: normalizeLocation(program.place || ''),
     founded: program.foundedYear?.toString() ?? '',
     status: program.status ?? '',
     description: '',

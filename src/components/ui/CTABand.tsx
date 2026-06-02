@@ -15,7 +15,7 @@ const CTA_ITEMS = [
     description:
       'Get a dedicated student team to build the tool your mission needs — at no cost.',
     links: [{ text: 'Submit a project', href: '/get-involved/nonprofits' }],
-    color: 'text-green-500',
+    color: 'text-green-600',
   },
   {
     audience: 'For Mentors & Sponsors',
@@ -26,7 +26,7 @@ const CTA_ITEMS = [
       { text: 'Become a mentor', href: '/get-involved/mentors' },
       { text: 'Become a sponsor', href: '/get-involved/sponsors' },
     ],
-    color: 'text-purple-500',
+    color: 'text-[#7C6BED]',
   },
 ]
 

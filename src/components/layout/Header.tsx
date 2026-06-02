@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Collapsible } from '@base-ui/react/collapsible'
+import { Menu } from '@base-ui/react/menu'
 
 type DropdownKey = 'Work' | 'Get Involved'
 
@@ -32,7 +33,12 @@ type MobileItem =
 const mobileItems: MobileItem[] = [
   { key: 'about', type: 'link', label: 'About', href: '/about' },
   { key: 'work', type: 'dropdown', label: 'Work', dropdownKey: 'Work' },
-  { key: 'get-involved', type: 'dropdown', label: 'Get Involved', dropdownKey: 'Get Involved' },
+  {
+    key: 'get-involved',
+    type: 'dropdown',
+    label: 'Get Involved',
+    dropdownKey: 'Get Involved',
+  },
 ]
 
 interface Rect {
@@ -45,21 +51,49 @@ interface Rect {
 function getRelativeRect(el: HTMLElement, container: HTMLElement): Rect {
   const a = el.getBoundingClientRect()
   const b = container.getBoundingClientRect()
-  return { x: a.left - b.left, y: a.top - b.top, width: a.width, height: a.height }
+  return {
+    x: a.left - b.left,
+    y: a.top - b.top,
+    width: a.width,
+    height: a.height,
+  }
 }
 
-function SlideHighlight({ rect, insetX = 0 }: { rect: Rect | null; insetX?: number }) {
+function SlideHighlight({
+  rect,
+  insetX = 0,
+}: {
+  rect: Rect | null
+  insetX?: number
+}) {
   const r = rect
-    ? { x: rect.x + insetX, y: rect.y, width: rect.width - insetX * 2, height: rect.height }
+    ? {
+        x: rect.x + insetX,
+        y: rect.y,
+        width: rect.width - insetX * 2,
+        height: rect.height,
+      }
     : null
   return (
     <AnimatePresence>
       {r && (
         <motion.div
-          className='pointer-events-none absolute left-0 top-0 rounded-md'
+          className='pointer-events-none absolute top-0 left-0 rounded-md'
           style={{ background: 'rgba(0,0,0,0.06)' }}
-          initial={{ opacity: 0, x: r.x, y: r.y, width: r.width, height: r.height }}
-          animate={{ opacity: 1, x: r.x, y: r.y, width: r.width, height: r.height }}
+          initial={{
+            opacity: 0,
+            x: r.x,
+            y: r.y,
+            width: r.width,
+            height: r.height,
+          }}
+          animate={{
+            opacity: 1,
+            x: r.x,
+            y: r.y,
+            width: r.width,
+            height: r.height,
+          }}
           exit={{ opacity: 0 }}
           transition={{ type: 'spring', stiffness: 400, damping: 32 }}
         />
@@ -92,13 +126,12 @@ function ChevronIcon({ isOpen }: { isOpen: boolean }) {
 export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null)
 
+  // Hover & Dropdown state
+  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null)
   const [navRect, setNavRect] = useState<Rect | null>(null)
   const navRowRef = useRef<HTMLDivElement>(null)
-
   const [dropdownRect, setDropdownRect] = useState<Rect | null>(null)
-
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const cancelClose = () => {
@@ -113,7 +146,10 @@ export default function Header() {
     }, 120)
   }
 
-  const handleNavItemEnter = (e: React.MouseEvent<HTMLElement>, key?: DropdownKey) => {
+  const handleNavItemEnter = (
+    e: React.MouseEvent<HTMLElement>,
+    key?: DropdownKey,
+  ) => {
     cancelClose()
     if (navRowRef.current) {
       setNavRect(getRelativeRect(e.currentTarget, navRowRef.current))
@@ -122,7 +158,7 @@ export default function Header() {
     setOpenDropdown(key ?? null)
   }
 
-  const handleDropdownItemEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleDropdownItemEnter = (e: React.MouseEvent<HTMLElement>) => {
     const container = e.currentTarget.parentElement
     if (container) {
       setDropdownRect(getRelativeRect(e.currentTarget, container))
@@ -164,53 +200,77 @@ export default function Header() {
 
               <Link
                 href='/about'
-                className='relative z-10 px-3 py-1.5 font-sans text-[15px] text-black'
+                onClick={closeAll}
+                className='relative z-10 px-3 py-1.5 font-sans text-[15px] text-black outline-none'
                 onMouseEnter={(e) => handleNavItemEnter(e)}
               >
                 About
               </Link>
 
               {dropdownKeys.map((key) => (
-                <div key={key} className='relative'>
-                  <button
-                    type='button'
-                    className='relative z-10 flex cursor-pointer items-center gap-1.5 px-3 py-1.5 font-sans text-[15px] text-black'
+                <Menu.Root
+                  key={key}
+                  open={openDropdown === key}
+                  onOpenChange={(isOpen) => {
+                    if (isOpen) {
+                      cancelClose()
+                      setOpenDropdown(key)
+                    } else {
+                      setOpenDropdown(null)
+                    }
+                  }}
+                >
+                  <Menu.Trigger
+                    className='relative z-10 flex cursor-default items-center gap-1.5 px-3 py-1.5 font-sans text-[15px] text-black outline-none'
                     onMouseEnter={(e) => handleNavItemEnter(e, key)}
                   >
                     {key}
                     <ChevronIcon isOpen={openDropdown === key} />
-                  </button>
+                  </Menu.Trigger>
 
-                  <AnimatePresence>
-                    {openDropdown === key && (
-                      <motion.div
-                        className='absolute top-full left-0 z-50 mt-1.5 min-w-[160px] overflow-hidden rounded-lg border border-black/[0.07]'
-                        style={{ background: '#ffffff', boxShadow: '0 8px 24px rgba(0,0,0,0.07)' }}
-                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                        onMouseEnter={cancelClose}
+                  <Menu.Portal>
+                    <Menu.Positioner
+                      sideOffset={6}
+                      align='start'
+                      onMouseEnter={cancelClose}
+                      onMouseLeave={scheduleClose}
+                    >
+                      <Menu.Popup
+                        className='z-50 min-w-[160px] overflow-hidden rounded-lg border border-black/[0.07] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.07)] outline-none'
+                        render={
+                          <motion.div
+                            initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                            transition={{
+                              duration: 0.18,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
+                          />
+                        }
                       >
-                        <div className='relative py-1.5'>
+                        <div
+                          className='relative py-1.5'
+                          onMouseLeave={() => setDropdownRect(null)}
+                        >
                           <SlideHighlight rect={dropdownRect} insetX={6} />
                           {dropdowns[key].map((item) => (
-                            <Link
+                            <Menu.LinkItem
                               key={item.href}
-                              href={item.href}
-                              className='relative z-10 block whitespace-nowrap px-4 py-2 font-sans text-[15px] text-black'
-                              onMouseEnter={handleDropdownItemEnter}
-                              onMouseLeave={() => setDropdownRect(null)}
+                              render={<Link href={item.href} />}
+                              closeOnClick
                               onClick={closeAll}
+                              onMouseEnter={handleDropdownItemEnter}
+                              className='relative z-10 block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-black outline-none'
                             >
                               {item.label}
-                            </Link>
+                            </Menu.LinkItem>
                           ))}
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                      </Menu.Popup>
+                    </Menu.Positioner>
+                  </Menu.Portal>
+                </Menu.Root>
               ))}
             </div>
           </div>
@@ -253,7 +313,11 @@ export default function Header() {
                   key={item.key}
                   initial={{ opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.06 + i * 0.06, duration: 0.22, ease: 'easeOut' }}
+                  transition={{
+                    delay: 0.06 + i * 0.06,
+                    duration: 0.22,
+                    ease: 'easeOut',
+                  }}
                 >
                   {item.type === 'link' ? (
                     <Link
@@ -284,7 +348,20 @@ export default function Header() {
                           />
                         </svg>
                       </Collapsible.Trigger>
-                      <Collapsible.Panel>
+                      <Collapsible.Panel
+                        render={
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{
+                              height: 'var(--collapsible-panel-height)',
+                              opacity: 1,
+                            }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: 'easeInOut' }}
+                          />
+                        }
+                        className='overflow-hidden' // required to clip the content as it shrinks
+                      >
                         {dropdowns[item.dropdownKey].map((child) => (
                           <Link
                             key={child.href}

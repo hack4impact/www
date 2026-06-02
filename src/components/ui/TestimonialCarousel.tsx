@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Button } from '@base-ui/react/button'
 
 interface Testimonial {
   gradient?: string
@@ -57,16 +58,16 @@ export function TestimonialCarousel({
 
         {/* Navigation */}
         <div className='mt-8 flex items-center gap-3 w-full'>
-          <button
+          <Button
             onClick={prev}
             aria-label='Previous testimonial'
             className='text-gray-400 hover:text-gray-900 transition-colors'
           >
             &#8592;
-          </button>
+          </Button>
           <div className='flex-1 flex gap-1.5'>
             {testimonials.map((_, i) => (
-              <button
+              <Button
                 key={i}
                 onClick={() => setIndex(i)}
                 aria-label={`Go to testimonial ${i + 1}`}
@@ -76,13 +77,13 @@ export function TestimonialCarousel({
               />
             ))}
           </div>
-          <button
+          <Button
             onClick={next}
             aria-label='Next testimonial'
             className='text-gray-400 hover:text-gray-900 transition-colors'
           >
             &#8594;
-          </button>
+          </Button>
         </div>
       </div>
     </section>

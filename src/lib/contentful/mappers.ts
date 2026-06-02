@@ -1,7 +1,6 @@
 import type {
   JournalEntry,
   BoardTeamMember,
-  Value,
   SponsorshipTier,
   FAQ,
   ContentfulProcess,
@@ -52,16 +51,6 @@ export function mapBoardTeamMember(item: any): BoardTeamMember {
     imageUrl: f.image?.fields?.file?.url
       ? buildContentfulImageUrl(`https:${f.image.fields.file.url}`, { w: 400, h: 400, q: 80 })
       : undefined,
-  }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function mapValue(item: any): Value {
-  const f = item.fields
-  return {
-    name: f.name,
-    description: f.description,
-    icon: f.icon,
   }
 }
 

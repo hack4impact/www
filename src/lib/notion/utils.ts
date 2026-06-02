@@ -1,5 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+const COUNTRY_CODES: Record<string, string> = {
+  Lebanon: 'LB',
+}
+
+export function normalizeLocation(place: string): string {
+  const parts = place.split(', ')
+  const last = parts[parts.length - 1]
+  if (parts.length >= 2 && COUNTRY_CODES[last]) {
+    parts[parts.length - 1] = COUNTRY_CODES[last]
+  }
+  return parts.join(', ')
+}
+
 export function stripOrgPrefix(name: string): string {
   return name
     .replace(/^Hack4Impact\s*/i, '')
