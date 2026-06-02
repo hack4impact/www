@@ -1,9 +1,14 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { motion } from 'framer-motion'
 import { FilterSelect } from './FilterSelect'
 import { ProjectCard } from './ProjectCard'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
 import type { Project } from '@/lib/types/project'
+
+const gridVariants = staggerContainer(0.04)
+const itemVariants = fadeInUp(0.4)
 
 type Sort = 'year-desc' | 'year-asc' | 'name-asc' | 'name-desc'
 
@@ -139,11 +144,19 @@ export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsT
       </div>
 
       <div className='mt-6 max-h-[72vh] overflow-y-auto pr-1'>
-        <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'>
+        <motion.div
+          className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'
+          variants={gridVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.05 }}
+        >
           {filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <motion.div key={project.id} variants={itemVariants}>
+              <ProjectCard project={project} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {filtered.length === 0 && (
           <p className='mt-16 text-center font-sans text-base text-gray-400'>

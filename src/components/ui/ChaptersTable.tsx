@@ -1,9 +1,14 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { motion } from 'framer-motion'
 import { FilterSelect } from './FilterSelect'
 import { ChapterCard } from './ChapterCard'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
 import type { Chapter } from '@/lib/types/chapter'
+
+const gridVariants = staggerContainer(0.04)
+const itemVariants = fadeInUp(0.4)
 
 type Sort = 'status' | 'name-asc' | 'name-desc' | 'year-asc' | 'year-desc'
 
@@ -143,15 +148,22 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
         </div>
       </div>
 
-      <div className='mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'>
+      <motion.div
+        className='mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'
+        variants={gridVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.05 }}
+      >
         {filtered.map((chapter) => (
-          <ChapterCard
-            key={chapter.id}
-            chapter={chapter}
-            imageUrl={images[chapter.slug] ?? null}
-          />
+          <motion.div key={chapter.id} variants={itemVariants}>
+            <ChapterCard
+              chapter={chapter}
+              imageUrl={images[chapter.slug] ?? null}
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {filtered.length === 0 && (
         <p className='mt-16 text-center font-sans text-base text-gray-400'>

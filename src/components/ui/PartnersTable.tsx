@@ -1,9 +1,14 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { motion } from 'framer-motion'
 import { FilterSelect } from './FilterSelect'
 import { PartnerCard } from './PartnerCard'
+import { staggerContainer, fadeInUp } from '@/lib/animations'
 import type { Partner } from '@/lib/types/partner'
+
+const gridVariants = staggerContainer(0.03)
+const itemVariants = fadeInUp(0.4)
 
 type Sort = 'name-asc' | 'name-desc' | 'projects-desc'
 
@@ -100,11 +105,19 @@ export function PartnersTable({ partners }: PartnersTableProps) {
       </div>
 
       <div className='mt-6 max-h-[72vh] overflow-y-auto pr-1'>
-        <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
+        <motion.div
+          className='grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'
+          variants={gridVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, amount: 0.05 }}
+        >
           {filtered.map((partner) => (
-            <PartnerCard key={partner.id} partner={partner} />
+            <motion.div key={partner.id} variants={itemVariants}>
+              <PartnerCard partner={partner} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {filtered.length === 0 && (
           <p className='mt-16 text-center font-sans text-base text-gray-400'>
