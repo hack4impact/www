@@ -17,19 +17,19 @@ const GET_INVOLVED_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className='border-t border-[#E8E8E4] bg-white'>
+    <footer className='border-t border-[#e8e8e8] bg-white'>
       {/* Main content */}
-      <div className='px-8 py-14 md:px-16'>
-        <div className='mx-auto flex max-w-[1312px] items-start justify-between gap-12'>
-          {/* Left: logo + Candid seal */}
-          <div className='flex flex-col gap-4'>
+      <div className='px-8 py-10 md:px-16'>
+        <div className='mx-auto flex max-w-[1312px] items-end justify-between gap-12'>
+          {/* Left: logomark + Candid seal side by side */}
+          <div className='flex items-center gap-4'>
             <Link href='/' aria-label='Hack4Impact'>
               <Image
                 src='/logomark.svg'
                 alt='Hack4Impact'
-                width={96}
-                height={96}
-                className='h-24 w-24 opacity-70 brightness-0'
+                width={98}
+                height={98}
+                className='h-14 w-14 opacity-60 brightness-0'
               />
             </Link>
             <a
@@ -38,13 +38,12 @@ export default function Footer() {
               target='_blank'
               rel='noopener noreferrer'
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt='Candid Platinum Transparency Seal'
                 src='https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9565390/svg'
-                width={96}
-                height={96}
-                className='h-24 w-24'
+                width={98}
+                height={98}
+                className='h-14 w-14'
               />
             </a>
           </div>
@@ -52,10 +51,10 @@ export default function Footer() {
           {/* Right: nav columns */}
           <div className='flex gap-12 md:gap-16'>
             <div>
-              <p className='mb-5 font-mono text-[10px] tracking-[0.12em] text-gray-400 uppercase'>
+              <p className='mb-4 font-mono text-[10px] tracking-[0.12em] text-gray-400 uppercase'>
                 Organization
               </p>
-              <ul className='space-y-3'>
+              <ul className='space-y-2.5'>
                 {ORGANIZATION_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -69,10 +68,10 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className='mb-5 font-mono text-[10px] tracking-[0.12em] text-gray-400 uppercase'>
+              <p className='mb-4 font-mono text-[10px] tracking-[0.12em] text-gray-400 uppercase'>
                 Get Involved
               </p>
-              <ul className='space-y-3'>
+              <ul className='space-y-2.5'>
                 {GET_INVOLVED_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -90,7 +89,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className='border-t border-[#E8E8E4] px-8 py-4 md:px-16'>
+      <div className='border-t border-[#e8e8e8] px-8 py-4 md:px-16'>
         <div className='mx-auto flex max-w-[1312px] items-center justify-between'>
           <p className='font-mono text-[10px] tracking-[0.04em] text-gray-400'>
             © {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for Impact
