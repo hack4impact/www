@@ -69,6 +69,7 @@ function FilterSelect({
               'select-popup',
               'overflow-hidden rounded-lg border border-black/[0.07] bg-[#ffffff] py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.07)]',
             )}
+            style={{ minWidth: 'var(--anchor-width)' }}
           >
             {options.map((opt) => (
               <Select.Item
