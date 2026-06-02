@@ -88,17 +88,19 @@ export function PartnersTable({ partners }: PartnersTableProps) {
         </div>
       </div>
 
-      <div className='mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6'>
-        {filtered.map((partner) => (
-          <PartnerCard key={partner.id} partner={partner} />
-        ))}
-      </div>
+      <div className='mt-6 max-h-[72vh] overflow-y-auto pr-1'>
+        <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6'>
+          {filtered.map((partner) => (
+            <PartnerCard key={partner.id} partner={partner} />
+          ))}
+        </div>
 
-      {filtered.length === 0 && (
-        <p className='mt-16 text-center font-sans text-base text-gray-400'>
-          No partners match the selected filters.
-        </p>
-      )}
+        {filtered.length === 0 && (
+          <p className='mt-16 text-center font-sans text-base text-gray-400'>
+            No partners match the selected filters.
+          </p>
+        )}
+      </div>
     </div>
   )
 }
