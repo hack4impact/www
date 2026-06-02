@@ -7,6 +7,16 @@ interface ChapterCardProps {
   imageUrl: string | null
 }
 
+const STATUS_STYLES: Record<string, string> = {
+  Active: 'bg-blue-500/25 border border-blue-400/40 text-white',
+  Forming: 'bg-white/10 border border-white/20 text-white/80',
+  Inactive: 'bg-black/35 border border-white/10 text-white/45',
+}
+
+function statusStyle(status: string): string {
+  return STATUS_STYLES[status] ?? 'bg-black/35 border border-white/10 text-white/60'
+}
+
 export function ChapterCard({ chapter, imageUrl }: ChapterCardProps) {
   const location = chapter.location?.toUpperCase() ?? ''
   const est = chapter.founded ? `EST. ${chapter.founded}` : ''
@@ -31,6 +41,15 @@ export function ChapterCard({ chapter, imageUrl }: ChapterCardProps) {
 
       {/* Bottom gradient overlay */}
       <div className='absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent' />
+
+      {/* Status badge */}
+      {chapter.status && (
+        <div
+          className={`absolute right-2.5 top-2.5 rounded-full px-2.5 py-1 backdrop-blur-md font-mono text-[9px] uppercase tracking-[0.08em] ${statusStyle(chapter.status)}`}
+        >
+          {chapter.status}
+        </div>
+      )}
 
       {/* Text */}
       <div className='absolute inset-x-0 bottom-0 p-3'>

@@ -214,11 +214,11 @@ function processProject(
 export async function getChapters(): Promise<Chapter[]> {
   const { programs, notionProjects, volunteers } = await getCommonData()
 
-  const activePrograms = programs.filter(
-    (program: any) => program.status === 'Active',
+  const filteredPrograms = programs.filter(
+    (program: any) => program.status !== 'Main',
   )
 
-  return activePrograms.map((program: any) => {
+  return filteredPrograms.map((program: any) => {
     const slug = toSlug(program.name)
 
     const memberCount = volunteers.filter(
@@ -238,6 +238,7 @@ export async function getChapters(): Promise<Chapter[]> {
       university,
       location: program.place || '',
       founded: program.foundedYear?.toString() ?? '',
+      status: program.status ?? '',
       description: '',
       memberCount,
       projectCount,
@@ -254,7 +255,7 @@ export async function getChapterBySlug(
   const programs = await getCachedPrograms()
   const program = programs.find((p: any) => toSlug(p.name) === slug)
 
-  if (!program) {
+  if (!program || program.status === 'Main') {
     return undefined
   }
 
@@ -282,6 +283,7 @@ export async function getChapterBySlug(
     university,
     location: program.place || '',
     founded: program.foundedYear?.toString() ?? '',
+    status: program.status ?? '',
     description: '',
     memberCount,
     projectCount,

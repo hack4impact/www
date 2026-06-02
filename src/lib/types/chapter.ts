@@ -5,6 +5,7 @@ export interface Chapter {
   university: string
   location: string
   founded: string
+  status: string
   description: string
   memberCount: number
   projectCount: number
