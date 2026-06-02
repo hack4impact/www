@@ -1,13 +1,10 @@
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
-import { ChaptersDataTable } from '@/components/ui/ChaptersDataTable'
+import { ChaptersTable } from '@/components/ui/ChaptersTable'
 import { CardGrid } from '@/components/ui/CardGrid'
-import { PageIntro } from '@/components/ui/PageIntro'
-import { StatBar } from '@/components/ui/StatBar'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 import { Code, ColorFilter, Agile, KanbanBoard } from 'iconoir-react'
-import Image from 'next/image'
 import { iconProps } from '@/lib/constants'
 
 const rolesIcons = {
@@ -18,45 +15,56 @@ const rolesIcons = {
 }
 
 export default async function ChaptersPage() {
-  const [chapters, volunteerCounts, roles, faqs, chapterBanner] =
-    await Promise.all([
-      notionApi.getChapters(),
-      notionApi.getVolunteerCounts(),
-      contentfulApi.getInfoCards('Chapter Roles'),
-      contentfulApi.getFAQs('Chapter Questions'),
-      contentfulApi.getAssetUrl('chapter-banner'),
-    ])
+  const [chapters, roles, faqs] = await Promise.all([
+    notionApi.getChapters(),
+    contentfulApi.getInfoCards('Chapter Roles'),
+    contentfulApi.getFAQs('Chapter Questions'),
+  ])
 
-  const stats = [
-    { label: 'Active chapters', value: chapters.length },
-    { label: 'Total volunteers', value: volunteerCounts.total },
-    { label: 'Active volunteers', value: volunteerCounts.active },
-  ]
+  // Fetch all chapter images in parallel (each is individually cached)
+  const imageUrls = await Promise.all(
+    chapters.map((c) => contentfulApi.getAssetUrl(c.slug)),
+  )
+  const images: Record<string, string | null> = {}
+  chapters.forEach((c, i) => {
+    images[c.slug] = imageUrls[i]
+  })
 
   return (
     <>
-      {/* Banner */}
-      <section className='relative h-56 bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 md:h-80'>
-        {chapterBanner && (
-          <Image
-            src={chapterBanner}
-            alt='A group panorama of all the students from the University of Maryland chapter spanning the banner. '
-            fill
-            className='object-contain object-bottom'
-          />
-        )}
+      {/* Page header */}
+      <section
+        className='border-b border-[#E8E8E4] px-8 pb-12 pt-14 md:px-16'
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage:
+            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(92.7% -0.010 -0.027) 0%, oklab(0% 0 0 / 0%) 60%)',
+        }}
+      >
+        <div className='mx-auto max-w-[1312px]'>
+          <div className='flex items-baseline justify-between pb-4'>
+            <p className='font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
+              Our Chapters
+            </p>
+            <p className='font-mono text-[11px] tracking-[0.08em] text-gray-400'>
+              {chapters.length} chapters
+            </p>
+          </div>
+          <h1 className='pb-4 font-serif text-[40px] font-light leading-[48px] tracking-[-0.02em] text-black'>
+            A nationwide student network
+          </h1>
+          <p className='font-sans text-base leading-6 text-gray-500'>
+            Student-run, university-based chapters sharing resources, mentors,
+            and a common mission.
+          </p>
+        </div>
       </section>
 
-      <PageIntro
-        heading='Chapters'
-        description='Hack4Impact operates through student-led chapters at universities across the country. Each chapter partners with local nonprofits to build software that serves their communities.'
-      />
-
-      <StatBar stats={stats} />
-
-      {/* Data Table */}
-      <section className='p-8 md:p-12'>
-        <ChaptersDataTable chapters={chapters} />
+      {/* Chapters grid */}
+      <section className='px-8 py-10 md:px-16'>
+        <div className='mx-auto max-w-[1312px]'>
+          <ChaptersTable chapters={chapters} images={images} />
+        </div>
       </section>
 
       {roles && (

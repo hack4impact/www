@@ -88,6 +88,40 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes select-popup-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes select-popup-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97) translateY(-6px);
+  }
+}
+
+.select-popup {
+  transform-origin: top center;
+}
+
+.select-popup[data-open] {
+  animation: select-popup-in 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.select-popup[data-closed] {
+  animation: select-popup-out 120ms ease-in both;
+}
+
 body {
   line-height: 1.5;
 }
