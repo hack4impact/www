@@ -8,8 +8,8 @@ interface ChapterCardProps {
 }
 
 const STATUS_STYLES: Record<string, string> = {
-  Active: 'bg-blue-500/25 border border-blue-400/40 text-white',
-  Forming: 'bg-white/10 border border-white/20 text-white/80',
+  Active: 'bg-green-500/25 border border-green-400/40 text-white',
+  Forming: 'bg-blue-500/25 border border-blue-400/40 text-white',
   Inactive: 'bg-black/35 border border-white/10 text-white/45',
 }
 
