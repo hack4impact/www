@@ -74,6 +74,16 @@
   --color-white: #fcf9f2;
 }
 
+:root {
+  --header-height: 64px; /* py-4 (32px) + 32px logomark */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-height: 72px; /* py-4 (32px) + 40px logo */
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }

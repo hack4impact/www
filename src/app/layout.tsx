@@ -26,12 +26,12 @@ const newsreader = localFont({
   src: [
     {
       path: '../fonts/Newsreader.woff2',
-      weight: '400',
+      weight: '200 800',
       style: 'normal',
     },
     {
       path: '../fonts/Newsreader-Italic.woff2',
-      weight: '400',
+      weight: '200 800',
       style: 'italic',
     },
   ],
