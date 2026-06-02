@@ -1,8 +1,6 @@
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
-import { ProjectsDataTable } from '@/components/ui/ProjectsDataTable'
-import { PageIntro } from '@/components/ui/PageIntro'
-import { StatBar } from '@/components/ui/StatBar'
+import { ProjectsTable } from '@/components/ui/ProjectsTable'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
 
@@ -11,35 +9,45 @@ export default async function ProjectsPage() {
     notionApi.getProjects(),
     contentfulApi.getFAQs('Project Questions'),
   ])
-  const doneProjects = projects.filter((p) => p.status === 'Done')
-
-  const uniquePartners = new Set(doneProjects.map((p) => p.partner)).size
-  const totalSemesters = doneProjects.reduce((sum, p) => {
-    const terms = p.duration ? p.duration.split(',').filter(Boolean).length : 0
-    return sum + (terms || 1)
-  }, 0)
-
-  const stats = [
-    { label: 'Projects completed', value: doneProjects.length },
-    { label: 'Partners served', value: uniquePartners },
-    { label: 'Semesters of work', value: totalSemesters },
-  ]
 
   return (
     <>
-      {/* Banner */}
-      <section className='h-56 md:h-80 bg-gradient-to-r from-purple-100 via-blue-100 to-green-100' />
+      {/* Page header */}
+      <section
+        className='border-b border-[#E8E8E4] px-8 pb-12 pt-14 md:px-16'
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage:
+            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(93.5% -0.050 0.016) 0%, oklab(0% 0 0 / 0%) 60%)',
+        }}
+      >
+        <div className='mx-auto max-w-[1312px]'>
+          <div className='flex items-baseline justify-between pb-4'>
+            <p
+              className='font-mono text-[11px] uppercase tracking-[0.12em]'
+              style={{ color: '#2B9212' }}
+            >
+              Our Work
+            </p>
+            <p className='font-mono text-[11px] tracking-[0.08em] text-gray-400'>
+              {projects.length} projects delivered
+            </p>
+          </div>
+          <h1 className='pb-4 font-serif text-[40px] font-light leading-[48px] tracking-[-0.02em] text-black'>
+            The work we build
+          </h1>
+          <p className='font-sans text-base leading-6 text-gray-500'>
+            Every project is handed off with full source code and no strings or
+            maintenance fees.
+          </p>
+        </div>
+      </section>
 
-      <PageIntro
-        heading='Projects'
-        description="Each project represents a semester of collaboration between a student team and a nonprofit partner. Browse our portfolio to see the software we've shipped and the communities we've served."
-      />
-
-      <StatBar stats={stats} />
-
-      {/* Data Table */}
-      <section className='p-8 md:p-12'>
-        <ProjectsDataTable projects={projects} />
+      {/* Projects grid */}
+      <section className='px-8 py-10 md:px-16'>
+        <div className='mx-auto max-w-[1312px]'>
+          <ProjectsTable projects={projects} />
+        </div>
       </section>
 
       <FAQList items={faqs} />

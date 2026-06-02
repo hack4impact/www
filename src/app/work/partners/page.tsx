@@ -1,54 +1,53 @@
-import { getPartners } from '@/lib/notion/api'
+import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
-import { PartnersDataTable } from '@/components/ui/PartnersDataTable'
-import { PageIntro } from '@/components/ui/PageIntro'
-import { StatBar } from '@/components/ui/StatBar'
+import { PartnersTable } from '@/components/ui/PartnersTable'
 import { FAQList } from '@/components/ui/FAQList'
 import { CallToAction } from '@/components/ui/CallToAction'
-import Image from 'next/image'
 
 export default async function PartnersPage() {
-  const [partnersBanner, partners, faqs] = await Promise.all([
-    contentfulApi.getAssetUrl('partners-banner'),
-    getPartners(),
+  const [partners, faqs] = await Promise.all([
+    notionApi.getPartners(),
     contentfulApi.getFAQs('Partner Questions'),
   ])
 
-  const uniqueSubjects = new Set(partners.flatMap((p) => p.subjects ?? [])).size
-  const uniquePopulations = new Set(
-    partners.flatMap((p) => p.populations ?? []),
-  ).size
-
-  const stats = [
-    { label: 'Partners', value: partners.length },
-    { label: 'Focus areas', value: uniqueSubjects },
-    { label: 'Populations served', value: uniquePopulations },
-  ]
-
   return (
     <>
-      {/* Banner */}
-      <section className='relative h-56 bg-gradient-to-r from-orange-100 via-pink-100 to-purple-100 md:h-80'>
-        {partnersBanner && (
-          <Image
-            fill
-            src={partnersBanner}
-            alt='Banner for the partners page'
-            className='object-cover'
-          />
-        )}
+      {/* Page header */}
+      <section
+        className='border-b border-[#E8E8E4] px-8 pb-12 pt-14 md:px-16'
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage:
+            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(94.3% 0.012 -0.026) 0%, oklab(0% 0 0 / 0%) 60%)',
+        }}
+      >
+        <div className='mx-auto max-w-[1312px]'>
+          <div className='flex items-baseline justify-between pb-4'>
+            <p
+              className='font-mono text-[11px] uppercase tracking-[0.12em]'
+              style={{ color: '#7C5CDB' }}
+            >
+              Nonprofit Partners
+            </p>
+            <p className='font-mono text-[11px] tracking-[0.08em] text-gray-400'>
+              {partners.length} organizations
+            </p>
+          </div>
+          <h1 className='pb-4 font-serif text-[40px] font-light leading-[48px] tracking-[-0.02em] text-black'>
+            The organizations we serve
+          </h1>
+          <p className='font-sans text-base leading-6 text-gray-500'>
+            From local food banks to global advocacy groups — every partner
+            receives high-quality software at no cost.
+          </p>
+        </div>
       </section>
 
-      <PageIntro
-        heading='Partners'
-        description="We work with nonprofit organizations across the country to build software that strengthens their missions. Here are the partners we've had the privilege of serving."
-      />
-
-      <StatBar stats={stats} />
-
-      {/* Data Table */}
-      <section className='p-8 md:p-12'>
-        <PartnersDataTable partners={partners} />
+      {/* Partners grid */}
+      <section className='px-8 py-10 md:px-16'>
+        <div className='mx-auto max-w-[1312px]'>
+          <PartnersTable partners={partners} />
+        </div>
       </section>
 
       <FAQList items={faqs} />
