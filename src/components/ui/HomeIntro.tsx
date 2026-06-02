@@ -70,7 +70,7 @@ export function HomeIntro({ heroImageUrl }: HomeIntroProps) {
       </motion.div>
 
       {/* Fixed gap between buttons and image */}
-      <div className='h-16 shrink-0' />
+      <div className='h-8 shrink-0' />
 
       {heroImageUrl && (
         <motion.div
@@ -83,7 +83,7 @@ export function HomeIntro({ heroImageUrl }: HomeIntroProps) {
             height={543}
             className='block h-auto w-full'
             style={{
-              filter: 'drop-shadow(10px -2px 3px rgba(24, 24, 24, 0.15))',
+              filter: 'drop-shadow(10px -2px 4px rgba(36, 126, 128, 0.15))',
             }}
             src={heroImageUrl}
             alt='A group photo of Hack4Impact students'
