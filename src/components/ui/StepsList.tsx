@@ -3,6 +3,7 @@
 import type { ProcessStep } from '@/lib/types/contentful'
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
+import { cn } from '@/lib/utils'
 
 const listContainerVariants = staggerContainer(0.2)
 const stepVariants = fadeInUp(0.6)
@@ -20,9 +21,10 @@ export function StepsList({
 }: StepsListProps) {
   return (
     <motion.div
-      className={`flex flex-col divide-y divide-gray-200 border-t border-gray-200${
-        stretch ? ' justify-between h-full' : ''
-      }`}
+      className={cn(
+        'flex flex-col divide-y divide-gray-200 border-t border-gray-200',
+        stretch && 'h-full justify-between',
+      )}
       variants={listContainerVariants}
       initial='hidden'
       whileInView='visible'
@@ -31,22 +33,29 @@ export function StepsList({
       {steps.map((step) => (
         <motion.div
           key={step.name}
-          className={`relative${
-            stretch ? ' flex-1 flex flex-col justify-center py-4' : ' py-6'
-          }`}
+          className={cn(
+            'relative',
+            stretch ? 'flex flex-1 flex-col justify-center py-4' : 'py-6',
+          )}
           variants={stepVariants}
         >
           {numbered && (
             <span
-              className={`absolute right-0 font-mono text-gray-400${
-                stretch ? ' top-4' : ' top-6'
-              }`}
+              className={cn(
+                'absolute right-0 font-mono text-gray-400',
+                stretch ? 'top-4' : 'top-6',
+              )}
             >
               {String(steps.indexOf(step) + 1).padStart(2, '0')}
             </span>
           )}
-          <h3 className='text-lg font-sans mb-1'>{step.name}</h3>
-          <p className={`font-serif text-gray-600${numbered ? ' pr-12' : ''}`}>
+          <h3 className='mb-1 font-sans text-lg'>{step.name}</h3>
+          <p
+            className={cn(
+              'font-serif text-gray-600',
+              numbered && 'pr-12',
+            )}
+          >
             {step.description}
           </p>
         </motion.div>

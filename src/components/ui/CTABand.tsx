@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 const CTA_ITEMS = [
   {
@@ -26,31 +27,29 @@ const CTA_ITEMS = [
       { text: 'Become a mentor', href: '/get-involved/mentors' },
       { text: 'Become a sponsor', href: '/get-involved/sponsors' },
     ],
-    color: 'text-[#7C6BED]',
+    color: 'text-purple-600',
   },
 ]
 
 export function CTABand() {
   return (
-    <section
-      className='border-t border-[#e8e8e8] px-8 py-16 md:px-16'
-      style={{ backgroundColor: '#f8f8f8' }}
-    >
+    <section className='border-t border-border-subtle bg-bg-cta px-8 py-16 md:px-16'>
       <div className='mx-auto max-w-[1312px]'>
-        <div className='grid grid-cols-1 divide-y divide-[#e8e8e8] md:grid-cols-3 md:divide-x md:divide-y-0'>
+        <div className='grid grid-cols-1 divide-y divide-border-subtle md:grid-cols-3 md:divide-x md:divide-y-0'>
           {CTA_ITEMS.map((item, i) => (
             <div
               key={item.audience}
-              className={[
+              className={cn(
                 'flex flex-col gap-5 py-10 md:py-0',
-                i > 0 ? 'md:pl-12' : '',
-                i < 2 ? 'md:pr-12' : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
+                i > 0 && 'md:pl-12',
+                i < 2 && 'md:pr-12',
+              )}
             >
               <p
-                className={`font-mono text-[11px] uppercase tracking-[0.12em] ${item.color}`}
+                className={cn(
+                  'font-mono text-[11px] uppercase tracking-[0.12em]',
+                  item.color,
+                )}
               >
                 {item.audience}
               </p>
@@ -65,7 +64,10 @@ export function CTABand() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`font-mono text-[11px] uppercase tracking-[0.06em] ${item.color} hover:underline`}
+                    className={cn(
+                      'font-mono text-[11px] uppercase tracking-[0.06em] hover:underline',
+                      item.color,
+                    )}
                   >
                     {link.text} →
                   </Link>
