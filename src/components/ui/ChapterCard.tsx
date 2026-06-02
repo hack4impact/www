@@ -25,7 +25,7 @@ export function ChapterCard({ chapter, imageUrl }: ChapterCardProps) {
   return (
     <Link
       href={`/work/chapters/${chapter.slug}`}
-      className='group relative block aspect-video overflow-hidden rounded-2xl border border-[#DDDDDD] bg-blue-50'
+      className='group relative block aspect-video overflow-hidden rounded-2xl border border-border-decorative bg-blue-50'
     >
       {imageUrl ? (
         <Image

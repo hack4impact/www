@@ -106,7 +106,7 @@ export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsT
 
   return (
     <div>
-      <div className='flex flex-wrap items-center gap-2 border-b border-[#E8E8E4] pb-5'>
+      <div className='flex flex-wrap items-center gap-2 border-b border-border-subtle pb-5'>
         <FilterSelect
           label='Focus Area'
           value={focusArea}

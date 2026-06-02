@@ -4,6 +4,7 @@ import { ChaptersTable } from '@/components/ui/ChaptersTable'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
+import { WorkHeader } from '@/components/ui/WorkHeader'
 import { Code, ColorFilter, Agile, KanbanBoard } from 'iconoir-react'
 import { iconProps } from '@/lib/constants'
 
@@ -32,33 +33,14 @@ export default async function ChaptersPage() {
 
   return (
     <>
-      {/* Page header */}
-      <section
-        className='border-b border-[#E8E8E4] px-8 pb-12 pt-14 md:px-16'
-        style={{
-          backgroundColor: '#ffffff',
-          backgroundImage:
-            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(92.7% -0.010 -0.027) 0%, oklab(0% 0 0 / 0%) 60%)',
-        }}
-      >
-        <div className='mx-auto max-w-[1312px]'>
-          <div className='flex items-baseline justify-between pb-4'>
-            <p className='font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
-              Our Chapters
-            </p>
-            <p className='font-mono text-[11px] tracking-[0.08em] text-gray-400'>
-              {chapters.length} chapters
-            </p>
-          </div>
-          <h1 className='pb-4 font-serif text-[40px] font-light leading-[48px] tracking-[-0.02em] text-black'>
-            A nationwide student network
-          </h1>
-          <p className='font-sans text-base leading-6 text-gray-500'>
-            Student-run, university-based chapters sharing resources, mentors,
-            and a common mission.
-          </p>
-        </div>
-      </section>
+      <WorkHeader
+        label='Our Chapters'
+        title='A nationwide student network'
+        countLabel={`${chapters.length} chapters`}
+        description='Student-run, university-based chapters sharing resources, mentors, and a common mission.'
+        labelColor='text-blue-500'
+        gradientOklab='92.7% -0.010 -0.027'
+      />
 
       {/* Chapters grid */}
       <section className='px-8 py-10 md:px-16'>

@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { notionApi } from '@/lib/notion'
-import { PageHeader } from '@/components/ui/PageHeader'
 import { cn } from '@/lib/utils'
 import type { TeamMember, ProjectSection } from '@/lib/types/project'
 
@@ -106,13 +105,39 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <>
-      <PageHeader label='Our Work' title={project.title}>
-        {project.partner && (
-          <p className='font-sans text-[15px] leading-[22px] text-gray-500'>
-            For {project.partner}
-          </p>
-        )}
-      </PageHeader>
+      {/* Page header */}
+      <section
+        className='relative overflow-hidden border-b border-border-subtle px-8 pb-14 pt-16 md:px-16'
+        style={{
+          backgroundColor: '#ffffff',
+          backgroundImage:
+            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(93.5% -0.050 0.016) 0%, oklab(0% 0 0 / 0%) 60%)',
+          backgroundOrigin: 'border-box',
+        }}
+      >
+        <div className='mx-auto max-w-[1312px]'>
+          <div className='flex items-center justify-between pb-6'>
+            <p className='font-mono text-[11px] uppercase tracking-[0.12em] text-green-600'>
+              Our Work
+            </p>
+            {project.tag && (
+              <span className='rounded-full bg-green-50 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-green-600'>
+                {project.tag}
+              </span>
+            )}
+          </div>
+          <h1 className='pb-5'>
+            <span className='block font-serif text-[40px] font-light leading-[1.1] tracking-[-0.02em] text-black md:text-[56px] md:leading-[62px]'>
+              {project.title}
+            </span>
+          </h1>
+          {project.partner && (
+            <p className='font-sans text-[15px] leading-[22px] text-gray-500'>
+              For {project.partner}
+            </p>
+          )}
+        </div>
+      </section>
 
       {/* Overview */}
       <section className='border-b border-border-subtle bg-white px-8 py-16 md:px-16 md:py-20'>
@@ -246,14 +271,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <div
                     key={member.name}
                     className={cn(
-                      'flex items-start gap-[18px] p-7',
-                      !isLastItem && 'border-b border-border-subtle',
-                      !isLastInRow && 'md:border-r md:border-border-subtle',
-                      !isInLastRow
-                        ? 'md:border-b md:border-border-subtle'
-                        : !isLastItem
-                          ? 'md:border-b-0'
-                          : '',
+                      'flex items-start gap-[18px] p-7 border-border-subtle',
+                      !isLastItem && 'border-b',
+                      !isLastInRow && 'md:border-r',
+                      isInLastRow && 'md:border-b-0',
                     )}
                   >
                     <div
@@ -262,10 +283,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         backgroundColor: AVATAR_COLORS[i % AVATAR_COLORS.length],
                       }}
                     >
-                      <span
-                        className='font-serif text-[26px] font-light leading-none'
-                        style={{ color: '#247EE4' }}
-                      >
+                      <span className='font-serif text-[26px] font-light leading-none text-blue-600'>
                         {member.name[0]?.toUpperCase() ?? '?'}
                       </span>
                     </div>
@@ -273,10 +291,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                       <span className='font-sans text-[15px] leading-[18px] text-black'>
                         {member.name}
                       </span>
-                      <span
-                        className='self-start rounded-full bg-blue-50 px-2 py-[3px] font-mono text-[10px] uppercase leading-3 tracking-[0.1em]'
-                        style={{ color: '#247EE4' }}
-                      >
+                      <span className='self-start rounded-full bg-blue-50 px-2 py-[3px] font-mono text-[10px] uppercase leading-3 tracking-[0.1em] text-blue-600'>
                         {member.role}
                       </span>
                     </div>
@@ -289,71 +304,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       )}
 
       {/* CTA Band */}
-      <section className='border-t border-border-subtle bg-bg-cta px-8 py-16 md:px-16 md:py-20'>
-        <div className='mx-auto flex max-w-[1312px] flex-col gap-12 md:flex-row md:gap-0'>
-          <div className='flex flex-1 flex-col gap-7 md:border-r md:border-border-subtle md:pr-14'>
-            <div className='flex flex-col gap-2.5'>
-              <p className='font-mono text-[10px] uppercase tracking-[0.12em] text-blue-500'>
-                For Students
-              </p>
-              <p className='font-serif text-[28px] font-light italic leading-[120%] text-black md:text-[30px]'>
-                Code for communities.
-              </p>
-              <p className='font-sans text-[15px] leading-[155%] text-gray-500'>
-                Join a chapter, work on real projects, and build technology that
-                makes a difference.
-              </p>
-            </div>
-            <Link
-              href='/get-involved/students'
-              className='font-sans text-[14px] font-semibold leading-[18px] text-blue-500'
-            >
-              Join a chapter →
-            </Link>
-          </div>
-          <div className='flex flex-1 flex-col gap-7 md:border-r md:border-border-subtle md:px-14'>
-            <div className='flex flex-col gap-2.5'>
-              <p className='font-mono text-[10px] uppercase tracking-[0.12em] text-green-600'>
-                For Nonprofits
-              </p>
-              <p className='font-serif text-[28px] font-light italic leading-[120%] text-black md:text-[30px]'>
-                Work with students.
-              </p>
-              <p className='font-sans text-[15px] leading-[155%] text-gray-500'>
-                Get a dedicated student team to build the tool your mission
-                needs — at no cost.
-              </p>
-            </div>
-            <Link
-              href='/get-involved/nonprofits'
-              className='font-sans text-[14px] font-semibold leading-[18px] text-green-600'
-            >
-              Submit a project →
-            </Link>
-          </div>
-          <div className='flex flex-1 flex-col gap-7 md:pl-14'>
-            <div className='flex flex-col gap-2.5'>
-              <p className='font-mono text-[10px] uppercase tracking-[0.12em] text-purple-500'>
-                For Mentors & Sponsors
-              </p>
-              <p className='font-serif text-[28px] font-light italic leading-[120%] text-black md:text-[30px]'>
-                Support the mission.
-              </p>
-              <p className='font-sans text-[15px] leading-[155%] text-gray-500'>
-                Guide student teams, fund chapters, or partner with us to grow
-                our reach.
-              </p>
-            </div>
-            <Link
-              href='/get-involved/mentors'
-              className='font-sans text-[14px] font-semibold leading-[18px] text-purple-500'
-            >
-              Get in touch →
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTABand />
     </>
   )
 }
-

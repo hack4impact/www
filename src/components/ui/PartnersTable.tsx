@@ -75,7 +75,7 @@ export function PartnersTable({ partners }: PartnersTableProps) {
 
   return (
     <div>
-      <div className='flex items-center gap-2 border-b border-[#E8E8E4] pb-5'>
+      <div className='flex items-center gap-2 border-b border-border-subtle pb-5'>
         <FilterSelect
           label='Focus Area'
           value={focusArea}

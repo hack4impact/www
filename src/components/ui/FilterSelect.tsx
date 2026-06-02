@@ -20,7 +20,7 @@ export function FilterSelect({
 }: FilterSelectProps) {
   return (
     <Select.Root value={value} onValueChange={(v) => onValueChange(v ?? 'all')}>
-      <Select.Trigger className='flex cursor-pointer items-center gap-2 rounded-[6px] border border-gray-300 px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.06em] transition-colors hover:border-gray-400 focus:outline-none'>
+      <Select.Trigger className='flex cursor-pointer items-center gap-2 rounded-[6px] border border-gray-300 px-3.5 py-2 font-mono text-[10px] tracking-[0.06em] uppercase transition-colors hover:border-gray-400 focus:outline-none'>
         <span className='text-gray-400'>{label}</span>
         <span className='text-gray-300'>|</span>
         <Select.Value />
@@ -47,24 +47,24 @@ export function FilterSelect({
           <Select.Popup
             className={cn(
               'select-popup',
-              'overflow-hidden rounded-lg border border-black/[0.07] bg-[#ffffff] shadow-[0_8px_24px_rgba(0,0,0,0.07)]',
+              'border-border-subtle overflow-hidden rounded-lg border bg-white shadow-[0_8px_24px_rgba(0,0,0,0.07)]',
             )}
             style={{ minWidth: 'var(--anchor-width)' }}
           >
             <div className='max-h-[220px] overflow-y-auto py-1.5'>
-            {options.map((opt) => (
-              <Select.Item
-                key={opt.value}
-                value={opt.value}
-                className={cn(
-                  'relative flex cursor-pointer items-center px-4 py-2 font-mono text-[11px] uppercase tracking-[0.06em] text-black outline-none',
-                  'data-[highlighted]:bg-black/[0.06]',
-                  'data-[selected]:text-blue-500',
-                )}
-              >
-                <Select.ItemText>{opt.label}</Select.ItemText>
-              </Select.Item>
-            ))}
+              {options.map((opt) => (
+                <Select.Item
+                  key={opt.value}
+                  value={opt.value}
+                  className={cn(
+                    'relative flex cursor-pointer items-center px-4 py-2 font-mono text-[11px] tracking-[0.06em] text-black uppercase outline-none',
+                    'data-[highlighted]:bg-black/[0.06]',
+                    'data-[selected]:text-blue-500',
+                  )}
+                >
+                  <Select.ItemText>{opt.label}</Select.ItemText>
+                </Select.Item>
+              ))}
             </div>
           </Select.Popup>
         </Select.Positioner>

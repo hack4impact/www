@@ -22,7 +22,7 @@ function TeamCard({ member }: { member: BoardTeamMember }) {
 
   return (
     <div>
-      <div className='relative mb-3 aspect-square w-full overflow-hidden rounded bg-[#eeeeec]'>
+      <div className='relative mb-3 aspect-square w-full overflow-hidden rounded bg-bg-subtle'>
         {member.imageUrl ? (
           <Image
             src={member.imageUrl}
@@ -70,7 +70,7 @@ function TeamGroup({
         <p className='shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
           {label}
         </p>
-        <div className='h-px flex-1 bg-[#e8e8e8]' />
+        <div className='h-px flex-1 bg-border-subtle' />
       </div>
       <div className='grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4'>
         {members.map((m) => (

@@ -3,7 +3,7 @@ import { contentfulApi } from '@/lib/contentful'
 import { ProjectsTable } from '@/components/ui/ProjectsTable'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { WorkHeader } from '@/components/ui/WorkHeader'
 
 export default async function ProjectsPage() {
   const [projects, faqs] = await Promise.all([
@@ -13,11 +13,13 @@ export default async function ProjectsPage() {
 
   return (
     <>
-      <PageHeader
+      <WorkHeader
         label='Our Work'
         title='The work we build'
-        secondaryLabel={`${projects.length} projects delivered`}
+        countLabel={`${projects.length} projects delivered`}
         description='Every project is handed off with full source code and no strings or maintenance fees.'
+        labelColor='text-green-600'
+        gradientOklab='93.5% -0.050 0.016'
       />
 
       {/* Projects grid */}

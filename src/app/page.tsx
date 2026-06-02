@@ -104,16 +104,16 @@ export default async function HomePage() {
         </div>
 
         {/* Right: quote */}
-        <div className='flex flex-1 flex-col justify-center bg-[#F7F9FC] px-8 py-12 lg:p-20'>
+        <div className='flex flex-1 flex-col justify-center bg-bg-subtle px-8 py-12 lg:p-20'>
           <p className='mb-7 font-mono text-[11px] uppercase tracking-[0.12em] text-gray-500'>
             In their words
           </p>
-          <blockquote className='font-serif text-[28px] font-light italic leading-[40px] tracking-[-0.01em] text-[#10100F]'>
+          <blockquote className='font-serif text-[28px] font-light italic leading-[40px] tracking-[-0.01em] text-black'>
             &ldquo;...the kind of passion for socially-minded engineering our
             industry desperately needs.&rdquo;
           </blockquote>
-          <div className='mt-8 border-t border-[#E0E0DA] pt-6'>
-            <p className='font-sans text-[15px] font-medium leading-[18px] text-[#10100F]'>
+          <div className='mt-8 border-t border-border-subtle pt-6'>
+            <p className='font-sans text-[15px] font-medium leading-[18px] text-black'>
               Javid Fathi
             </p>
             <p className='mt-1 font-mono text-[11px] leading-[14px] tracking-[0.06em] text-gray-500'>

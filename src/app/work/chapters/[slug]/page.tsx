@@ -3,6 +3,7 @@ import { notionApi } from '@/lib/notion'
 import { ProjectsTable } from '@/components/ui/ProjectsTable'
 import { contentfulApi } from '@/lib/contentful'
 import Image from 'next/image'
+import { cn } from '@/lib/utils'
 
 interface ChapterPageProps {
   params: Promise<{ slug: string }>
@@ -27,11 +28,10 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
   return (
     <>
-      {/* Page header */}
       <section
-        className='relative overflow-hidden border-b border-[#E8E8E4] px-8 pt-16 pb-14 md:px-16'
+        className='relative overflow-hidden border-b border-border-subtle px-8 pb-14 pt-16 md:px-16'
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#ffffff',
           backgroundImage:
             'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(59.6% -0.045 -0.169 / 10%) 0%, oklab(0% 0 0 / 0%) 60%)',
           backgroundOrigin: 'border-box',
@@ -70,14 +70,11 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         <div className='mx-auto flex max-w-[1312px]'>
           {/* Status */}
           <div
-            className={[
+            className={cn(
               'flex flex-1 flex-col items-center justify-center gap-2 py-7',
-              chapter.website || chapter.github || chapter.instagram
-                ? 'border-r border-[#e8e8e8]'
-                : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
+              (chapter.website || chapter.github || chapter.instagram) &&
+                'border-r border-border-subtle',
+            )}
           >
             {chapter.status ? (
               <span
@@ -109,7 +106,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           ].map((stat) => (
             <div
               key={stat.label}
-              className='flex flex-1 flex-col items-center justify-center gap-1.5 border-r border-[#e8e8e8] py-7'
+              className='flex flex-1 flex-col items-center justify-center gap-1.5 border-r border-border-subtle py-7'
             >
               <span className='font-serif text-[32px] leading-[40px] font-light tracking-[-0.01em] text-black'>
                 {stat.value}
@@ -168,7 +165,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       </section>
 
       {/* Content + Projects */}
-      <section className='border-t border-[#e8e8e8] px-8 py-8 md:px-16'>
+      <section className='border-t border-border-subtle px-8 py-8 md:px-16'>
         <div className='mx-auto max-w-[1312px]'>
           <p className='font-serif text-lg md:text-xl'>{chapter.description}</p>
         </div>
