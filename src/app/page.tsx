@@ -14,7 +14,6 @@ export default async function HomePage() {
   const [
     programs,
     projects,
-    featuredArticles,
     heroImageUrl,
     processImageUrl,
     calloutImageUrl,
@@ -22,7 +21,6 @@ export default async function HomePage() {
   ] = await Promise.all([
     contentfulApi.getInfoCards('Programs'),
     notionApi.getProjects(),
-    contentfulApi.getPaginatedJournalEntries({ limit: 3, skip: 0 }),
     contentfulApi.getAssetUrl('home-one'),
     contentfulApi.getAssetUrl('home-two'),
     contentfulApi.getAssetUrl('home-three'),
@@ -74,7 +72,7 @@ export default async function HomePage() {
 
       {/* Programs Section */}
       <section className='px-8 py-16 md:px-12 md:py-24 xl:mx-auto xl:max-w-[80vw]'>
-        <div className='mb-0 text-center'>
+        <div className='text-center'>
           <h2 className='font-serif text-3xl md:text-4xl'>Our programs</h2>
           <p className='font-sans text-2xl md:text-3xl'>Community in action</p>
         </div>
@@ -82,30 +80,44 @@ export default async function HomePage() {
       </section>
 
       {/* Quote Callout Section */}
-      <section className='grid grid-cols-1 lg:grid-cols-2 xl:mx-auto xl:max-w-[80vw]'>
-        <div className='px-8 py-8 lg:px-0 lg:py-12 lg:pl-12'>
-          <div className='relative aspect-[4/5] w-full bg-gradient-to-br from-green-100 to-purple-200'>
-            {calloutImageUrl && (
+      <section className='relative mt-32 flex flex-col lg:flex-row'>
+        {/* Left: gradient panel stretches to right panel height */}
+        <div
+          className='relative flex-shrink-0 lg:w-1/3'
+          style={{
+            backgroundImage:
+              'linear-gradient(in oklab 180deg, oklab(80.2% 0 0 / 0%) 0%, oklab(92.7% -0.010 -0.027) 100%)',
+          }}
+        >
+          {calloutImageUrl && (
+            <div className='relative mx-8 pt-8 lg:absolute lg:-top-32 lg:bottom-0 lg:left-4 lg:right-4 lg:overflow-hidden lg:pt-0'>
               <Image
-                fill
-                className='object-cover object-top pt-8'
                 src={calloutImageUrl}
                 alt='A group photo of students from the UPenn chapter'
-                sizes='(max-width: 1024px) calc(100vw - 4rem), (min-width: 1280px) calc(40vw), calc(50vw - 6rem)'
+                width={600}
+                height={750}
+                className='w-full rounded-[5px]'
+                style={{ height: 'auto' }}
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
-        <div className='flex flex-col items-start justify-center p-8 lg:px-24 lg:py-12'>
-          <blockquote className='font-sans text-2xl md:text-3xl'>
+        {/* Right: quote */}
+        <div className='flex flex-1 flex-col justify-center bg-[#F7F9FC] px-8 py-12 lg:p-20'>
+          <p className='mb-7 font-mono text-[11px] uppercase tracking-[0.12em] text-gray-500'>
+            In their words
+          </p>
+          <blockquote className='font-serif text-[28px] font-light italic leading-[40px] tracking-[-0.01em] text-[#10100F]'>
             &ldquo;...the kind of passion for socially-minded engineering our
             industry desperately needs.&rdquo;
           </blockquote>
-          <div className='mt-6 md:mt-8'>
-            <p className='font-sans text-lg'>Javid Fathi</p>
-            <p className='font-serif text-gray-600'>
-              Software Engineer Lead at Microsoft
+          <div className='mt-8 border-t border-[#E0E0DA] pt-6'>
+            <p className='font-sans text-[15px] font-medium leading-[18px] text-[#10100F]'>
+              Javid Fathi
+            </p>
+            <p className='mt-1 font-mono text-[11px] leading-[14px] tracking-[0.06em] text-gray-500'>
+              Software Engineer Lead, Microsoft
             </p>
           </div>
         </div>
@@ -135,58 +147,6 @@ export default async function HomePage() {
           </div>
         </section>
       )}
-
-      {/* Featured A
-      {/* <section className='px-8 py-16 md:px-12 md:py-24'> */}
-      {/*   <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'> */}
-      {/*     Featured articles */}
-      {/*   </h2> */}
-      {/*   <div className='mx-auto max-w-2xl divide-y divide-gray-200 border-y border-gray-200'> */}
-      {/*     {featuredArticles.map((entry, i) => ( */}
-      {/*       <Link */}
-      {/*         key={entry.id} */}
-      {/*         href={`/journal/${entry.slug}`} */}
-      {/*         className='block' */}
-      {/*       > */}
-      {/*         <div className='flex items-center gap-6 py-6'> */}
-      {/*           <div */}
-      {/*             className={`relative h-28 w-48 shrink-0 bg-gradient-to-br ${ */}
-      {/*               i === 0 */}
-      {/*                 ? 'from-orange-100 to-pink-200' */}
-      {/*                 : 'from-purple-100 to-blue-200' */}
-      {/*             }`} */}
-      {/*           > */}
-      {/*             {entry.thumbnailUrl || */}
-      {/*               (entry.bannerUrl && ( */}
-      {/*                 <Image */}
-      {/*                   src={entry.thumbnailUrl || entry.bannerUrl} */}
-      {/*                   alt='Thumbnail image of a journal entry and article' */}
-      {/*                   fill */}
-      {/*                   sizes='192px' */}
-      {/*                   className='object-cover' */}
-      {/*                 /> */}
-      {/*               ))} */}
-      {/*           </div> */}
-      {/*           <div className='min-w-0'> */}
-      {/*             <h3 className='mb-1 truncate font-sans text-lg'> */}
-      {/*               {entry.title} */}
-      {/*             </h3> */}
-      {/*             <div className='flex items-center gap-2 font-serif text-sm text-gray-600'> */}
-      {/*               <span>{entry.tag}</span> */}
-      {/*               <span className='text-gray-400'>&middot;</span> */}
-      {/*               <span>{entry.readTime}</span> */}
-      {/*             </div> */}
-      {/*           </div> */}
-      {/*         </div> */}
-      {/*       </Link> */}
-      {/*     ))} */}
-      {/*   </div> */}
-      {/*   <div className='mt-8 text-center'> */}
-      {/*     <Link href='/journal'> */}
-      {/*       <Button>View all articles</Button> */}
-      {/*     </Link> */}
-      {/*   </div> */}
-      {/* </section> */}
 
       <CTABand />
     </>
