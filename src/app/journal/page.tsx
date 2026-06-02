@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { contentfulApi } from '@/lib/contentful'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 import { JournalEntry } from '@/lib/types'
 
 const thumbnailGradients = [
@@ -74,11 +74,7 @@ export default async function JournalPage() {
         </div>
       </section>
 
-      <CallToAction
-        heading='Have a story to share?'
-        buttonText='Contact us'
-        href='mailto:contact@hack4impact.org?subject=Journal Proposal'
-      />
+      <CTABand />
     </>
   )
 }

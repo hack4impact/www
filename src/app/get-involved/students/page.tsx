@@ -4,7 +4,7 @@ import { SplitHero } from '@/components/ui/SplitHero'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 import { contentfulApi } from '@/lib/contentful'
 import { Heart, UserStar, Community } from 'iconoir-react'
 import { iconProps } from '@/lib/constants'
@@ -78,12 +78,7 @@ export default async function StudentsPage() {
 
       <FAQList items={faqs} />
 
-      <CallToAction
-        heading='Ready to start a chapter?'
-        buttonText='Apply'
-        href='mailto:contact@hack4impact.org?subject=Starting a Chapter at [University Name]'
-        color='bg-blue-100'
-      />
+      <CTABand />
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { SplitHero } from '@/components/ui/SplitHero'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 import { StatBar } from '@/components/ui/StatBar'
 import { GridTable } from '@/components/ui/GridTable'
 import { StepsList } from '@/components/ui/StepsList'
@@ -152,13 +152,7 @@ export default async function SponsorsPage() {
       )}
 
       {/* Contact CTA */}
-      <CallToAction
-        id='contact'
-        heading='Interested in sponsoring?'
-        buttonText='Get in touch'
-        href='mailto:contact@hack4impact.org?subject=Interest in Sponsoring'
-        color='bg-orange-100'
-      />
+      <CTABand />
     </>
   )
 }

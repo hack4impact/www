@@ -2,7 +2,7 @@ import { type ReactNode } from 'react'
 import { SplitHero } from '@/components/ui/SplitHero'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { GridTable } from '@/components/ui/GridTable'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 import { contentfulApi } from '@/lib/contentful'
 import { Leaf, Compass, Accessibility } from 'iconoir-react'
 import { iconProps } from '@/lib/constants'
@@ -123,11 +123,7 @@ export default async function AboutPage() {
         />
       </section>
 
-      <CallToAction
-        heading='Want to join our team?'
-        buttonText='Get involved'
-        href='mailto:contact@hack4impact.org?subject=Operations Team Interest'
-      />
+      <CTABand />
     </>
   )
 }

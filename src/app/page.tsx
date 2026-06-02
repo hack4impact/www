@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Heart, OpenBook, Suitcase } from 'iconoir-react'
 import { StepsList } from '@/components/ui/StepsList'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 import { HomeIntro } from '@/components/ui/HomeIntro'
 import { notionApi, FEATURED_PROJECT_SLUG } from '@/lib/notion'
 import { CardGrid } from '@/components/ui/CardGrid'
@@ -188,11 +188,7 @@ export default async function HomePage() {
       {/*   </div> */}
       {/* </section> */}
 
-      <CallToAction
-        heading='Ready to make an impact?'
-        buttonText='Get involved'
-        href='/get-involved/students'
-      />
+      <CTABand />
     </>
   )
 }

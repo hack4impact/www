@@ -1,7 +1,7 @@
 import { SplitHero } from '@/components/ui/SplitHero'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { FAQList } from '@/components/ui/FAQList'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
 import { contentfulApi } from '@/lib/contentful'
 import { Puzzle, ChatBubbleQuestion, TaskList } from 'iconoir-react'
@@ -54,13 +54,7 @@ export default async function MentorsPage() {
       <FAQList heading='What to expect' items={faqs} />
 
       {/* Sign Up CTA */}
-      <CallToAction
-        id='sign-up'
-        heading='Ready to mentor?'
-        buttonText='Sign up'
-        href='mailto:contact@hack4impact.org?subject=Interest in Mentoring'
-        color='bg-purple-100'
-      />
+      <CTABand />
     </>
   )
 }

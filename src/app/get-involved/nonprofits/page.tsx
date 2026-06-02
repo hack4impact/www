@@ -2,7 +2,7 @@ import { SplitHero } from '@/components/ui/SplitHero'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
 import { contentfulApi } from '@/lib/contentful'
 import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
@@ -76,12 +76,7 @@ export default async function NonprofitsPage() {
       <FAQList heading='What to expect' items={faqs} />
 
       {/* Apply CTA */}
-      <CallToAction
-        id='apply'
-        heading='Ready to get started?'
-        buttonText='Apply now'
-        href='mailto:contact@hack4impact.org?subject=[Nonprofit Name] Project Proposal'
-      />
+      <CTABand />
     </>
   )
 }

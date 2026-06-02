@@ -2,7 +2,7 @@ import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
 import { PartnersTable } from '@/components/ui/PartnersTable'
 import { FAQList } from '@/components/ui/FAQList'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 
 export default async function PartnersPage() {
   const [partners, faqs] = await Promise.all([
@@ -52,12 +52,7 @@ export default async function PartnersPage() {
 
       <FAQList items={faqs} />
 
-      <CallToAction
-        heading='Want to work with us?'
-        buttonText='Apply to partner'
-        href='/get-involved/nonprofits'
-        color='bg-orange-100'
-      />
+      <CTABand />
     </>
   )
 }

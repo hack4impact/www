@@ -3,7 +3,7 @@ import { contentfulApi } from '@/lib/contentful'
 import { ChaptersTable } from '@/components/ui/ChaptersTable'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { FAQList } from '@/components/ui/FAQList'
-import { CallToAction } from '@/components/ui/CallToAction'
+import { CTABand } from '@/components/ui/CTABand'
 import { Code, ColorFilter, Agile, KanbanBoard } from 'iconoir-react'
 import { iconProps } from '@/lib/constants'
 
@@ -80,12 +80,7 @@ export default async function ChaptersPage() {
 
       <FAQList items={faqs} />
 
-      <CallToAction
-        heading='No chapter at your school?'
-        buttonText='Start one'
-        href='/get-involved/students'
-        color='bg-blue-100'
-      />
+      <CTABand />
     </>
   )
 }
