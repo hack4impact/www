@@ -14,19 +14,17 @@ export default async function PartnersPage() {
     <>
       {/* Page header */}
       <section
-        className='border-b border-[#E8E8E4] px-8 pt-14 pb-12 md:px-16'
+        className='border-b border-[#E8E8E4] px-8 pb-12 pt-14 md:px-16'
         style={{
-          backgroundColor: '#ffffff',
+          backgroundColor: '#FFFFFF',
           backgroundImage:
-            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(94.3% 0.012 -0.026) 0%, oklab(0% 0 0 / 0%) 60%)',
+            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(93.1% 0.012 -0.029) 0%, oklab(0% 0 0 / 0%) 60%)',
+          backgroundOrigin: 'border-box',
         }}
       >
         <div className='mx-auto max-w-[1312px]'>
           <div className='flex items-baseline justify-between pb-4'>
-            <p
-              className='font-mono text-[11px] tracking-[0.12em] uppercase'
-              style={{ color: '#7C5CDB' }}
-            >
+            <p className='font-mono text-[11px] uppercase tracking-[0.12em] text-[#7C6BED]'>
               Nonprofit Partners
             </p>
             <p className='font-mono text-[11px] tracking-[0.08em] text-gray-400'>

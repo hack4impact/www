@@ -19,14 +19,12 @@ export default async function ProjectsPage() {
           backgroundColor: '#ffffff',
           backgroundImage:
             'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(93.5% -0.050 0.016) 0%, oklab(0% 0 0 / 0%) 60%)',
+          backgroundOrigin: 'border-box',
         }}
       >
         <div className='mx-auto max-w-[1312px]'>
           <div className='flex items-baseline justify-between pb-4'>
-            <p
-              className='font-mono text-[11px] uppercase tracking-[0.12em]'
-              style={{ color: '#2B9212' }}
-            >
+            <p className='font-mono text-[11px] uppercase tracking-[0.12em] text-green-600'>
               Our Work
             </p>
             <p className='font-mono text-[11px] tracking-[0.08em] text-gray-400'>
