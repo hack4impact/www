@@ -330,7 +330,7 @@ export default function Header() {
                     </Link>
                   ) : (
                     <Collapsible.Root>
-                      <Collapsible.Trigger className='group flex w-full items-center justify-between py-4 font-sans text-xl'>
+                      <Collapsible.Trigger className='group flex w-full items-center justify-between py-4 font-sans text-xl outline-none'>
                         {item.label}
                         <svg
                           width='16'
@@ -348,6 +348,7 @@ export default function Header() {
                           />
                         </svg>
                       </Collapsible.Trigger>
+
                       <Collapsible.Panel
                         render={
                           <motion.div
@@ -357,16 +358,19 @@ export default function Header() {
                               opacity: 1,
                             }}
                             exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2, ease: 'easeInOut' }}
+                            transition={{
+                              duration: 0.24,
+                              ease: [0.16, 1, 0.3, 1],
+                            }}
                           />
                         }
-                        className='overflow-hidden' // required to clip the content as it shrinks
+                        className='overflow-hidden'
                       >
                         {dropdowns[item.dropdownKey].map((child) => (
                           <Link
                             key={child.href}
                             href={child.href}
-                            className='block py-3 pl-4 font-sans text-lg text-black/60'
+                            className='block py-3 pl-4 font-sans text-lg text-black/60 outline-none'
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {child.label}
@@ -374,7 +378,7 @@ export default function Header() {
                         ))}
                       </Collapsible.Panel>
                     </Collapsible.Root>
-                  )}
+                  )}{' '}
                 </motion.div>
               ))}
 
