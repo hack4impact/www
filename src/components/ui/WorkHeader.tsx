@@ -19,7 +19,7 @@ export function WorkHeader({
 }: WorkHeaderProps) {
   return (
     <section
-      className='border-b border-border-subtle px-8 pb-12 pt-14 md:px-16'
+      className='border-border-subtle border-b px-8 pt-14 pb-12 md:px-16'
       style={{
         backgroundColor: '#ffffff',
         backgroundImage: `radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(${gradientOklab}) 0%, oklab(0% 0 0 / 0%) 60%)`,
@@ -30,7 +30,7 @@ export function WorkHeader({
         <div className='flex items-baseline justify-between pb-4'>
           <p
             className={cn(
-              'font-mono text-[11px] uppercase tracking-[0.12em]',
+              'font-mono text-[11px] tracking-[0.12em] uppercase',
               labelColor,
             )}
           >
@@ -40,10 +40,10 @@ export function WorkHeader({
             {countLabel}
           </p>
         </div>
-        <h1 className='pb-4 font-serif text-[40px] font-light leading-[48px] tracking-[-0.02em] text-black'>
+        <h1 className='pb-4 font-serif text-[40px] leading-[48px] font-light tracking-[-0.02em] text-black'>
           {title}
         </h1>
-        <p className='font-sans text-base leading-6 text-text-muted max-w-2xl'>
+        <p className='text-text-muted max-w-4xl font-sans text-base leading-6'>
           {description}
         </p>
       </div>
