@@ -1,0 +1,104 @@
+'use client'
+
+import { useState, useMemo } from 'react'
+import { FilterSelect } from './FilterSelect'
+import { PartnerCard } from './PartnerCard'
+import type { Partner } from '@/lib/types/partner'
+
+type Sort = 'name-asc' | 'name-desc' | 'projects-desc'
+
+const SORT_OPTIONS = [
+  { value: 'name-asc', label: 'A–Z' },
+  { value: 'name-desc', label: 'Z–A' },
+  { value: 'projects-desc', label: 'Most projects' },
+]
+
+interface PartnersTableProps {
+  partners: Partner[]
+}
+
+export function PartnersTable({ partners }: PartnersTableProps) {
+  const [focusArea, setFocusArea] = useState('all')
+  const [orgType, setOrgType] = useState('all')
+  const [sort, setSort] = useState<Sort>('name-asc')
+
+  const focusAreaOptions = useMemo(() => {
+    const subjects = new Set<string>()
+    for (const p of partners) {
+      for (const s of p.subjects ?? []) subjects.add(s)
+    }
+    return [
+      { value: 'all', label: 'All' },
+      ...Array.from(subjects)
+        .sort()
+        .map((s) => ({ value: s, label: s })),
+    ]
+  }, [partners])
+
+  const orgTypeOptions = useMemo(() => {
+    const types = new Set<string>()
+    for (const p of partners) {
+      for (const t of p.organizationTypes ?? []) types.add(t)
+    }
+    return [
+      { value: 'all', label: 'All' },
+      ...Array.from(types)
+        .sort()
+        .map((t) => ({ value: t, label: t })),
+    ]
+  }, [partners])
+
+  const filtered = useMemo(() => {
+    let list = [...partners]
+    if (focusArea !== 'all') list = list.filter((p) => p.subjects?.includes(focusArea))
+    if (orgType !== 'all') list = list.filter((p) => p.organizationTypes?.includes(orgType))
+
+    list.sort((a, b) => {
+      if (sort === 'name-asc') return a.name.localeCompare(b.name)
+      if (sort === 'name-desc') return b.name.localeCompare(a.name)
+      return (b.projectCount ?? 0) - (a.projectCount ?? 0)
+    })
+
+    return list
+  }, [partners, focusArea, orgType, sort])
+
+  return (
+    <div>
+      <div className='flex items-center gap-2 border-b border-[#E8E8E4] pb-5'>
+        <FilterSelect
+          label='Focus Area'
+          value={focusArea}
+          onValueChange={setFocusArea}
+          options={focusAreaOptions}
+        />
+        <FilterSelect
+          label='Org Type'
+          value={orgType}
+          onValueChange={setOrgType}
+          options={orgTypeOptions}
+        />
+        <div className='ml-auto'>
+          <FilterSelect
+            label='Sort'
+            value={sort}
+            onValueChange={(v) => setSort(v as Sort)}
+            options={SORT_OPTIONS}
+            align='end'
+          />
+        </div>
+      </div>
+
+      <div className='mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6'>
+        {filtered.map((partner) => (
+          <PartnerCard key={partner.id} partner={partner} />
+        ))}
+      </div>
+
+      {filtered.length === 0 && (
+        <p className='mt-16 text-center font-sans text-base text-gray-400'>
+          No partners match the selected filters.
+        </p>
+      )}
+    </div>
+  )
+}
