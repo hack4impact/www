@@ -83,7 +83,7 @@ export function HomeIntro({ heroImageUrl }: HomeIntroProps) {
             height={543}
             className='block h-auto w-full'
             style={{
-              filter: 'drop-shadow(10px -2px 4px rgba(36, 126, 128, 0.15))',
+              filter: 'drop-shadow(10px -2px 4px rgba(36, 126, 228, 0.15))',
             }}
             src={heroImageUrl}
             alt='A group photo of Hack4Impact students'

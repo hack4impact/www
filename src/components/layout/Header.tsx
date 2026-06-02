@@ -25,11 +25,47 @@ const dropdowns: Record<DropdownKey, { label: string; href: string }[]> = {
 
 const dropdownKeys = Object.keys(dropdowns) as DropdownKey[]
 
-interface HoverRect {
+type MobileItem =
+  | { key: string; type: 'link'; label: string; href: string }
+  | { key: string; type: 'dropdown'; label: string; dropdownKey: DropdownKey }
+
+const mobileItems: MobileItem[] = [
+  { key: 'about', type: 'link', label: 'About', href: '/about' },
+  { key: 'work', type: 'dropdown', label: 'Work', dropdownKey: 'Work' },
+  { key: 'get-involved', type: 'dropdown', label: 'Get Involved', dropdownKey: 'Get Involved' },
+]
+
+interface Rect {
   x: number
   y: number
   width: number
   height: number
+}
+
+function getRelativeRect(el: HTMLElement, container: HTMLElement): Rect {
+  const a = el.getBoundingClientRect()
+  const b = container.getBoundingClientRect()
+  return { x: a.left - b.left, y: a.top - b.top, width: a.width, height: a.height }
+}
+
+function SlideHighlight({ rect, insetX = 0 }: { rect: Rect | null; insetX?: number }) {
+  const r = rect
+    ? { x: rect.x + insetX, y: rect.y, width: rect.width - insetX * 2, height: rect.height }
+    : null
+  return (
+    <AnimatePresence>
+      {r && (
+        <motion.div
+          className='pointer-events-none absolute left-0 top-0 rounded-md'
+          style={{ background: 'rgba(0,0,0,0.06)' }}
+          initial={{ opacity: 0, x: r.x, y: r.y, width: r.width, height: r.height }}
+          animate={{ opacity: 1, x: r.x, y: r.y, width: r.width, height: r.height }}
+          exit={{ opacity: 0 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+        />
+      )}
+    </AnimatePresence>
+  )
 }
 
 function ChevronIcon({ isOpen }: { isOpen: boolean }) {
@@ -40,7 +76,7 @@ function ChevronIcon({ isOpen }: { isOpen: boolean }) {
       viewBox='0 0 12 12'
       fill='none'
       animate={{ rotate: isOpen ? 180 : 0 }}
-      transition={{ duration: 0.2, ease: 'easeInOut' }}
+      transition={{ duration: 0.2 }}
     >
       <path
         d='M3 4.5L6 7.5L9 4.5'
@@ -57,34 +93,46 @@ export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null)
-  const [hoverRect, setHoverRect] = useState<HoverRect | null>(null)
-  const navItemsRef = useRef<HTMLDivElement>(null)
+
+  const [navRect, setNavRect] = useState<Rect | null>(null)
+  const navRowRef = useRef<HTMLDivElement>(null)
+
+  const [dropdownRect, setDropdownRect] = useState<Rect | null>(null)
+
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const handleNavEnter = (e: React.MouseEvent<HTMLElement>, key?: DropdownKey) => {
+  const cancelClose = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
-    if (navItemsRef.current) {
-      const itemRect = e.currentTarget.getBoundingClientRect()
-      const containerRect = navItemsRef.current.getBoundingClientRect()
-      setHoverRect({
-        x: itemRect.left - containerRect.left,
-        y: itemRect.top - containerRect.top,
-        width: itemRect.width,
-        height: itemRect.height,
-      })
-    }
-    setOpenDropdown(key ?? null)
   }
 
   const scheduleClose = () => {
     closeTimer.current = setTimeout(() => {
       setOpenDropdown(null)
-      setHoverRect(null)
+      setNavRect(null)
+      setDropdownRect(null)
     }, 120)
   }
 
-  const cancelClose = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current)
+  const handleNavItemEnter = (e: React.MouseEvent<HTMLElement>, key?: DropdownKey) => {
+    cancelClose()
+    if (navRowRef.current) {
+      setNavRect(getRelativeRect(e.currentTarget, navRowRef.current))
+    }
+    if (key !== openDropdown) setDropdownRect(null)
+    setOpenDropdown(key ?? null)
+  }
+
+  const handleDropdownItemEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const container = e.currentTarget.parentElement
+    if (container) {
+      setDropdownRect(getRelativeRect(e.currentTarget, container))
+    }
+  }
+
+  const closeAll = () => {
+    setOpenDropdown(null)
+    setNavRect(null)
+    setDropdownRect(null)
   }
 
   return (
@@ -109,101 +157,69 @@ export default function Header() {
 
         {/* Desktop nav */}
         <div className='hidden items-center gap-6 md:flex'>
-          <div
-            ref={navItemsRef}
-            className='relative flex items-center'
-            onMouseLeave={scheduleClose}
-          >
-            {/* Sliding hover highlight */}
-            <AnimatePresence>
-              {hoverRect && (
-                <motion.div
-                  className='pointer-events-none absolute left-0 top-0 rounded-md bg-black/[0.06]'
-                  initial={{
-                    opacity: 0,
-                    x: hoverRect.x,
-                    y: hoverRect.y,
-                    width: hoverRect.width,
-                    height: hoverRect.height,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: hoverRect.x,
-                    y: hoverRect.y,
-                    width: hoverRect.width,
-                    height: hoverRect.height,
-                  }}
-                  exit={{ opacity: 0 }}
-                  transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                />
-              )}
-            </AnimatePresence>
+          <div className='relative' onMouseLeave={scheduleClose}>
+            {/* Nav row with sliding highlight */}
+            <div ref={navRowRef} className='relative flex items-center'>
+              <SlideHighlight rect={navRect} />
 
-            {/* About */}
-            <Link
-              href='/about'
-              className='relative z-10 px-3 py-1.5 font-sans text-[15px] text-black'
-              onMouseEnter={(e) => handleNavEnter(e)}
-            >
-              About
-            </Link>
+              <Link
+                href='/about'
+                className='relative z-10 px-3 py-1.5 font-sans text-[15px] text-black'
+                onMouseEnter={(e) => handleNavItemEnter(e)}
+              >
+                About
+              </Link>
 
-            {/* Dropdown triggers */}
-            {dropdownKeys.map((key) => (
-              <div key={key} className='relative'>
-                <button
-                  type='button'
-                  className='relative z-10 flex cursor-pointer items-center gap-1.5 px-3 py-1.5 font-sans text-[15px] text-black'
-                  onMouseEnter={(e) => handleNavEnter(e, key)}
-                >
-                  {key}
-                  <ChevronIcon isOpen={openDropdown === key} />
-                </button>
+              {dropdownKeys.map((key) => (
+                <div key={key} className='relative'>
+                  <button
+                    type='button'
+                    className='relative z-10 flex cursor-pointer items-center gap-1.5 px-3 py-1.5 font-sans text-[15px] text-black'
+                    onMouseEnter={(e) => handleNavItemEnter(e, key)}
+                  >
+                    {key}
+                    <ChevronIcon isOpen={openDropdown === key} />
+                  </button>
 
-                <AnimatePresence>
-                  {openDropdown === key && (
-                    <motion.div
-                      className='absolute top-full left-0 z-50 mt-2 min-w-[160px] overflow-hidden rounded-[3px] border border-black/10 bg-white shadow-[0_4px_16px_rgba(0,0,0,0.08)]'
-                      initial={{ opacity: 0, y: -6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -6 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
-                      onMouseEnter={cancelClose}
-                      onMouseLeave={scheduleClose}
-                    >
-                      <div className='py-1'>
-                        {dropdowns[key].map((item, i) => (
-                          <motion.div
-                            key={item.href}
-                            initial={{ opacity: 0, x: -4 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.15, delay: i * 0.04 }}
-                          >
+                  <AnimatePresence>
+                    {openDropdown === key && (
+                      <motion.div
+                        className='absolute top-full left-0 z-50 mt-1.5 min-w-[160px] overflow-hidden rounded-lg border border-black/[0.07]'
+                        style={{ background: '#ffffff', boxShadow: '0 8px 24px rgba(0,0,0,0.07)' }}
+                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                        onMouseEnter={cancelClose}
+                      >
+                        <div className='relative py-1.5'>
+                          <SlideHighlight rect={dropdownRect} insetX={6} />
+                          {dropdowns[key].map((item) => (
                             <Link
+                              key={item.href}
                               href={item.href}
-                              className='block px-4 py-2 font-sans text-[14px] text-black transition-colors hover:bg-black/5'
-                              onClick={() => {
-                                setOpenDropdown(null)
-                                setHoverRect(null)
-                              }}
+                              className='relative z-10 block whitespace-nowrap px-4 py-2 font-sans text-[15px] text-black'
+                              onMouseEnter={handleDropdownItemEnter}
+                              onMouseLeave={() => setDropdownRect(null)}
+                              onClick={closeAll}
                             >
                               {item.label}
                             </Link>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
           </div>
 
           <a
             href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
             target='_blank'
             rel='noopener noreferrer'
-            className='rounded-[3px] bg-blue-500 px-5 py-2 font-mono text-[11px] tracking-[0.02em] text-white transition-colors hover:bg-blue-600'
+            className='rounded-[3px] bg-blue-500 px-5 py-2 font-mono text-[13px] tracking-[0.02em] text-white transition-colors hover:bg-blue-600'
           >
             Donate
           </a>
@@ -225,65 +241,84 @@ export default function Header() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className='px-8 pb-8 md:hidden'
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className='overflow-hidden md:hidden'
           >
-            <div className='divide-y divide-black/10'>
-              <Link
-                href='/about'
-                aria-current={pathname === '/about' ? 'page' : undefined}
-                className='block py-4 font-sans text-xl'
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-
-              {dropdownKeys.map((key) => (
-                <Collapsible.Root key={key}>
-                  <Collapsible.Trigger className='group flex w-full items-center justify-between py-4 font-sans text-xl'>
-                    {key}
-                    <svg
-                      width='16'
-                      height='16'
-                      viewBox='0 0 12 12'
-                      fill='none'
-                      className='transition-transform group-data-[panel-open]:rotate-180'
+            <div className='divide-y divide-black/[0.08] px-8 pb-8'>
+              {mobileItems.map((item, i) => (
+                <motion.div
+                  key={item.key}
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.06 + i * 0.06, duration: 0.22, ease: 'easeOut' }}
+                >
+                  {item.type === 'link' ? (
+                    <Link
+                      href={item.href}
+                      aria-current={pathname === item.href ? 'page' : undefined}
+                      className='block py-4 font-sans text-xl'
+                      onClick={() => setMobileMenuOpen(false)}
                     >
-                      <path
-                        d='M3 4.5L6 7.5L9 4.5'
-                        stroke='currentColor'
-                        strokeWidth='1.5'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      />
-                    </svg>
-                  </Collapsible.Trigger>
-                  <Collapsible.Panel>
-                    {dropdowns[key].map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className='block py-3 pl-4 font-sans text-lg text-black/70'
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <Collapsible.Root>
+                      <Collapsible.Trigger className='group flex w-full items-center justify-between py-4 font-sans text-xl'>
                         {item.label}
-                      </Link>
-                    ))}
-                  </Collapsible.Panel>
-                </Collapsible.Root>
+                        <svg
+                          width='16'
+                          height='16'
+                          viewBox='0 0 12 12'
+                          fill='none'
+                          className='transition-transform duration-200 group-data-[panel-open]:rotate-180'
+                        >
+                          <path
+                            d='M3 4.5L6 7.5L9 4.5'
+                            stroke='currentColor'
+                            strokeWidth='1.5'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                          />
+                        </svg>
+                      </Collapsible.Trigger>
+                      <Collapsible.Panel>
+                        {dropdowns[item.dropdownKey].map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className='block py-3 pl-4 font-sans text-lg text-black/60'
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </Collapsible.Panel>
+                    </Collapsible.Root>
+                  )}
+                </motion.div>
               ))}
 
-              <a
-                href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='mt-4 block w-full rounded-[3px] bg-blue-500 py-3 text-center font-mono text-[13px] tracking-[0.02em] text-white transition-colors hover:bg-blue-600'
+              <motion.div
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.06 + mobileItems.length * 0.06,
+                  duration: 0.22,
+                  ease: 'easeOut',
+                }}
               >
-                Donate
-              </a>
+                <a
+                  href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='mt-4 block w-full rounded-[3px] bg-blue-500 py-3 text-center font-mono text-[13px] tracking-[0.02em] text-white transition-colors hover:bg-blue-600'
+                >
+                  Donate
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         )}
