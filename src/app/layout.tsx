@@ -51,8 +51,6 @@ const paperMono = localFont({
   variable: '--font-paper-mono',
 })
 
-
-
 export const metadata: Metadata = {
   title: {
     default: 'Hack4Impact',

@@ -27,9 +27,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <p className='font-mono text-[9px] uppercase tracking-[0.06em] text-gray-400'>
             Built by {teamCount} {teamCount === 1 ? 'student' : 'students'}
           </p>
-        ) : (
-          <span />
-        )}
+        ) : null}
         <span className='font-mono text-[9px] uppercase tracking-[0.06em] text-blue-500 transition-colors group-hover:text-blue-600'>
           View →
         </span>

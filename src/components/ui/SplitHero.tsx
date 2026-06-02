@@ -57,7 +57,7 @@ export function SplitHero({
       >
         {tag && (
           <motion.p
-            className='mb-3 font-mono text-xs tracking-widest text-gray-400 uppercase'
+            className='mb-3 font-mono text-xs tracking-[0.12em] text-gray-400 uppercase'
             variants={itemVariants}
           >
             {tag}

@@ -30,7 +30,7 @@ export function StepsList({
       whileInView='visible'
       viewport={{ once: true, amount: 0.2 }}
     >
-      {steps.map((step) => (
+      {steps.map((step, i) => (
         <motion.div
           key={step.name}
           className={cn(
@@ -46,7 +46,7 @@ export function StepsList({
                 stretch ? 'top-4' : 'top-6',
               )}
             >
-              {String(steps.indexOf(step) + 1).padStart(2, '0')}
+              {String(i + 1).padStart(2, '0')}
             </span>
           )}
           <h3 className='mb-1 font-sans text-lg'>{step.name}</h3>

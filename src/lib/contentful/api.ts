@@ -151,7 +151,6 @@ export const getJournalEntryBySlug = unstable_cache(
   { revalidate: 3600 },
 )
 
-
 // Fetches a "Common Questions" entry by name (e.g. "Partner Questions")
 async function fetchFAQs(name: string): Promise<FAQ[]> {
   try {
@@ -218,9 +217,6 @@ async function fetchInfoCards(
 
 export const getInfoCards = unstable_cache(
   fetchInfoCards,
-  ['contentful-values'],
-  {
-    revalidate: 3600,
-  },
+  ['contentful-info-cards'],
+  { revalidate: 3600 },
 )
-
