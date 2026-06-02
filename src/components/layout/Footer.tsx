@@ -27,9 +27,9 @@ export default function Footer() {
               <Image
                 src='/logomark.svg'
                 alt='Hack4Impact'
-                width={98}
-                height={98}
-                className='h-14 w-14 opacity-60 brightness-0'
+                width={120}
+                height={120}
+                className='h-20 w-20 opacity-60 brightness-0'
               />
             </Link>
             <a
@@ -41,9 +41,9 @@ export default function Footer() {
               <img
                 alt='Candid Platinum Transparency Seal'
                 src='https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9565390/svg'
-                width={98}
-                height={98}
-                className='h-14 w-14'
+                width={120}
+                height={120}
+                className='h-20 w-20'
               />
             </a>
           </div>
