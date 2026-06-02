@@ -71,6 +71,14 @@
   --color-green-950: #061302;
 
   --color-black: #10100f;
+
+  /* Semantic/Subtle Grays */
+  --color-bg-subtle: #f7f9fc;
+  --color-bg-cta: #fafafa;
+  --color-border-subtle: #e8e8e4;
+  --color-border-decorative: #dddddd;
+  --color-text-muted: #4a5568;
+  --color-text-dim: #bbbbbb;
 }
 
 :root {
