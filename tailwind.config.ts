@@ -11,7 +11,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inclusive-sans)'],
         serif: ['var(--font-newsreader)'],
-        mono: ['var(--font-atkinson-mono)'],
+        mono: ['var(--font-paper-mono)'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
