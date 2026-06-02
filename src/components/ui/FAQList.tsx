@@ -1,63 +1,49 @@
 'use client'
 
 import { Collapsible } from '@base-ui/react/collapsible'
-import { Separator } from '@base-ui/react/separator'
-import { motion } from 'framer-motion'
 import type { FAQ } from '@/lib/types/contentful'
-import { staggerContainer, fadeInUp } from '@/lib/animations'
 
 interface FAQListProps {
   heading?: string
   items: FAQ[]
 }
 
-const containerVariants = staggerContainer(0.1)
-const itemVariants = fadeInUp()
-
 export function FAQList({ heading = 'Common questions', items }: FAQListProps) {
   return (
-    <section className='px-8 md:px-12 py-16 md:py-24'>
-      <h2 className='text-2xl md:text-3xl font-sans mb-8 md:mb-12 text-center'>
-        {heading}
-      </h2>
-      <motion.div
-        className='max-w-3xl mx-auto'
-        variants={containerVariants}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        <Separator className='border-t border-gray-200' />
-        {items.map((faq) => (
-          <motion.div key={faq.question} variants={itemVariants}>
-            <Collapsible.Root defaultOpen={false}>
-              <div className='border-b border-gray-200'>
-                <Collapsible.Trigger className='w-full py-6 text-left font-sans text-lg cursor-pointer flex items-center justify-between gap-4 group'>
-                  <span>{faq.question}</span>
-                  <svg
-                    width='20'
-                    height='20'
-                    viewBox='0 0 20 20'
-                    fill='none'
-                    className='shrink-0 text-gray-400 transition-transform group-data-[panel-open]:rotate-180'
-                  >
-                    <path
-                      d='M5 7.5L10 12.5L15 7.5'
-                      stroke='currentColor'
-                      strokeWidth='1.5'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-                </Collapsible.Trigger>
-                <Collapsible.Panel className='overflow-hidden data-[ending-style]:animate-collapse-out data-[starting-style]:animate-collapse-out'>
-                  <p className='font-serif text-gray-600 pb-6'>{faq.answer}</p>
-                </Collapsible.Panel>
-              </div>
-            </Collapsible.Root>
-          </motion.div>
+    <section className='border-t border-[#e8e8e8] px-8 py-16 md:px-16 md:py-20'>
+      <div className='mx-auto max-w-[1312px]'>
+        <p className='mb-12 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
+          {heading}
+        </p>
+        {items.map((faq, i) => (
+          <Collapsible.Root key={faq.question}>
+            <div className='border-t border-[#e8e8e8]'>
+              <Collapsible.Trigger className='group flex w-full cursor-pointer items-start gap-8 py-7 text-left'>
+                <span className='w-7 shrink-0 font-mono text-[11px] leading-[27px] tracking-[0.05em] text-blue-500'>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span className='flex-1 font-serif text-[19px] leading-[27px] text-[#111111]'>
+                  {faq.question}
+                </span>
+                <span className='shrink-0 font-mono text-[20px] leading-[27px] text-blue-500 transition-transform duration-200 group-data-[panel-open]:rotate-45'>
+                  +
+                </span>
+              </Collapsible.Trigger>
+              <Collapsible.Panel
+                style={{
+                  overflow: 'hidden',
+                  height: 'var(--collapsible-panel-height)',
+                  transition: 'height 200ms ease',
+                }}
+              >
+                <p className='pb-7 pl-[60px] font-sans text-[14px] leading-[22px] text-gray-500'>
+                  {faq.answer}
+                </p>
+              </Collapsible.Panel>
+            </div>
+          </Collapsible.Root>
         ))}
-      </motion.div>
+      </div>
     </section>
   )
 }
