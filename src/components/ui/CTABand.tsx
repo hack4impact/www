@@ -6,8 +6,7 @@ const CTA_ITEMS = [
     headline: 'Code for communities.',
     description:
       'Join a chapter, work on real projects, and build technology that makes a difference.',
-    linkText: 'Join a chapter',
-    href: '/get-involved/students',
+    links: [{ text: 'Join a chapter', href: '/get-involved/students' }],
     color: 'text-blue-500',
   },
   {
@@ -15,8 +14,7 @@ const CTA_ITEMS = [
     headline: 'Work with students.',
     description:
       'Get a dedicated student team to build the tool your mission needs — at no cost.',
-    linkText: 'Submit a project',
-    href: '/get-involved/nonprofits',
+    links: [{ text: 'Submit a project', href: '/get-involved/nonprofits' }],
     color: 'text-green-500',
   },
   {
@@ -24,8 +22,10 @@ const CTA_ITEMS = [
     headline: 'Support the mission.',
     description:
       'Guide student teams, fund chapters, or partner with us to grow our reach.',
-    linkText: 'Get in touch',
-    href: '/get-involved/mentors',
+    links: [
+      { text: 'Become a mentor', href: '/get-involved/mentors' },
+      { text: 'Become a sponsor', href: '/get-involved/sponsors' },
+    ],
     color: 'text-purple-500',
   },
 ]
@@ -33,14 +33,14 @@ const CTA_ITEMS = [
 export function CTABand() {
   return (
     <section
-      className='border-t border-[#E8E8E4] px-8 py-16 md:px-16'
-      style={{ backgroundColor: '#f7f7f4' }}
+      className='border-t border-[#e8e8e8] px-8 py-16 md:px-16'
+      style={{ backgroundColor: '#f8f8f8' }}
     >
       <div className='mx-auto max-w-[1312px]'>
-        <div className='grid grid-cols-1 divide-y divide-[#E8E8E4] md:grid-cols-3 md:divide-x md:divide-y-0'>
+        <div className='grid grid-cols-1 divide-y divide-[#e8e8e8] md:grid-cols-3 md:divide-x md:divide-y-0'>
           {CTA_ITEMS.map((item, i) => (
             <div
-              key={item.href}
+              key={item.audience}
               className={[
                 'flex flex-col gap-5 py-10 md:py-0',
                 i > 0 ? 'md:pl-12' : '',
@@ -60,12 +60,17 @@ export function CTABand() {
               <p className='font-sans text-base leading-6 text-gray-500'>
                 {item.description}
               </p>
-              <Link
-                href={item.href}
-                className={`font-sans text-base font-semibold ${item.color} hover:underline`}
-              >
-                {item.linkText} →
-              </Link>
+              <div className='flex flex-wrap gap-x-5 gap-y-2'>
+                {item.links.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`font-mono text-[11px] uppercase tracking-[0.06em] ${item.color} hover:underline`}
+                  >
+                    {link.text} →
+                  </Link>
+                ))}
+              </div>
             </div>
           ))}
         </div>

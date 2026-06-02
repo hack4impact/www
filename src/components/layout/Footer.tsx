@@ -6,7 +6,6 @@ const ORGANIZATION_LINKS = [
   { label: 'Chapters', href: '/work/chapters' },
   { label: 'Projects', href: '/work/projects' },
   { label: 'Partners', href: '/work/partners' },
-  { label: 'Brand', href: '/brand' },
 ]
 
 const GET_INVOLVED_LINKS = [
@@ -30,7 +29,7 @@ export default function Footer() {
                 alt='Hack4Impact'
                 width={96}
                 height={96}
-                className='h-24 w-24 brightness-0 opacity-70'
+                className='h-24 w-24 opacity-70 brightness-0'
               />
             </Link>
             <a
@@ -53,7 +52,7 @@ export default function Footer() {
           {/* Right: nav columns */}
           <div className='flex gap-12 md:gap-16'>
             <div>
-              <p className='mb-5 font-mono text-[10px] uppercase tracking-[0.12em] text-gray-400'>
+              <p className='mb-5 font-mono text-[10px] tracking-[0.12em] text-gray-400 uppercase'>
                 Organization
               </p>
               <ul className='space-y-3'>
@@ -70,7 +69,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className='mb-5 font-mono text-[10px] uppercase tracking-[0.12em] text-gray-400'>
+              <p className='mb-5 font-mono text-[10px] tracking-[0.12em] text-gray-400 uppercase'>
                 Get Involved
               </p>
               <ul className='space-y-3'>
@@ -94,8 +93,8 @@ export default function Footer() {
       <div className='border-t border-[#E8E8E4] px-8 py-4 md:px-16'>
         <div className='mx-auto flex max-w-[1312px] items-center justify-between'>
           <p className='font-mono text-[10px] tracking-[0.04em] text-gray-400'>
-            © {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for Impact · EIN
-            81-0790890
+            © {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for Impact
+            · EIN 81-0790890
           </p>
           <p className='font-mono text-[10px] tracking-[0.04em] text-gray-400'>
             501(c)(3) Public Charity
