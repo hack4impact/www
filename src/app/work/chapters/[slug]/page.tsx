@@ -1,8 +1,6 @@
 import { notFound } from 'next/navigation'
-import { Separator } from '@base-ui/react/separator'
 import { notionApi } from '@/lib/notion'
 import { ProjectsTable } from '@/components/ui/ProjectsTable'
-import { LinkCard } from '@/components/ui/LinkCard'
 import { contentfulApi } from '@/lib/contentful'
 import Image from 'next/image'
 
@@ -68,22 +66,16 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       </section>
 
       {/* Stats bar */}
-      <section className='border-b border-[#e8e8e8] px-8 md:px-16'>
+      <section className='px-8 md:px-16'>
         <div className='mx-auto flex max-w-[1312px]'>
           {[
             { value: chapter.memberCount, label: 'Active Members' },
             { value: chapter.projectCount, label: 'Projects Delivered' },
             { value: chapter.founded || '—', label: 'Year Founded' },
-            { value: chapter.status || '—', label: 'Status' },
-          ].map((stat, i, arr) => (
+          ].map((stat) => (
             <div
               key={stat.label}
-              className={[
-                'flex flex-1 flex-col items-center justify-center gap-1.5 py-7',
-                i < arr.length - 1 ? 'border-r border-[#e8e8e8]' : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
+              className='flex flex-1 flex-col items-center justify-center gap-1.5 border-r border-[#e8e8e8] py-7'
             >
               <span className='font-serif text-[32px] font-light leading-[40px] tracking-[-0.01em] text-black'>
                 {stat.value}
@@ -93,42 +85,97 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
               </span>
             </div>
           ))}
-        </div>
-      </section>
 
-      {/* Content */}
-      <section className='px-8 py-12 md:px-16'>
-        <div className='mx-auto max-w-[1312px]'>
-          {/* Description */}
-          <p className='mb-8 font-serif text-lg md:text-xl'>{chapter.description}</p>
+          {/* Status */}
+          <div
+            className={[
+              'flex flex-1 flex-col items-center justify-center gap-2 py-7',
+              chapter.website || chapter.github || chapter.instagram
+                ? 'border-r border-[#e8e8e8]'
+                : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+          >
+            {chapter.status ? (
+              <span
+                className={[
+                  'rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em]',
+                  chapter.status === 'Active'
+                    ? 'bg-green-50 text-green-600'
+                    : chapter.status === 'Forming'
+                      ? 'bg-orange-50 text-orange-600'
+                      : 'bg-gray-100 text-gray-500',
+                ].join(' ')}
+              >
+                {chapter.status}
+              </span>
+            ) : (
+              <span className='font-serif text-[32px] font-light leading-[40px] tracking-[-0.01em] text-black'>
+                —
+              </span>
+            )}
+            <span className='font-mono text-[11px] uppercase tracking-[0.1em] text-gray-500'>
+              Status
+            </span>
+          </div>
 
-          <Separator className='mb-8 border-t border-gray-300' />
-
-          {/* Link Cards */}
+          {/* Links */}
           {(chapter.website || chapter.github || chapter.instagram) && (
-            <div className='mb-8 flex flex-wrap gap-4'>
+            <div className='flex flex-1 flex-col items-center justify-center gap-2 py-7'>
               {chapter.website && (
-                <LinkCard label='Website' href={chapter.website} className='flex-1' />
+                <a
+                  href={chapter.website}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='group flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-black transition-colors hover:text-blue-500'
+                >
+                  <span>Website</span>
+                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>↗</span>
+                </a>
               )}
               {chapter.github && (
-                <LinkCard label='GitHub' href={chapter.github} className='flex-1' />
+                <a
+                  href={chapter.github}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='group flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-black transition-colors hover:text-blue-500'
+                >
+                  <span>GitHub</span>
+                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>↗</span>
+                </a>
               )}
               {chapter.instagram && (
-                <LinkCard label='Instagram' href={chapter.instagram} className='flex-1' />
+                <a
+                  href={chapter.instagram}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='group flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-black transition-colors hover:text-blue-500'
+                >
+                  <span>Instagram</span>
+                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>↗</span>
+                </a>
               )}
             </div>
           )}
-
-          {/* Projects */}
-          {chapterProjects.length > 0 && (
-            <>
-              <Separator className='mb-8 border-t border-gray-300' />
-              <h2 className='mb-4 font-sans text-xl md:text-2xl'>Projects</h2>
-              <ProjectsTable projects={chapterProjects} hideChapterFilter />
-            </>
-          )}
         </div>
       </section>
+
+      {/* Content + Projects */}
+      <section className='border-t border-[#e8e8e8] px-8 py-8 md:px-16'>
+        <div className='mx-auto max-w-[1312px]'>
+          <p className='font-serif text-lg md:text-xl'>{chapter.description}</p>
+        </div>
+      </section>
+
+      {chapterProjects.length > 0 && (
+        <section className='px-8 pb-12 md:px-16'>
+          <div className='mx-auto max-w-[1312px]'>
+            <h2 className='mb-6 font-sans text-xl md:text-2xl'>Projects</h2>
+            <ProjectsTable projects={chapterProjects} hideChapterFilter />
+          </div>
+        </section>
+      )}
     </>
   )
 }
