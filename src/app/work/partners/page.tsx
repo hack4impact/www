@@ -14,7 +14,7 @@ export default async function PartnersPage() {
     <>
       {/* Page header */}
       <section
-        className='border-b border-[#E8E8E4] px-8 pb-12 pt-14 md:px-16'
+        className='border-b border-[#E8E8E4] px-8 pt-14 pb-12 md:px-16'
         style={{
           backgroundColor: '#ffffff',
           backgroundImage:
@@ -24,7 +24,7 @@ export default async function PartnersPage() {
         <div className='mx-auto max-w-[1312px]'>
           <div className='flex items-baseline justify-between pb-4'>
             <p
-              className='font-mono text-[11px] uppercase tracking-[0.12em]'
+              className='font-mono text-[11px] tracking-[0.12em] uppercase'
               style={{ color: '#7C5CDB' }}
             >
               Nonprofit Partners
@@ -33,11 +33,11 @@ export default async function PartnersPage() {
               {partners.length} organizations
             </p>
           </div>
-          <h1 className='pb-4 font-serif text-[40px] font-light leading-[48px] tracking-[-0.02em] text-black'>
+          <h1 className='pb-4 font-serif text-[40px] leading-[48px] font-light tracking-[-0.02em] text-black'>
             The organizations we serve
           </h1>
           <p className='font-sans text-base leading-6 text-gray-500'>
-            From local food banks to global advocacy groups — every partner
+            From local food banks to global advocacy groups, every partner
             receives high-quality software at no cost.
           </p>
         </div>

@@ -117,17 +117,19 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
         </div>
       </div>
 
-      <div className='mt-10 grid grid-cols-2 gap-3 md:grid-cols-4'>
-        {filtered.map((project, i) => (
-          <ProjectCard key={project.id} project={project} colorIndex={i} />
-        ))}
-      </div>
+      <div className='mt-6 max-h-[72vh] overflow-y-auto pr-1'>
+        <div className='grid grid-cols-2 gap-3 md:grid-cols-4'>
+          {filtered.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
 
-      {filtered.length === 0 && (
-        <p className='mt-16 text-center font-sans text-base text-gray-400'>
-          No projects match the selected filters.
-        </p>
-      )}
+        {filtered.length === 0 && (
+          <p className='mt-16 text-center font-sans text-base text-gray-400'>
+            No projects match the selected filters.
+          </p>
+        )}
+      </div>
     </div>
   )
 }
