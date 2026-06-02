@@ -1,11 +1,85 @@
+import Image from 'next/image'
 import { type ReactNode } from 'react'
 import { SplitHero } from '@/components/ui/SplitHero'
 import { CardGrid } from '@/components/ui/CardGrid'
-import { GridTable } from '@/components/ui/GridTable'
 import { CTABand } from '@/components/ui/CTABand'
 import { contentfulApi } from '@/lib/contentful'
+import type { BoardTeamMember } from '@/lib/types'
 import { Leaf, Compass, Accessibility } from 'iconoir-react'
 import { iconProps } from '@/lib/constants'
+
+function TeamCard({ member }: { member: BoardTeamMember }) {
+  const initials = member.name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase()
+  const href = member.email
+    ? `mailto:${member.email}`
+    : (member.website ?? undefined)
+  const linkLabel = member.email ?? member.website
+
+  return (
+    <div>
+      <div className='relative mb-3 aspect-square w-full overflow-hidden rounded bg-[#eeeeec]'>
+        {member.imageUrl ? (
+          <Image
+            src={member.imageUrl}
+            alt={member.name}
+            fill
+            className='object-cover'
+            sizes='(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
+          />
+        ) : (
+          <div className='flex h-full w-full items-center justify-center'>
+            <span className='font-serif text-2xl font-light text-gray-400 italic'>
+              {initials}
+            </span>
+          </div>
+        )}
+      </div>
+      <p className='font-sans text-sm font-medium text-black'>{member.name}</p>
+      <p className='mt-0.5 font-sans text-sm text-gray-500'>{member.title}</p>
+      {href && linkLabel && (
+        <a
+          href={href}
+          target={member.email ? undefined : '_blank'}
+          rel={member.email ? undefined : 'noopener noreferrer'}
+          className='mt-1 block font-sans text-xs text-blue-500 hover:underline'
+        >
+          {linkLabel}
+        </a>
+      )}
+    </div>
+  )
+}
+
+function TeamGroup({
+  label,
+  members,
+  id,
+}: {
+  label: string
+  members: BoardTeamMember[]
+  id?: string
+}) {
+  return (
+    <div id={id} className={id ? 'scroll-mt-8' : ''}>
+      <div className='mb-8 flex items-center gap-4'>
+        <p className='shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
+          {label}
+        </p>
+        <div className='h-px flex-1 bg-[#e8e8e8]' />
+      </div>
+      <div className='grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4'>
+        {members.map((m) => (
+          <TeamCard key={m.name} member={m} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const valuesIcons: Record<string, ReactNode> = {
   Leaf: <Leaf {...iconProps} />,
@@ -76,51 +150,27 @@ export default async function AboutPage() {
       </section>
 
       {/* Team Sections */}
-      <section className='px-8 py-16 md:px-12 md:py-24'>
-        <GridTable
-          id='operations-team'
-          heading='Operations Team'
-          columns={['Name', 'Title', 'Contact']}
-          rows={operationsTeam.map((m) => ({
-            cells: [
-              { text: m.name },
-              { text: m.title },
-              {
-                text: m.email ?? '',
-                href: m.email ? `mailto:${m.email}` : undefined,
-              },
-            ],
-          }))}
-          className='mb-16'
-        />
+      <section className='px-8 py-16 md:px-16 md:py-24'>
+        <div className='mx-auto max-w-[1312px]'>
+          <div className='mb-16'>
+            <p className='mb-3 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
+              The People
+            </p>
+            <h2 className='font-serif text-[40px] font-light leading-[48px] tracking-[-0.02em] text-black italic'>
+              Our team
+            </h2>
+          </div>
 
-        <GridTable
-          heading='Board of Directors'
-          columns={['Name', 'Title', 'Contact']}
-          rows={boardOfDirectors.map((m) => ({
-            cells: [
-              { text: m.name },
-              { text: m.title },
-              {
-                text: m.email ?? '',
-                href: m.email ? `mailto:${m.email}` : undefined,
-              },
-            ],
-          }))}
-          className='mb-16'
-        />
-
-        <GridTable
-          heading='Advisory Board'
-          columns={['Name', 'Title', 'Website']}
-          rows={advisoryBoard.map((m) => ({
-            cells: [
-              { text: m.name },
-              { text: m.title },
-              { text: m.website ?? '', href: m.website },
-            ],
-          }))}
-        />
+          <div className='space-y-16'>
+            <TeamGroup
+              id='operations-team'
+              label='Operations Team'
+              members={operationsTeam}
+            />
+            <TeamGroup label='Board of Directors' members={boardOfDirectors} />
+            <TeamGroup label='Advisory Board' members={advisoryBoard} />
+          </div>
+        </div>
       </section>
 
       <CTABand />

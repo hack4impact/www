@@ -49,6 +49,9 @@ export function mapBoardTeamMember(item: any): BoardTeamMember {
     title: f.title,
     email: f.email || undefined,
     website: f.website || undefined,
+    imageUrl: f.image?.fields?.file?.url
+      ? buildContentfulImageUrl(`https:${f.image.fields.file.url}`, { w: 400, h: 400, q: 80 })
+      : undefined,
   }
 }
 

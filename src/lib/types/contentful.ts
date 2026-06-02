@@ -21,6 +21,7 @@ export interface BoardTeamMember {
   title: string
   email?: string
   website?: string
+  imageUrl?: string
 }
 
 export interface Value {
