@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Card } from '@/components/ui/Card'
 import { InfoCard } from '@/lib/types/contentful'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
+import { cn } from '@/lib/utils'
 
 const gridContainerVariants = staggerContainer(0.15)
 const cardVariants = fadeInUp()
@@ -33,12 +34,13 @@ export function CardGrid({
       : 'grid-cols-1 lg:grid-cols-3'
 
   return (
-    <section className={`px-8 md:px-12 py-16 md:py-24 ${className}`}>
+    <section className={cn('px-8 py-16 md:px-12 md:py-24', className)}>
       {heading && (
         <motion.h2
-          className={`font-sans text-center ${
-            description ? 'text-2xl md:text-3xl mb-4' : 'text-3xl mb-12'
-          }`}
+          className={cn(
+            'text-center font-sans',
+            description ? 'mb-4 text-2xl md:text-3xl' : 'mb-12 text-3xl',
+          )}
           variants={headerVariants}
           initial='hidden'
           whileInView='visible'
@@ -49,7 +51,7 @@ export function CardGrid({
       )}
       {description && (
         <motion.p
-          className='font-serif text-gray-600 text-center max-w-2xl mx-auto mb-12'
+          className='mx-auto mb-12 max-w-2xl text-center font-serif text-gray-600'
           variants={headerVariants}
           initial='hidden'
           whileInView='visible'
@@ -59,7 +61,7 @@ export function CardGrid({
         </motion.p>
       )}
       <motion.div
-        className={`grid ${gridCols} gap-8`}
+        className={cn('grid gap-8', gridCols)}
         variants={gridContainerVariants}
         initial='hidden'
         whileInView='visible'

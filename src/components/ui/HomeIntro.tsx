@@ -53,7 +53,7 @@ export function HomeIntro({ heroImageUrl }: HomeIntroProps) {
 
         <motion.p
           variants={itemVariants}
-          className='mt-6 max-w-[560px] text-center font-sans text-lg leading-7 text-[#4a5568]'
+          className='mt-6 max-w-[560px] text-center font-sans text-lg leading-7 text-text-muted'
         >
           Student teams building free software for nonprofits. Connecting
           technical skills with community need.
