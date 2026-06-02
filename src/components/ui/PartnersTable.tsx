@@ -100,7 +100,7 @@ export function PartnersTable({ partners }: PartnersTableProps) {
       </div>
 
       <div className='mt-6 max-h-[72vh] overflow-y-auto pr-1'>
-        <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6'>
+        <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
           {filtered.map((partner) => (
             <PartnerCard key={partner.id} partner={partner} />
           ))}

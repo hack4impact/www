@@ -139,7 +139,7 @@ export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsT
       </div>
 
       <div className='mt-6 max-h-[72vh] overflow-y-auto pr-1'>
-        <div className='grid grid-cols-2 gap-3 md:grid-cols-4'>
+        <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'>
           {filtered.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

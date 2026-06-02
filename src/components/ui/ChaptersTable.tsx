@@ -143,7 +143,7 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
         </div>
       </div>
 
-      <div className='mt-10 grid grid-cols-2 gap-3 md:grid-cols-4'>
+      <div className='mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'>
         {filtered.map((chapter) => (
           <ChapterCard
             key={chapter.id}
