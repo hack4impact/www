@@ -16,9 +16,10 @@ const SORT_OPTIONS = [
 
 interface ProjectsTableProps {
   projects: Project[]
+  hideChapterFilter?: boolean
 }
 
-export function ProjectsTable({ projects }: ProjectsTableProps) {
+export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsTableProps) {
   const [focusArea, setFocusArea] = useState('all')
   const [chapter, setChapter] = useState('all')
   const [year, setYear] = useState('all')
@@ -112,12 +113,14 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
           onValueChange={setFocusArea}
           options={focusAreaOptions}
         />
-        <FilterSelect
-          label='Chapter'
-          value={chapter}
-          onValueChange={setChapter}
-          options={chapterOptions}
-        />
+        {!hideChapterFilter && (
+          <FilterSelect
+            label='Chapter'
+            value={chapter}
+            onValueChange={setChapter}
+            options={chapterOptions}
+          />
+        )}
         <FilterSelect
           label='Year'
           value={year}

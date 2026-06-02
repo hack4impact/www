@@ -10,10 +10,12 @@ export function LinkCard({ label, href, className = '' }: LinkCardProps) {
       href={href}
       target='_blank'
       rel='noopener noreferrer'
-      className={`p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors ${className}`}
+      className={`group flex items-center justify-between gap-6 border border-[#e8e8e8] px-5 py-4 transition-colors hover:border-gray-400 ${className}`}
     >
-      <p className='font-sans text-base mb-1'>{label}</p>
-      <p className='font-serif text-gray-500 text-sm truncate'>{href}</p>
+      <span className='font-mono text-[11px] uppercase tracking-[0.12em] text-black'>
+        {label}
+      </span>
+      <span className='text-gray-400 transition-colors group-hover:text-black'>↗</span>
     </a>
   )
 }

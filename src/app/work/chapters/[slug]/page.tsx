@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import { Separator } from '@base-ui/react/separator'
 import { notionApi } from '@/lib/notion'
-import { ChapterProjects } from '@/components/ui/ChapterProjects'
+import { ProjectsTable } from '@/components/ui/ProjectsTable'
 import { LinkCard } from '@/components/ui/LinkCard'
 import { contentfulApi } from '@/lib/contentful'
 import Image from 'next/image'
@@ -30,110 +29,104 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
   return (
     <>
-      {/* Intro - Two column */}
-      <section className='grid min-h-[50vh] grid-cols-1 md:grid-cols-2'>
-        <div className='relative aspect-[4/3] min-h-64 bg-gradient-to-br from-green-100 to-blue-200 md:aspect-auto md:min-h-0'>
-          {chapterImage && (
-            <Image
-              fill
-              className='object-cover object-top pt-5'
-              src={chapterImage}
-              alt={`An image of ${chapter.name}'s student volunteers`}
-            />
-          )}
+      {/* Page header */}
+      <section
+        className='relative overflow-hidden border-b border-[#E8E8E4] px-8 pb-14 pt-16 md:px-16'
+        style={{
+          backgroundColor: '#FFFFFF',
+          backgroundImage:
+            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(59.6% -0.045 -0.169 / 10%) 0%, oklab(0% 0 0 / 0%) 60%)',
+          backgroundOrigin: 'border-box',
+        }}
+      >
+        <div className='mx-auto max-w-[1312px]'>
+          <p className='mb-6 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
+            Our Chapters
+          </p>
+          <h1>
+            <span className='block font-serif text-[40px] font-light leading-[1.1] tracking-[-0.02em] text-black md:text-[56px] md:leading-[62px]'>
+              Hack4Impact
+            </span>
+            <span className='block font-serif text-[40px] font-light italic leading-[1.1] tracking-[-0.02em] text-blue-500 md:text-[56px] md:leading-[62px]'>
+              {chapter.university}
+            </span>
+          </h1>
         </div>
 
-        {/* Header content */}
-        <div className='flex flex-col items-start justify-center bg-white p-8 md:p-12'>
-          <div className='mb-2 flex items-center gap-2 font-serif text-base'>
-            <span className='text-gray-600'>{chapter.location}</span>
-            {chapter.location && chapter.founded && (
-              <span className='text-gray-400'>·</span>
-            )}
-            {chapter.founded && (
-              <span className='text-gray-600'>Est. {chapter.founded}</span>
-            )}
+        {chapterImage && (
+          <div className='absolute inset-y-0 right-0 hidden w-1/3 md:block'>
+            <Image
+              fill
+              className='object-cover'
+              style={{ objectPosition: 'center 30%' }}
+              src={chapterImage}
+              alt={`${chapter.name} chapter`}
+              sizes='53vw'
+            />
           </div>
-          <h1 className='max-w-lg font-sans text-3xl md:text-5xl'>
-            {chapter.name}
-          </h1>
+        )}
+      </section>
+
+      {/* Stats bar */}
+      <section className='border-b border-[#e8e8e8] px-8 md:px-16'>
+        <div className='mx-auto flex max-w-[1312px]'>
+          {[
+            { value: chapter.memberCount, label: 'Active Members' },
+            { value: chapter.projectCount, label: 'Projects Delivered' },
+            { value: chapter.founded || '—', label: 'Year Founded' },
+            { value: chapter.status || '—', label: 'Status' },
+          ].map((stat, i, arr) => (
+            <div
+              key={stat.label}
+              className={[
+                'flex flex-1 flex-col items-center justify-center gap-1.5 py-7',
+                i < arr.length - 1 ? 'border-r border-[#e8e8e8]' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
+              <span className='font-serif text-[32px] font-light leading-[40px] tracking-[-0.01em] text-black'>
+                {stat.value}
+              </span>
+              <span className='font-mono text-[11px] uppercase tracking-[0.1em] text-gray-500'>
+                {stat.label}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Content */}
-      <section className='p-8 md:px-24 md:py-12'>
-        {/* Back link */}
-        <div className='mb-8'>
-          <Link
-            href='/work/chapters'
-            className='inline-flex items-center gap-2 font-sans text-gray-600 hover:text-gray-900'
-          >
-            <span>←</span>
-            <span>Back to chapters</span>
-          </Link>
-        </div>
+      <section className='px-8 py-12 md:px-16'>
+        <div className='mx-auto max-w-[1312px]'>
+          {/* Description */}
+          <p className='mb-8 font-serif text-lg md:text-xl'>{chapter.description}</p>
 
-        <div className='grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr] lg:gap-16'>
-          {/* Sidebar - Stats */}
-          <aside className='flex flex-row gap-8 font-serif lg:flex-col lg:gap-0 lg:pr-8'>
-            <div className='lg:mb-6'>
-              <p className='text-sm text-gray-500'>Members</p>
-              <p className='font-sans text-2xl'>{chapter.memberCount}</p>
+          <Separator className='mb-8 border-t border-gray-300' />
+
+          {/* Link Cards */}
+          {(chapter.website || chapter.github || chapter.instagram) && (
+            <div className='mb-8 flex flex-wrap gap-4'>
+              {chapter.website && (
+                <LinkCard label='Website' href={chapter.website} className='flex-1' />
+              )}
+              {chapter.github && (
+                <LinkCard label='GitHub' href={chapter.github} className='flex-1' />
+              )}
+              {chapter.instagram && (
+                <LinkCard label='Instagram' href={chapter.instagram} className='flex-1' />
+              )}
             </div>
-            <div className='lg:mb-6'>
-              <p className='text-sm text-gray-500'>Projects</p>
-              <p className='font-sans text-2xl'>{chapter.projectCount}</p>
-            </div>
-            <div>
-              <p className='text-sm text-gray-500'>University</p>
-              <p className='font-sans'>{chapter.university}</p>
-            </div>
-          </aside>
+          )}
 
-          {/* Main content */}
-          <article className='font-serif'>
-            {/* Description */}
-            <p className='mb-8 text-lg md:text-xl'>{chapter.description}</p>
-
-            {/* Divider */}
-            <Separator className='mb-8 border-t border-gray-300' />
-
-            {/* Link Cards */}
-            {(chapter.website || chapter.github || chapter.instagram) && (
-              <div className='mb-8 flex flex-wrap gap-4'>
-                {chapter.website && (
-                  <LinkCard
-                    label='Website'
-                    href={chapter.website}
-                    className='flex-1'
-                  />
-                )}
-                {chapter.github && (
-                  <LinkCard
-                    label='GitHub'
-                    href={chapter.github}
-                    className='flex-1'
-                  />
-                )}
-                {chapter.instagram && (
-                  <LinkCard
-                    label='Instagram'
-                    href={chapter.instagram}
-                    className='flex-1'
-                  />
-                )}
-              </div>
-            )}
-
-            {/* Projects Table */}
-            {chapterProjects.length > 0 && (
-              <>
-                <Separator className='mb-8 border-t border-gray-300' />
-                <h2 className='mb-4 font-sans text-xl md:text-2xl'>Projects</h2>
-                <ChapterProjects projects={chapterProjects} />
-              </>
-            )}
-          </article>
+          {/* Projects */}
+          {chapterProjects.length > 0 && (
+            <>
+              <Separator className='mb-8 border-t border-gray-300' />
+              <h2 className='mb-4 font-sans text-xl md:text-2xl'>Projects</h2>
+              <ProjectsTable projects={chapterProjects} hideChapterFilter />
+            </>
+          )}
         </div>
       </section>
     </>
