@@ -26,56 +26,74 @@ export function ProjectsTable({ projects }: ProjectsTableProps) {
 
   const focusAreaOptions = useMemo(() => {
     const tags = new Set<string>()
+    let hasNone = false
     for (const p of projects) {
       if (p.tag) tags.add(p.tag)
+      else hasNone = true
     }
     return [
       { value: 'all', label: 'All' },
       ...Array.from(tags)
         .sort()
         .map((t) => ({ value: t, label: t })),
+      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
     ]
   }, [projects])
 
   const chapterOptions = useMemo(() => {
     const chapters = new Set<string>()
+    let hasNone = false
     for (const p of projects) {
       if (p.chapter) chapters.add(p.chapter)
+      else hasNone = true
     }
     return [
       { value: 'all', label: 'All' },
       ...Array.from(chapters)
         .sort()
         .map((c) => ({ value: c, label: c })),
+      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
     ]
   }, [projects])
 
   const yearOptions = useMemo(() => {
     const years = new Set<string>()
+    let hasNone = false
     for (const p of projects) {
       if (p.year) years.add(p.year)
+      else hasNone = true
     }
     return [
       { value: 'all', label: 'All' },
       ...Array.from(years)
         .sort((a, b) => b.localeCompare(a))
         .map((y) => ({ value: y, label: y })),
+      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
     ]
   }, [projects])
 
   const filtered = useMemo(() => {
     let list = [...projects]
-    if (focusArea !== 'all') list = list.filter((p) => p.tag === focusArea)
-    if (chapter !== 'all') list = list.filter((p) => p.chapter === chapter)
-    if (year !== 'all') list = list.filter((p) => p.year === year)
+    if (focusArea === '__none__') list = list.filter((p) => !p.tag)
+    else if (focusArea !== 'all') list = list.filter((p) => p.tag === focusArea)
+    if (chapter === '__none__') list = list.filter((p) => !p.chapter)
+    else if (chapter !== 'all') list = list.filter((p) => p.chapter === chapter)
+    if (year === '__none__') list = list.filter((p) => !p.year)
+    else if (year !== 'all') list = list.filter((p) => p.year === year)
 
     list.sort((a, b) => {
       if (sort === 'year-desc') {
-        const diff = (b.year ?? '').localeCompare(a.year ?? '')
+        if (!a.year && !b.year) return a.title.localeCompare(b.title)
+        if (!a.year) return 1
+        if (!b.year) return -1
+        const diff = b.year.localeCompare(a.year)
         return diff !== 0 ? diff : a.title.localeCompare(b.title)
       }
       if (sort === 'year-asc') {
-        const diff = (a.year ?? '').localeCompare(b.year ?? '')
+        if (!a.year && !b.year) return a.title.localeCompare(b.title)
+        if (!a.year) return 1
+        if (!b.year) return -1
+        const diff = a.year.localeCompare(b.year)
         return diff !== 0 ? diff : a.title.localeCompare(b.title)
       }
       if (sort === 'name-asc') return a.title.localeCompare(b.title)

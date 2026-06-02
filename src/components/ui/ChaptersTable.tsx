@@ -43,8 +43,10 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
 
   const statusOptions = useMemo(() => {
     const statuses = new Set<string>()
+    let hasNone = false
     for (const c of chapters) {
       if (c.status) statuses.add(c.status)
+      else hasNone = true
     }
     const sorted = Array.from(statuses).sort(
       (a, b) => statusPriority(a) - statusPriority(b),
@@ -52,41 +54,51 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
     return [
       { value: 'all', label: 'All' },
       ...sorted.map((s) => ({ value: s, label: s })),
+      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
     ]
   }, [chapters])
 
   const regionOptions = useMemo(() => {
     const states = new Set<string>()
+    let hasNone = false
     for (const c of chapters) {
       const s = parseState(c.location ?? '')
       if (s) states.add(s)
+      else hasNone = true
     }
     return [
       { value: 'all', label: 'All' },
       ...Array.from(states)
         .sort()
         .map((s) => ({ value: s, label: s })),
+      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
     ]
   }, [chapters])
 
   const estOptions = useMemo(() => {
     const years = new Set<string>()
+    let hasNone = false
     for (const c of chapters) {
       if (c.founded) years.add(c.founded)
+      else hasNone = true
     }
     return [
       { value: 'all', label: 'All' },
       ...Array.from(years)
         .sort()
         .map((y) => ({ value: y, label: y })),
+      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
     ]
   }, [chapters])
 
   const filtered = useMemo(() => {
     let list = [...chapters]
-    if (status !== 'all') list = list.filter((c) => c.status === status)
-    if (region !== 'all') list = list.filter((c) => parseState(c.location ?? '') === region)
-    if (est !== 'all') list = list.filter((c) => c.founded === est)
+    if (status === '__none__') list = list.filter((c) => !c.status)
+    else if (status !== 'all') list = list.filter((c) => c.status === status)
+    if (region === '__none__') list = list.filter((c) => !parseState(c.location ?? ''))
+    else if (region !== 'all') list = list.filter((c) => parseState(c.location ?? '') === region)
+    if (est === '__none__') list = list.filter((c) => !c.founded)
+    else if (est !== 'all') list = list.filter((c) => c.founded === est)
 
     list.sort((a, b) => {
       if (sort === 'status') {
@@ -96,8 +108,8 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
       if (sort === 'name-asc') return a.name.localeCompare(b.name)
       if (sort === 'name-desc') return b.name.localeCompare(a.name)
       const nullFallback = sort === 'year-asc' ? '9999' : '0000'
-      const aYear = a.founded ?? nullFallback
-      const bYear = b.founded ?? nullFallback
+      const aYear = a.founded || nullFallback
+      const bYear = b.founded || nullFallback
       return sort === 'year-asc' ? aYear.localeCompare(bYear) : bYear.localeCompare(aYear)
     })
 

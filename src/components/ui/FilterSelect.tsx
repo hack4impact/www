@@ -47,10 +47,11 @@ export function FilterSelect({
           <Select.Popup
             className={cn(
               'select-popup',
-              'overflow-hidden rounded-lg border border-black/[0.07] bg-[#ffffff] py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.07)]',
+              'overflow-hidden rounded-lg border border-black/[0.07] bg-[#ffffff] shadow-[0_8px_24px_rgba(0,0,0,0.07)]',
             )}
             style={{ minWidth: 'var(--anchor-width)' }}
           >
+            <div className='max-h-[220px] overflow-y-auto py-1.5'>
             {options.map((opt) => (
               <Select.Item
                 key={opt.value}
@@ -64,6 +65,7 @@ export function FilterSelect({
                 <Select.ItemText>{opt.label}</Select.ItemText>
               </Select.Item>
             ))}
+            </div>
           </Select.Popup>
         </Select.Positioner>
       </Select.Portal>

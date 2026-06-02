@@ -24,39 +24,50 @@ export function PartnersTable({ partners }: PartnersTableProps) {
 
   const focusAreaOptions = useMemo(() => {
     const subjects = new Set<string>()
+    let hasNone = false
     for (const p of partners) {
-      for (const s of p.subjects ?? []) subjects.add(s)
+      if (p.subjects?.length) for (const s of p.subjects) subjects.add(s)
+      else hasNone = true
     }
     return [
       { value: 'all', label: 'All' },
       ...Array.from(subjects)
         .sort()
         .map((s) => ({ value: s, label: s })),
+      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
     ]
   }, [partners])
 
   const orgTypeOptions = useMemo(() => {
     const types = new Set<string>()
+    let hasNone = false
     for (const p of partners) {
-      for (const t of p.organizationTypes ?? []) types.add(t)
+      if (p.organizationTypes?.length) for (const t of p.organizationTypes) types.add(t)
+      else hasNone = true
     }
     return [
       { value: 'all', label: 'All' },
       ...Array.from(types)
         .sort()
         .map((t) => ({ value: t, label: t })),
+      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
     ]
   }, [partners])
 
   const filtered = useMemo(() => {
     let list = [...partners]
-    if (focusArea !== 'all') list = list.filter((p) => p.subjects?.includes(focusArea))
-    if (orgType !== 'all') list = list.filter((p) => p.organizationTypes?.includes(orgType))
+    if (focusArea === '__none__') list = list.filter((p) => !p.subjects?.length)
+    else if (focusArea !== 'all') list = list.filter((p) => p.subjects?.includes(focusArea))
+    if (orgType === '__none__') list = list.filter((p) => !p.organizationTypes?.length)
+    else if (orgType !== 'all') list = list.filter((p) => p.organizationTypes?.includes(orgType))
 
     list.sort((a, b) => {
       if (sort === 'name-asc') return a.name.localeCompare(b.name)
       if (sort === 'name-desc') return b.name.localeCompare(a.name)
-      return (b.projectCount ?? 0) - (a.projectCount ?? 0)
+      // projects-desc: treat missing as -1 so they fall below zero-count partners
+      const bCount = b.projectCount ?? -1
+      const aCount = a.projectCount ?? -1
+      return bCount !== aCount ? bCount - aCount : a.name.localeCompare(b.name)
     })
 
     return list
