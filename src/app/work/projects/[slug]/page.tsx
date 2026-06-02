@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { notionApi } from '@/lib/notion'
 import { cn } from '@/lib/utils'
+import { CTABand } from '@/components/ui/CTABand'
 import type { TeamMember, ProjectSection } from '@/lib/types/project'
 
 interface ProjectPageProps {
