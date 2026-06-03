@@ -1,4 +1,4 @@
-import { SplitHero } from '@/components/ui/SplitHero'
+import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
@@ -30,13 +30,14 @@ export default async function MentorsPage() {
 
   return (
     <>
-      <SplitHero
-        tag='Mentors'
+      <GetInvolvedHeader
+        label='Mentors'
         heading='Mentor with Hack4Impact'
         description="Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student's career and a nonprofit's future."
         buttonText='Get involved'
         buttonHref='#sign-up'
-        gradient='from-purple-100 to-purple-200'
+        accentColor='text-purple-600'
+        gradientOklab='96.5% 0.010 -0.025'
       />
 
       {tasks && (

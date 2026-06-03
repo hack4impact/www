@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
-import { SplitHero } from '@/components/ui/SplitHero'
+import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
@@ -25,14 +25,15 @@ export default async function StudentsPage() {
 
   return (
     <>
-      <SplitHero
-        tag='Students'
+      <GetInvolvedHeader
+        label='Students'
         heading='Start a Hack4Impact Chapter'
         description='Bring Hack4Impact to your campus. Found a chapter, build a team of student technologists, and create real software for nonprofits in your community.'
         buttonText='Get started'
         buttonHref='#start'
-        gradient='from-green-100 to-blue-200'
-        image={studentBanner || undefined}
+        accentColor='text-green-600'
+        gradientOklab='96.5% -0.025 0.015'
+        image={studentBanner ?? undefined}
         alt='A close up of a student speaking into a microphone looking outwards while giving a lecture'
       />
 

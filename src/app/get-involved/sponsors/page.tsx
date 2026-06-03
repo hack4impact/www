@@ -1,4 +1,4 @@
-import { SplitHero } from '@/components/ui/SplitHero'
+import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
 import { CTABand } from '@/components/ui/CTABand'
 import { StatBar } from '@/components/ui/StatBar'
 import { GridTable } from '@/components/ui/GridTable'
@@ -29,11 +29,10 @@ function formatCost(cost: number): string {
 }
 
 export default async function SponsorsPage() {
-  const [stats, tiers, sponsorProcess, sponsorBanner] = await Promise.all([
+  const [stats, tiers, sponsorProcess] = await Promise.all([
     getStats(),
     contentfulApi.getSponsorshipTiers(),
     contentfulApi.getProcess('Sponsor Process'),
-    contentfulApi.getAssetUrl('sponsor-banner'),
   ])
 
   // Collect all unique benefits in order of first appearance (lowest tier first)
@@ -73,16 +72,14 @@ export default async function SponsorsPage() {
 
   return (
     <>
-      <SplitHero
-        tag='Sponsors'
+      <GetInvolvedHeader
+        label='Sponsors'
         heading='Support Hack4Impact'
         description='Your sponsorship enables student-driven technology for social good. Fund the tools, events, and infrastructure that power our chapters and the nonprofits they serve.'
         buttonText='Become a sponsor'
         buttonHref='#contact'
-        gradient='from-orange-100 to-purple-200'
-        image={sponsorBanner || undefined}
-        imageClassName='object-contain'
-        alt='A hand giving a heart paper cut-out to another hand reaching out to take it.'
+        accentColor='text-orange-600'
+        gradientOklab='97% 0.012 0.020'
       />
 
       <StatBar heading='Our impact' stats={stats} />

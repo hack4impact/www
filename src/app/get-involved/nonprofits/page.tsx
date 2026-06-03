@@ -1,4 +1,4 @@
-import { SplitHero } from '@/components/ui/SplitHero'
+import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
@@ -38,13 +38,14 @@ export default async function NonprofitsPage() {
 
   return (
     <>
-      <SplitHero
-        tag='Nonprofits'
+      <GetInvolvedHeader
+        label='Nonprofits'
         heading='Partner with Hack4Impact'
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
         buttonHref='#apply'
-        gradient='from-pink-300 to-blue-100'
+        accentColor='text-blue-600'
+        gradientOklab='96.5% -0.005 -0.022'
       />
 
       {builds && (

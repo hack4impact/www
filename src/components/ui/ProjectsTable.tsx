@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { Collapsible } from '@base-ui/react/collapsible'
 import { FilterSelect } from './FilterSelect'
 import { ProjectCard } from './ProjectCard'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
@@ -111,59 +112,64 @@ export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsT
 
   return (
     <div>
-      <div className='flex flex-wrap items-center gap-2 border-b border-border-subtle pb-5'>
-        <FilterSelect
-          label='Focus Area'
-          value={focusArea}
-          onValueChange={setFocusArea}
-          options={focusAreaOptions}
-        />
+      {/* Desktop filters */}
+      <div className='hidden items-center gap-2 border-b border-border-subtle pb-5 md:flex'>
+        <FilterSelect label='Focus Area' value={focusArea} onValueChange={setFocusArea} options={focusAreaOptions} />
         {!hideChapterFilter && (
-          <FilterSelect
-            label='Chapter'
-            value={chapter}
-            onValueChange={setChapter}
-            options={chapterOptions}
-          />
+          <FilterSelect label='Chapter' value={chapter} onValueChange={setChapter} options={chapterOptions} />
         )}
-        <FilterSelect
-          label='Year'
-          value={year}
-          onValueChange={setYear}
-          options={yearOptions}
-        />
+        <FilterSelect label='Year' value={year} onValueChange={setYear} options={yearOptions} />
         <div className='ml-auto'>
-          <FilterSelect
-            label='Sort'
-            value={sort}
-            onValueChange={(v) => setSort(v as Sort)}
-            options={SORT_OPTIONS}
-            align='end'
-          />
+          <FilterSelect label='Sort' value={sort} onValueChange={(v) => setSort(v as Sort)} options={SORT_OPTIONS} align='end' />
         </div>
       </div>
 
-      <div className='mt-6 max-h-[72vh] overflow-y-auto pr-1'>
-        <motion.div
-          className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4'
-          variants={gridVariants}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true, amount: 0.05 }}
-        >
-          {filtered.map((project) => (
-            <motion.div key={project.id} variants={itemVariants}>
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {filtered.length === 0 && (
-          <p className='mt-16 text-center font-sans text-base text-gray-400'>
-            No projects match the selected filters.
-          </p>
-        )}
+      {/* Mobile filters */}
+      <div className='border-b border-border-subtle pb-5 md:hidden'>
+        <Collapsible.Root>
+          <div className='flex items-center justify-between'>
+            <Collapsible.Trigger className='group flex cursor-pointer items-center gap-2 rounded-[6px] border border-gray-300 px-3.5 py-2 font-mono text-[10px] tracking-[0.06em] uppercase text-gray-600 outline-none transition-colors hover:border-gray-400'>
+              Filters
+              <svg width='10' height='10' viewBox='0 0 12 12' fill='none' className='transition-transform duration-200 group-data-[panel-open]:rotate-180'>
+                <path d='M3 4.5L6 7.5L9 4.5' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
+              </svg>
+            </Collapsible.Trigger>
+            <FilterSelect label='Sort' value={sort} onValueChange={(v) => setSort(v as Sort)} options={SORT_OPTIONS} align='end' />
+          </div>
+          <Collapsible.Panel className='overflow-hidden [height:var(--collapsible-panel-height,0px)] [transition:height_0.24s_cubic-bezier(0.16,1,0.3,1)]'>
+            <div className='grid grid-cols-2 gap-2 pt-3'>
+              <FilterSelect label='Focus Area' value={focusArea} onValueChange={setFocusArea} options={focusAreaOptions} />
+              {!hideChapterFilter && (
+                <FilterSelect label='Chapter' value={chapter} onValueChange={setChapter} options={chapterOptions} />
+              )}
+              <FilterSelect label='Year' value={year} onValueChange={setYear} options={yearOptions} />
+            </div>
+          </Collapsible.Panel>
+        </Collapsible.Root>
       </div>
+
+      <motion.div
+        variants={gridVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, amount: 0.05 }}
+      >
+        <div className='mt-6 max-h-[72vh] overflow-y-auto pr-1'>
+          <div className='grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'>
+            {filtered.map((project) => (
+              <motion.div key={project.id} variants={itemVariants}>
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </div>
+
+          {filtered.length === 0 && (
+            <p className='mt-16 text-center font-sans text-base text-gray-400'>
+              No projects match the selected filters.
+            </p>
+          )}
+        </div>
+      </motion.div>
     </div>
   )
 }
