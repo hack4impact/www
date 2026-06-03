@@ -5,7 +5,7 @@ import { Heart, OpenBook, Suitcase } from 'iconoir-react'
 import { CTABand } from '@/components/ui/CTABand'
 import { HomeIntro } from '@/components/ui/HomeIntro'
 import { notionApi, FEATURED_PROJECT_SLUG } from '@/lib/notion'
-import { ProgramCards } from '@/components/ui/ProgramCards'
+import { TabbedCards } from '@/components/ui/TabbedCards'
 import { contentfulApi } from '@/lib/contentful'
 import { iconProps } from '@/lib/constants'
 
@@ -49,11 +49,7 @@ export default async function HomePage() {
           <div className='relative shrink-0'>
             <div
               className='border-border-subtle relative w-full overflow-hidden rounded-[5px] border md:w-[480px]'
-              style={{
-                aspectRatio: '480 / 420',
-                backgroundImage:
-                  'linear-gradient(in oklab 0deg, oklab(97% -0.022 0.020) 0%, oklab(100% 0 0 / 0%) 95%)',
-              }}
+              style={{ aspectRatio: '480 / 420' }}
             >
               {processImageUrl && (
                 <Image
@@ -64,7 +60,6 @@ export default async function HomePage() {
                   sizes='(max-width: 768px) calc(100vw - 4rem), 480px'
                 />
               )}
-              <div className='pointer-events-none absolute bottom-0 left-1/2 h-2/3 w-[110%] -translate-x-1/2 bg-[#E2DED6] mix-blend-luminosity' />
             </div>
             <div className='absolute -top-[5px] -left-[5px] size-[10px] rounded-[1px] bg-gray-300' />
             <div className='absolute -top-[5px] -right-[5px] size-[10px] rounded-[1px] bg-gray-300' />
@@ -102,13 +97,10 @@ export default async function HomePage() {
       )}
 
       {/* Programs Section */}
-      {programs && (
-        <ProgramCards items={programs.cards} icons={programsIcons} />
-      )}
+      {programs && <TabbedCards items={programs.cards} icons={programsIcons} />}
 
       {/* Quote Callout Section */}
       <section className='relative mt-32 flex flex-col lg:flex-row'>
-        {/* Left: gradient panel stretches to right panel height */}
         <div
           className='relative flex-shrink-0 lg:w-1/3'
           style={{
@@ -130,7 +122,6 @@ export default async function HomePage() {
           )}
         </div>
 
-        {/* Right: quote */}
         <div className='bg-bg-subtle flex flex-1 flex-col justify-center px-8 py-12 lg:p-20'>
           <p className='mb-7 font-mono text-[11px] tracking-[0.12em] text-gray-500 uppercase'>
             In their words

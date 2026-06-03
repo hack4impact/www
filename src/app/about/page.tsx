@@ -1,12 +1,9 @@
 import Image from 'next/image'
-import { type ReactNode } from 'react'
 import { SplitHero } from '@/components/ui/SplitHero'
-import { CardGrid } from '@/components/ui/CardGrid'
+import { TabbedCards } from '@/components/ui/TabbedCards'
 import { CTABand } from '@/components/ui/CTABand'
 import { contentfulApi } from '@/lib/contentful'
 import type { BoardTeamMember } from '@/lib/types'
-import { Leaf, Compass, Accessibility } from 'iconoir-react'
-import { iconProps } from '@/lib/constants'
 
 function TeamCard({ member }: { member: BoardTeamMember }) {
   const initials = member.name
@@ -22,25 +19,25 @@ function TeamCard({ member }: { member: BoardTeamMember }) {
 
   return (
     <div>
-      <div className='bg-bg-subtle relative mb-3 aspect-square w-full overflow-hidden rounded'>
+      <div className='bg-bg-subtle relative mb-2 aspect-square w-full overflow-hidden rounded'>
         {member.imageUrl ? (
           <Image
             src={member.imageUrl}
             alt={member.name}
             fill
             className='object-cover'
-            sizes='(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
+            sizes='(max-width: 768px) 25vw, (max-width: 1024px) 20vw, 16vw'
           />
         ) : (
           <div className='flex h-full w-full items-center justify-center'>
-            <span className='font-serif text-2xl font-light text-gray-400 italic'>
+            <span className='font-serif text-xl font-light text-gray-400 italic'>
               {initials}
             </span>
           </div>
         )}
       </div>
-      <p className='font-sans text-sm font-medium text-black'>{member.name}</p>
-      <p className='mt-0.5 font-sans text-sm text-gray-500'>{member.title}</p>
+      <p className='font-sans text-xs font-medium text-black'>{member.name}</p>
+      <p className='mt-0.5 font-sans text-xs text-gray-500'>{member.title}</p>
       {href && linkLabel && (
         <a
           href={href}
@@ -66,25 +63,19 @@ function TeamGroup({
 }) {
   return (
     <div id={id} className={id ? 'scroll-mt-8' : ''}>
-      <div className='mb-8 flex items-center gap-4'>
+      <div className='mb-5 flex items-center gap-4'>
         <p className='shrink-0 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
           {label}
         </p>
         <div className='bg-border-subtle h-px flex-1' />
       </div>
-      <div className='grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4'>
+      <div className='grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5'>
         {members.map((m) => (
           <TeamCard key={m.name} member={m} />
         ))}
       </div>
     </div>
   )
-}
-
-const valuesIcons: Record<string, ReactNode> = {
-  Leaf: <Leaf {...iconProps} />,
-  Compass: <Compass {...iconProps} />,
-  Accessibility: <Accessibility {...iconProps} />,
 }
 
 export default async function AboutPage() {
@@ -121,11 +112,11 @@ export default async function AboutPage() {
       />
 
       {values && (
-        <CardGrid
-          heading='Our values'
-          icons={valuesIcons}
+        <TabbedCards
           items={values.cards}
-          className='xl:mx-auto xl:max-w-[80vw]'
+          label='Our values'
+          heading='What we stand for'
+          cardLabel='Value'
         />
       )}
 
@@ -150,9 +141,9 @@ export default async function AboutPage() {
       </section>
 
       {/* Team Sections */}
-      <section className='px-8 py-16 md:px-16 md:py-24'>
+      <section className='px-8 py-12 md:px-16 md:py-16'>
         <div className='mx-auto max-w-[1312px]'>
-          <div className='mb-16'>
+          <div className='mb-10'>
             <p className='mb-3 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
               The People
             </p>
@@ -161,7 +152,7 @@ export default async function AboutPage() {
             </h2>
           </div>
 
-          <div className='space-y-16'>
+          <div className='space-y-10'>
             <TeamGroup
               id='operations-team'
               label='Operations Team'

@@ -1,17 +1,14 @@
 import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
-import { CardGrid } from '@/components/ui/CardGrid'
 import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
 import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
-import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
-import { iconProps } from '@/lib/constants'
 
 const testimonials = [
   {
     quote:
-      'The impact of this project allows our organization to serve more communities, better meet our partner’s needs, and empower individuals to revitalize their endangered languages.',
+      "The impact of this project allows our organization to serve more communities, better meet our partner's needs, and empower individuals to revitalize their endangered languages.",
     name: 'Stephanie Witkowski',
     title: ' Executive Director / CEO of 7000 Languages',
   },
@@ -23,17 +20,10 @@ const testimonials = [
   },
 ]
 
-const buildsIcons = {
-  WebWindow: <WebWindow {...iconProps} />,
-  SmartphoneDevice: <SmartphoneDevice {...iconProps} />,
-  StatsReport: <StatsReport {...iconProps} />,
-}
-
 export default async function NonprofitsPage() {
-  const [faqs, nonprofitProcess, builds, nonprofitBanner] = await Promise.all([
+  const [faqs, nonprofitProcess, nonprofitBanner] = await Promise.all([
     contentfulApi.getFAQs('Nonprofit Questions'),
     contentfulApi.getProcess('Nonprofit Process'),
-    contentfulApi.getInfoCards('Build Types'),
     contentfulApi.getAssetUrl('nonprofit-banner'),
   ])
 
@@ -59,13 +49,15 @@ export default async function NonprofitsPage() {
             numbered={nonprofitProcess.numbered}
             label='For nonprofits'
             title={nonprofitProcess.title ?? 'Our process'}
-            accentColor='text-blue-600'
+            accentColor='text-blue-500'
           />
         </section>
       )}
 
-      {/* Testimonials */}
-      <TestimonialBlock testimonials={testimonials} accentColor='text-blue-600' />
+      <TestimonialBlock
+        testimonials={testimonials}
+        accentColor='text-blue-600'
+      />
 
       <FAQList
         heading='What to expect'
@@ -73,7 +65,6 @@ export default async function NonprofitsPage() {
         accentColor='text-blue-600'
       />
 
-      {/* Apply CTA */}
       <CTABand />
     </>
   )

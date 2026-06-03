@@ -1,11 +1,8 @@
 import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
-import { CardGrid } from '@/components/ui/CardGrid'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
 import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
-import { Puzzle, ChatBubbleQuestion, TaskList } from 'iconoir-react'
-import { iconProps } from '@/lib/constants'
 
 const testimonials = [
   {
@@ -16,16 +13,9 @@ const testimonials = [
   },
 ]
 
-const tasksIcons = {
-  TaskList: <TaskList {...iconProps} />,
-  ChatBubbleQuestion: <ChatBubbleQuestion {...iconProps} />,
-  Puzzle: <Puzzle {...iconProps} />,
-}
-
 export default async function MentorsPage() {
-  const [faqs, tasks, mentorBanner] = await Promise.all([
+  const [faqs, mentorBanner] = await Promise.all([
     contentfulApi.getFAQs('Mentor Questions'),
-    contentfulApi.getInfoCards('Mentor Tasks'),
     contentfulApi.getAssetUrl('mentor-banner'),
   ])
 
@@ -43,7 +33,6 @@ export default async function MentorsPage() {
         alt='A mentor working with Hack4Impact students'
       />
 
-      {/* Testimonials */}
       <TestimonialBlock testimonials={testimonials} accentColor='text-purple-600' />
 
       <FAQList
@@ -52,7 +41,6 @@ export default async function MentorsPage() {
         accentColor='text-purple-600'
       />
 
-      {/* Sign Up CTA */}
       <CTABand />
     </>
   )

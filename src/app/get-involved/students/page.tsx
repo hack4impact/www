@@ -1,23 +1,12 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/Button'
 import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
-import { CardGrid } from '@/components/ui/CardGrid'
+import { SplitCTA } from '@/components/ui/SplitCTA'
 import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
 import { contentfulApi } from '@/lib/contentful'
-import { Heart, UserStar, Community } from 'iconoir-react'
-import { iconProps } from '@/lib/constants'
-
-const reasonsIcons = {
-  UserStar: <UserStar {...iconProps} />,
-  Heart: <Heart {...iconProps} />,
-  Community: <Community {...iconProps} />,
-}
 
 export default async function StudentsPage() {
-  const [reasons, faqs, chapterProcess, studentBanner] = await Promise.all([
-    contentfulApi.getInfoCards('Student Reasons'),
+  const [faqs, chapterProcess, studentBanner] = await Promise.all([
     contentfulApi.getFAQs('Student Questions'),
     contentfulApi.getProcess('Starting Chapter Process'),
     contentfulApi.getAssetUrl('student-banner'),
@@ -27,27 +16,42 @@ export default async function StudentsPage() {
     <>
       <GetInvolvedHeader
         label='Students'
-        heading='Start a Hack4Impact Chapter'
-        description='Bring Hack4Impact to your campus. Found a chapter, build a team of student technologists, and create real software for nonprofits in your community.'
-        buttonText='Get started'
-        buttonHref='#start'
+        heading='Become a Part of Hack4Impact'
+        description='Join an existing chapter or start one at your school. Build real software for nonprofits and grow as a technologist and leader.'
         accentColor='text-green-600'
         gradientOklab='96.5% -0.025 0.015'
         image={studentBanner ?? undefined}
         alt='A close up of a student speaking into a microphone looking outwards while giving a lecture'
       />
 
-      {reasons && (
-        <CardGrid
-          heading='Why start a chapter'
-          items={reasons.cards}
-          icons={reasonsIcons}
-          className='xl:mx-auto xl:max-w-[80vw]'
-        />
-      )}
+      <SplitCTA
+        left={{
+          label: 'Already have a chapter?',
+          heading: "Join your school's chapter.",
+          description:
+            'Many universities already have an active Hack4Impact chapter. If yours does, reach out to them directly — each chapter runs its own applications and recruiting.',
+          linkText: 'Browse all chapters',
+          linkHref: '/work/chapters',
+          linkArrow: '→',
+          color: 'text-green-600',
+        }}
+        right={{
+          label: 'No chapter at your school?',
+          heading: 'Start one from scratch.',
+          description:
+            "If your school doesn't have a chapter yet, you can be the one to start it. H4I national provides everything you need — mentors, resources, and your first nonprofit partner.",
+          linkText: 'How to get started',
+          linkHref: '#start',
+          linkArrow: '↓',
+          color: 'text-gray-700',
+        }}
+      />
 
       {chapterProcess && (
-        <section id='start' className='scroll-mt-8 px-8 py-16 md:px-12 md:py-24'>
+        <section
+          id='start'
+          className='scroll-mt-8 px-8 py-16 md:px-12 md:py-24'
+        >
           <StepsList
             steps={chapterProcess.steps}
             numbered={chapterProcess.numbered}
@@ -57,20 +61,6 @@ export default async function StudentsPage() {
           />
         </section>
       )}
-
-      {/* Existing Chapters */}
-      <section className='bg-gray-50 px-8 py-16 text-center md:px-12 md:py-24'>
-        <h2 className='mb-4 font-sans text-2xl md:text-3xl'>
-          Looking to join an existing chapter?
-        </h2>
-        <p className='mb-6 font-serif text-gray-600'>
-          We have chapters at universities across the country. Find one near
-          you.
-        </p>
-        <Link href='/work/chapters'>
-          <Button>Browse chapters</Button>
-        </Link>
-      </section>
 
       <FAQList items={faqs} accentColor='text-green-600' />
 
