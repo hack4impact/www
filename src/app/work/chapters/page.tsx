@@ -1,19 +1,9 @@
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
 import { ChaptersTable } from '@/components/ui/ChaptersTable'
-import { CardGrid } from '@/components/ui/CardGrid'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
 import { WorkHeader } from '@/components/ui/WorkHeader'
-import { Code, ColorFilter, Agile, KanbanBoard } from 'iconoir-react'
-import { iconProps } from '@/lib/constants'
-
-const rolesIcons = {
-  Code: <Code {...iconProps} />,
-  ColorFilter: <ColorFilter {...iconProps} />,
-  Agile: <Agile {...iconProps} />,
-  KanbanBoard: <KanbanBoard {...iconProps} />,
-}
 
 export default async function ChaptersPage() {
   const [chapters, roles, faqs] = await Promise.all([
@@ -48,17 +38,6 @@ export default async function ChaptersPage() {
           <ChaptersTable chapters={chapters} images={images} />
         </div>
       </section>
-
-      {roles && (
-        <CardGrid
-          heading='Join a chapter'
-          description='Each chapter is made up of students filling different roles. Here are the positions you can apply for at your local chapter.'
-          icons={rolesIcons}
-          items={roles.cards}
-          columns={4}
-          className='xl:mx-auto xl:max-w-[80vw]'
-        />
-      )}
 
       <FAQList items={faqs} />
 

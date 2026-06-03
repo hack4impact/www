@@ -29,7 +29,7 @@ export default async function ProjectsPage() {
         </div>
       </section>
 
-      <FAQList items={faqs} />
+      <FAQList items={faqs} accentColor='text-green-600' />
 
       <CTABand />
     </>

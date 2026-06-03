@@ -52,21 +52,12 @@ export default async function NonprofitsPage() {
         imageClassName='scale-125 origin-bottom'
       />
 
-      {builds && (
-        <CardGrid
-          heading='What we build'
-          items={builds.cards}
-          icons={buildsIcons}
-          className='xl:mx-auto xl:max-w-[80vw]'
-        />
-      )}
-
       {nonprofitProcess && (
         <section className='px-8 py-16 md:px-12 md:py-24'>
           <StepsList
             steps={nonprofitProcess.steps}
             numbered={nonprofitProcess.numbered}
-            label='How it works'
+            label='For nonprofits'
             title={nonprofitProcess.title ?? 'Our process'}
             accentColor='text-blue-600'
           />
@@ -76,7 +67,11 @@ export default async function NonprofitsPage() {
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />
 
-      <FAQList heading='What to expect' items={faqs} accentColor='text-blue-600' />
+      <FAQList
+        heading='What to expect'
+        items={faqs}
+        accentColor='text-blue-600'
+      />
 
       {/* Apply CTA */}
       <CTABand />

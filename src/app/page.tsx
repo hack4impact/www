@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Heart, OpenBook, Suitcase } from 'iconoir-react'
-import { StepsList } from '@/components/ui/StepsList'
 import { CTABand } from '@/components/ui/CTABand'
 import { HomeIntro } from '@/components/ui/HomeIntro'
 import { notionApi, FEATURED_PROJECT_SLUG } from '@/lib/notion'
@@ -45,26 +44,59 @@ export default async function HomePage() {
 
       {/* Process Section */}
       {mainProcess && (
-        <section className='px-8 py-16 md:px-12 md:py-24 xl:mx-auto xl:max-w-[80vw]'>
-          <h2 className='mx-auto mb-12 max-w-lg text-center font-sans text-2xl md:text-3xl'>
-            {mainProcess.title!}
-          </h2>
-          <div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
-            <div className='relative aspect-[4/3] bg-gradient-to-br from-purple-100 to-blue-200 lg:aspect-auto'>
+        <section className='flex flex-col gap-12 border-t border-border-subtle px-8 py-16 md:flex-row md:items-center md:gap-20 md:px-16 md:py-20'>
+          {/* Left: image with decorative frame */}
+          <div className='relative shrink-0'>
+            <div
+              className='relative w-full overflow-hidden rounded-[5px] border border-border-subtle md:w-[480px]'
+              style={{
+                aspectRatio: '480 / 420',
+                backgroundImage:
+                  'linear-gradient(in oklab 0deg, oklab(97% -0.022 0.020) 0%, oklab(100% 0 0 / 0%) 95%)',
+              }}
+            >
               {processImageUrl && (
                 <Image
                   fill
-                  className='object-cover'
                   src={processImageUrl}
-                  alt='A group photo of students from the Cal Poly chapter'
-                  sizes='(max-width: 1024px) calc(100vw - 4rem), (min-width: 1280px) calc(40vw), calc(50vw - 6rem)'
+                  alt='Students working together on a nonprofit project'
+                  className='object-cover'
+                  sizes='(max-width: 768px) calc(100vw - 4rem), 480px'
                 />
               )}
+              <div className='pointer-events-none absolute bottom-0 left-1/2 h-2/3 w-[110%] -translate-x-1/2 bg-[#E2DED6] mix-blend-luminosity' />
             </div>
-            <StepsList
-              steps={mainProcess.steps}
-              numbered={mainProcess.numbered}
-            />
+            <div className='absolute -top-[5px] -left-[5px] size-[10px] rounded-[1px] bg-gray-300' />
+            <div className='absolute -top-[5px] -right-[5px] size-[10px] rounded-[1px] bg-gray-300' />
+          </div>
+
+          {/* Right: label, title, steps */}
+          <div className='flex flex-col justify-center'>
+            <p className='mb-5 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
+              How it works
+            </p>
+            <h2 className='mb-12 font-serif text-[42px] font-light leading-[48px] tracking-[-0.01em] text-black'>
+              {mainProcess.title}
+            </h2>
+            <div className='flex flex-col gap-8'>
+              {mainProcess.steps.map((step, i) => (
+                <div key={step.name} className='flex items-start gap-6'>
+                  <div className='w-6 shrink-0 pt-0.5'>
+                    <span className='font-mono text-[11px] tracking-[0.08em] text-blue-500'>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <div className='flex flex-col gap-1'>
+                    <p className='font-sans text-base underline decoration-1 [text-underline-position:from-font] text-black'>
+                      {step.name}
+                    </p>
+                    <p className='font-sans text-[15px] leading-6 text-gray-500'>
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}

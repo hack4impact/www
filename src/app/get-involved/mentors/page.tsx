@@ -43,19 +43,14 @@ export default async function MentorsPage() {
         alt='A mentor working with Hack4Impact students'
       />
 
-      {tasks && (
-        <CardGrid
-          heading='What mentors do'
-          items={tasks.cards}
-          icons={tasksIcons}
-          className='xl:mx-auto xl:max-w-[80vw]'
-        />
-      )}
-
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />
 
-      <FAQList heading='What to expect' items={faqs} accentColor='text-purple-600' />
+      <FAQList
+        heading='What to expect'
+        items={faqs}
+        accentColor='text-purple-600'
+      />
 
       {/* Sign Up CTA */}
       <CTABand />
