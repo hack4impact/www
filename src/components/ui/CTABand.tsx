@@ -5,44 +5,47 @@ const CTA_ITEMS = [
   {
     audience: 'For Students',
     headline: 'Code for communities.',
-    description:
-      'Join a chapter, work on real projects, and build technology that makes a difference.',
+    description: 'Join a chapter and build real software for nonprofits.',
     links: [{ text: 'Join a chapter', href: '/get-involved/students' }],
     color: 'text-blue-500',
   },
   {
     audience: 'For Nonprofits',
     headline: 'Work with students.',
-    description:
-      'Get a dedicated student team to build the tool your mission needs — at no cost.',
+    description: 'Get a student team to build your next tool — free of charge.',
     links: [{ text: 'Submit a project', href: '/get-involved/nonprofits' }],
     color: 'text-green-600',
   },
   {
-    audience: 'For Mentors & Sponsors',
-    headline: 'Support the mission.',
-    description:
-      'Guide student teams, fund chapters, or partner with us to grow our reach.',
-    links: [
-      { text: 'Become a mentor', href: '/get-involved/mentors' },
-      { text: 'Become a sponsor', href: '/get-involved/sponsors' },
-    ],
+    audience: 'For Mentors',
+    headline: 'Guide the next generation.',
+    description: 'Share your expertise with student teams doing real work.',
+    links: [{ text: 'Become a mentor', href: '/get-involved/mentors' }],
     color: 'text-purple-600',
+  },
+  {
+    audience: 'For Sponsors',
+    headline: 'Fund the mission.',
+    description: 'Power the chapters and projects driving tech for good.',
+    links: [{ text: 'Become a sponsor', href: '/get-involved/sponsors' }],
+    color: 'text-orange-500',
   },
 ]
 
 export function CTABand() {
   return (
-    <section className='border-t border-border-subtle bg-bg-cta px-8 py-16 md:px-16'>
+    <section className='border-t border-border-subtle bg-bg-cta px-8 py-10 md:px-16'>
       <div className='mx-auto max-w-[1312px]'>
-        <div className='grid grid-cols-1 divide-y divide-border-subtle md:grid-cols-3 md:divide-x md:divide-y-0'>
+        <div className='grid grid-cols-1 divide-y divide-border-subtle sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:[&>*:nth-child(n+3)]:border-t sm:[&>*:nth-child(n+3)]:border-border-subtle lg:grid-cols-4 lg:[&>*:nth-child(n+3)]:border-t-0'>
           {CTA_ITEMS.map((item, i) => (
             <div
               key={item.audience}
               className={cn(
-                'flex flex-col gap-5 py-10 md:py-0',
-                i > 0 && 'md:pl-12',
-                i < 2 && 'md:pr-12',
+                'flex flex-col gap-3 py-8 sm:py-6 lg:py-0',
+                i % 2 !== 0 && 'sm:pl-10',
+                i % 2 === 0 && 'sm:pr-10',
+                i > 0 && 'lg:pl-10',
+                i < 3 && 'lg:pr-10',
               )}
             >
               <p
@@ -53,10 +56,10 @@ export function CTABand() {
               >
                 {item.audience}
               </p>
-              <h2 className='font-serif text-[34px] font-light italic leading-[1.1] tracking-[-0.01em] text-black'>
+              <h2 className='font-serif text-[26px] font-light italic leading-[1.1] tracking-[-0.01em] text-black'>
                 {item.headline}
               </h2>
-              <p className='font-sans text-base leading-6 text-gray-500'>
+              <p className='font-sans text-sm leading-5 text-gray-500'>
                 {item.description}
               </p>
               <div className='flex flex-wrap gap-x-5 gap-y-2'>
