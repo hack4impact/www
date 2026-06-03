@@ -20,6 +20,8 @@ interface GetInvolvedHeaderProps {
   /** When provided, replaces the watermark text with a photo on the right */
   image?: string
   alt?: string
+  /** Extra classes applied to the Next.js Image (e.g. 'scale-110 origin-bottom') */
+  imageClassName?: string
 }
 
 const containerVariants = staggerContainer(0.12, false)
@@ -35,6 +37,7 @@ export function GetInvolvedHeader({
   gradientOklab = '96.5% -0.005 -0.022',
   image,
   alt,
+  imageClassName,
 }: GetInvolvedHeaderProps) {
   return (
     <section
@@ -98,7 +101,7 @@ export function GetInvolvedHeader({
               fill
               src={image}
               alt={alt ?? ''}
-              className='object-contain object-bottom'
+              className={cn('object-contain object-bottom', imageClassName)}
               sizes='(max-width: 1312px) 50vw, 656px'
               priority
             />

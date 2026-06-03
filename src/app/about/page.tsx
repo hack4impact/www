@@ -22,7 +22,7 @@ function TeamCard({ member }: { member: BoardTeamMember }) {
 
   return (
     <div>
-      <div className='relative mb-3 aspect-square w-full overflow-hidden rounded bg-bg-subtle'>
+      <div className='bg-bg-subtle relative mb-3 aspect-square w-full overflow-hidden rounded'>
         {member.imageUrl ? (
           <Image
             src={member.imageUrl}
@@ -67,10 +67,10 @@ function TeamGroup({
   return (
     <div id={id} className={id ? 'scroll-mt-8' : ''}>
       <div className='mb-8 flex items-center gap-4'>
-        <p className='shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
+        <p className='shrink-0 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
           {label}
         </p>
-        <div className='h-px flex-1 bg-border-subtle' />
+        <div className='bg-border-subtle h-px flex-1' />
       </div>
       <div className='grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4'>
         {members.map((m) => (
@@ -93,7 +93,7 @@ export default async function AboutPage() {
     contentfulApi.getInfoCards('Values'),
   ])
 
-  const opsOrder = ['Khoa', 'Govind', 'Brian', 'Sophia']
+  const opsOrder = ['Khoa', 'Govind', 'Brian']
   const operationsTeam = members
     .filter((m) => m.team === 'Operations Team')
     .sort((a, b) => {
@@ -156,7 +156,7 @@ export default async function AboutPage() {
             <p className='mb-3 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
               The People
             </p>
-            <h2 className='font-serif text-[40px] font-light leading-[48px] tracking-[-0.02em] text-black italic'>
+            <h2 className='font-serif text-[40px] leading-[48px] font-light tracking-[-0.02em] text-black italic'>
               Our team
             </h2>
           </div>

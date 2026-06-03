@@ -30,10 +30,11 @@ const buildsIcons = {
 }
 
 export default async function NonprofitsPage() {
-  const [faqs, nonprofitProcess, builds] = await Promise.all([
+  const [faqs, nonprofitProcess, builds, nonprofitBanner] = await Promise.all([
     contentfulApi.getFAQs('Nonprofit Questions'),
     contentfulApi.getProcess('Nonprofit Process'),
     contentfulApi.getInfoCards('Build Types'),
+    contentfulApi.getAssetUrl('nonprofit-banner'),
   ])
 
   return (
@@ -46,6 +47,9 @@ export default async function NonprofitsPage() {
         buttonHref='#apply'
         accentColor='text-blue-600'
         gradientOklab='96.5% -0.005 -0.022'
+        image={nonprofitBanner ?? undefined}
+        alt='Nonprofits partnering with Hack4Impact'
+        imageClassName='scale-125 origin-bottom'
       />
 
       {builds && (
