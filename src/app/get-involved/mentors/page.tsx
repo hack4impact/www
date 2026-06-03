@@ -2,7 +2,7 @@ import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
 import { CardGrid } from '@/components/ui/CardGrid'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
-import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
+import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
 import { Puzzle, ChatBubbleQuestion, TaskList } from 'iconoir-react'
 import { iconProps } from '@/lib/constants'
@@ -44,7 +44,7 @@ export default async function MentorsPage() {
       />
 
       {/* Testimonials */}
-      <TestimonialCarousel testimonials={testimonials} />
+      <TestimonialBlock testimonials={testimonials} accentColor='text-purple-600' />
 
       <FAQList
         heading='What to expect'

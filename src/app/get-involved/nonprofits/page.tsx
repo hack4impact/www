@@ -3,7 +3,7 @@ import { CardGrid } from '@/components/ui/CardGrid'
 import { StepsList } from '@/components/ui/StepsList'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
-import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel'
+import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
 import { SmartphoneDevice, StatsReport, WebWindow } from 'iconoir-react'
 import { iconProps } from '@/lib/constants'
@@ -65,7 +65,7 @@ export default async function NonprofitsPage() {
       )}
 
       {/* Testimonials */}
-      <TestimonialCarousel testimonials={testimonials} />
+      <TestimonialBlock testimonials={testimonials} accentColor='text-blue-600' />
 
       <FAQList
         heading='What to expect'

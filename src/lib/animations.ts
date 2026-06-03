@@ -27,3 +27,17 @@ export function fadeInUp(duration = 0.5): Variants {
     },
   }
 }
+
+export function fadeInForward(duration = 0.6): Variants {
+  return {
+    hidden: { opacity: 0, scale: 0.88 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  }
+}

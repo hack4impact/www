@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { staggerContainer, fadeInUp } from '@/lib/animations'
+import { staggerContainer, fadeInForward } from '@/lib/animations'
 import { Button } from '@/components/ui/Button'
 
 interface HomeIntroProps {
@@ -11,7 +11,7 @@ interface HomeIntroProps {
 }
 
 const containerVariants = staggerContainer(0.2, false)
-const itemVariants = fadeInUp()
+const itemVariants = fadeInForward()
 
 export function HomeIntro({ heroImageUrl }: HomeIntroProps) {
   return (

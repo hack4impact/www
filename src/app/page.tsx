@@ -44,11 +44,11 @@ export default async function HomePage() {
 
       {/* Process Section */}
       {mainProcess && (
-        <section className='flex flex-col gap-12 border-t border-border-subtle px-8 py-16 md:flex-row md:items-center md:gap-20 md:px-16 md:py-20'>
+        <section className='border-border-subtle flex flex-col gap-12 border-t px-8 py-16 md:flex-row md:items-center md:gap-20 md:px-16 md:py-20'>
           {/* Left: image with decorative frame */}
           <div className='relative shrink-0'>
             <div
-              className='relative w-full overflow-hidden rounded-[5px] border border-border-subtle md:w-[480px]'
+              className='border-border-subtle relative w-full overflow-hidden rounded-[5px] border md:w-[480px]'
               style={{
                 aspectRatio: '480 / 420',
                 backgroundImage:
@@ -72,10 +72,10 @@ export default async function HomePage() {
 
           {/* Right: label, title, steps */}
           <div className='flex flex-col justify-center'>
-            <p className='mb-5 font-mono text-[11px] uppercase tracking-[0.12em] text-blue-500'>
+            <p className='mb-5 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
               How it works
             </p>
-            <h2 className='mb-12 font-serif text-[42px] font-light leading-[48px] tracking-[-0.01em] text-black'>
+            <h2 className='mb-12 font-serif text-[42px] leading-[48px] font-light tracking-[-0.01em] text-black'>
               {mainProcess.title}
             </h2>
             <div className='flex flex-col gap-8'>
@@ -87,7 +87,7 @@ export default async function HomePage() {
                     </span>
                   </div>
                   <div className='flex flex-col gap-1'>
-                    <p className='font-sans text-base underline decoration-1 [text-underline-position:from-font] text-black'>
+                    <p className='font-sans text-base text-black underline decoration-1 [text-underline-position:from-font]'>
                       {step.name}
                     </p>
                     <p className='font-sans text-[15px] leading-6 text-gray-500'>
@@ -121,7 +121,7 @@ export default async function HomePage() {
           }}
         >
           {calloutImageUrl && (
-            <div className='relative mx-8 pt-8 lg:absolute lg:-top-32 lg:bottom-0 lg:left-4 lg:right-4 lg:overflow-hidden lg:pt-0'>
+            <div className='relative mx-8 pt-8 lg:absolute lg:-top-32 lg:right-4 lg:bottom-0 lg:left-4 lg:overflow-hidden lg:pt-0'>
               <Image
                 src={calloutImageUrl}
                 alt='A group photo of students from the UPenn chapter'
@@ -135,16 +135,16 @@ export default async function HomePage() {
         </div>
 
         {/* Right: quote */}
-        <div className='flex flex-1 flex-col justify-center bg-bg-subtle px-8 py-12 lg:p-20'>
-          <p className='mb-7 font-mono text-[11px] uppercase tracking-[0.12em] text-gray-500'>
+        <div className='bg-bg-subtle flex flex-1 flex-col justify-center px-8 py-12 lg:p-20'>
+          <p className='mb-7 font-mono text-[11px] tracking-[0.12em] text-gray-500 uppercase'>
             In their words
           </p>
-          <blockquote className='font-serif text-[28px] font-light italic leading-[40px] tracking-[-0.01em] text-black'>
+          <blockquote className='font-serif text-[28px] leading-[40px] font-light tracking-[-0.01em] text-black italic'>
             &ldquo;...the kind of passion for socially-minded engineering our
             industry desperately needs.&rdquo;
           </blockquote>
-          <div className='mt-8 border-t border-border-subtle pt-6'>
-            <p className='font-sans text-[15px] font-medium leading-[18px] text-black'>
+          <div className='border-border-subtle mt-8 border-t pt-6'>
+            <p className='font-sans text-[15px] leading-[18px] font-medium text-black'>
               Javid Fathi
             </p>
             <p className='mt-1 font-mono text-[11px] leading-[14px] tracking-[0.06em] text-gray-500'>
