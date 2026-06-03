@@ -157,6 +157,7 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
       </div>
 
       <motion.div
+        key={`${status}|${region}|${est}|${sort}`}
         className='mt-10 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
         variants={gridVariants}
         initial='hidden'

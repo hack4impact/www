@@ -112,6 +112,7 @@ export function PartnersTable({ partners }: PartnersTableProps) {
       </div>
 
       <motion.div
+        key={`${focusArea}|${orgType}|${sort}`}
         variants={gridVariants}
         initial='hidden'
         whileInView='visible'

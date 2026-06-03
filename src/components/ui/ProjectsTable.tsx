@@ -149,6 +149,7 @@ export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsT
       </div>
 
       <motion.div
+        key={`${focusArea}|${chapter}|${year}|${sort}`}
         variants={gridVariants}
         initial='hidden'
         whileInView='visible'
