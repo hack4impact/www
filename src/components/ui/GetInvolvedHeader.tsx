@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
-import { staggerContainer, fadeInUp } from '@/lib/animations'
 import { cn } from '@/lib/utils'
 
 interface GetInvolvedHeaderProps {
@@ -23,9 +22,6 @@ interface GetInvolvedHeaderProps {
   /** Extra classes applied to the Next.js Image (e.g. 'scale-110 origin-bottom') */
   imageClassName?: string
 }
-
-const containerVariants = staggerContainer(0.12, false)
-const itemVariants = fadeInUp()
 
 export function GetInvolvedHeader({
   label,
@@ -56,39 +52,25 @@ export function GetInvolvedHeader({
           image ? 'grid md:grid-cols-2 md:gap-16' : 'pt-14 pb-14',
         )}
       >
-        {/* Animated text content */}
-        <motion.div
-          className={cn(image && 'pt-14 pb-14')}
-          variants={containerVariants}
-          initial='hidden'
-          animate='visible'
-        >
-          <motion.p
-            variants={itemVariants}
-            className={cn('mb-5 font-mono text-[11px] tracking-[0.12em] uppercase', accentColor)}
-          >
+        {/* Text content */}
+        <div className={cn(image && 'pt-14 pb-14')}>
+          <p className={cn('mb-5 font-mono text-[11px] tracking-[0.12em] uppercase', accentColor)}>
             Get Involved · {label}
-          </motion.p>
-          <motion.h1
-            variants={itemVariants}
-            className='mb-4 font-serif text-[40px] leading-[48px] font-light tracking-[-0.02em] text-black'
-          >
+          </p>
+          <h1 className='mb-4 font-serif text-[40px] leading-[48px] font-light tracking-[-0.02em] text-black'>
             {heading}
-          </motion.h1>
-          <motion.p
-            variants={itemVariants}
-            className='max-w-2xl font-sans text-base leading-6 text-text-muted'
-          >
+          </h1>
+          <p className='max-w-2xl font-sans text-base leading-6 text-text-muted'>
             {description}
-          </motion.p>
+          </p>
           {buttonText && buttonHref && (
-            <motion.div variants={itemVariants} className='mt-8'>
+            <div className='mt-8'>
               <Link href={buttonHref}>
                 <Button>{buttonText}</Button>
               </Link>
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+        </div>
 
         {/* Right side: image or watermark */}
         {image ? (

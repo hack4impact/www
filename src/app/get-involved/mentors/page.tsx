@@ -55,7 +55,7 @@ export default async function MentorsPage() {
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />
 
-      <FAQList heading='What to expect' items={faqs} />
+      <FAQList heading='What to expect' items={faqs} accentColor='text-purple-600' />
 
       {/* Sign Up CTA */}
       <CTABand />

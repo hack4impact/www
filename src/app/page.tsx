@@ -64,7 +64,6 @@ export default async function HomePage() {
             <StepsList
               steps={mainProcess.steps}
               numbered={mainProcess.numbered}
-              stretch
             />
           </div>
         </section>

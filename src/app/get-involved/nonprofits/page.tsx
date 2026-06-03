@@ -63,22 +63,20 @@ export default async function NonprofitsPage() {
 
       {nonprofitProcess && (
         <section className='px-8 py-16 md:px-12 md:py-24'>
-          <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
-            {nonprofitProcess.title ?? 'How it works'}
-          </h2>
-          <div className='mx-auto max-w-3xl'>
-            <StepsList
-              steps={nonprofitProcess.steps}
-              numbered={nonprofitProcess.numbered}
-            />
-          </div>
+          <StepsList
+            steps={nonprofitProcess.steps}
+            numbered={nonprofitProcess.numbered}
+            label='How it works'
+            title={nonprofitProcess.title ?? 'Our process'}
+            accentColor='text-blue-600'
+          />
         </section>
       )}
 
       {/* Testimonials */}
       <TestimonialCarousel testimonials={testimonials} />
 
-      <FAQList heading='What to expect' items={faqs} />
+      <FAQList heading='What to expect' items={faqs} accentColor='text-blue-600' />
 
       {/* Apply CTA */}
       <CTABand />

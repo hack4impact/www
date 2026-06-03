@@ -47,19 +47,14 @@ export default async function StudentsPage() {
       )}
 
       {chapterProcess && (
-        <section
-          id='start'
-          className='scroll-mt-8 px-8 py-16 md:px-12 md:py-24'
-        >
-          <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
-            {chapterProcess.title ?? 'How to start a chapter'}
-          </h2>
-          <div className='mx-auto max-w-3xl'>
-            <StepsList
-              steps={chapterProcess.steps}
-              numbered={chapterProcess.numbered}
-            />
-          </div>
+        <section id='start' className='scroll-mt-8 px-8 py-16 md:px-12 md:py-24'>
+          <StepsList
+            steps={chapterProcess.steps}
+            numbered={chapterProcess.numbered}
+            label='How to start one'
+            title={chapterProcess.title ?? 'Founding a chapter'}
+            accentColor='text-green-600'
+          />
         </section>
       )}
 
@@ -77,7 +72,7 @@ export default async function StudentsPage() {
         </Link>
       </section>
 
-      <FAQList items={faqs} />
+      <FAQList items={faqs} accentColor='text-green-600' />
 
       <CTABand />
     </>
