@@ -23,9 +23,10 @@ const tasksIcons = {
 }
 
 export default async function MentorsPage() {
-  const [faqs, tasks] = await Promise.all([
+  const [faqs, tasks, mentorBanner] = await Promise.all([
     contentfulApi.getFAQs('Mentor Questions'),
     contentfulApi.getInfoCards('Mentor Tasks'),
+    contentfulApi.getAssetUrl('mentor-banner'),
   ])
 
   return (
@@ -38,6 +39,8 @@ export default async function MentorsPage() {
         buttonHref='#sign-up'
         accentColor='text-purple-600'
         gradientOklab='96.5% 0.010 -0.025'
+        image={mentorBanner ?? undefined}
+        alt='A mentor working with Hack4Impact students'
       />
 
       {tasks && (
