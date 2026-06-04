@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { notionApi } from '@/lib/notion'
 import { ProjectsTable } from '@/components/ui/ProjectsTable'
+import { StatBar } from '@/components/ui/StatBar'
 import { contentfulApi } from '@/lib/contentful'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
@@ -66,103 +67,83 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       </section>
 
       {/* Stats bar */}
-      <section className='px-8 md:px-16'>
-        <div className='mx-auto flex max-w-[1312px]'>
-          {/* Status */}
-          <div
-            className={cn(
-              'flex flex-1 flex-col items-center justify-center gap-2 py-7',
-              (chapter.website || chapter.github || chapter.instagram) &&
-                'border-r border-border-subtle',
-            )}
-          >
-            {chapter.status ? (
+      <StatBar
+        variant='bar'
+        stats={[
+          {
+            label: 'Status',
+            value: chapter.status ? (
               <span
-                className={[
+                className={cn(
                   'rounded-full px-3 py-1 font-mono text-[11px] tracking-[0.1em] uppercase',
                   chapter.status === 'Active'
                     ? 'bg-green-50 text-green-600'
                     : chapter.status === 'Forming'
                       ? 'bg-orange-50 text-orange-600'
                       : 'bg-gray-100 text-gray-500',
-                ].join(' ')}
+                )}
               >
                 {chapter.status}
               </span>
             ) : (
-              <span className='font-serif text-[32px] leading-[40px] font-light tracking-[-0.01em] text-black'>
-                —
-              </span>
-            )}
-            <span className='font-mono text-[11px] tracking-[0.1em] text-gray-500 uppercase'>
-              Status
-            </span>
-          </div>
-
-          {[
-            { value: chapter.founded || '—', label: 'Year Founded' },
-            { value: chapter.memberCount, label: 'Active Members' },
-            { value: chapter.projectCount, label: 'Projects Delivered' },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className='flex flex-1 flex-col items-center justify-center gap-1.5 border-r border-border-subtle py-7'
-            >
-              <span className='font-serif text-[32px] leading-[40px] font-light tracking-[-0.01em] text-black'>
-                {stat.value}
-              </span>
-              <span className='font-mono text-[11px] tracking-[0.1em] text-gray-500 uppercase'>
-                {stat.label}
-              </span>
-            </div>
-          ))}
-
-          {/* Links */}
-          {(chapter.website || chapter.github || chapter.instagram) && (
-            <div className='flex flex-1 flex-col items-center justify-center gap-2 py-7'>
-              {chapter.website && (
-                <a
-                  href={chapter.website}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
-                >
-                  <span>Website</span>
-                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
-                    ↗
-                  </span>
-                </a>
-              )}
-              {chapter.github && (
-                <a
-                  href={chapter.github}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
-                >
-                  <span>GitHub</span>
-                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
-                    ↗
-                  </span>
-                </a>
-              )}
-              {chapter.instagram && (
-                <a
-                  href={chapter.instagram}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
-                >
-                  <span>Instagram</span>
-                  <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
-                    ↗
-                  </span>
-                </a>
-              )}
-            </div>
-          )}
-        </div>
-      </section>
+              '—'
+            ),
+          },
+          { label: 'Year Founded', value: chapter.founded || '—' },
+          { label: 'Active Members', value: chapter.memberCount },
+          { label: 'Projects Delivered', value: chapter.projectCount },
+          ...(chapter.website || chapter.github || chapter.instagram
+            ? [
+                {
+                  label: '',
+                  value: (
+                    <div className='flex flex-col items-center gap-2'>
+                      {chapter.website && (
+                        <a
+                          href={chapter.website}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
+                        >
+                          <span>Website</span>
+                          <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                            ↗
+                          </span>
+                        </a>
+                      )}
+                      {chapter.github && (
+                        <a
+                          href={chapter.github}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
+                        >
+                          <span>GitHub</span>
+                          <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                            ↗
+                          </span>
+                        </a>
+                      )}
+                      {chapter.instagram && (
+                        <a
+                          href={chapter.instagram}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
+                        >
+                          <span>Instagram</span>
+                          <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                            ↗
+                          </span>
+                        </a>
+                      )}
+                    </div>
+                  ),
+                },
+              ]
+            : []),
+        ]}
+      />
 
       {/* Content + Projects */}
       <section className='border-t border-border-subtle px-8 py-8 md:px-16'>

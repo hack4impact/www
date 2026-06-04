@@ -35,7 +35,7 @@ export default async function NonprofitsPage() {
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
         buttonHref='#apply'
-        accentColor='text-blue-600'
+        accentColor='text-blue-500'
         gradientOklab='96.5% -0.005 -0.022'
         image={nonprofitBanner ?? undefined}
         alt='Nonprofits partnering with Hack4Impact'
@@ -56,13 +56,13 @@ export default async function NonprofitsPage() {
 
       <TestimonialBlock
         testimonials={testimonials}
-        accentColor='text-blue-600'
+        accentColor='text-blue-500'
       />
 
       <FAQList
         heading='What to expect'
         items={faqs}
-        accentColor='text-blue-600'
+        accentColor='text-blue-500'
       />
 
       <CTABand />
