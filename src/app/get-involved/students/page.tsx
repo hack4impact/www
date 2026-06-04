@@ -21,7 +21,8 @@ export default async function StudentsPage() {
         accentColor='text-green-600'
         gradientOklab='96.5% -0.025 0.015'
         image={studentBanner ?? undefined}
-        alt='A close up of a student speaking into a microphone looking outwards while giving a lecture'
+        alt='A trio of students holding an award'
+        contentClassName='pb-40'
       />
 
       <SplitCTA

@@ -21,6 +21,8 @@ interface GetInvolvedHeaderProps {
   alt?: string
   /** Extra classes applied to the Next.js Image (e.g. 'scale-110 origin-bottom') */
   imageClassName?: string
+  /** Extra classes applied to the text content column (e.g. custom vertical padding) */
+  contentClassName?: string
 }
 
 export function GetInvolvedHeader({
@@ -34,6 +36,7 @@ export function GetInvolvedHeader({
   image,
   alt,
   imageClassName,
+  contentClassName,
 }: GetInvolvedHeaderProps) {
   return (
     <section
@@ -53,7 +56,7 @@ export function GetInvolvedHeader({
         )}
       >
         {/* Text content */}
-        <div className={cn(image && 'pt-14 pb-14')}>
+        <div className={cn(image && 'pt-14 pb-14', contentClassName)}>
           <p className={cn('mb-5 font-mono text-[11px] tracking-[0.12em] uppercase', accentColor)}>
             Get Involved · {label}
           </p>
