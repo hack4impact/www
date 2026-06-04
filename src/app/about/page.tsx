@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { SplitHero } from '@/components/ui/SplitHero'
 import { TabbedCards } from '@/components/ui/TabbedCards'
 import { CTABand } from '@/components/ui/CTABand'
 import { contentfulApi } from '@/lib/contentful'
@@ -103,13 +102,25 @@ export default async function AboutPage() {
 
   return (
     <>
-      <SplitHero
-        tag='About'
-        heading='Creating software to support those supporting their communities'
-        buttonText='Meet the team'
-        buttonHref='#operations-team'
-        gradient='from-blue-100 to-green-200'
-      />
+      <section className='border-b border-border-subtle bg-gradient-to-b from-white via-blue-50 to-blue-100 px-8 pb-16 pt-20 md:px-16 md:pb-20 md:pt-24'>
+        <div className='mx-auto flex max-w-[1312px] flex-col items-center'>
+          <p className='mb-8 text-center font-mono text-xs tracking-widest text-blue-500 uppercase'>
+            About Hack4Impact
+          </p>
+          <h1 className='flex flex-col items-center text-center'>
+            <span className='font-serif text-5xl font-light leading-tight tracking-[-0.02em] text-black md:text-[76px] md:leading-[84px]'>
+              Built by students.
+            </span>
+            <span className='font-serif text-5xl font-light leading-tight tracking-[-0.02em] text-blue-500 italic md:text-[76px] md:leading-[84px]'>
+              For communities.
+            </span>
+          </h1>
+          <p className='mt-8 max-w-[560px] text-center font-sans text-lg leading-7 text-text-muted'>
+            We pair student developers with nonprofits to build impactful
+            technology and develop engineers who use their skills for good.
+          </p>
+        </div>
+      </section>
 
       {values && (
         <TabbedCards
@@ -120,23 +131,51 @@ export default async function AboutPage() {
         />
       )}
 
-      <section className='grid grid-cols-1 lg:grid-cols-2'>
-        <div className='px-8 py-8 lg:px-0 lg:py-12 lg:pl-8'>
-          <div className='aspect-[4/5] w-full bg-gradient-to-br from-orange-100 to-pink-200' />
-        </div>
+      <section className='border-t border-border-decorative px-8 py-12 md:px-16 md:py-16'>
+        <div className='mx-auto max-w-[1312px]'>
+          <div className='flex flex-col gap-10 md:flex-row md:items-start md:gap-16 lg:gap-20'>
+            <div className='relative aspect-[4/5] w-full shrink-0 bg-gradient-to-b from-blue-50 via-blue-100 to-blue-50 md:aspect-auto md:w-[320px] md:self-stretch lg:w-[460px]'>
+              <span className='absolute bottom-4 left-4 font-mono text-[11px] tracking-[0.12em] text-gray-400 uppercase'>
+                Photo or Halftone
+              </span>
+              <span className='absolute -top-1.25 -left-1.25 size-2.5 rounded-[1px] bg-border-decorative' />
+              <span className='absolute -top-1.25 -right-1.25 size-2.5 rounded-[1px] bg-border-decorative' />
+              <span className='absolute -bottom-1.25 -left-1.25 size-2.5 rounded-[1px] bg-border-decorative' />
+              <span className='absolute -bottom-1.25 -right-1.25 size-2.5 rounded-[1px] bg-border-decorative' />
+            </div>
 
-        <div className='flex flex-col items-start justify-center p-8 lg:px-24 lg:py-12'>
-          <h2 className='font-sans text-3xl md:text-4xl'>Our story</h2>
-          <p className='mt-6 font-serif text-base md:mt-8 md:text-lg'>
-            Hack4Impact began at the University of Pennsylvania in 2014 and
-            became an official 501(c)(3) non-profit in 2016. It began as a small
-            group of developers volunteering their skills for local nonprofits.
-            What started as a student organization quickly grew into a
-            nationwide network of chapters, each dedicated to bridging the gap
-            between student technical skills, desires to do good and community
-            needs. Today, we continue that mission, building a community of
-            socially-conscious technologists.
-          </p>
+            <div className='flex flex-col pt-2'>
+              <p className='mb-7 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
+                Our Story
+              </p>
+              <div className='mb-11'>
+                <h2 className='font-serif text-4xl font-light leading-tight tracking-[-0.02em] text-black md:text-[52px] md:leading-[58px]'>
+                  A decade of
+                </h2>
+                <h2 className='font-serif text-4xl font-light leading-tight tracking-[-0.02em] text-blue-500 italic md:text-[52px] md:leading-[58px]'>
+                  building for good.
+                </h2>
+              </div>
+              <div className='mb-12 flex flex-col gap-5'>
+                <p className='font-sans text-base leading-7 text-text-muted md:text-[17px]'>
+                  Hack4Impact was founded in 2014 at the University of
+                  Pennsylvania by a group of students who believed software
+                  could be a force for social good. The idea was simple: pair
+                  student developers with nonprofits that needed technical help
+                  but couldn&apos;t afford it.
+                </p>
+                <p className='font-sans text-base leading-7 text-text-muted md:text-[17px]'>
+                  In 2016, we became a 501(c)(3) nonprofit ourselves —
+                  formalizing the mission and opening the model to universities
+                  nationwide. Today, Hack4Impact chapters operate at universities
+                  across North America.
+                </p>
+              </div>
+              <p className='font-mono text-xs tracking-[0.08em] text-gray-400'>
+                Est. 2014 · University of Pennsylvania
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
