@@ -141,29 +141,6 @@ export default async function HomePage() {
       </section>
 
       {/* Featured Project */}
-      {featuredProject && (
-        <section className='px-8 py-16 md:px-12 md:py-24'>
-          <h2 className='mb-8 text-center font-sans text-2xl md:mb-12 md:text-3xl'>
-            Featured project
-          </h2>
-          <div className='mx-auto grid max-w-4xl grid-cols-1 gap-4 rounded-lg bg-blue-50 p-4 md:grid-cols-2 md:gap-5 md:p-5'>
-            <div className='aspect-[4/3] rounded-md bg-gradient-to-br from-blue-100 to-purple-200' />
-            <div className='flex flex-col justify-center p-2 md:p-3'>
-              <h3 className='mb-3 font-sans text-xl md:text-2xl'>
-                {featuredProject.title}
-              </h3>
-              <p className='mb-6 font-serif text-gray-600'>
-                {featuredProject.description}
-              </p>
-              <div>
-                <Link href={`/work/projects/${featuredProject.slug}`}>
-                  <Button>View project</Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       <CTABand />
     </>
