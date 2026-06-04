@@ -100,29 +100,28 @@ export default async function HomePage() {
       {programs && <TabbedCards items={programs.cards} icons={programsIcons} />}
 
       {/* Quote Callout Section */}
-      <section className='relative mt-32 flex flex-col lg:flex-row'>
+      <section className='relative mt-32 flex flex-col sm:flex-row'>
         <div
-          className='relative flex-shrink-0 lg:w-1/3'
+          className='relative min-h-[360px] flex-shrink-0 sm:w-1/3 sm:min-h-0'
           style={{
             backgroundImage:
               'linear-gradient(in oklab 180deg, oklab(80.2% 0 0 / 0%) 0%, oklab(92.7% -0.010 -0.027) 100%)',
           }}
         >
           {calloutImageUrl && (
-            <div className='relative mx-8 pt-8 lg:absolute lg:-top-32 lg:right-4 lg:bottom-0 lg:left-4 lg:overflow-hidden lg:pt-0'>
+            <div className='absolute -top-32 right-4 bottom-0 left-4 overflow-hidden rounded-[5px]'>
               <Image
                 src={calloutImageUrl}
                 alt='A group photo of students from the UPenn chapter'
-                width={600}
-                height={750}
-                className='w-full rounded-[5px]'
-                style={{ height: 'auto' }}
+                fill
+                className='object-cover object-top'
+                sizes='(max-width: 1024px) 100vw, 33vw'
               />
             </div>
           )}
         </div>
 
-        <div className='bg-bg-subtle flex flex-1 flex-col justify-center px-8 py-12 lg:p-20'>
+        <div className='bg-bg-subtle flex flex-1 flex-col justify-center px-8 py-12 sm:p-20'>
           <p className='mb-7 font-mono text-[11px] tracking-[0.12em] text-gray-500 uppercase'>
             In their words
           </p>
