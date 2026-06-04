@@ -68,7 +68,6 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
       {/* Stats bar */}
       <StatBar
-        variant='bar'
         stats={[
           {
             label: 'Status',

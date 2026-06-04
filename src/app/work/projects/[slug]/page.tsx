@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notionApi } from '@/lib/notion'
 import { cn } from '@/lib/utils'
 import { CTABand } from '@/components/ui/CTABand'
-import type { TeamMember, ProjectSection } from '@/lib/types/project'
+import type { ProjectSection } from '@/lib/types/project'
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
@@ -67,21 +67,6 @@ function SectionRenderer({ section }: { section: ProjectSection }) {
   }
 }
 
-const ROLE_ORDER = ['Tech Lead', 'Project Manager', 'Designer', 'Developer']
-const AVATAR_COLORS = [
-  'var(--color-blue-100)',
-  'var(--color-green-50)',
-  'var(--color-purple-100)',
-]
-
-function sortTeamByRole(team: TeamMember[]): TeamMember[] {
-  return [...team].sort((a, b) => {
-    const ai = ROLE_ORDER.indexOf(a.role)
-    const bi = ROLE_ORDER.indexOf(b.role)
-    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi)
-  })
-}
-
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params
   const project = await notionApi.getProjectBySlug(slug)
@@ -90,7 +75,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound()
   }
 
-  const sortedTeam = sortTeamByRole(project.team)
   const terms = project.duration
     ? project.duration
         .split(',')
@@ -103,10 +87,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       : terms.length === 1
         ? terms[0]
         : `${terms[0]} – ${terms[terms.length - 1]}`
-
-  const teamTotal = sortedTeam.length
-  const COLS = 3
-  const lastRowStart = teamTotal - ((teamTotal % COLS) || COLS)
 
   return (
     <>
@@ -146,7 +126,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       {/* Overview */}
       <section className='border-b border-border-subtle bg-white px-8 py-16 md:px-16 md:py-20'>
-        <div className='mx-auto flex max-w-[1312px] flex-col items-start gap-16 md:flex-row md:gap-20'>
+        <div className='mx-auto max-w-[1312px]'>
+        <div className='flex flex-col items-start gap-16 md:flex-row md:gap-20'>
           {/* Article */}
           <div className='flex min-w-0 flex-1 flex-col'>
             <p className='pb-6 font-mono text-[11px] uppercase tracking-[0.12em] text-green-600'>
@@ -251,62 +232,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Team */}
-      {teamTotal > 0 && (
-        <section className='border-b border-border-subtle bg-white px-8 py-16 md:px-16 md:py-20'>
-          <div className='mx-auto max-w-[1312px]'>
-            <div className='flex items-baseline justify-between border-b border-border-subtle pb-10'>
-              <div className='flex flex-col gap-1.5'>
-                <p className='font-mono text-[11px] uppercase tracking-[0.12em] text-green-600'>
-                  Project Team
-                </p>
-                <h2 className='font-serif text-[32px] font-light leading-[42px] tracking-[-0.01em] text-black md:text-[36px]'>
-                  The students who built it
-                </h2>
-              </div>
-            </div>
-            <div className='grid grid-cols-1 md:grid-cols-3'>
-              {sortedTeam.map((member, i) => {
-                const isLastItem = i === teamTotal - 1
-                const isLastInRow = (i + 1) % COLS === 0 || isLastItem
-                const isInLastRow = i >= lastRowStart
-                return (
-                  <div
-                    key={member.name}
-                    className={cn(
-                      'flex items-start gap-[18px] p-7 border-border-subtle',
-                      !isLastItem && 'border-b',
-                      !isLastInRow && 'md:border-r',
-                      isInLastRow && 'md:border-b-0',
-                    )}
-                  >
-                    <div
-                      className='flex h-12 w-12 shrink-0 items-center justify-center'
-                      style={{
-                        backgroundColor: AVATAR_COLORS[i % AVATAR_COLORS.length],
-                      }}
-                    >
-                      <span className='font-serif text-[26px] font-light leading-none text-blue-600'>
-                        {member.name[0]?.toUpperCase() ?? '?'}
-                      </span>
-                    </div>
-                    <div className='flex flex-col gap-[5px] pt-1'>
-                      <span className='font-sans text-[15px] leading-[18px] text-black'>
-                        {member.name}
-                      </span>
-                      <span className='self-start rounded-full bg-blue-50 px-2 py-[3px] font-mono text-[10px] uppercase leading-3 tracking-[0.1em] text-blue-600'>
-                        {member.role}
-                      </span>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* CTA Band */}
       <CTABand />

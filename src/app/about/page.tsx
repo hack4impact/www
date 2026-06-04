@@ -35,14 +35,14 @@ function TeamCard({ member }: { member: BoardTeamMember }) {
           </div>
         )}
       </div>
-      <p className='font-sans text-xs font-medium text-black'>{member.name}</p>
+      <p className='font-sans text-sm font-medium text-black'>{member.name}</p>
       <p className='mt-0.5 font-sans text-xs text-gray-500'>{member.title}</p>
       {href && linkLabel && (
         <a
           href={href}
           target={member.email ? undefined : '_blank'}
           rel={member.email ? undefined : 'noopener noreferrer'}
-          className='mt-1 block font-sans text-xs text-blue-500 hover:underline'
+          className='mt-1 block font-sans text-sm text-blue-500 hover:underline'
         >
           {linkLabel}
         </a>
@@ -135,7 +135,7 @@ export default async function AboutPage() {
       <section className='border-border-decorative border-t px-8 py-12 md:px-16 md:py-16'>
         <div className='mx-auto max-w-[1312px]'>
           <div className='flex flex-col gap-10 md:flex-row md:items-start md:gap-16 lg:gap-20'>
-            <div className='min-w-0 flex-1 flex flex-col'>
+            <div className='flex min-w-0 flex-1 flex-col'>
               <p className='mb-7 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
                 Our Story
               </p>
@@ -167,7 +167,7 @@ export default async function AboutPage() {
               </p>
             </div>
 
-            <div className='relative shrink-0 w-full md:w-[280px] lg:w-[340px]'>
+            <div className='relative w-full shrink-0 md:w-[280px] lg:w-[340px]'>
               {storyPhotoUrl ? (
                 <Image
                   src={storyPhotoUrl}

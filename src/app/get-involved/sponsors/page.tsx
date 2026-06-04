@@ -20,7 +20,10 @@ async function getStats() {
     { value: volunteerCounts.active, label: 'Active volunteers' },
     { value: doneProjectCount, label: 'Projects completed' },
     { value: partners.length, label: 'Nonprofit partners' },
-    { value: chapters.length, label: 'University chapters' },
+    {
+      value: chapters.filter((c) => c.status === 'Active').length,
+      label: 'University chapters',
+    },
   ]
 }
 
@@ -82,7 +85,7 @@ export default async function SponsorsPage() {
         gradientOklab='97% 0.012 0.020'
       />
 
-      <StatBar heading='Our impact' stats={stats} />
+      <StatBar stats={stats} />
 
       {/* Sponsorship Tiers Table */}
       <section className='px-8 py-16 md:px-12 md:py-24'>
