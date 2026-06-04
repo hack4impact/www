@@ -16,7 +16,7 @@ export default async function ProjectsPage() {
       <WorkHeader
         label='Our Work'
         title='The work we build'
-        countLabel={`${projects.length} projects delivered`}
+        countLabel={`${projects.length} projects`}
         description='Every project is handed off with full source code and no strings or maintenance fees.'
         labelColor='text-green-600'
         gradientOklab='93.5% -0.050 0.016'
