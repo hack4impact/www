@@ -30,6 +30,15 @@ export interface SponsorshipTier {
   benefits: string[]
 }
 
+export interface Sponsor {
+  id: string
+  name: string
+  website?: string
+  tier?: string
+  corporate: boolean
+  logoUrl?: string
+}
+
 export interface FAQ {
   question: string
   answer: string

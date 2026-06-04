@@ -1,6 +1,7 @@
 import type {
   JournalEntry,
   BoardTeamMember,
+  Sponsor,
   SponsorshipTier,
   FAQ,
   ContentfulProcess,
@@ -65,6 +66,21 @@ export function mapSponsorshipTier(item: any): SponsorshipTier {
     name: f.name,
     cost: f.cost,
     benefits,
+  }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function mapSponsor(item: any): Sponsor {
+  const f = item.fields
+  return {
+    id: item.sys.id,
+    name: f.name,
+    website: f.website || undefined,
+    tier: f.tier?.fields?.name || undefined,
+    corporate: f.corporate ?? false,
+    logoUrl: f.logo?.fields?.file?.url
+      ? buildContentfulImageUrl(`https:${f.logo.fields.file.url}`, { w: 400, q: 85 })
+      : undefined,
   }
 }
 

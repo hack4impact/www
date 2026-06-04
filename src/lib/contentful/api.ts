@@ -2,6 +2,7 @@ import { unstable_cache } from 'next/cache'
 import type {
   JournalEntry,
   BoardTeamMember,
+  Sponsor,
   SponsorshipTier,
   FAQ,
   ContentfulProcess,
@@ -11,6 +12,7 @@ import { contentfulClient } from './client'
 import {
   mapEntry,
   mapBoardTeamMember,
+  mapSponsor,
   mapSponsorshipTier,
   mapQuestions,
   mapProcess,
@@ -90,6 +92,26 @@ async function fetchSponsorshipTiers(): Promise<SponsorshipTier[]> {
 export const getSponsorshipTiers = unstable_cache(
   fetchSponsorshipTiers,
   ['contentful-sponsorship-tiers'],
+  { revalidate: 3600 },
+)
+
+async function fetchSponsors(): Promise<Sponsor[]> {
+  try {
+    const response = await contentfulClient.getEntries({
+      content_type: 'sponsor',
+      include: 2,
+      limit: 200,
+    })
+    return response.items.map(mapSponsor)
+  } catch (error) {
+    console.error('Failed to fetch sponsors from Contentful:', error)
+    return []
+  }
+}
+
+export const getSponsors = unstable_cache(
+  fetchSponsors,
+  ['contentful-sponsors'],
   { revalidate: 3600 },
 )
 

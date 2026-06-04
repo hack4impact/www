@@ -9,7 +9,7 @@ export function PartnerCard({ partner }: PartnerCardProps) {
   return (
     <Link
       href={`/work/partners/${partner.slug}`}
-      className='group flex min-h-[96px] flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-3.5 transition-colors hover:border-gray-300'
+      className='group flex h-full min-h-[96px] flex-col items-center justify-center rounded-xl border border-gray-200 bg-white p-3.5 transition-colors hover:border-gray-300'
     >
       <p className='text-center font-sans text-sm leading-tight text-gray-600 transition-colors group-hover:text-black'>
         {partner.name}
