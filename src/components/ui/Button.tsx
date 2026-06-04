@@ -13,8 +13,7 @@ interface ButtonProps extends ComponentProps<typeof BaseButton> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    'bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700',
+  primary: 'bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700',
   secondary:
     'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800',
   outline:
@@ -37,7 +36,7 @@ export function Button({
   return (
     <BaseButton
       className={cn(
-        'inline-flex items-center justify-center rounded-[3px] font-mono tracking-[0.02em] transition-colors disabled:pointer-events-none disabled:opacity-50',
+        'inline-flex items-center justify-center rounded-md font-mono tracking-[0.02em] transition-colors disabled:pointer-events-none disabled:opacity-50',
         variantStyles[variant],
         sizeStyles[size],
         className,
