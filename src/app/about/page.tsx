@@ -78,9 +78,10 @@ function TeamGroup({
 }
 
 export default async function AboutPage() {
-  const [members, values] = await Promise.all([
+  const [members, values, storyPhotoUrl] = await Promise.all([
     contentfulApi.getBoardTeamMembers(),
     contentfulApi.getInfoCards('Values'),
+    contentfulApi.getAssetUrl('our-story-photo'),
   ])
 
   const opsOrder = ['Khoa', 'Govind', 'Brian']
@@ -102,20 +103,20 @@ export default async function AboutPage() {
 
   return (
     <>
-      <section className='border-b border-border-subtle bg-gradient-to-b from-white via-blue-50 to-blue-100 px-8 pb-16 pt-20 md:px-16 md:pb-20 md:pt-24'>
+      <section className='border-border-subtle border-b bg-gradient-to-b from-white via-blue-50 to-blue-100 px-8 pt-20 pb-16 md:px-16 md:pt-24 md:pb-20'>
         <div className='mx-auto flex max-w-[1312px] flex-col items-center'>
           <p className='mb-8 text-center font-mono text-xs tracking-widest text-blue-500 uppercase'>
             About Hack4Impact
           </p>
           <h1 className='flex flex-col items-center text-center'>
-            <span className='font-serif text-5xl font-light leading-tight tracking-[-0.02em] text-black md:text-[76px] md:leading-[84px]'>
+            <span className='font-serif text-5xl leading-tight font-light tracking-[-0.02em] text-black md:text-[76px] md:leading-[84px]'>
               Built by students.
             </span>
-            <span className='font-serif text-5xl font-light leading-tight tracking-[-0.02em] text-blue-500 italic md:text-[76px] md:leading-[84px]'>
+            <span className='font-serif text-5xl leading-tight font-light tracking-[-0.02em] text-blue-500 italic md:text-[76px] md:leading-[84px]'>
               For communities.
             </span>
           </h1>
-          <p className='mt-8 max-w-[560px] text-center font-sans text-lg leading-7 text-text-muted'>
+          <p className='text-text-muted mt-8 max-w-[560px] text-center font-sans text-lg leading-7'>
             We pair student developers with nonprofits to build impactful
             technology and develop engineers who use their skills for good.
           </p>
@@ -131,49 +132,58 @@ export default async function AboutPage() {
         />
       )}
 
-      <section className='border-t border-border-decorative px-8 py-12 md:px-16 md:py-16'>
+      <section className='border-border-decorative border-t px-8 py-12 md:px-16 md:py-16'>
         <div className='mx-auto max-w-[1312px]'>
           <div className='flex flex-col gap-10 md:flex-row md:items-start md:gap-16 lg:gap-20'>
-            <div className='relative aspect-[4/5] w-full shrink-0 bg-gradient-to-b from-blue-50 via-blue-100 to-blue-50 md:aspect-auto md:w-[320px] md:self-stretch lg:w-[460px]'>
-              <span className='absolute bottom-4 left-4 font-mono text-[11px] tracking-[0.12em] text-gray-400 uppercase'>
-                Photo or Halftone
-              </span>
-              <span className='absolute -top-1.25 -left-1.25 size-2.5 rounded-[1px] bg-border-decorative' />
-              <span className='absolute -top-1.25 -right-1.25 size-2.5 rounded-[1px] bg-border-decorative' />
-              <span className='absolute -bottom-1.25 -left-1.25 size-2.5 rounded-[1px] bg-border-decorative' />
-              <span className='absolute -bottom-1.25 -right-1.25 size-2.5 rounded-[1px] bg-border-decorative' />
-            </div>
-
-            <div className='flex flex-col pt-2'>
+            <div className='min-w-0 flex-1 flex flex-col'>
               <p className='mb-7 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
                 Our Story
               </p>
               <div className='mb-11'>
-                <h2 className='font-serif text-4xl font-light leading-tight tracking-[-0.02em] text-black md:text-[52px] md:leading-[58px]'>
+                <h2 className='font-serif text-4xl leading-tight font-light tracking-[-0.02em] text-black md:text-[52px] md:leading-[58px]'>
                   A decade of
                 </h2>
-                <h2 className='font-serif text-4xl font-light leading-tight tracking-[-0.02em] text-blue-500 italic md:text-[52px] md:leading-[58px]'>
+                <h2 className='font-serif text-4xl leading-tight font-light tracking-[-0.02em] text-blue-500 italic md:text-[52px] md:leading-[58px]'>
                   building for good.
                 </h2>
               </div>
               <div className='mb-12 flex flex-col gap-5'>
-                <p className='font-sans text-base leading-7 text-text-muted md:text-[17px]'>
+                <p className='text-text-muted font-sans text-base leading-7 md:text-[17px]'>
                   Hack4Impact was founded in 2014 at the University of
                   Pennsylvania by a group of students who believed software
                   could be a force for social good. The idea was simple: pair
                   student developers with nonprofits that needed technical help
                   but couldn&apos;t afford it.
                 </p>
-                <p className='font-sans text-base leading-7 text-text-muted md:text-[17px]'>
+                <p className='text-text-muted font-sans text-base leading-7 md:text-[17px]'>
                   In 2016, we became a 501(c)(3) nonprofit ourselves —
                   formalizing the mission and opening the model to universities
-                  nationwide. Today, Hack4Impact chapters operate at universities
-                  across North America.
+                  nationwide. Today, Hack4Impact chapters operate at
+                  universities across North America.
                 </p>
               </div>
               <p className='font-mono text-xs tracking-[0.08em] text-gray-400'>
                 Est. 2014 · University of Pennsylvania
               </p>
+            </div>
+
+            <div className='relative shrink-0 w-full md:w-[280px] lg:w-[340px]'>
+              {storyPhotoUrl ? (
+                <Image
+                  src={storyPhotoUrl}
+                  alt='Our story'
+                  width={0}
+                  height={0}
+                  sizes='(max-width: 768px) 100vw, (max-width: 1024px) 260px, 300px'
+                  className='h-auto w-full'
+                />
+              ) : (
+                <div className='aspect-[4/5] bg-gradient-to-b from-blue-50 via-blue-100 to-blue-50' />
+              )}
+              <span className='bg-border-decorative absolute -top-1.25 -left-1.25 size-2.5 rounded-[1px]' />
+              <span className='bg-border-decorative absolute -top-1.25 -right-1.25 size-2.5 rounded-[1px]' />
+              <span className='bg-border-decorative absolute -bottom-1.25 -left-1.25 size-2.5 rounded-[1px]' />
+              <span className='bg-border-decorative absolute -right-1.25 -bottom-1.25 size-2.5 rounded-[1px]' />
             </div>
           </div>
         </div>

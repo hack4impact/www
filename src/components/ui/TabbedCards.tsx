@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Tabs } from '@base-ui/react'
 import { type InfoCard } from '@/lib/types/contentful'
+import { cn } from '@/lib/utils'
 
 interface TabbedCardsProps {
   items: InfoCard[]
@@ -48,22 +49,20 @@ function CardContent({
 }) {
   return (
     <>
-      {icon && <div className={`mb-5 ${accent}`}>{icon}</div>}
-      <p
-        className={`mb-2 font-mono text-[11px] tracking-[0.12em] uppercase ${accent}`}
-      >
+      {icon && <div className={cn('mb-5', accent)}>{icon}</div>}
+      <p className={cn('mb-2 font-mono text-[11px] tracking-[0.12em] uppercase', accent)}>
         {cardLabel} {String(index + 1).padStart(2, '0')}
       </p>
       <h3 className='mb-4 font-serif text-[26px] leading-[34px] font-light tracking-[-0.01em] text-black italic sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px]'>
         {item.name}
       </h3>
-      <p className='max-w-xl font-sans text-base leading-6 text-gray-600'>
+      <p className='max-w-xl font-sans text-base leading-6 text-text-muted'>
         {item.description}
       </p>
       {item.link && (
         <Link
           href={item.link}
-          className={`mt-8 block font-mono text-[12px] tracking-[0.06em] hover:underline ${accent}`}
+          className={cn('mt-8 block font-mono text-[12px] tracking-[0.06em] hover:underline', accent)}
         >
           Learn more &rarr;
         </Link>
@@ -113,11 +112,12 @@ export function TabbedCards({
               <Tabs.Tab
                 key={item.name}
                 value={i}
-                className={`-mb-px shrink-0 cursor-pointer rounded-t-[4px] border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors ${
+                className={cn(
+                  '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors',
                   active === i
                     ? 'border-border-subtle border-b-white bg-white font-medium text-black'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
-                }`}
+                    : 'border-transparent text-gray-500 hover:text-gray-700',
+                )}
               >
                 {item.name}
               </Tabs.Tab>

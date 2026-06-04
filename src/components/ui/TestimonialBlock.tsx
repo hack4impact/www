@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
+import { cn } from '@/lib/utils'
 
 interface Testimonial {
   quote: string
@@ -24,8 +25,9 @@ export function TestimonialBlock({
   const single = testimonials.length === 1
 
   return (
-    <section className='border-border-subtle border-t px-8 py-16 md:px-12 md:py-24'>
+    <section className='border-border-subtle border-t px-8 py-16 md:px-16 md:py-24'>
       <motion.div
+        className='mx-auto max-w-[1312px]'
         variants={containerVariants}
         initial='hidden'
         whileInView='visible'
@@ -33,7 +35,7 @@ export function TestimonialBlock({
       >
         <motion.p
           variants={itemVariants}
-          className={`mb-10 font-mono text-[11px] tracking-[0.12em] uppercase ${accentColor}`}
+          className={cn('mb-10 font-mono text-[11px] tracking-[0.12em] uppercase', accentColor)}
         >
           In their words
         </motion.p>

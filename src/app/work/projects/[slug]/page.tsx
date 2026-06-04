@@ -68,7 +68,11 @@ function SectionRenderer({ section }: { section: ProjectSection }) {
 }
 
 const ROLE_ORDER = ['Tech Lead', 'Project Manager', 'Designer', 'Developer']
-const AVATAR_COLORS = ['#D9E9FA', '#E2FBDB', '#E8E5FC']
+const AVATAR_COLORS = [
+  'var(--color-blue-100)',
+  'var(--color-green-50)',
+  'var(--color-purple-100)',
+]
 
 function sortTeamByRole(team: TeamMember[]): TeamMember[] {
   return [...team].sort((a, b) => {

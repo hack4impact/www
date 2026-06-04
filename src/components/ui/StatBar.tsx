@@ -18,7 +18,7 @@ const lgGridCols: Record<number, string> = {
 
 export function StatBar({ stats, heading }: StatBarProps) {
   return (
-    <section className='px-8 py-16 md:px-12 md:py-24'>
+    <section className='px-8 py-16 md:px-16 md:py-24'>
       {heading && (
         <h2 className='mb-12 text-center font-sans text-3xl'>{heading}</h2>
       )}

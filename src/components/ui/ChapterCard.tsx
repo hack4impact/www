@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 import type { Chapter } from '@/lib/types/chapter'
 
 interface ChapterCardProps {
@@ -45,7 +46,7 @@ export function ChapterCard({ chapter, imageUrl }: ChapterCardProps) {
       {/* Status badge */}
       {chapter.status && (
         <div
-          className={`absolute right-2.5 top-2.5 rounded-full px-2.5 py-1 backdrop-blur-md font-mono text-[9px] uppercase tracking-[0.08em] ${statusStyle(chapter.status)}`}
+          className={cn('absolute right-2.5 top-2.5 rounded-full px-2.5 py-1 backdrop-blur-md font-mono text-[9px] uppercase tracking-[0.08em]', statusStyle(chapter.status))}
         >
           {chapter.status}
         </div>
