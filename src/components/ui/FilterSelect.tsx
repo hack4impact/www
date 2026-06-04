@@ -20,7 +20,7 @@ export function FilterSelect({
 }: FilterSelectProps) {
   return (
     <Select.Root value={value} onValueChange={(v) => onValueChange(v ?? 'all')}>
-      <Select.Trigger className='flex cursor-pointer items-center gap-2 rounded-[6px] border border-gray-300 px-3.5 py-2 font-mono text-[10px] tracking-[0.06em] uppercase transition-colors hover:border-gray-400 focus:outline-none'>
+      <Select.Trigger className='flex cursor-pointer items-center gap-2 rounded-[6px] border border-gray-300 px-3.5 py-2 label-xs transition-colors hover:border-gray-400 focus:outline-none'>
         <span className='text-gray-400'>{label}</span>
         <span className='text-gray-300'>|</span>
         <Select.Value />

@@ -48,7 +48,7 @@ export default async function HomePage() {
           {/* Left: image with decorative frame */}
           <div className='relative shrink-0'>
             <div
-              className='border-border-subtle relative w-full overflow-hidden rounded-[5px] border md:w-[480px]'
+              className='border-border-subtle relative w-full overflow-hidden rounded-[5px] border bg-gradient-to-t from-green-50 to-white md:w-[480px]'
               style={{ aspectRatio: '480 / 420' }}
             >
               {processImageUrl && (
@@ -56,7 +56,7 @@ export default async function HomePage() {
                   fill
                   src={processImageUrl}
                   alt='Students working together on a nonprofit project'
-                  className='object-cover'
+                  className='object-cover object-[40%_50%]'
                   sizes='(max-width: 768px) calc(100vw - 4rem), 480px'
                 />
               )}
@@ -102,7 +102,7 @@ export default async function HomePage() {
       {/* Quote Callout Section */}
       <section className='relative mt-32 flex flex-col sm:flex-row'>
         <div
-          className='relative min-h-[360px] flex-shrink-0 sm:w-1/3 sm:min-h-0'
+          className='relative min-h-[360px] flex-shrink-0 sm:min-h-0 sm:w-1/3'
           style={{
             backgroundImage:
               'linear-gradient(in oklab 180deg, oklab(80.2% 0 0 / 0%) 0%, oklab(92.7% -0.010 -0.027) 100%)',

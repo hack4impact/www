@@ -1,7 +1,7 @@
 import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
 import { CTABand } from '@/components/ui/CTABand'
 import { StatBar } from '@/components/ui/StatBar'
-import { SponsorshipTiersTable } from '@/components/ui/SponsorshipTiersTable'
+import { ComparisonTable } from '@/components/ui/ComparisonTable'
 import { StepsList } from '@/components/ui/StepsList'
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
@@ -26,12 +26,23 @@ async function getStats() {
   ]
 }
 
+function formatCost(cost: number): string {
+  return `$${cost.toLocaleString('en-US')}`
+}
+
 export default async function SponsorsPage() {
   const [stats, tiers, sponsorProcess] = await Promise.all([
     getStats(),
     contentfulApi.getSponsorshipTiers(),
     contentfulApi.getProcess('Sponsor Process'),
   ])
+
+  const columns = tiers.map((t) => ({ label: t.name, meta: formatCost(t.cost) }))
+  const allBenefits = [...new Set(tiers.flatMap((t) => t.benefits))]
+  const rows = allBenefits.map((benefit) => ({
+    label: benefit,
+    values: tiers.map((t) => t.benefits.includes(benefit)),
+  }))
 
   return (
     <>
@@ -47,14 +58,17 @@ export default async function SponsorsPage() {
 
       <StatBar stats={stats} />
 
-      {/* Sponsorship Tiers Table */}
       <section className='px-8 py-16 md:px-12 md:py-24'>
         <div className='mx-auto max-w-3xl'>
-          <SponsorshipTiersTable tiers={tiers} />
+          <ComparisonTable
+            heading='Sponsorship tiers'
+            labelHeader='Benefits'
+            columns={columns}
+            rows={rows}
+          />
         </div>
       </section>
 
-      {/* Where Your Money Goes */}
       {sponsorProcess && (
         <section className='px-8 py-16 md:px-12 md:py-24'>
           <StepsList
@@ -67,7 +81,6 @@ export default async function SponsorsPage() {
         </section>
       )}
 
-      {/* Contact CTA */}
       <CTABand />
     </>
   )

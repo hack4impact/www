@@ -2,8 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Collapsible } from '@base-ui/react/collapsible'
-import { FilterSelect } from './FilterSelect'
+import { FilterBar } from './FilterBar'
 import { ProjectCard } from './ProjectCard'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 import type { Project } from '@/lib/types/project'
@@ -110,43 +109,20 @@ export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsT
     return list
   }, [projects, focusArea, chapter, year, sort])
 
+  const filters = [
+    { label: 'Focus Area', value: focusArea, onValueChange: setFocusArea, options: focusAreaOptions },
+    ...(!hideChapterFilter
+      ? [{ label: 'Chapter', value: chapter, onValueChange: setChapter, options: chapterOptions }]
+      : []),
+    { label: 'Year', value: year, onValueChange: setYear, options: yearOptions },
+  ]
+
   return (
     <div>
-      {/* Desktop filters */}
-      <div className='hidden items-center gap-2 border-b border-border-subtle pb-5 md:flex'>
-        <FilterSelect label='Focus Area' value={focusArea} onValueChange={setFocusArea} options={focusAreaOptions} />
-        {!hideChapterFilter && (
-          <FilterSelect label='Chapter' value={chapter} onValueChange={setChapter} options={chapterOptions} />
-        )}
-        <FilterSelect label='Year' value={year} onValueChange={setYear} options={yearOptions} />
-        <div className='ml-auto'>
-          <FilterSelect label='Sort' value={sort} onValueChange={(v) => setSort(v as Sort)} options={SORT_OPTIONS} align='end' />
-        </div>
-      </div>
-
-      {/* Mobile filters */}
-      <div className='border-b border-border-subtle pb-5 md:hidden'>
-        <Collapsible.Root>
-          <div className='flex items-center justify-between'>
-            <Collapsible.Trigger className='group flex cursor-pointer items-center gap-2 rounded-[6px] border border-gray-300 px-3.5 py-2 font-mono text-[10px] tracking-[0.06em] uppercase text-gray-600 outline-none transition-colors hover:border-gray-400'>
-              Filters
-              <svg width='10' height='10' viewBox='0 0 12 12' fill='none' className='transition-transform duration-200 group-data-[panel-open]:rotate-180'>
-                <path d='M3 4.5L6 7.5L9 4.5' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
-              </svg>
-            </Collapsible.Trigger>
-            <FilterSelect label='Sort' value={sort} onValueChange={(v) => setSort(v as Sort)} options={SORT_OPTIONS} align='end' />
-          </div>
-          <Collapsible.Panel className='overflow-hidden [height:var(--collapsible-panel-height,0px)] [transition:height_0.24s_cubic-bezier(0.16,1,0.3,1)]'>
-            <div className='grid grid-cols-2 gap-2 pt-3'>
-              <FilterSelect label='Focus Area' value={focusArea} onValueChange={setFocusArea} options={focusAreaOptions} />
-              {!hideChapterFilter && (
-                <FilterSelect label='Chapter' value={chapter} onValueChange={setChapter} options={chapterOptions} />
-              )}
-              <FilterSelect label='Year' value={year} onValueChange={setYear} options={yearOptions} />
-            </div>
-          </Collapsible.Panel>
-        </Collapsible.Root>
-      </div>
+      <FilterBar
+        filters={filters}
+        sort={{ label: 'Sort', value: sort, onValueChange: (v) => setSort(v as Sort), options: SORT_OPTIONS }}
+      />
 
       <motion.div
         key={`${focusArea}|${chapter}|${year}|${sort}`}
