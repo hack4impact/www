@@ -73,6 +73,13 @@ export default function RootLayout({
       lang='en'
       className={`${inclusiveSans.variable} ${newsreader.variable} ${paperMono.variable}`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className='flex min-h-screen flex-col relative font-sans'>
         <Header />
         <main className='flex-1'>{children}</main>
