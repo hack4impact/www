@@ -9,7 +9,6 @@ import { cn } from '@/lib/utils'
 
 interface TabbedCardsProps {
   items: InfoCard[]
-  icons?: Record<string, ReactNode>
   label?: string
   heading?: string
   cardLabel?: string
@@ -37,32 +36,37 @@ const PAD = 'px-8 pt-10 pb-10 md:px-16 md:pt-14'
 function CardContent({
   item,
   index,
-  icon,
   accent,
   cardLabel,
 }: {
   item: InfoCard
   index: number
-  icon: ReactNode | null
   accent: string
   cardLabel: string
 }) {
   return (
     <>
-      {icon && <div className={cn('mb-5', accent)}>{icon}</div>}
-      <p className={cn('mb-2 font-mono text-[11px] tracking-[0.12em] uppercase', accent)}>
+      <p
+        className={cn(
+          'mb-2 font-mono text-[11px] tracking-[0.12em] uppercase',
+          accent,
+        )}
+      >
         {cardLabel} {String(index + 1).padStart(2, '0')}
       </p>
       <h3 className='mb-4 font-serif text-[26px] leading-[34px] font-light tracking-[-0.01em] text-black italic sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px]'>
         {item.name}
       </h3>
-      <p className='max-w-xl font-sans text-base leading-6 text-text-muted'>
+      <p className='text-text-muted max-w-xl font-sans text-base leading-6'>
         {item.description}
       </p>
       {item.link && (
         <Link
           href={item.link}
-          className={cn('mt-8 block font-mono text-[12px] tracking-[0.06em] hover:underline', accent)}
+          className={cn(
+            'mt-8 block font-mono text-[12px] tracking-[0.06em] hover:underline',
+            accent,
+          )}
         >
           Learn more &rarr;
         </Link>
@@ -73,14 +77,12 @@ function CardContent({
 
 export function TabbedCards({
   items,
-  icons,
   label = 'Our programs',
   heading = 'Community in action',
   cardLabel = 'Program',
 }: TabbedCardsProps) {
   const [active, setActive] = useState(0)
   const current = items[active]
-  const currentIcon = icons && current.icon ? icons[current.icon] : null
   const accent = ACCENT_COLORS[active % ACCENT_COLORS.length]
 
   return (
@@ -131,7 +133,6 @@ export function TabbedCards({
             {/* Ghost layer — all cards rendered invisibly to set container height = tallest card */}
             <div className='grid' aria-hidden='true'>
               {items.map((item, i) => {
-                const itemIcon = icons && item.icon ? icons[item.icon] : null
                 return (
                   <div
                     key={item.name}
@@ -140,7 +141,6 @@ export function TabbedCards({
                     <CardContent
                       item={item}
                       index={i}
-                      icon={itemIcon}
                       accent={ACCENT_COLORS[i % ACCENT_COLORS.length]}
                       cardLabel={cardLabel}
                     />
@@ -188,7 +188,6 @@ export function TabbedCards({
                   <CardContent
                     item={current}
                     index={active}
-                    icon={currentIcon}
                     accent={accent}
                     cardLabel={cardLabel}
                   />

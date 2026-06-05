@@ -1,42 +1,23 @@
-import Link from 'next/link'
 import Image from 'next/image'
-import { Button } from '@/components/ui/Button'
-import { Heart, OpenBook, Suitcase } from 'iconoir-react'
 import { CTABand } from '@/components/ui/CTABand'
 import { HomeIntro } from '@/components/ui/HomeIntro'
-import { notionApi, FEATURED_PROJECT_SLUG } from '@/lib/notion'
 import { TabbedCards } from '@/components/ui/TabbedCards'
 import { contentfulApi } from '@/lib/contentful'
-import { iconProps } from '@/lib/constants'
 
 export default async function HomePage() {
   const [
     programs,
-    projects,
     heroImageUrl,
     processImageUrl,
     calloutImageUrl,
     mainProcess,
   ] = await Promise.all([
     contentfulApi.getInfoCards('Programs'),
-    notionApi.getProjects(),
     contentfulApi.getAssetUrl('home-one'),
     contentfulApi.getAssetUrl('home-two'),
     contentfulApi.getAssetUrl('home-three'),
     contentfulApi.getProcess('Main Process'),
   ])
-
-  const programsIcons = {
-    Heart: <Heart {...iconProps} />,
-    OpenBook: <OpenBook {...iconProps} />,
-    Suitcase: <Suitcase {...iconProps} />,
-  }
-
-  const featuredProject =
-    (FEATURED_PROJECT_SLUG &&
-      projects.find((p) => p.slug === FEATURED_PROJECT_SLUG)) ||
-    projects[0] ||
-    null
 
   return (
     <>
@@ -97,7 +78,7 @@ export default async function HomePage() {
       )}
 
       {/* Programs Section */}
-      {programs && <TabbedCards items={programs.cards} icons={programsIcons} />}
+      {programs && <TabbedCards items={programs.cards} />}
 
       {/* Quote Callout Section */}
       <section className='relative mt-32 flex flex-col sm:flex-row'>
