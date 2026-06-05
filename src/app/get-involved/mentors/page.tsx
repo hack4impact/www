@@ -28,7 +28,6 @@ export default async function MentorsPage() {
         buttonText='Get involved'
         buttonHref='#sign-up'
         accentColor='text-purple-600'
-        gradientOklab='96.5% 0.010 -0.025'
         image={mentorBanner ?? undefined}
         alt='A mentor working with Hack4Impact students'
       />

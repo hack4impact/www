@@ -36,7 +36,6 @@ export default async function NonprofitsPage() {
         buttonText='Apply now'
         buttonHref='#apply'
         accentColor='text-blue-500'
-        gradientOklab='96.5% -0.005 -0.022'
         image={nonprofitBanner ?? undefined}
         alt='Nonprofits partnering with Hack4Impact'
         imageClassName='scale-125 origin-bottom'

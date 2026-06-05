@@ -25,18 +25,15 @@ export function TestimonialBlock({
   const single = testimonials.length === 1
 
   return (
-    <section className='border-border-subtle border-t px-8 py-16 md:px-16 md:py-24'>
+    <section className='page-section md:py-24'>
       <motion.div
-        className='mx-auto max-w-[1312px]'
+        className='section-inner'
         variants={containerVariants}
         initial='hidden'
         whileInView='visible'
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.p
-          variants={itemVariants}
-          className={cn('mb-10 font-mono text-[11px] tracking-[0.12em] uppercase', accentColor)}
-        >
+        <motion.p variants={itemVariants} className={cn('label mb-10', accentColor)}>
           In their words
         </motion.p>
 
@@ -49,17 +46,15 @@ export function TestimonialBlock({
         >
           {testimonials.map((t, i) => (
             <motion.div key={i} variants={itemVariants} className='flex flex-col'>
-              <blockquote className='font-serif text-[26px] leading-[36px] font-light tracking-[-0.01em] text-black italic'>
+              <blockquote className='heading-card leading-[36px]'>
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
-              <div className='border-border-subtle mt-8 border-t pt-6'>
+              <div className='border-separator mt-8 border-t pt-6'>
                 <p className='font-sans text-[15px] font-medium leading-[18px] text-black'>
                   {t.name}
                 </p>
                 {t.title && (
-                  <p className='mt-1 font-mono text-[11px] leading-[14px] tracking-[0.06em] text-gray-500'>
-                    {t.title}
-                  </p>
+                  <p className='label-xs mt-1 text-gray-500'>{t.title}</p>
                 )}
               </div>
             </motion.div>

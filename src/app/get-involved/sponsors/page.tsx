@@ -75,12 +75,11 @@ export default async function SponsorsPage() {
         buttonText='Become a sponsor'
         buttonHref='#contact'
         accentColor='text-orange-600'
-        gradientOklab='97% 0.012 0.020'
       />
 
       <StatBar stats={stats} />
 
-      {/* <section className='border-t border-border-subtle px-8 py-16 md:px-12 md:py-24'> */}
+      {/* <section className='border-t border-separator px-8 py-16 md:px-12 md:py-24'> */}
       {/*   <div className='mx-auto max-w-3xl'> */}
       {/*     <ComparisonTable */}
       {/*       heading='Sponsorship tiers' */}
@@ -92,13 +91,13 @@ export default async function SponsorsPage() {
       {/* </section> */}
 
       {sponsorGroups.length > 0 && (
-        <section className='border-border-subtle border-t px-8 py-16 md:px-12 md:py-24'>
+        <section className='border-separator border-t px-8 py-16 md:px-12 md:py-24'>
           <SponsorsGrid heading='Our supporters' groups={sponsorGroups} />
         </section>
       )}
 
       {sponsorProcess && (
-        <section className='border-border-subtle border-t px-8 py-16 md:px-12 md:py-24'>
+        <section className='border-separator border-t px-8 py-16 md:px-12 md:py-24'>
           <StepsList
             steps={sponsorProcess.steps}
             numbered={sponsorProcess.numbered}

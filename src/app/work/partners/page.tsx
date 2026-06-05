@@ -19,7 +19,6 @@ export default async function PartnersPage() {
         countLabel={`${partners.length} organizations`}
         description='From local food banks to global advocacy groups, every partner receives high-quality software at no cost.'
         labelColor='text-purple-600'
-        gradientOklab='93.1% 0.012 -0.029'
       />
 
       {/* Partners grid */}

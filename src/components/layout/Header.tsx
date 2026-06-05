@@ -78,8 +78,7 @@ function SlideHighlight({
     <AnimatePresence>
       {r && (
         <motion.div
-          className='pointer-events-none absolute top-0 left-0 rounded-md'
-          style={{ background: 'rgba(0,0,0,0.06)' }}
+          className='pointer-events-none absolute top-0 left-0 rounded-md bg-gray-5'
           initial={{
             opacity: 0,
             x: r.x,
@@ -184,14 +183,14 @@ export default function Header() {
             alt='Hack4Impact'
             width={32}
             height={32}
-            className='brightness-0 md:hidden'
+            className='brightness-0 dark:invert md:hidden'
           />
           <Image
             src='/logo.svg'
             alt='Hack4Impact'
             width={150}
             height={40}
-            className='hidden md:block'
+            className='hidden brightness-0 dark:invert md:block'
           />
         </Link>
 
@@ -205,7 +204,7 @@ export default function Header() {
               <Link
                 href='/about'
                 onClick={closeAll}
-                className='relative z-10 px-3 py-1.5 font-sans text-[15px] text-black outline-none'
+                className='relative z-10 px-3 py-1.5 font-sans text-[15px] text-inverse outline-none'
                 onMouseEnter={(e) => handleNavItemEnter(e)}
                 onFocus={(e) => handleNavItemEnter(e)}
               >
@@ -226,7 +225,7 @@ export default function Header() {
                   }}
                 >
                   <Menu.Trigger
-                    className='relative z-10 flex cursor-default items-center gap-1.5 px-3 py-1.5 font-sans text-[15px] text-black outline-none'
+                    className='relative z-10 flex cursor-default items-center gap-1.5 px-3 py-1.5 font-sans text-[15px] text-inverse outline-none'
                     onMouseEnter={(e) => handleNavItemEnter(e, key)}
                   >
                     {key}
@@ -241,7 +240,7 @@ export default function Header() {
                       onMouseLeave={scheduleClose}
                     >
                       <Menu.Popup
-                        className='z-50 min-w-[160px] overflow-hidden rounded-lg border border-black/[0.07] bg-white shadow-[0_8px_24px_rgba(0,0,0,0.07)] outline-none'
+                        className='z-50 min-w-[160px] overflow-hidden rounded-lg border border-separator bg-root shadow-[0_8px_24px_rgba(0,0,0,0.12)] outline-none'
                         render={
                           <motion.div
                             initial={{ opacity: 0, y: -6, scale: 0.98 }}
@@ -267,7 +266,7 @@ export default function Header() {
                               onClick={closeAll}
                               onMouseEnter={handleDropdownItemEnter}
                               onFocus={handleDropdownItemEnter}
-                              className='relative z-10 block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-black outline-none'
+                              className='relative z-10 block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-inverse outline-none'
                             >
                               {item.label}
                             </Menu.LinkItem>
@@ -376,7 +375,7 @@ export default function Header() {
                           <Link
                             key={child.href}
                             href={child.href}
-                            className='block py-3 pl-4 font-sans text-lg text-black/60 outline-none'
+                            className='block py-3 pl-4 font-sans text-lg text-inverse/60 outline-none'
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {child.label}

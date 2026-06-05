@@ -30,20 +30,12 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   return (
     <>
       <section
-        className='relative overflow-hidden border-b border-border-subtle px-8 pb-14 pt-16 md:px-16'
-        style={{
-          backgroundColor: '#ffffff',
-          backgroundImage:
-            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(59.6% -0.045 -0.169 / 10%) 0%, oklab(0% 0 0 / 0%) 60%)',
-          backgroundOrigin: 'border-box',
-        }}
+        className='gradient-bl-blue relative overflow-hidden border-b border-separator px-8 pb-14 pt-16 md:px-16'
       >
         <div className='mx-auto max-w-[1312px]'>
-          <p className='mb-6 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
-            Our Chapters
-          </p>
+          <p className='label mb-6 text-blue-500'>Our Chapters</p>
           <h1>
-            <span className='block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] text-black md:text-[56px] md:leading-[62px]'>
+            <span className='block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] text-inverse md:text-[56px] md:leading-[62px]'>
               Hack4Impact
             </span>
             <span className='block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] text-blue-500 italic md:text-[56px] md:leading-[62px]'>
@@ -56,8 +48,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           <div className='absolute inset-y-0 right-0 hidden w-1/3 md:block'>
             <Image
               fill
-              className='object-cover'
-              style={{ objectPosition: 'center 30%' }}
+              className='object-cover object-[center_30%]'
               src={chapterImage}
               alt={`${chapter.name} chapter`}
               sizes='53vw'
@@ -76,10 +67,10 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 className={cn(
                   'rounded-full px-3 py-1 font-mono text-[11px] tracking-[0.1em] uppercase',
                   chapter.status === 'Active'
-                    ? 'bg-green-50 text-green-600'
+                    ? 'bg-green-50 dark:bg-green-900 text-green-600 dark:text-green-300'
                     : chapter.status === 'Forming'
-                      ? 'bg-orange-50 text-orange-600'
-                      : 'bg-gray-100 text-gray-500',
+                      ? 'bg-orange-50 dark:bg-orange-900 text-orange-600 dark:text-orange-300'
+                      : 'bg-gray-5 text-gray-3',
                 )}
               >
                 {chapter.status}
@@ -102,10 +93,10 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                           href={chapter.website}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
+                          className='group flex items-center gap-2 label text-inverse transition-colors hover:text-blue-500'
                         >
                           <span>Website</span>
-                          <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                          <span className='text-gray-3 transition-colors group-hover:text-blue-500'>
                             ↗
                           </span>
                         </a>
@@ -115,10 +106,10 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                           href={chapter.github}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
+                          className='group flex items-center gap-2 label text-inverse transition-colors hover:text-blue-500'
                         >
                           <span>GitHub</span>
-                          <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                          <span className='text-gray-3 transition-colors group-hover:text-blue-500'>
                             ↗
                           </span>
                         </a>
@@ -128,10 +119,10 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                           href={chapter.instagram}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='group flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-black uppercase transition-colors hover:text-blue-500'
+                          className='group flex items-center gap-2 label text-inverse transition-colors hover:text-blue-500'
                         >
                           <span>Instagram</span>
-                          <span className='text-gray-400 transition-colors group-hover:text-blue-500'>
+                          <span className='text-gray-3 transition-colors group-hover:text-blue-500'>
                             ↗
                           </span>
                         </a>
@@ -145,7 +136,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       />
 
       {/* Content + Projects */}
-      <section className='border-t border-border-subtle px-8 py-8 md:px-16'>
+      <section className='border-t border-separator px-8 py-8 md:px-16'>
         <div className='mx-auto max-w-[1312px]'>
           <p className='font-serif text-lg md:text-xl'>{chapter.description}</p>
         </div>

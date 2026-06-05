@@ -46,27 +46,19 @@ function CardContent({
 }) {
   return (
     <>
-      <p
-        className={cn(
-          'mb-2 font-mono text-[11px] tracking-[0.12em] uppercase',
-          accent,
-        )}
-      >
+      <p className={cn('label mb-2', accent)}>
         {cardLabel} {String(index + 1).padStart(2, '0')}
       </p>
-      <h3 className='mb-4 font-serif text-[26px] leading-[34px] font-light tracking-[-0.01em] text-black italic sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px]'>
+      <h3 className={cn('heading-card mb-4 sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px]')}>
         {item.name}
       </h3>
-      <p className='text-text-muted max-w-xl font-sans text-base leading-6'>
+      <p className='text-gray-3 max-w-xl font-sans text-base leading-6'>
         {item.description}
       </p>
       {item.link && (
         <Link
           href={item.link}
-          className={cn(
-            'mt-8 block font-mono text-[12px] tracking-[0.06em] hover:underline',
-            accent,
-          )}
+          className={cn('label-xs mt-8 block hover:underline', accent)}
         >
           Learn more &rarr;
         </Link>
@@ -89,25 +81,21 @@ export function TabbedCards({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       viewport={{ once: true, amount: 0.1 }}
-      className='border-border-subtle border-t'
+      className='border-separator border-t'
     >
       {/* Heading */}
       <div className='px-8 pt-16 pb-8 md:px-16'>
-        <p className='mb-5 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'>
-          {label}
-        </p>
-        <h2 className='font-serif text-[32px] leading-[40px] font-light tracking-[-0.01em] text-black sm:text-[40px] sm:leading-[48px]'>
-          {heading}
-        </h2>
+        <p className='label mb-5 text-blue-500'>{label}</p>
+        <h2 className='heading-section'>{heading}</h2>
       </div>
 
       <Tabs.Root
         value={active}
         onValueChange={(val) => setActive(val as number)}
       >
-        {/* Tab row — border-b lives on Tabs.List (inside overflow) so the active tab can overlap it */}
+        {/* Tab row */}
         <div className='overflow-x-auto'>
-          <Tabs.List className='border-border-subtle flex min-w-max items-end border-b px-8 md:px-16'>
+          <Tabs.List className='border-separator flex min-w-max items-end border-b px-8 md:px-16'>
             {items.map((item, i) => (
               <Tabs.Tab
                 key={item.name}
@@ -115,8 +103,8 @@ export function TabbedCards({
                 className={cn(
                   '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors',
                   active === i
-                    ? 'border-border-subtle border-b-white bg-white font-medium text-black'
-                    : 'border-transparent text-gray-500 hover:text-gray-700',
+                    ? 'border-separator border-b-root bg-root font-medium text-inverse'
+                    : 'border-transparent text-gray-3 hover:text-inverse',
                 )}
               >
                 {item.name}
@@ -128,7 +116,7 @@ export function TabbedCards({
         {/* Content area */}
         <div className='pb-16 md:pb-20'>
           <div className='relative'>
-            {/* Ghost layer — invisible panels set container height to the tallest card */}
+            {/* Ghost layer — sets container height to tallest card */}
             <div className='grid' aria-hidden='true'>
               {items.map((item, i) => (
                 <div
@@ -145,7 +133,7 @@ export function TabbedCards({
               ))}
             </div>
 
-            {/* Glow layer — radial glow crossfades behind the text */}
+            {/* Glow layer */}
             <div className='absolute inset-0 overflow-hidden'>
               {items.map((item, i) => (
                 <motion.div
@@ -160,7 +148,7 @@ export function TabbedCards({
               ))}
             </div>
 
-            {/* Content layer — exits fully before next panel enters (mode='wait') */}
+            {/* Content layer */}
             <div className='absolute inset-0 overflow-hidden'>
               <AnimatePresence mode='wait'>
                 <motion.div

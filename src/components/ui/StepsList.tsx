@@ -25,7 +25,7 @@ export function StepsList({
 }: StepsListProps) {
   return (
     <motion.div
-      className='flex flex-col divide-y divide-gray-200 border-b border-gray-200'
+      className='flex flex-col divide-y divide-separator border-b border-separator'
       variants={containerVariants}
       initial='hidden'
       whileInView='visible'
@@ -34,19 +34,10 @@ export function StepsList({
       {(label || title) && (
         <div className='flex flex-col gap-2 pt-2 pb-8'>
           {label && (
-            <p
-              className={cn(
-                'font-mono text-[11px] tracking-[0.12em] uppercase',
-                accentColor,
-              )}
-            >
-              {label}
-            </p>
+            <p className={cn('label', accentColor)}>{label}</p>
           )}
           {title && (
-            <h2 className='font-serif text-[40px] leading-[48px] font-light tracking-[-0.01em] text-black'>
-              {title}
-            </h2>
+            <h2 className='heading-display'>{title}</h2>
           )}
         </div>
       )}
@@ -66,16 +57,12 @@ export function StepsList({
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <div className='mr-8 w-px shrink-0 self-stretch bg-gray-200' />
+              <div className='mr-8 w-px shrink-0 self-stretch bg-separator' />
             </>
           )}
           <div className='flex flex-col gap-1.5 pt-1'>
-            <h3 className='font-sans text-base font-medium text-gray-900'>
-              {step.name}
-            </h3>
-            <p className='font-sans text-sm leading-[1.5] text-gray-600'>
-              {step.description}
-            </p>
+            <h3 className='font-sans text-base font-medium text-inverse'>{step.name}</h3>
+            <p className='font-sans text-sm leading-[1.5] text-gray-2'>{step.description}</p>
           </div>
         </motion.div>
       ))}

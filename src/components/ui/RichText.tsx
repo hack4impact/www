@@ -10,7 +10,7 @@ const options: Options = {
     [MARKS.ITALIC]: (text) => <em>{text}</em>,
     [MARKS.UNDERLINE]: (text) => <u>{text}</u>,
     [MARKS.CODE]: (text) => (
-      <code className='bg-bg-subtle px-1 rounded text-sm'>{text}</code>
+      <code className='bg-panel px-1 rounded text-sm'>{text}</code>
     ),
   },
   renderNode: {
@@ -45,24 +45,24 @@ const options: Options = {
       <li className='text-lg md:text-xl'>{children}</li>
     ),
     [BLOCKS.QUOTE]: (_node, children) => (
-      <blockquote className='border-l-4 border-border-subtle pl-4 italic my-4'>
+      <blockquote className='border-l-4 border-separator pl-4 italic my-4'>
         {children}
       </blockquote>
     ),
-    [BLOCKS.HR]: () => <hr className='border-t border-border-subtle my-8' />,
+    [BLOCKS.HR]: () => <hr className='border-t border-separator my-8' />,
     [BLOCKS.TABLE]: (_node, children) => (
       <div className='overflow-x-auto my-4'>
-        <table className='min-w-full border-collapse border border-border-subtle'>
+        <table className='min-w-full border-collapse border border-separator'>
           <tbody>{children}</tbody>
         </table>
       </div>
     ),
     [BLOCKS.TABLE_ROW]: (_node, children) => <tr>{children}</tr>,
     [BLOCKS.TABLE_CELL]: (_node, children) => (
-      <td className='border border-border-subtle px-4 py-2 text-base'>{children}</td>
+      <td className='border border-separator px-4 py-2 text-base'>{children}</td>
     ),
     [BLOCKS.TABLE_HEADER_CELL]: (_node, children) => (
-      <th className='border border-border-subtle px-4 py-2 text-base font-sans bg-bg-subtle'>
+      <th className='border border-separator px-4 py-2 text-base font-sans bg-panel'>
         {children}
       </th>
     ),

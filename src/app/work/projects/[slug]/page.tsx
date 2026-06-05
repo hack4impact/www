@@ -17,7 +17,7 @@ function SectionRenderer({ section }: { section: ProjectSection }) {
           <h3 className='mb-4 mt-8 font-sans text-xl md:text-2xl'>
             {section.title}
           </h3>
-          <p className='font-sans text-[17px] leading-[28px] text-text-muted'>
+          <p className='font-sans text-[17px] leading-[28px] text-gray-3'>
             {section.content}
           </p>
         </div>
@@ -44,7 +44,7 @@ function SectionRenderer({ section }: { section: ProjectSection }) {
           )}
         >
           <div className='flex items-center'>
-            <p className='font-sans text-[17px] leading-[28px] text-text-muted'>
+            <p className='font-sans text-[17px] leading-[28px] text-gray-3'>
               {section.text}
             </p>
           </div>
@@ -92,32 +92,24 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <>
       {/* Page header */}
       <section
-        className='relative overflow-hidden border-b border-border-subtle px-8 pb-14 pt-16 md:px-16'
-        style={{
-          backgroundColor: '#ffffff',
-          backgroundImage:
-            'radial-gradient(circle farthest-corner at 0% 110% in oklab, oklab(93.5% -0.050 0.016) 0%, oklab(0% 0 0 / 0%) 60%)',
-          backgroundOrigin: 'border-box',
-        }}
+        className='gradient-bl-green relative overflow-hidden border-b border-separator px-8 pb-14 pt-16 md:px-16'
       >
         <div className='mx-auto max-w-[1312px]'>
           <div className='flex items-center justify-between pb-6'>
-            <p className='font-mono text-[11px] uppercase tracking-[0.12em] text-green-600'>
-              Our Work
-            </p>
+            <p className='label text-green-600'>Our Work</p>
             {project.tag && (
-              <span className='rounded-full bg-green-50 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-green-600'>
+              <span className='rounded-full bg-green-50 dark:bg-green-950 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-green-600 dark:text-green-300'>
                 {project.tag}
               </span>
             )}
           </div>
           <h1 className='pb-5'>
-            <span className='block font-serif text-[40px] font-light leading-[1.1] tracking-[-0.02em] text-black md:text-[56px] md:leading-[62px]'>
+            <span className='block font-serif text-[40px] font-light leading-[1.1] tracking-[-0.02em] text-inverse md:text-[56px] md:leading-[62px]'>
               {project.title}
             </span>
           </h1>
           {project.partner && (
-            <p className='font-sans text-[15px] leading-[22px] text-gray-500'>
+            <p className='font-sans text-[15px] leading-[22px] text-gray-3'>
               For {project.partner}
             </p>
           )}
@@ -125,22 +117,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       {/* Overview */}
-      <section className='border-b border-border-subtle bg-white px-8 py-16 md:px-16 md:py-20'>
+      <section className='border-b border-separator bg-root px-8 py-16 md:px-16 md:py-20'>
         <div className='mx-auto max-w-[1312px]'>
         <div className='flex flex-col items-start gap-16 md:flex-row md:gap-20'>
           {/* Article */}
           <div className='flex min-w-0 flex-1 flex-col'>
-            <p className='pb-6 font-mono text-[11px] uppercase tracking-[0.12em] text-green-600'>
-              About the project
-            </p>
+            <p className='label pb-6 text-green-600'>About the project</p>
             {project.description && (
-              <p className='pb-7 font-sans text-[17px] leading-[28px] text-text-muted'>
+              <p className='pb-7 font-sans text-[17px] leading-[28px] text-gray-3'>
                 {project.description}
               </p>
             )}
             <div className='flex flex-col gap-4'>
               {project.intro && (
-                <p className='font-sans text-[17px] leading-[28px] text-text-muted'>
+                <p className='font-sans text-[17px] leading-[28px] text-gray-3'>
                   {project.intro}
                 </p>
               )}
@@ -152,51 +142,51 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           {/* Metadata sidebar */}
           <div className='relative w-full shrink-0 md:w-[30%]'>
-            <div className='relative border border-border-subtle bg-bg-subtle'>
-              <div className='absolute -left-[5px] -top-[5px] h-[10px] w-[10px] rounded-[1px] bg-border-decorative' />
-              <div className='absolute -right-[5px] -top-[5px] h-[10px] w-[10px] rounded-[1px] bg-border-decorative' />
-              <div className='absolute -bottom-[5px] -left-[5px] h-[10px] w-[10px] rounded-[1px] bg-border-decorative' />
-              <div className='absolute -bottom-[5px] -right-[5px] h-[10px] w-[10px] rounded-[1px] bg-border-decorative' />
+            <div className='relative border border-separator bg-panel'>
+              <div className='absolute -left-[5px] -top-[5px] h-[10px] w-[10px] rounded-[1px] bg-checkbox-outline' />
+              <div className='absolute -right-[5px] -top-[5px] h-[10px] w-[10px] rounded-[1px] bg-checkbox-outline' />
+              <div className='absolute -bottom-[5px] -left-[5px] h-[10px] w-[10px] rounded-[1px] bg-checkbox-outline' />
+              <div className='absolute -bottom-[5px] -right-[5px] h-[10px] w-[10px] rounded-[1px] bg-checkbox-outline' />
 
               {project.partner && (
-                <div className='flex flex-col gap-1.5 border-b border-border-subtle px-7 py-6'>
-                  <span className='font-mono text-[10px] uppercase tracking-[0.12em] text-text-dim'>
+                <div className='flex flex-col gap-1.5 border-b border-separator px-7 py-6'>
+                  <span className='label-xs text-gray-4'>
                     Nonprofit
                   </span>
-                  <span className='font-serif text-[15px] font-light leading-[22px] text-black'>
+                  <span className='font-serif text-[15px] font-light leading-[22px] text-inverse'>
                     {project.partner}
                   </span>
                 </div>
               )}
-              <div className='flex flex-col gap-1.5 border-b border-border-subtle px-7 py-6'>
-                <span className='font-mono text-[10px] uppercase tracking-[0.12em] text-text-dim'>
+              <div className='flex flex-col gap-1.5 border-b border-separator px-7 py-6'>
+                <span className='label-xs text-gray-4'>
                   Chapter
                 </span>
-                <span className='font-serif text-[15px] font-light leading-[22px] text-black'>
+                <span className='font-serif text-[15px] font-light leading-[22px] text-inverse'>
                   {project.chapter}
                 </span>
               </div>
-              <div className='flex flex-col gap-1.5 border-b border-border-subtle px-7 py-6'>
-                <span className='font-mono text-[10px] uppercase tracking-[0.12em] text-text-dim'>
+              <div className='flex flex-col gap-1.5 border-b border-separator px-7 py-6'>
+                <span className='label-xs text-gray-4'>
                   Semester
                 </span>
-                <span className='font-serif text-[15px] font-light leading-[22px] text-black'>
+                <span className='font-serif text-[15px] font-light leading-[22px] text-inverse'>
                   {semesterRange || project.duration || '—'}
                 </span>
               </div>
               {project.technologies && project.technologies.length > 0 && (
-                <div className='flex flex-col gap-1.5 border-b border-border-subtle px-7 py-6'>
-                  <span className='font-mono text-[10px] uppercase tracking-[0.12em] text-text-dim'>
+                <div className='flex flex-col gap-1.5 border-b border-separator px-7 py-6'>
+                  <span className='label-xs text-gray-4'>
                     Tech Stack
                   </span>
-                  <span className='font-serif text-[15px] font-light leading-[22px] text-black'>
+                  <span className='font-serif text-[15px] font-light leading-[22px] text-inverse'>
                     {project.technologies.join(' · ')}
                   </span>
                 </div>
               )}
               {(project.website || project.github) && (
-                <div className='flex flex-col gap-3 border-b border-border-subtle px-7 py-6'>
-                  <span className='font-mono text-[10px] uppercase tracking-[0.12em] text-text-dim'>
+                <div className='flex flex-col gap-3 border-b border-separator px-7 py-6'>
+                  <span className='label-xs text-gray-4'>
                     Links
                   </span>
                   <div className='flex flex-col gap-2'>
@@ -205,10 +195,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         href={project.website}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='group flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-black transition-colors hover:text-green-600'
+                        className='group flex items-center gap-1.5 label text-inverse transition-colors hover:text-green-600'
                       >
                         <span>Website</span>
-                        <span className='text-gray-400 transition-colors group-hover:text-green-600'>
+                        <span className='text-gray-3 transition-colors group-hover:text-green-600'>
                           ↗
                         </span>
                       </a>
@@ -218,10 +208,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         href={project.github}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='group flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-black transition-colors hover:text-green-600'
+                        className='group flex items-center gap-1.5 label text-inverse transition-colors hover:text-green-600'
                       >
                         <span>GitHub</span>
-                        <span className='text-gray-400 transition-colors group-hover:text-green-600'>
+                        <span className='text-gray-3 transition-colors group-hover:text-green-600'>
                           ↗
                         </span>
                       </a>

@@ -20,7 +20,7 @@ export function FilterBar({ filters, sort }: FilterBarProps) {
   return (
     <>
       {/* Desktop */}
-      <div className='hidden items-center gap-2 border-b border-border-subtle pb-5 md:flex'>
+      <div className='hidden items-center gap-2 border-b border-separator pb-5 md:flex'>
         {filters.map((f) => (
           <FilterSelect key={f.label} {...f} />
         ))}
@@ -30,7 +30,7 @@ export function FilterBar({ filters, sort }: FilterBarProps) {
       </div>
 
       {/* Mobile */}
-      <div className='border-b border-border-subtle pb-5 md:hidden'>
+      <div className='border-b border-separator pb-5 md:hidden'>
         <Collapsible.Root>
           <div className='flex items-center justify-between'>
             <Collapsible.Trigger className='group flex cursor-pointer items-center gap-2 rounded-[6px] border border-gray-300 px-3.5 py-2 label-xs text-gray-600 outline-none transition-colors hover:border-gray-400'>

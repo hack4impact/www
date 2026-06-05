@@ -19,7 +19,6 @@ export default async function ProjectsPage() {
         countLabel={`${projects.length} projects`}
         description='Every project is handed off with full source code and no strings or maintenance fees.'
         labelColor='text-green-600'
-        gradientOklab='93.5% -0.050 0.016'
       />
 
       {/* Projects grid */}

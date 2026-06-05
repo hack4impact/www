@@ -17,7 +17,7 @@ const GET_INVOLVED_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className='border-t border-border-subtle bg-white'>
+    <footer className='border-t border-separator bg-root'>
       {/* Main content */}
       <div className='px-8 py-10 md:px-16'>
         <div className='mx-auto flex max-w-[1312px] items-end justify-between gap-12'>
@@ -51,7 +51,7 @@ export default function Footer() {
           {/* Right: nav columns */}
           <div className='flex gap-12 md:gap-16'>
             <div>
-              <p className='mb-4 font-mono text-[10px] tracking-[0.12em] text-gray-400 uppercase'>
+              <p className='label-xs mb-4 text-gray-400'>
                 Organization
               </p>
               <ul className='space-y-2.5'>
@@ -68,7 +68,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className='mb-4 font-mono text-[10px] tracking-[0.12em] text-gray-400 uppercase'>
+              <p className='label-xs mb-4 text-gray-400'>
                 Get Involved
               </p>
               <ul className='space-y-2.5'>
@@ -89,7 +89,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className='border-t border-border-subtle px-8 py-4 md:px-16'>
+      <div className='border-t border-separator px-8 py-4 md:px-16'>
         <div className='mx-auto flex max-w-[1312px] items-center justify-between'>
           <p className='font-mono text-[10px] tracking-[0.04em] text-gray-400'>
             © {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for Impact

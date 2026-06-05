@@ -15,16 +15,11 @@ interface HomeIntroProps extends ComponentPropsWithoutRef<'section'> {
 const containerVariants = staggerContainer(0.2, false)
 const itemVariants = fadeInForward()
 
-export function HomeIntro({ heroImageUrl, className, style, ...props }: HomeIntroProps) {
+export function HomeIntro({ heroImageUrl, className, ...props }: HomeIntroProps) {
   return (
     <section
       {...props}
-      className={cn('flex flex-col', className)}
-      style={{
-        ...style,
-        backgroundImage:
-          'linear-gradient(in oklab 180deg, oklab(100% 0 0) 25%, oklab(96.4% -0.004 -0.014) 60%, oklab(92.7% -0.010 -0.027) 100%)',
-      }}
+      className={cn('gradient-hero flex flex-col', className)}
     >
       {/* Text content */}
       <motion.div
@@ -35,7 +30,7 @@ export function HomeIntro({ heroImageUrl, className, style, ...props }: HomeIntr
       >
         <motion.p
           variants={itemVariants}
-          className='mb-6 font-mono text-[11px] tracking-[0.12em] text-blue-500 uppercase'
+          className='label mb-6 text-blue-500'
         >
           501(c)(3) nonprofit · est. 2014
         </motion.p>
@@ -43,7 +38,7 @@ export function HomeIntro({ heroImageUrl, className, style, ...props }: HomeIntr
         <h1 className='flex flex-col items-center'>
           <motion.span
             variants={itemVariants}
-            className='max-w-[820px] text-center font-serif text-[40px] leading-[46px] font-light tracking-[-0.02em] text-black sm:text-[52px] sm:leading-[60px] lg:text-[64px] lg:leading-[72px] xl:text-[76px] xl:leading-[84px]'
+            className='max-w-[820px] text-center font-serif text-[40px] leading-[46px] font-light tracking-[-0.02em] text-inverse sm:text-[52px] sm:leading-[60px] lg:text-[64px] lg:leading-[72px] xl:text-[76px] xl:leading-[84px]'
           >
             Code &amp; community
           </motion.span>
@@ -57,7 +52,7 @@ export function HomeIntro({ heroImageUrl, className, style, ...props }: HomeIntr
 
         <motion.p
           variants={itemVariants}
-          className='text-text-muted mt-6 max-w-[560px] text-center font-sans text-lg leading-7'
+          className='text-gray-3 mt-6 max-w-[560px] text-center font-sans text-lg leading-7'
         >
           Student teams building free software for nonprofits. Connecting
           technical skills with community need.
@@ -85,10 +80,7 @@ export function HomeIntro({ heroImageUrl, className, style, ...props }: HomeIntr
           <Image
             width={1505}
             height={543}
-            className='block h-auto w-full'
-            style={{
-              filter: 'drop-shadow(10px -2px 4px rgba(36, 126, 228, 0.15))',
-            }}
+            className='block h-auto w-full [filter:drop-shadow(10px_-2px_4px_rgba(36,126,228,0.15))]'
             src={heroImageUrl}
             alt='A group photo of Hack4Impact students'
             priority

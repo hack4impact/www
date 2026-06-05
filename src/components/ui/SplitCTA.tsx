@@ -17,19 +17,13 @@ interface SplitCTAProps {
 }
 
 function Side({ side, border }: { side: SplitCTASide; border?: string }) {
-  const color = side.color ?? 'text-gray-700'
+  const color = side.color ?? 'text-gray-2'
   return (
     <div className={cn('flex grow basis-0 flex-col gap-4', border)}>
-      <p className={cn('font-mono text-[11px] tracking-[0.12em] uppercase', color)}>
-        {side.label}
-      </p>
+      <p className={cn('label', color)}>{side.label}</p>
       <div className='flex flex-col gap-2.5'>
-        <h2 className='font-serif text-[26px] leading-8 font-light text-black'>
-          {side.heading}
-        </h2>
-        <p className='font-sans text-sm leading-[22px] text-text-muted'>
-          {side.description}
-        </p>
+        <h2 className='heading-card leading-8'>{side.heading}</h2>
+        <p className='font-sans text-sm leading-[22px] text-gray-3'>{side.description}</p>
       </div>
       <Link href={side.linkHref} className='flex items-center gap-1.5'>
         <span className={cn('font-sans text-sm font-medium', color)}>{side.linkText}</span>
@@ -43,11 +37,11 @@ function Side({ side, border }: { side: SplitCTASide; border?: string }) {
 
 export function SplitCTA({ left, right }: SplitCTAProps) {
   return (
-    <div className='border-border-subtle border-b px-8 py-16 md:px-16'>
+    <div className='page-section-sm border-b border-separator'>
       <div className='flex flex-col md:flex-row'>
         <Side
           side={left}
-          border='border-border-subtle border-b pb-8 md:border-b-0 md:border-r md:pb-8 md:pr-10 md:pt-8'
+          border='border-separator border-b pb-8 md:border-b-0 md:border-r md:pb-8 md:pr-10 md:pt-8'
         />
         <Side side={right} border='pt-8 md:pl-10 md:pt-8 md:pb-8' />
       </div>

@@ -12,19 +12,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={`/work/projects/${project.slug}`}
-      className='group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white p-3.5 transition-colors hover:border-gray-300'
+      className='group flex h-full flex-col overflow-hidden rounded-xl border border-separator bg-root p-3.5 transition-colors hover:border-gray-4'
     >
       {meta && (
-        <p className='mb-1.5 font-mono text-[9px] uppercase tracking-[0.08em] text-gray-400'>
+        <p className='mb-1.5 font-mono text-[9px] uppercase tracking-[0.08em] text-gray-3'>
           {meta}
         </p>
       )}
-      <p className='flex-1 font-sans text-sm font-medium leading-snug text-black'>
+      <p className='flex-1 font-sans text-sm font-medium leading-snug text-inverse'>
         {project.title}
       </p>
       <div className='mt-3 flex items-center justify-between'>
         {teamCount > 0 ? (
-          <p className='font-mono text-[9px] uppercase tracking-[0.06em] text-gray-400'>
+          <p className='font-mono text-[9px] uppercase tracking-[0.06em] text-gray-3'>
             Built by {teamCount} {teamCount === 1 ? 'student' : 'students'}
           </p>
         ) : null}

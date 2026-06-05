@@ -34,9 +34,9 @@ const CTA_ITEMS = [
 
 export function CTABand() {
   return (
-    <section className='border-t border-border-subtle bg-bg-cta px-8 py-10 md:px-16'>
-      <div className='mx-auto max-w-[1312px]'>
-        <div className='grid grid-cols-1 divide-y divide-border-subtle sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:[&>*:nth-child(n+3)]:border-t sm:[&>*:nth-child(n+3)]:border-border-subtle lg:grid-cols-4 lg:[&>*:nth-child(n+3)]:border-t-0'>
+    <section className='page-section-sm bg-root'>
+      <div className='section-inner'>
+        <div className='grid grid-cols-1 divide-y divide-separator sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:[&>*:nth-child(n+3)]:border-t sm:[&>*:nth-child(n+3)]:border-separator lg:grid-cols-4 lg:[&>*:nth-child(n+3)]:border-t-0'>
           {CTA_ITEMS.map((item, i) => (
             <div
               key={item.audience}
@@ -48,29 +48,15 @@ export function CTABand() {
                 i < 3 && 'lg:pr-10',
               )}
             >
-              <p
-                className={cn(
-                  'font-mono text-[11px] uppercase tracking-[0.12em]',
-                  item.color,
-                )}
-              >
-                {item.audience}
-              </p>
-              <h2 className='font-serif text-[26px] font-light italic leading-[1.1] tracking-[-0.01em] text-black'>
-                {item.headline}
-              </h2>
-              <p className='font-sans text-sm leading-5 text-gray-500'>
-                {item.description}
-              </p>
+              <p className={cn('label', item.color)}>{item.audience}</p>
+              <h2 className={cn('heading-card leading-[1.1]')}>{item.headline}</h2>
+              <p className='font-sans text-sm leading-5 text-gray-500'>{item.description}</p>
               <div className='flex flex-wrap gap-x-5 gap-y-2'>
                 {item.links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={cn(
-                      'font-mono text-[11px] uppercase tracking-[0.06em] hover:underline',
-                      item.color,
-                    )}
+                    className={cn('label-xs hover:underline', item.color)}
                   >
                     {link.text} →
                   </Link>

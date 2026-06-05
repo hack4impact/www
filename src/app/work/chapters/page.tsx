@@ -29,7 +29,6 @@ export default async function ChaptersPage() {
         countLabel={`${chapters.length} chapters`}
         description='Student-run, university-based chapters sharing resources, mentors, and a common mission.'
         labelColor='text-blue-500'
-        gradientOklab='92.7% -0.010 -0.027'
       />
 
       {/* Chapters grid */}

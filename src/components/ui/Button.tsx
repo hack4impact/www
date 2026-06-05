@@ -17,7 +17,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   secondary:
     'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800',
   outline:
-    'border border-black text-black hover:bg-black hover:text-white active:bg-black',
+    'border border-inverse text-inverse hover:bg-inverse hover:text-root active:bg-inverse',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {

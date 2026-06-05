@@ -19,7 +19,6 @@ export default async function StudentsPage() {
         heading='Become a Part of Hack4Impact'
         description='Join an existing chapter or start one at your school. Build real software for nonprofits and grow as a technologist and leader.'
         accentColor='text-green-600'
-        gradientOklab='96.5% -0.025 0.015'
         image={studentBanner ?? undefined}
         alt='A trio of students holding an award'
         contentClassName='pb-40'
