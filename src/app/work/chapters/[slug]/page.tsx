@@ -67,9 +67,9 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 className={cn(
                   'rounded-full px-3 py-1 font-mono text-[11px] tracking-[0.1em] uppercase',
                   chapter.status === 'Active'
-                    ? 'bg-green-50 dark:bg-green-900 text-green-600 dark:text-green-300'
+                    ? 'bg-green-50 dark:bg-green-800 text-green-600 dark:text-green-300'
                     : chapter.status === 'Forming'
-                      ? 'bg-orange-50 dark:bg-orange-900 text-orange-600 dark:text-orange-300'
+                      ? 'bg-orange-50 dark:bg-orange-800 text-orange-600 dark:text-orange-300'
                       : 'bg-gray-5 text-gray-3',
                 )}
               >
