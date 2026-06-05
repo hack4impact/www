@@ -269,7 +269,7 @@ export default function Header() {
                       onMouseLeave={scheduleClose}
                     >
                       <Menu.Popup
-                        className='z-50 min-w-[160px] overflow-hidden rounded-lg border border-separator bg-root shadow-[0_8px_24px_rgba(0,0,0,0.12)] outline-none'
+                        className='z-50 min-w-[160px] overflow-hidden rounded-lg border border-separator bg-root shadow-popup outline-none'
                         render={
                           <motion.div
                             initial={{ opacity: 0, y: -6, scale: 0.98 }}

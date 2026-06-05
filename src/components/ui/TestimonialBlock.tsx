@@ -33,7 +33,10 @@ export function TestimonialBlock({
         whileInView='visible'
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.p variants={itemVariants} className={cn('label mb-10', accentColor)}>
+        <motion.p
+          variants={itemVariants}
+          className={cn('label mb-10', accentColor)}
+        >
           In their words
         </motion.p>
 
@@ -45,12 +48,16 @@ export function TestimonialBlock({
           }
         >
           {testimonials.map((t, i) => (
-            <motion.div key={i} variants={itemVariants} className='flex flex-col'>
+            <motion.div
+              key={i}
+              variants={itemVariants}
+              className='flex flex-col'
+            >
               <blockquote className='heading-card leading-[36px]'>
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <div className='border-separator mt-8 border-t pt-6'>
-                <p className='font-sans text-[15px] font-medium leading-[18px] text-black'>
+                <p className='text-inverse font-sans text-[15px] leading-[18px] font-medium'>
                   {t.name}
                 </p>
                 {t.title && (

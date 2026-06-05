@@ -292,7 +292,7 @@ html.dark {
     border-radius: var(--radius-6);
     border: 1px solid var(--color-separator);
     background-color: var(--color-root);
-    box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+    @apply shadow-popup;
   }
 
   .select-item {
@@ -435,4 +435,8 @@ html.dark {
   font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+@utility shadow-popup {
+  box-shadow: 0 8px 24px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.5));
 }
