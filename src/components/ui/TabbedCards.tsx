@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type ReactNode } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Tabs } from '@base-ui/react'
@@ -82,8 +82,6 @@ export function TabbedCards({
   cardLabel = 'Program',
 }: TabbedCardsProps) {
   const [active, setActive] = useState(0)
-  const current = items[active]
-  const accent = ACCENT_COLORS[active % ACCENT_COLORS.length]
 
   return (
     <motion.section
@@ -130,26 +128,24 @@ export function TabbedCards({
         {/* Content area */}
         <div className='pb-16 md:pb-20'>
           <div className='relative'>
-            {/* Ghost layer — all cards rendered invisibly to set container height = tallest card */}
+            {/* Ghost layer — invisible panels set container height to the tallest card */}
             <div className='grid' aria-hidden='true'>
-              {items.map((item, i) => {
-                return (
-                  <div
-                    key={item.name}
-                    className={`pointer-events-none invisible col-start-1 row-start-1 ${PAD}`}
-                  >
-                    <CardContent
-                      item={item}
-                      index={i}
-                      accent={ACCENT_COLORS[i % ACCENT_COLORS.length]}
-                      cardLabel={cardLabel}
-                    />
-                  </div>
-                )
-              })}
+              {items.map((item, i) => (
+                <div
+                  key={item.name}
+                  className={`pointer-events-none invisible col-start-1 row-start-1 ${PAD}`}
+                >
+                  <CardContent
+                    item={item}
+                    index={i}
+                    accent={ACCENT_COLORS[i % ACCENT_COLORS.length]}
+                    cardLabel={cardLabel}
+                  />
+                </div>
+              ))}
             </div>
 
-            {/* Glow layer — radial glow crossfades behind the text, no movement */}
+            {/* Glow layer — radial glow crossfades behind the text */}
             <div className='absolute inset-0 overflow-hidden'>
               {items.map((item, i) => (
                 <motion.div
@@ -164,7 +160,7 @@ export function TabbedCards({
               ))}
             </div>
 
-            {/* Content layer — text slides in from the side */}
+            {/* Content layer — exits fully before next panel enters (mode='wait') */}
             <div className='absolute inset-0 overflow-hidden'>
               <AnimatePresence mode='wait'>
                 <motion.div
@@ -173,22 +169,15 @@ export function TabbedCards({
                   animate={{
                     opacity: 1,
                     x: 0,
-                    transition: {
-                      duration: 0.3,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    },
+                    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
                   }}
-                  exit={{
-                    opacity: 0,
-                    x: -12,
-                    transition: { duration: 0.18 },
-                  }}
+                  exit={{ opacity: 0, x: -12, transition: { duration: 0.18 } }}
                   className={PAD}
                 >
                   <CardContent
-                    item={current}
+                    item={items[active]}
                     index={active}
-                    accent={accent}
+                    accent={ACCENT_COLORS[active % ACCENT_COLORS.length]}
                     cardLabel={cardLabel}
                   />
                 </motion.div>

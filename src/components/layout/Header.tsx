@@ -139,6 +139,7 @@ export default function Header() {
   }
 
   const scheduleClose = () => {
+    cancelClose()
     closeTimer.current = setTimeout(() => {
       setOpenDropdown(null)
       setNavRect(null)
@@ -147,7 +148,7 @@ export default function Header() {
   }
 
   const handleNavItemEnter = (
-    e: React.MouseEvent<HTMLElement>,
+    e: React.MouseEvent<HTMLElement> | React.FocusEvent<HTMLElement>,
     key?: DropdownKey,
   ) => {
     cancelClose()
@@ -158,7 +159,9 @@ export default function Header() {
     setOpenDropdown(key ?? null)
   }
 
-  const handleDropdownItemEnter = (e: React.MouseEvent<HTMLElement>) => {
+  const handleDropdownItemEnter = (
+    e: React.MouseEvent<HTMLElement> | React.FocusEvent<HTMLElement>,
+  ) => {
     const container = e.currentTarget.parentElement
     if (container) {
       setDropdownRect(getRelativeRect(e.currentTarget, container))
@@ -166,6 +169,7 @@ export default function Header() {
   }
 
   const closeAll = () => {
+    cancelClose()
     setOpenDropdown(null)
     setNavRect(null)
     setDropdownRect(null)
@@ -203,6 +207,7 @@ export default function Header() {
                 onClick={closeAll}
                 className='relative z-10 px-3 py-1.5 font-sans text-[15px] text-black outline-none'
                 onMouseEnter={(e) => handleNavItemEnter(e)}
+                onFocus={(e) => handleNavItemEnter(e)}
               >
                 About
               </Link>
@@ -216,7 +221,7 @@ export default function Header() {
                       cancelClose()
                       setOpenDropdown(key)
                     } else {
-                      setOpenDropdown(null)
+                      setOpenDropdown((prev) => (prev === key ? null : prev))
                     }
                   }}
                 >
@@ -261,6 +266,7 @@ export default function Header() {
                               closeOnClick
                               onClick={closeAll}
                               onMouseEnter={handleDropdownItemEnter}
+                              onFocus={handleDropdownItemEnter}
                               className='relative z-10 block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-black outline-none'
                             >
                               {item.label}

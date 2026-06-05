@@ -1,23 +1,27 @@
 'use client'
 
+import { ComponentPropsWithoutRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeInForward } from '@/lib/animations'
 import { Button } from '@/components/ui/Button'
+import { cn } from '@/lib/utils'
 
-interface HomeIntroProps {
+interface HomeIntroProps extends ComponentPropsWithoutRef<'section'> {
   heroImageUrl?: string
 }
 
 const containerVariants = staggerContainer(0.2, false)
 const itemVariants = fadeInForward()
 
-export function HomeIntro({ heroImageUrl }: HomeIntroProps) {
+export function HomeIntro({ heroImageUrl, className, style, ...props }: HomeIntroProps) {
   return (
     <section
-      className='flex flex-col'
+      {...props}
+      className={cn('flex flex-col', className)}
       style={{
+        ...style,
         backgroundImage:
           'linear-gradient(in oklab 180deg, oklab(100% 0 0) 25%, oklab(96.4% -0.004 -0.014) 60%, oklab(92.7% -0.010 -0.027) 100%)',
       }}
