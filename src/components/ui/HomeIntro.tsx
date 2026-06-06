@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { staggerContainer, fadeInForward } from '@/lib/animations'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
+import { StaticRadialGradient } from '@paper-design/shaders-react'
 
 interface HomeIntroProps extends ComponentPropsWithoutRef<'section'> {
   heroImageUrl?: string
@@ -21,10 +22,16 @@ export function HomeIntro({
   ...props
 }: HomeIntroProps) {
   return (
-    <section
-      {...props}
-      className={cn('gradient-hero flex flex-col', className)}
-    >
+    <section {...props} className={cn('relative flex flex-col', className)}>
+      <StaticRadialGradient
+        className='absolute inset-0 -z-10'
+        radius={2}
+        falloff={0.5}
+        offsetY={0.6}
+        colors={['#63a3ec']}
+        colorBack={'#00000000'}
+        grainMixer={0.2}
+      />
       {/* Text content */}
       <motion.div
         className='flex shrink-0 flex-col items-center px-8 pt-12 md:px-16 md:pt-20'
