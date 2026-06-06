@@ -14,9 +14,6 @@ import {
   TERMS_DATA_SOURCE_ID,
 } from './client'
 
-// Featured project slug for the home page
-export const FEATURED_PROJECT_SLUG = 'whistleblower-database' // Set to a project slug to feature it
-
 // Paginates through a Notion data source, collecting all results
 async function fetchAllPages(dataSourceId: string): Promise<any[]> {
   const allResults: any[] = []

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { FilterBar } from './FilterBar'
+import { FilterBar } from '../FilterBar'
 import { ChapterCard } from './ChapterCard'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 import type { Chapter } from '@/lib/types/chapter'

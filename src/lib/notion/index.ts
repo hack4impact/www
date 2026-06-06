@@ -1,5 +1,4 @@
 import {
-  FEATURED_PROJECT_SLUG,
   getChapters,
   getChapterBySlug,
   getProjects,
@@ -20,8 +19,6 @@ export const notionApi = {
   getVolunteerCounts,
   getDoneProjectCount,
 }
-
-export { FEATURED_PROJECT_SLUG }
 
 export { toSlug, NotionUtils } from './utils'
 

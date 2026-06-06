@@ -1,1 +1,1 @@
-export const iconProps = { width: 32, height: 32, strokeWidth: 1 } as const
+export const FEATURED_PROJECT_SLUG = 'whistleblower-database'

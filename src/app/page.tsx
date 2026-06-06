@@ -28,9 +28,7 @@ export default async function HomePage() {
         <section className='border-separator flex flex-col gap-12 border-t px-8 py-16 md:flex-row md:items-center md:gap-20 md:px-16 md:py-20'>
           {/* Left: image with decorative frame */}
           <div className='relative shrink-0'>
-            <div
-              className='gradient-t-green border-separator relative aspect-[480/420] w-full overflow-hidden rounded-[5px] border md:w-[480px]'
-            >
+            <div className='gradient-t-green border-separator relative aspect-[480/420] w-full overflow-hidden rounded-[5px] border md:w-[480px]'>
               {processImageUrl && (
                 <Image
                   fill
@@ -41,8 +39,8 @@ export default async function HomePage() {
                 />
               )}
             </div>
-            <div className='absolute -top-[5px] -left-[5px] size-[10px] rounded-[1px] bg-separator' />
-            <div className='absolute -top-[5px] -right-[5px] size-[10px] rounded-[1px] bg-separator' />
+            <div className='bg-separator absolute -top-[5px] -left-[5px] size-[10px] rounded-[1px]' />
+            <div className='bg-separator absolute -top-[5px] -right-[5px] size-[10px] rounded-[1px]' />
           </div>
 
           {/* Right: label, title, steps */}
@@ -58,10 +56,10 @@ export default async function HomePage() {
                     </span>
                   </div>
                   <div className='flex flex-col gap-1'>
-                    <p className='font-sans text-base text-inverse underline decoration-1 [text-underline-position:from-font]'>
+                    <p className='text-inverse font-sans text-base underline decoration-1 [text-underline-position:from-font]'>
                       {step.name}
                     </p>
-                    <p className='font-sans text-[15px] leading-6 text-gray-3'>
+                    <p className='text-gray-3 font-sans text-[15px] leading-6'>
                       {step.description}
                     </p>
                   </div>
@@ -93,12 +91,12 @@ export default async function HomePage() {
 
         <div className='bg-panel flex flex-1 flex-col justify-center px-8 py-12 sm:p-20'>
           <p className='label mb-7 text-gray-500'>In their words</p>
-          <blockquote className='heading-card leading-[40px] text-[28px]'>
+          <blockquote className='heading-card text-[28px] leading-[40px]'>
             &ldquo;...the kind of passion for socially-minded engineering our
             industry desperately needs.&rdquo;
           </blockquote>
           <div className='border-separator mt-8 border-t pt-6'>
-            <p className='font-sans text-[15px] leading-[18px] font-medium text-inverse'>
+            <p className='text-inverse font-sans text-[15px] leading-[18px] font-medium'>
               Javid Fathi
             </p>
             <p className='label-xs mt-1 text-gray-500'>

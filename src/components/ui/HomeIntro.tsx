@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { staggerContainer, fadeInForward } from '@/lib/animations'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
+import { MeshGradient } from '@paper-design/shaders-react'
 
 interface HomeIntroProps extends ComponentPropsWithoutRef<'section'> {
   heroImageUrl?: string
@@ -15,7 +16,11 @@ interface HomeIntroProps extends ComponentPropsWithoutRef<'section'> {
 const containerVariants = staggerContainer(0.2, false)
 const itemVariants = fadeInForward()
 
-export function HomeIntro({ heroImageUrl, className, ...props }: HomeIntroProps) {
+export function HomeIntro({
+  heroImageUrl,
+  className,
+  ...props
+}: HomeIntroProps) {
   return (
     <section
       {...props}
@@ -28,17 +33,14 @@ export function HomeIntro({ heroImageUrl, className, ...props }: HomeIntroProps)
         initial='hidden'
         animate='visible'
       >
-        <motion.p
-          variants={itemVariants}
-          className='label mb-6 text-blue-500'
-        >
+        <motion.p variants={itemVariants} className='label mb-6 text-blue-500'>
           501(c)(3) nonprofit · est. 2014
         </motion.p>
 
         <h1 className='flex flex-col items-center'>
           <motion.span
             variants={itemVariants}
-            className='max-w-[820px] text-center font-serif text-[40px] leading-[46px] font-light tracking-[-0.02em] text-inverse sm:text-[52px] sm:leading-[60px] lg:text-[64px] lg:leading-[72px] xl:text-[76px] xl:leading-[84px]'
+            className='text-inverse max-w-[820px] text-center font-serif text-[40px] leading-[46px] font-light tracking-[-0.02em] sm:text-[52px] sm:leading-[60px] lg:text-[64px] lg:leading-[72px] xl:text-[76px] xl:leading-[84px]'
           >
             Code &amp; community
           </motion.span>

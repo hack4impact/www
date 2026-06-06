@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { FilterBar } from './FilterBar'
+import { FilterBar } from '../FilterBar'
 import { PartnerCard } from './PartnerCard'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 import type { Partner } from '@/lib/types/partner'

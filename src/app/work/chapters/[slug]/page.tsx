@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { notionApi } from '@/lib/notion'
-import { ProjectsTable } from '@/components/ui/ProjectsTable'
+import { ProjectsTable } from '@/components/ui/projects/ProjectsTable'
 import { StatBar } from '@/components/ui/StatBar'
 import { contentfulApi } from '@/lib/contentful'
 import Image from 'next/image'

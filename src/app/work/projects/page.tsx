@@ -1,6 +1,6 @@
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
-import { ProjectsTable } from '@/components/ui/ProjectsTable'
+import { ProjectsTable } from '@/components/ui/projects/ProjectsTable'
 import { FAQList } from '@/components/ui/FAQList'
 import { CTABand } from '@/components/ui/CTABand'
 import { WorkHeader } from '@/components/ui/WorkHeader'
