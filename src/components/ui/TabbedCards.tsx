@@ -101,7 +101,7 @@ export function TabbedCards({
                 key={item.name}
                 value={i}
                 className={cn(
-                  '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors',
+                  '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500/50',
                   active === i
                     ? 'border-separator border-b-root bg-root font-medium text-inverse'
                     : 'border-transparent text-gray-3 hover:text-inverse',

@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion'
 import { Collapsible } from '@base-ui/react/collapsible'
 import { Menu } from '@base-ui/react/menu'
 
@@ -41,69 +41,18 @@ const mobileItems: MobileItem[] = [
   },
 ]
 
-interface Rect {
-  x: number
-  y: number
-  width: number
-  height: number
-}
-
-function getRelativeRect(el: HTMLElement, container: HTMLElement): Rect {
-  const a = el.getBoundingClientRect()
-  const b = container.getBoundingClientRect()
-  return {
-    x: a.left - b.left,
-    y: a.top - b.top,
-    width: a.width,
-    height: a.height,
-  }
-}
-
-function SlideHighlight({
-  rect,
-  insetX = 0,
-}: {
-  rect: Rect | null
-  insetX?: number
-}) {
-  const r = rect
-    ? {
-        x: rect.x + insetX,
-        y: rect.y,
-        width: rect.width - insetX * 2,
-        height: rect.height,
-      }
-    : null
-  return (
-    <AnimatePresence>
-      {r && (
-        <motion.div
-          className='pointer-events-none absolute top-0 left-0 rounded-md bg-gray-5'
-          initial={{
-            opacity: 0,
-            x: r.x,
-            y: r.y,
-            width: r.width,
-            height: r.height,
-          }}
-          animate={{
-            opacity: 1,
-            x: r.x,
-            y: r.y,
-            width: r.width,
-            height: r.height,
-          }}
-          exit={{ opacity: 0 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-        />
-      )}
-    </AnimatePresence>
-  )
-}
-
 function SunIcon() {
   return (
-    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+    <svg
+      width='16'
+      height='16'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    >
       <circle cx='12' cy='12' r='4' />
       <path d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41' />
     </svg>
@@ -112,7 +61,16 @@ function SunIcon() {
 
 function MoonIcon() {
   return (
-    <svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+    <svg
+      width='16'
+      height='16'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    >
       <path d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z' />
     </svg>
   )
@@ -143,6 +101,9 @@ export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [dark, setDark] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null)
+  const [hoveredNav, setHoveredNav] = useState<string | null>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     setDark(document.documentElement.classList.contains('dark'))
@@ -155,13 +116,6 @@ export default function Header() {
     localStorage.setItem('theme', next ? 'dark' : 'light')
   }
 
-  // Hover & Dropdown state
-  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null)
-  const [navRect, setNavRect] = useState<Rect | null>(null)
-  const navRowRef = useRef<HTMLDivElement>(null)
-  const [dropdownRect, setDropdownRect] = useState<Rect | null>(null)
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-
   const cancelClose = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
   }
@@ -170,37 +124,13 @@ export default function Header() {
     cancelClose()
     closeTimer.current = setTimeout(() => {
       setOpenDropdown(null)
-      setNavRect(null)
-      setDropdownRect(null)
     }, 120)
-  }
-
-  const handleNavItemEnter = (
-    e: React.MouseEvent<HTMLElement> | React.FocusEvent<HTMLElement>,
-    key?: DropdownKey,
-  ) => {
-    cancelClose()
-    if (navRowRef.current) {
-      setNavRect(getRelativeRect(e.currentTarget, navRowRef.current))
-    }
-    if (key !== openDropdown) setDropdownRect(null)
-    setOpenDropdown(key ?? null)
-  }
-
-  const handleDropdownItemEnter = (
-    e: React.MouseEvent<HTMLElement> | React.FocusEvent<HTMLElement>,
-  ) => {
-    const container = e.currentTarget.parentElement
-    if (container) {
-      setDropdownRect(getRelativeRect(e.currentTarget, container))
-    }
   }
 
   const closeAll = () => {
     cancelClose()
     setOpenDropdown(null)
-    setNavRect(null)
-    setDropdownRect(null)
+    setHoveredNav(null)
   }
 
   return (
@@ -225,21 +155,35 @@ export default function Header() {
 
         {/* Desktop nav */}
         <div className='hidden items-center gap-6 md:flex'>
-          <div className='relative' onMouseLeave={scheduleClose}>
-            {/* Nav row with sliding highlight */}
-            <div ref={navRowRef} className='relative flex items-center'>
-              <SlideHighlight rect={navRect} />
-
+          <LayoutGroup>
+            <div
+              className='flex items-center'
+              onMouseLeave={() => {
+                scheduleClose()
+                setHoveredNav(null)
+              }}
+            >
+              {/* About */}
               <Link
                 href='/about'
                 onClick={closeAll}
-                className='relative z-10 px-3 py-1.5 font-sans text-[15px] text-inverse outline-none'
-                onMouseEnter={(e) => handleNavItemEnter(e)}
-                onFocus={(e) => handleNavItemEnter(e)}
+                className='relative inline-flex items-center rounded-md px-3 py-1.5 font-sans text-[15px] text-inverse outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50'
+                onMouseEnter={() => {
+                  cancelClose()
+                  setHoveredNav('about')
+                }}
               >
-                About
+                {hoveredNav === 'about' && (
+                  <motion.div
+                    layoutId='nav-highlight'
+                    className='pointer-events-none absolute inset-0 rounded-md bg-gray-5'
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                  />
+                )}
+                <span className='relative z-10'>About</span>
               </Link>
 
+              {/* Dropdown triggers */}
               {dropdownKeys.map((key) => (
                 <Menu.Root
                   key={key}
@@ -254,11 +198,24 @@ export default function Header() {
                   }}
                 >
                   <Menu.Trigger
-                    className='relative z-10 flex cursor-default items-center gap-1.5 px-3 py-1.5 font-sans text-[15px] text-inverse outline-none'
-                    onMouseEnter={(e) => handleNavItemEnter(e, key)}
+                    className='relative inline-flex cursor-pointer items-center gap-1.5 rounded-md px-3 py-1.5 font-sans text-[15px] text-inverse outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50'
+                    onMouseEnter={() => {
+                      cancelClose()
+                      setHoveredNav(key)
+                      setOpenDropdown(key)
+                    }}
                   >
-                    {key}
-                    <ChevronIcon isOpen={openDropdown === key} />
+                    {hoveredNav === key && (
+                      <motion.div
+                        layoutId='nav-highlight'
+                        className='pointer-events-none absolute inset-0 rounded-md bg-gray-5'
+                        transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                      />
+                    )}
+                    <span className='relative z-10 flex items-center gap-1.5'>
+                      {key}
+                      <ChevronIcon isOpen={openDropdown === key} />
+                    </span>
                   </Menu.Trigger>
 
                   <Menu.Portal>
@@ -282,20 +239,14 @@ export default function Header() {
                           />
                         }
                       >
-                        <div
-                          className='relative py-1.5'
-                          onMouseLeave={() => setDropdownRect(null)}
-                        >
-                          <SlideHighlight rect={dropdownRect} insetX={6} />
+                        <div className='py-1.5'>
                           {dropdowns[key].map((item) => (
                             <Menu.LinkItem
                               key={item.href}
                               render={<Link href={item.href} />}
                               closeOnClick
                               onClick={closeAll}
-                              onMouseEnter={handleDropdownItemEnter}
-                              onFocus={handleDropdownItemEnter}
-                              className='relative z-10 block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-inverse outline-none'
+                              className='block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-inverse outline-none transition-colors data-[highlighted]:bg-gray-5'
                             >
                               {item.label}
                             </Menu.LinkItem>
@@ -307,7 +258,7 @@ export default function Header() {
                 </Menu.Root>
               ))}
             </div>
-          </div>
+          </LayoutGroup>
 
           <a
             href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
