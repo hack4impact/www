@@ -71,6 +71,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
+      suppressHydrationWarning
       className={`${inclusiveSans.variable} ${newsreader.variable} ${paperMono.variable}`}
     >
       <head>
