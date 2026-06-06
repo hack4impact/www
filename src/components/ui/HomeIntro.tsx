@@ -7,7 +7,6 @@ import { motion } from 'framer-motion'
 import { staggerContainer, fadeInForward } from '@/lib/animations'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
-import { MeshGradient } from '@paper-design/shaders-react'
 
 interface HomeIntroProps extends ComponentPropsWithoutRef<'section'> {
   heroImageUrl?: string
