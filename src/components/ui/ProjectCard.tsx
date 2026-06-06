@@ -12,7 +12,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={`/work/projects/${project.slug}`}
-      className='group flex h-full flex-col overflow-hidden rounded-xl border border-separator bg-root p-3.5 transition-colors hover:border-gray-4'
+      className='group flex h-full flex-col overflow-hidden rounded-xl border border-separator bg-panel p-3.5 transition-colors hover:border-gray-4'
     >
       {meta && (
         <p className='mb-1.5 font-mono text-[9px] uppercase tracking-[0.08em] text-gray-3'>

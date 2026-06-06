@@ -6,7 +6,7 @@ interface PartnerCardProps {
 
 export function PartnerCard({ partner }: PartnerCardProps) {
   return (
-    <div className='group flex h-full min-h-[96px] flex-col items-center justify-center rounded-xl border border-separator bg-root p-3.5 transition-colors hover:border-gray-4'>
+    <div className='group flex h-full min-h-[96px] flex-col items-center justify-center rounded-xl border border-separator bg-panel p-3.5 transition-colors hover:border-gray-4'>
       <p className='text-center font-sans text-sm leading-tight text-gray-2 transition-colors group-hover:text-inverse'>
         {partner.name}
       </p>
