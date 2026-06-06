@@ -103,6 +103,7 @@ export default function Header() {
   const [dark, setDark] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null)
   const [hoveredNav, setHoveredNav] = useState<string | null>(null)
+  const [hoveredDropdownItem, setHoveredDropdownItem] = useState<string | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -124,6 +125,7 @@ export default function Header() {
     cancelClose()
     closeTimer.current = setTimeout(() => {
       setOpenDropdown(null)
+      setHoveredDropdownItem(null)
     }, 120)
   }
 
@@ -131,6 +133,7 @@ export default function Header() {
     cancelClose()
     setOpenDropdown(null)
     setHoveredNav(null)
+    setHoveredDropdownItem(null)
   }
 
   return (
@@ -239,16 +242,29 @@ export default function Header() {
                           />
                         }
                       >
-                        <div className='py-1.5'>
+                        <div
+                          className='py-1.5'
+                          onMouseLeave={() => setHoveredDropdownItem(null)}
+                        >
                           {dropdowns[key].map((item) => (
                             <Menu.LinkItem
                               key={item.href}
                               render={<Link href={item.href} />}
                               closeOnClick
                               onClick={closeAll}
-                              className='block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-inverse outline-none transition-colors data-[highlighted]:bg-gray-5'
+                              onMouseEnter={() => setHoveredDropdownItem(item.href)}
+                              onFocus={() => setHoveredDropdownItem(item.href)}
+                              onBlur={() => setHoveredDropdownItem(null)}
+                              className='relative block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-inverse outline-none'
                             >
-                              {item.label}
+                              {hoveredDropdownItem === item.href && (
+                                <motion.div
+                                  layoutId={`dropdown-hl-${key}`}
+                                  className='pointer-events-none absolute inset-x-1.5 inset-y-0 rounded bg-gray-5'
+                                  transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                                />
+                              )}
+                              <span className='relative z-10'>{item.label}</span>
                             </Menu.LinkItem>
                           ))}
                         </div>
