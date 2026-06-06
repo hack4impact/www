@@ -7,13 +7,13 @@ import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 
 const GRADIENT_CLASS: Record<string, string> = {
-  'text-blue-500':  'gradient-tr-blue',
-  'text-blue-600':  'gradient-tr-blue',
+  'text-blue-500': 'gradient-tr-blue',
+  'text-blue-600': 'gradient-tr-blue',
   'text-green-600': 'gradient-tr-green',
-  'text-purple-600':'gradient-tr-purple',
-  'text-orange-500':'gradient-tr-orange',
-  'text-orange-600':'gradient-tr-orange',
-  'text-pink-600':  'gradient-tr-purple',
+  'text-purple-600': 'gradient-tr-purple',
+  'text-orange-500': 'gradient-tr-orange',
+  'text-orange-600': 'gradient-tr-orange',
+  'text-pink-600': 'gradient-tr-purple',
 }
 
 interface GetInvolvedHeaderProps {
@@ -59,10 +59,12 @@ export function GetInvolvedHeader({
             Get Involved · {label}
           </p>
           <h1 className='heading-display mb-4'>{heading}</h1>
-          <p className='text-gray-3 max-w-2xl font-sans text-base leading-6'>{description}</p>
+          <p className='text-gray-3 max-w-2xl font-sans text-base leading-6'>
+            {description}
+          </p>
           {buttonText && buttonHref && (
             <div className='mt-8'>
-              <Link href={buttonHref}>
+              <Link target='_blank' rel='noopener noreferrer' href={buttonHref}>
                 <Button>{buttonText}</Button>
               </Link>
             </div>
@@ -75,7 +77,7 @@ export function GetInvolvedHeader({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: 0.6, delay: 0.3 } }}
           >
-            <div className='relative h-full mr-8 md:mr-16'>
+            <div className='relative mr-8 h-full md:mr-16'>
               <Image
                 fill
                 src={image}
@@ -88,7 +90,7 @@ export function GetInvolvedHeader({
           </motion.div>
         ) : (
           <div
-            className='pointer-events-none absolute inset-y-0 left-1/2 right-0 hidden select-none overflow-hidden md:flex md:items-center md:justify-end md:pr-8 lg:pr-16'
+            className='pointer-events-none absolute inset-y-0 right-0 left-1/2 hidden overflow-hidden select-none md:flex md:items-center md:justify-end md:pr-8 lg:pr-16'
             aria-hidden='true'
           >
             <span
