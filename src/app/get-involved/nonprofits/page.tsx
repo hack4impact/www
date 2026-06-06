@@ -34,7 +34,7 @@ export default async function NonprofitsPage() {
         heading='Partner with Hack4Impact'
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
-        buttonHref='#apply'
+        buttonHref='https://h4i.notion.site/377197abf07b803da595e706102bbde0?pvs=105'
         accentColor='text-blue-500'
         image={nonprofitBanner ?? undefined}
         alt='Nonprofits partnering with Hack4Impact'
