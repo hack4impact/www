@@ -73,7 +73,9 @@ export function TabbedCards({
   heading = 'Community in action',
   cardLabel = 'Program',
 }: TabbedCardsProps) {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(items[0]?.name ?? '')
+
+  const activeIndex = items.findIndex((item) => item.name === active)
 
   return (
     <motion.section
@@ -91,7 +93,7 @@ export function TabbedCards({
 
       <Tabs.Root
         value={active}
-        onValueChange={(val) => setActive(val as number)}
+        onValueChange={(val) => setActive(val as string)}
       >
         {/* Tab row */}
         <div className='overflow-x-auto'>
@@ -99,10 +101,10 @@ export function TabbedCards({
             {items.map((item, i) => (
               <Tabs.Tab
                 key={item.name}
-                value={i}
+                value={item.name}
                 className={cn(
                   '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500/50',
-                  active === i
+                  active === item.name
                     ? 'border-separator border-b-root bg-root font-medium text-inverse'
                     : 'border-transparent text-gray-3 hover:text-inverse',
                 )}
@@ -138,7 +140,7 @@ export function TabbedCards({
               {items.map((item, i) => (
                 <motion.div
                   key={item.name}
-                  animate={{ opacity: i === active ? 1 : 0 }}
+                  animate={{ opacity: item.name === active ? 1 : 0 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                   className='absolute inset-0'
                   style={{
@@ -162,12 +164,14 @@ export function TabbedCards({
                   exit={{ opacity: 0, x: -12, transition: { duration: 0.18 } }}
                   className={PAD}
                 >
-                  <CardContent
-                    item={items[active]}
-                    index={active}
-                    accent={ACCENT_COLORS[active % ACCENT_COLORS.length]}
-                    cardLabel={cardLabel}
-                  />
+                  {activeIndex >= 0 && (
+                    <CardContent
+                      item={items[activeIndex]}
+                      index={activeIndex}
+                      accent={ACCENT_COLORS[activeIndex % ACCENT_COLORS.length]}
+                      cardLabel={cardLabel}
+                    />
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>

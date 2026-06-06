@@ -125,6 +125,7 @@ export default function Header() {
     cancelClose()
     closeTimer.current = setTimeout(() => {
       setOpenDropdown(null)
+      setHoveredNav(null)
       setHoveredDropdownItem(null)
     }, 120)
   }
@@ -161,10 +162,7 @@ export default function Header() {
           <LayoutGroup>
             <div
               className='flex items-center'
-              onMouseLeave={() => {
-                scheduleClose()
-                setHoveredNav(null)
-              }}
+              onMouseLeave={scheduleClose}
             >
               {/* About */}
               <Link
@@ -225,7 +223,7 @@ export default function Header() {
                     <Menu.Positioner
                       sideOffset={6}
                       align='start'
-                      onMouseEnter={cancelClose}
+                      onMouseEnter={() => { cancelClose(); setHoveredNav(key) }}
                       onMouseLeave={scheduleClose}
                     >
                       <Menu.Popup
