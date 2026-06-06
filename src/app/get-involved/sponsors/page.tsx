@@ -1,7 +1,6 @@
 import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
 import { CTABand } from '@/components/ui/CTABand'
 import { StatBar } from '@/components/ui/StatBar'
-import { ComparisonTable } from '@/components/ui/ComparisonTable'
 import { SponsorsGrid, type SponsorGroup } from '@/components/ui/SponsorsGrid'
 import { StepsList } from '@/components/ui/StepsList'
 import { notionApi } from '@/lib/notion'
@@ -40,8 +39,10 @@ function groupSponsors(sponsors: Sponsor[]): SponsorGroup[] {
   const corporate = sponsors.filter((s) => s.corporate)
   const probono = sponsors.filter((s) => !s.corporate)
 
-  if (corporate.length > 0) groups.push({ tier: 'Corporate', sponsors: sort(corporate) })
-  if (probono.length > 0) groups.push({ tier: 'Pro-bono & In-kind', sponsors: sort(probono) })
+  if (corporate.length > 0)
+    groups.push({ tier: 'Corporate', sponsors: sort(corporate) })
+  if (probono.length > 0)
+    groups.push({ tier: 'Pro-bono & In-kind', sponsors: sort(probono) })
 
   return groups
 }
@@ -73,22 +74,11 @@ export default async function SponsorsPage() {
         heading='Support Hack4Impact'
         description='Your sponsorship enables student-driven technology for social good. Fund the tools, events, and infrastructure that power our chapters and the nonprofits they serve.'
         buttonText='Become a sponsor'
-        buttonHref='#contact'
+        buttonHref='mailto:contact@hack4impact.org'
         accentColor='text-orange-600'
       />
 
       <StatBar stats={stats} />
-
-      {/* <section className='border-t border-separator px-8 py-16 md:px-12 md:py-24'> */}
-      {/*   <div className='mx-auto max-w-3xl'> */}
-      {/*     <ComparisonTable */}
-      {/*       heading='Sponsorship tiers' */}
-      {/*       labelHeader='Benefits' */}
-      {/*       columns={columns} */}
-      {/*       rows={rows} */}
-      {/*     /> */}
-      {/*   </div> */}
-      {/* </section> */}
 
       {sponsorGroups.length > 0 && (
         <section className='border-separator border-t px-8 py-16 md:px-12 md:py-24'>
