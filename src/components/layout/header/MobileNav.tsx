@@ -112,7 +112,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                 href='https://collect.crowded.me/collection/5347b60c-26a0-45da-9c0e-4910703f3152'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='mt-4 block w-full rounded-[3px] bg-blue-500 py-3 text-center font-mono text-[13px] tracking-[0.02em] text-white transition-colors hover:bg-blue-600'
+                className='mt-4 block w-full rounded-md bg-blue-500 py-3 text-center font-mono text-[13px] tracking-[0.02em] text-white transition-colors hover:bg-blue-600'
               >
                 Donate
               </a>

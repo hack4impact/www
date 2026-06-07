@@ -24,9 +24,9 @@ export default async function JournalPostPage({
       <section className='p-8 text-center md:px-24 md:py-12'>
         <div className='mx-auto max-w-4xl'>
           <div className='mb-2 flex items-center justify-center gap-2 font-serif text-base'>
-            <span className='text-gray-600'>{entry.tag}</span>
-            <span className='text-gray-400'>&middot;</span>
-            <span className='text-gray-600'>{entry.readTime}</span>
+            <span className='text-gray-2'>{entry.tag}</span>
+            <span className='text-gray-4'>&middot;</span>
+            <span className='text-gray-2'>{entry.readTime}</span>
           </div>
           <h1 className='mx-auto font-sans text-3xl md:text-5xl'>
             {entry.title}
@@ -56,11 +56,11 @@ export default async function JournalPostPage({
           {/* Sidebar - Author & Date */}
           <aside className='grid grid-cols-2 font-serif lg:block lg:pr-8'>
             <div className='mb-0 lg:mb-4'>
-              <p className='text-sm text-gray-500'>Written by</p>
+              <p className='text-sm text-gray-3'>Written by</p>
               <p className='font-sans'>{entry.author}</p>
             </div>
             <div>
-              <p className='text-sm text-gray-500'>Published</p>
+              <p className='text-sm text-gray-3'>Published</p>
               <p className='font-sans'>{entry.publishedDate}</p>
             </div>
           </aside>
@@ -71,7 +71,7 @@ export default async function JournalPostPage({
             <p className='mb-6 text-lg md:text-xl'>{entry.intro}</p>
 
             {/* Divider */}
-            <Separator className='mb-6 border-t border-gray-300' />
+            <Separator className='mb-6 border-t border-separator' />
 
             {/* Content */}
             <div className='max-w-none'>

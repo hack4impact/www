@@ -61,7 +61,7 @@ export function TestimonialBlock({
                   {t.name}
                 </p>
                 {t.title && (
-                  <p className='label-xs mt-1 text-gray-500'>{t.title}</p>
+                  <p className='label-xs mt-1 text-gray-4'>{t.title}</p>
                 )}
               </div>
             </motion.div>

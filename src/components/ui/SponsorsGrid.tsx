@@ -56,7 +56,7 @@ export function SponsorsGrid({ heading, groups }: SponsorsGridProps) {
         {groups.map((group) => (
           <div key={group.tier}>
             <div className='mb-4 border-b border-separator pb-2'>
-              <span className='label-xs text-gray-400'>{group.tier}</span>
+              <span className='label-xs text-gray-4'>{group.tier}</span>
             </div>
             <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
               {group.sponsors.map((sponsor) => (

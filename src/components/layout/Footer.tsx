@@ -20,7 +20,7 @@ export default function Footer() {
     <footer className='border-separator bg-root border-t'>
       {/* Main content */}
       <div className='px-8 py-10 md:px-16'>
-        <div className='mx-auto flex items-end justify-between gap-12'>
+        <div className='mx-auto flex max-w-[1312px] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between'>
           {/* Left: logomark + Candid seal side by side */}
           <div className='flex items-center gap-4'>
             <Link href='/' aria-label='Hack4Impact'>
@@ -49,15 +49,15 @@ export default function Footer() {
           </div>
 
           {/* Right: nav columns */}
-          <div className='flex gap-12 md:gap-16'>
+          <div className='flex gap-8 sm:gap-12 md:gap-16'>
             <div>
-              <p className='label-xs mb-4 text-gray-400'>Organization</p>
+              <p className='label-xs mb-4 text-gray-4'>Organization</p>
               <ul className='space-y-2.5'>
                 {ORGANIZATION_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className='font-sans text-sm text-gray-500 transition-colors hover:text-black'
+                      className='font-sans text-sm text-gray-3 transition-colors hover:text-inverse'
                     >
                       {link.label}
                     </Link>
@@ -66,13 +66,13 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className='label-xs mb-4 text-gray-400'>Get Involved</p>
+              <p className='label-xs mb-4 text-gray-4'>Get Involved</p>
               <ul className='space-y-2.5'>
                 {GET_INVOLVED_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className='font-sans text-sm text-gray-500 transition-colors hover:text-black'
+                      className='font-sans text-sm text-gray-3 transition-colors hover:text-inverse'
                     >
                       {link.label}
                     </Link>
@@ -87,11 +87,11 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className='border-separator border-t px-8 py-4 md:px-16'>
         <div className='mx-auto flex max-w-[1312px] items-center justify-between'>
-          <p className='font-mono text-[10px] tracking-[0.04em] text-gray-400'>
+          <p className='font-mono text-[10px] tracking-[0.04em] text-gray-4'>
             © {new Date().getFullYear()} Hack4Impact Inc. d/b/a Hack for Impact
             · EIN 81-0790890
           </p>
-          <p className='font-mono text-[10px] tracking-[0.04em] text-gray-400'>
+          <p className='font-mono text-[10px] tracking-[0.04em] text-gray-4'>
             501(c)(3) Public Charity
           </p>
         </div>

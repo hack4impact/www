@@ -33,7 +33,7 @@ export function FilterBar({ filters, sort }: FilterBarProps) {
       <div className='border-b border-separator pb-5 md:hidden'>
         <Collapsible.Root>
           <div className='flex items-center justify-between'>
-            <Collapsible.Trigger className='group flex cursor-pointer items-center gap-2 rounded-[6px] border border-gray-300 px-3.5 py-2 label-xs text-gray-600 outline-none transition-colors hover:border-gray-400'>
+            <Collapsible.Trigger className='group flex cursor-pointer items-center gap-2 rounded-[6px] border border-separator px-3.5 py-2 label-xs text-gray-2 outline-none transition-colors hover:border-gray-3'>
               Filters
               <svg
                 width='10'

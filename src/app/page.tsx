@@ -90,7 +90,7 @@ export default async function HomePage() {
         </div>
 
         <div className='bg-panel flex flex-1 flex-col justify-center px-8 py-12 sm:p-20'>
-          <p className='label mb-7 text-gray-500'>In their words</p>
+          <p className='label mb-7 text-gray-3'>In their words</p>
           <blockquote className='heading-card text-[28px] leading-[40px]'>
             &ldquo;...the kind of passion for socially-minded engineering our
             industry desperately needs.&rdquo;
@@ -99,7 +99,7 @@ export default async function HomePage() {
             <p className='text-inverse font-sans text-[15px] leading-[18px] font-medium'>
               Javid Fathi
             </p>
-            <p className='label-xs mt-1 text-gray-500'>
+            <p className='label-xs mt-1 text-gray-4'>
               Software Engineer Lead, Microsoft
             </p>
           </div>

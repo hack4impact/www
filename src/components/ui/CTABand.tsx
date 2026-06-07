@@ -36,7 +36,7 @@ export function CTABand() {
   return (
     <section className='page-section-sm bg-root'>
       <div className='section-inner'>
-        <div className='grid grid-cols-1 divide-y divide-separator sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:[&>*:nth-child(n+3)]:border-t sm:[&>*:nth-child(n+3)]:border-separator lg:grid-cols-4 lg:[&>*:nth-child(n+3)]:border-t-0'>
+        <div className='grid grid-cols-1 divide-y divide-separator sm:grid-cols-2 sm:divide-y-0 sm:[&>*:nth-child(even)]:border-l sm:[&>*:nth-child(even)]:border-separator sm:[&>*:nth-child(n+3)]:border-t sm:[&>*:nth-child(n+3)]:border-separator lg:grid-cols-4 lg:[&>*:nth-child(n+2)]:border-l lg:[&>*:nth-child(n+2)]:border-separator lg:[&>*:nth-child(n+3)]:border-t-0'>
           {CTA_ITEMS.map((item, i) => (
             <div
               key={item.audience}
@@ -50,7 +50,7 @@ export function CTABand() {
             >
               <p className={cn('label', item.color)}>{item.audience}</p>
               <h2 className={cn('heading-card leading-[1.1]')}>{item.headline}</h2>
-              <p className='font-sans text-sm leading-5 text-gray-500'>{item.description}</p>
+              <p className='font-sans text-sm leading-5 text-gray-3'>{item.description}</p>
               <div className='flex flex-wrap gap-x-5 gap-y-2'>
                 {item.links.map((link) => (
                   <Link
