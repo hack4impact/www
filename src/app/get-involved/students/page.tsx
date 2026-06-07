@@ -19,9 +19,10 @@ export default async function StudentsPage() {
         heading='Become a Part of Hack4Impact'
         description='Join an existing chapter or start one at your school. Build real software for nonprofits and grow as a technologist and leader.'
         accentColor='text-green-600'
+        buttonText='Start a chapter'
+        buttonHref='https://tally.so/r/q4zO69'
         image={studentBanner ?? undefined}
         alt='A trio of students holding an award'
-        contentClassName='pb-40'
       />
 
       <SplitCTA
@@ -29,7 +30,7 @@ export default async function StudentsPage() {
           label: 'Already have a chapter?',
           heading: "Join your school's chapter.",
           description:
-            'Many universities already have an active Hack4Impact chapter. If yours does, reach out to them directly — each chapter runs its own applications and recruiting.',
+            'Many universities already have an active Hack4Impact chapter. If yours does, reach out to them directly. Each chapter runs its own applications and recruiting.',
           linkText: 'Browse all chapters',
           linkHref: '/work/chapters',
           linkArrow: '→',
@@ -39,7 +40,7 @@ export default async function StudentsPage() {
           label: 'No chapter at your school?',
           heading: 'Start one from scratch.',
           description:
-            "If your school doesn't have a chapter yet, you can be the one to start it. H4I national provides everything you need — mentors, resources, and your first nonprofit partner.",
+            "If your school doesn't have a chapter yet, you can be the one to start it. H4I national provides everything you need including mentors, resources, and your first nonprofit partner.",
           linkText: 'How to get started',
           linkHref: '#start',
           linkArrow: '↓',
