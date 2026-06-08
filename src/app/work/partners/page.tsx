@@ -1,9 +1,9 @@
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
 import { PartnersTable } from '@/components/ui/partners/PartnersTable'
-import { FAQList } from '@/components/ui/FAQList'
-import { CTABand } from '@/components/ui/CTABand'
-import { WorkHeader } from '@/components/ui/WorkHeader'
+import { AccordionList } from '@/components/ui/AccordionList'
+import { ActionBand } from '@/components/ui/ActionBand'
+import { ListingHeader } from '@/components/ui/ListingHeader'
 
 export default async function PartnersPage() {
   const [partners, faqs] = await Promise.all([
@@ -13,7 +13,7 @@ export default async function PartnersPage() {
 
   return (
     <>
-      <WorkHeader
+      <ListingHeader
         label='Nonprofit Partners'
         title='The organizations we serve'
         countLabel={`${partners.length} organizations`}
@@ -28,9 +28,9 @@ export default async function PartnersPage() {
         </div>
       </section>
 
-      <FAQList items={faqs} accentColor='text-purple-600' />
+      <AccordionList items={faqs} accentColor='text-purple-600' />
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

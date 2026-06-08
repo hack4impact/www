@@ -1,7 +1,7 @@
-import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
+import { HeroBanner } from '@/components/ui/HeroBanner'
 import { StepsList } from '@/components/ui/StepsList'
-import { FAQList } from '@/components/ui/FAQList'
-import { CTABand } from '@/components/ui/CTABand'
+import { AccordionList } from '@/components/ui/AccordionList'
+import { ActionBand } from '@/components/ui/ActionBand'
 import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
 
@@ -29,9 +29,9 @@ export default async function NonprofitsPage() {
 
   return (
     <>
-      <GetInvolvedHeader
+      <HeroBanner
         label='Nonprofits'
-        heading='Partner with Hack4Impact'
+        label='Partner with Hack4Impact'
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
         buttonHref='https://tally.so/r/yP1xNW'
@@ -58,13 +58,13 @@ export default async function NonprofitsPage() {
         accentColor='text-blue-500'
       />
 
-      <FAQList
-        heading='What to expect'
+      <AccordionList
+        label='What to expect'
         items={faqs}
         accentColor='text-blue-500'
       />
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

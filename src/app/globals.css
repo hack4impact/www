@@ -131,6 +131,37 @@ html.dark {
   color-scheme: dark;
 }
 
+.badge-active {
+  background-color: var(--color-green-50);
+  color: var(--color-green-600);
+}
+html.dark .badge-active {
+  background-color: var(--color-green-800);
+  color: var(--color-green-300);
+}
+
+.badge-founding {
+  background-color: var(--color-orange-50);
+  color: var(--color-orange-600);
+}
+html.dark .badge-founding {
+  background-color: var(--color-orange-800);
+  color: var(--color-orange-300);
+}
+
+.logo-adaptive {
+  filter: brightness(0);
+}
+html.dark .logo-adaptive {
+  filter: invert(1);
+}
+
+.logo-invert-dark {
+}
+html.dark .logo-invert-dark {
+  filter: brightness(0) invert(1);
+}
+
 @media (min-width: 768px) {
   :root {
     --header-height: 72px; /* py-4 (32px) + 40px logo */

@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { notionApi } from '@/lib/notion'
 import { cn } from '@/lib/utils'
-import { CTABand } from '@/components/ui/CTABand'
+import { ActionBand } from '@/components/ui/ActionBand'
 import type { ProjectSection } from '@/lib/types/project'
 
 interface ProjectPageProps {
@@ -98,7 +98,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className='flex items-center justify-between pb-6'>
             <p className='label text-green-600'>Our Work</p>
             {project.tag && (
-              <span className='rounded-full bg-green-50 dark:bg-green-800 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-green-600 dark:text-green-300'>
+              <span className='badge-active rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em]'>
                 {project.tag}
               </span>
             )}
@@ -227,7 +227,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       {/* CTA Band */}
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

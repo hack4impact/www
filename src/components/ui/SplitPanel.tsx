@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-interface SplitCTASide {
+interface SplitPanelSide {
   label: string
   heading: string
   description: string
@@ -11,12 +11,12 @@ interface SplitCTASide {
   color?: string
 }
 
-interface SplitCTAProps {
-  left: SplitCTASide
-  right: SplitCTASide
+interface SplitPanelProps {
+  left: SplitPanelSide
+  right: SplitPanelSide
 }
 
-function Side({ side, border }: { side: SplitCTASide; border?: string }) {
+function Side({ side, border }: { side: SplitPanelSide; border?: string }) {
   const color = side.color ?? 'text-gray-2'
   return (
     <div className={cn('flex grow basis-0 flex-col gap-4', border)}>
@@ -35,7 +35,7 @@ function Side({ side, border }: { side: SplitCTASide; border?: string }) {
   )
 }
 
-export function SplitCTA({ left, right }: SplitCTAProps) {
+export function SplitPanel({ left, right }: SplitPanelProps) {
   return (
     <div className='page-section-sm border-b border-separator'>
       <div className='flex flex-col md:flex-row'>

@@ -1,8 +1,8 @@
-import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
-import { SplitCTA } from '@/components/ui/SplitCTA'
+import { HeroBanner } from '@/components/ui/HeroBanner'
+import { SplitPanel } from '@/components/ui/SplitPanel'
 import { StepsList } from '@/components/ui/StepsList'
-import { FAQList } from '@/components/ui/FAQList'
-import { CTABand } from '@/components/ui/CTABand'
+import { AccordionList } from '@/components/ui/AccordionList'
+import { ActionBand } from '@/components/ui/ActionBand'
 import { contentfulApi } from '@/lib/contentful'
 
 export default async function StudentsPage() {
@@ -14,9 +14,9 @@ export default async function StudentsPage() {
 
   return (
     <>
-      <GetInvolvedHeader
+      <HeroBanner
         label='Students'
-        heading='Become a Part of Hack4Impact'
+        label='Become a Part of Hack4Impact'
         description='Join an existing chapter or start one at your school. Build real software for nonprofits and grow as a technologist and leader.'
         accentColor='text-green-600'
         buttonText='Start a chapter'
@@ -25,7 +25,7 @@ export default async function StudentsPage() {
         alt='A trio of students holding an award'
       />
 
-      <SplitCTA
+      <SplitPanel
         left={{
           label: 'Already have a chapter?',
           heading: "Join your school's chapter.",
@@ -63,9 +63,9 @@ export default async function StudentsPage() {
         </section>
       )}
 
-      <FAQList items={faqs} accentColor='text-green-600' />
+      <AccordionList items={faqs} accentColor='text-green-600' />
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

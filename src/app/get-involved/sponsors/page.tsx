@@ -1,5 +1,5 @@
-import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
-import { CTABand } from '@/components/ui/CTABand'
+import { HeroBanner } from '@/components/ui/HeroBanner'
+import { ActionBand } from '@/components/ui/ActionBand'
 import { StatBar } from '@/components/ui/StatBar'
 import { SponsorsGrid, type SponsorGroup } from '@/components/ui/SponsorsGrid'
 import { StepsList } from '@/components/ui/StepsList'
@@ -69,9 +69,9 @@ export default async function SponsorsPage() {
 
   return (
     <>
-      <GetInvolvedHeader
+      <HeroBanner
         label='Sponsors'
-        heading='Support Hack4Impact'
+        title='Support Hack4Impact'
         description='Your sponsorship enables student-driven technology for social good. Fund the tools, events, and infrastructure that power our chapters and the nonprofits they serve.'
         buttonText='Become a sponsor'
         buttonHref='mailto:contact@hack4impact.org'
@@ -82,7 +82,7 @@ export default async function SponsorsPage() {
 
       {sponsorGroups.length > 0 && (
         <section className='border-separator border-t px-8 py-16 md:px-12 md:py-24'>
-          <SponsorsGrid heading='Our supporters' groups={sponsorGroups} />
+          <SponsorsGrid title='Our supporters' groups={sponsorGroups} />
         </section>
       )}
 
@@ -98,7 +98,7 @@ export default async function SponsorsPage() {
         </section>
       )}
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

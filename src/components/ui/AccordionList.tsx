@@ -4,21 +4,21 @@ import { Collapsible } from '@base-ui/react/collapsible'
 import { cn } from '@/lib/utils'
 import type { FAQ } from '@/lib/types/contentful'
 
-interface FAQListProps {
-  heading?: string
+interface AccordionListProps {
+  label?: string
   items: FAQ[]
   accentColor?: string
 }
 
-export function FAQList({
-  heading = 'Common questions',
+export function AccordionList({
+  label = 'Questions',
   items,
   accentColor = 'text-blue-500',
-}: FAQListProps) {
+}: AccordionListProps) {
   return (
     <section className='page-section'>
       <div className='section-inner'>
-        <p className={cn('label mb-12', accentColor)}>{heading}</p>
+        <p className={cn('label mb-12', accentColor)}>{label}</p>
         {items.map((faq, i) => (
           <Collapsible.Root key={faq.question}>
             <div className='border-separator border-t'>

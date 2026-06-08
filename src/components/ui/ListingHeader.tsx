@@ -9,7 +9,7 @@ const GRADIENT_CLASS: Record<string, string> = {
   'text-orange-600':'gradient-bl-orange',
 }
 
-interface WorkHeaderProps {
+interface ListingHeaderProps {
   label: string
   title: string
   description: string
@@ -17,13 +17,13 @@ interface WorkHeaderProps {
   labelColor?: string
 }
 
-export function WorkHeader({
+export function ListingHeader({
   label,
   title,
   description,
   countLabel,
   labelColor = 'text-green-600',
-}: WorkHeaderProps) {
+}: ListingHeaderProps) {
   return (
     <section
       className={cn(

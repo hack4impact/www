@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { contentfulApi } from '@/lib/contentful'
-import { CTABand } from '@/components/ui/CTABand'
+import { ActionBand } from '@/components/ui/ActionBand'
 import { JournalEntry } from '@/lib/types'
 
 const thumbnailGradients = [
@@ -74,7 +74,7 @@ export default async function JournalPage() {
         </div>
       </section>
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

@@ -1,9 +1,9 @@
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
 import { ChaptersTable } from '@/components/ui/chapters/ChaptersTable'
-import { FAQList } from '@/components/ui/FAQList'
-import { CTABand } from '@/components/ui/CTABand'
-import { WorkHeader } from '@/components/ui/WorkHeader'
+import { AccordionList } from '@/components/ui/AccordionList'
+import { ActionBand } from '@/components/ui/ActionBand'
+import { ListingHeader } from '@/components/ui/ListingHeader'
 
 export default async function ChaptersPage() {
   const [chapters, roles, faqs] = await Promise.all([
@@ -23,7 +23,7 @@ export default async function ChaptersPage() {
 
   return (
     <>
-      <WorkHeader
+      <ListingHeader
         label='Our Chapters'
         title='A nationwide student network'
         countLabel={`${chapters.length} chapters`}
@@ -38,9 +38,9 @@ export default async function ChaptersPage() {
         </div>
       </section>
 
-      <FAQList items={faqs} />
+      <AccordionList items={faqs} />
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

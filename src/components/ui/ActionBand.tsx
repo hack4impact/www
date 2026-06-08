@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-const CTA_ITEMS = [
+const BAND_ITEMS = [
   {
     audience: 'For Students',
     headline: 'Code for communities.',
@@ -32,12 +32,12 @@ const CTA_ITEMS = [
   },
 ]
 
-export function CTABand() {
+export function ActionBand() {
   return (
     <section className='page-section-sm bg-root'>
       <div className='section-inner'>
         <div className='grid grid-cols-1 divide-y divide-separator sm:grid-cols-2 sm:divide-y-0 sm:[&>*:nth-child(even)]:border-l sm:[&>*:nth-child(even)]:border-separator sm:[&>*:nth-child(n+3)]:border-t sm:[&>*:nth-child(n+3)]:border-separator lg:grid-cols-4 lg:[&>*:nth-child(n+2)]:border-l lg:[&>*:nth-child(n+2)]:border-separator lg:[&>*:nth-child(n+3)]:border-t-0'>
-          {CTA_ITEMS.map((item, i) => (
+          {BAND_ITEMS.map((item, i) => (
             <div
               key={item.audience}
               className={cn(

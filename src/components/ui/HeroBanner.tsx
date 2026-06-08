@@ -16,9 +16,9 @@ const GRADIENT_CLASS: Record<string, string> = {
   'text-pink-600': 'gradient-tr-purple',
 }
 
-interface GetInvolvedHeaderProps {
+interface HeroBannerProps {
   label: string
-  heading: string
+  title: string
   description: string
   buttonText?: string
   buttonHref?: string
@@ -29,9 +29,9 @@ interface GetInvolvedHeaderProps {
   contentClassName?: string
 }
 
-export function GetInvolvedHeader({
+export function HeroBanner({
   label,
-  heading,
+  title,
   description,
   buttonText,
   buttonHref,
@@ -40,7 +40,7 @@ export function GetInvolvedHeader({
   alt,
   imageClassName,
   contentClassName,
-}: GetInvolvedHeaderProps) {
+}: HeroBannerProps) {
   return (
     <section
       className={cn(
@@ -55,10 +55,8 @@ export function GetInvolvedHeader({
         )}
       >
         <div className={cn(image && 'pt-14 pb-14', contentClassName)}>
-          <p className={cn('label mb-5', accentColor)}>
-            Get Involved · {label}
-          </p>
-          <h1 className='heading-display mb-4'>{heading}</h1>
+          <p className={cn('label mb-5', accentColor)}>{label}</p>
+          <h1 className='heading-display mb-4'>{title}</h1>
           <p className='text-gray-3 max-w-2xl font-sans text-base leading-6'>
             {description}
           </p>

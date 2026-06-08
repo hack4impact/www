@@ -1,6 +1,6 @@
-import { GetInvolvedHeader } from '@/components/ui/GetInvolvedHeader'
-import { FAQList } from '@/components/ui/FAQList'
-import { CTABand } from '@/components/ui/CTABand'
+import { HeroBanner } from '@/components/ui/HeroBanner'
+import { AccordionList } from '@/components/ui/AccordionList'
+import { ActionBand } from '@/components/ui/ActionBand'
 import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
 
@@ -21,9 +21,9 @@ export default async function MentorsPage() {
 
   return (
     <>
-      <GetInvolvedHeader
+      <HeroBanner
         label='Mentors'
-        heading='Mentor with Hack4Impact'
+        label='Mentor with Hack4Impact'
         description="Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student's career and a nonprofit's future."
         buttonText='Get involved'
         buttonHref='https://h4i.notion.site/2f0197abf07b80a794caefe319570de0/'
@@ -37,13 +37,13 @@ export default async function MentorsPage() {
         accentColor='text-purple-600'
       />
 
-      <FAQList
-        heading='What to expect'
+      <AccordionList
+        label='What to expect'
         items={faqs}
         accentColor='text-purple-600'
       />
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

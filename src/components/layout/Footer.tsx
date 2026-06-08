@@ -29,7 +29,7 @@ export default function Footer() {
                 alt='Hack4Impact'
                 width={120}
                 height={120}
-                className='h-20 w-20 brightness-0 dark:invert'
+                className='logo-adaptive h-20 w-20'
               />
             </Link>
             <a

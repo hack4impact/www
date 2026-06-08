@@ -19,14 +19,14 @@ export default function Header() {
             alt='Hack4Impact'
             width={32}
             height={32}
-            className='brightness-0 dark:invert md:hidden'
+            className='logo-adaptive md:hidden'
           />
           <Image
             src='/logo.svg'
             alt='Hack4Impact'
             width={150}
             height={40}
-            className='hidden brightness-0 dark:invert md:block'
+            className='logo-adaptive hidden md:block'
           />
         </Link>
 

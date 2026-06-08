@@ -15,7 +15,7 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
     <img
       src={sponsor.logoUrl}
       alt={sponsor.name}
-      className='h-10 w-auto max-w-full object-contain dark:brightness-0 dark:invert'
+      className='logo-invert-dark h-10 w-auto max-w-full object-contain'
     />
   ) : (
     <span className='text-center font-sans text-sm leading-tight text-gray-2 transition-colors group-hover:text-inverse'>

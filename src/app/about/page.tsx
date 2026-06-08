@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { TabbedCards } from '@/components/ui/TabbedCards'
-import { CTABand } from '@/components/ui/CTABand'
+import { ActionBand } from '@/components/ui/ActionBand'
 import { contentfulApi } from '@/lib/contentful'
 import type { BoardTeamMember } from '@/lib/types'
 
@@ -205,7 +205,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }

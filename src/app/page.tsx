@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { CTABand } from '@/components/ui/CTABand'
+import { ActionBand } from '@/components/ui/ActionBand'
 import { HomeIntro } from '@/components/ui/HomeIntro'
 import { TabbedCards } from '@/components/ui/TabbedCards'
 import { contentfulApi } from '@/lib/contentful'
@@ -108,7 +108,7 @@ export default async function HomePage() {
 
       {/* Featured Project */}
 
-      <CTABand />
+      <ActionBand />
     </>
   )
 }
