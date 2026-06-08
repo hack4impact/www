@@ -122,52 +122,6 @@
   --color-checkbox-outline: light-dark(#dddddd, #474747);
 }
 
-:root {
-  color-scheme: light;
-  --header-height: 64px; /* py-4 (32px) + 32px logomark */
-}
-
-html.dark {
-  color-scheme: dark;
-}
-
-@utility badge-active {
-  background-color: var(--color-green-50);
-  color: var(--color-green-600);
-  .dark & {
-    background-color: var(--color-green-800);
-    color: var(--color-green-300);
-  }
-}
-
-@utility badge-founding {
-  background-color: var(--color-orange-50);
-  color: var(--color-orange-600);
-  .dark & {
-    background-color: var(--color-orange-800);
-    color: var(--color-orange-300);
-  }
-}
-
-@utility logo-adaptive {
-  filter: brightness(0);
-  .dark & {
-    filter: brightness(0) invert(1);
-  }
-}
-
-@utility logo-invert-dark {
-  .dark & {
-    filter: brightness(0) invert(1);
-  }
-}
-
-@media (min-width: 768px) {
-  :root {
-    --header-height: 72px; /* py-4 (32px) + 40px logo */
-  }
-}
-
 @keyframes select-popup-in {
   from {
     opacity: 0;
@@ -191,6 +145,21 @@ html.dark {
 }
 
 @layer base {
+  :root {
+    color-scheme: light;
+    --header-height: 64px; /* py-4 (32px) + 32px logomark */
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --header-height: 72px; /* py-4 (32px) + 40px logo */
+    }
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
   *,
   *::before,
   *::after {
@@ -475,4 +444,35 @@ html.dark {
 
 @utility shadow-popup {
   box-shadow: 0 8px 24px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.5));
+}
+
+@utility badge-active {
+  background-color: var(--color-green-50);
+  color: var(--color-green-600);
+  .dark & {
+    background-color: var(--color-green-800);
+    color: var(--color-green-300);
+  }
+}
+
+@utility badge-founding {
+  background-color: var(--color-orange-50);
+  color: var(--color-orange-600);
+  .dark & {
+    background-color: var(--color-orange-800);
+    color: var(--color-orange-300);
+  }
+}
+
+@utility logo-adaptive {
+  filter: brightness(0);
+  .dark & {
+    filter: brightness(0) invert(1);
+  }
+}
+
+@utility logo-invert-dark {
+  .dark & {
+    filter: brightness(0) invert(1);
+  }
 }
