@@ -28,7 +28,7 @@ export default async function HomePage() {
         <section className='border-separator flex flex-col gap-12 border-t px-8 py-16 md:flex-row md:items-center md:gap-20 md:px-16 md:py-20'>
           {/* Left: image with decorative frame */}
           <div className='relative shrink-0'>
-            <div className='gradient-t-green border-separator relative aspect-[480/420] w-full overflow-hidden rounded-[5px] border md:w-[480px]'>
+            <div className='gradient-b-green border-separator relative aspect-[480/420] w-full overflow-hidden rounded-[5px] border md:w-[480px]'>
               {processImageUrl && (
                 <Image
                   fill

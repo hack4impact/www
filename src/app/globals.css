@@ -399,10 +399,10 @@
     );
   }
 
-  /* Vertical green gradient — top to bottom (How It Works image) */
-  .gradient-t-green {
+  /* Vertical green gradient — bottom to top */
+  .gradient-b-green {
     background-image: linear-gradient(
-      to bottom,
+      to top,
       light-dark(var(--color-green-50), oklch(22% 0.04 140)) 0%,
       transparent 100%
     );
