@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/Button'
+import { Button, ButtonColor } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
 
@@ -56,7 +56,7 @@ export function HeroBanner({
           {buttonText && buttonHref && (
             <div className='mt-8'>
               <Link target='_blank' rel='noopener noreferrer' href={buttonHref}>
-                <Button>{buttonText}</Button>
+                <Button color={color as ButtonColor}>{buttonText}</Button>
               </Link>
             </div>
           )}

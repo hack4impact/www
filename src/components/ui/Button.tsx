@@ -4,9 +4,9 @@ import { Button as BaseButton } from '@base-ui/react/button'
 import { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline'
-type ButtonSize = 'sm' | 'md' | 'lg'
-type ButtonColor = 'blue' | 'purple' | 'pink' | 'orange' | 'green'
+export type ButtonVariant = 'primary' | 'secondary' | 'outline'
+export type ButtonSize = 'sm' | 'md' | 'lg'
+export type ButtonColor = 'blue' | 'purple' | 'pink' | 'orange' | 'green'
 
 interface ButtonProps extends ComponentProps<typeof BaseButton> {
   variant?: ButtonVariant
@@ -14,9 +14,17 @@ interface ButtonProps extends ComponentProps<typeof BaseButton> {
   color?: ButtonColor
 }
 
+const primaryStyles: Record<ButtonColor, string> = {
+  blue: 'bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700',
+  purple: 'bg-purple-500 text-white hover:bg-purple-600 active:bg-purple-700',
+  pink: 'bg-pink-500 text-white hover:bg-pink-600 active:bg-pink-700',
+  orange: 'bg-orange-500 text-white hover:bg-orange-600 active:bg-orange-700',
+  green: 'bg-green-600 text-white hover:bg-green-700 active:bg-green-800',
+}
+
 function returnVariant(color: ButtonColor, variant: ButtonVariant) {
   const variantStyles: Record<ButtonVariant, string> = {
-    primary: `bg-${color}-500 text-white hover:bg-${color}-600 active:bg-${color}-700`,
+    primary: primaryStyles[color],
     secondary:
       'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800',
     outline:

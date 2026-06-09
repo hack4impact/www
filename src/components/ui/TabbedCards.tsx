@@ -63,7 +63,7 @@ function CardContent({
 
 export function TabbedCards({
   items,
-  colors,
+  colors = DEFAULT_COLORS,
   label,
   heading,
   cardLabel,
@@ -71,8 +71,6 @@ export function TabbedCards({
   const [active, setActive] = useState(items[0]?.name ?? '')
 
   const activeIndex = items.findIndex((item) => item.name === active)
-
-  colors = colors ?? DEFAULT_COLORS
 
   return (
     <motion.section
