@@ -14,10 +14,10 @@ function SectionRenderer({ section }: { section: ProjectSection }) {
     case 'text':
       return (
         <div className='mb-8'>
-          <h3 className='mb-4 mt-8 font-sans text-xl md:text-2xl'>
+          <h3 className='mt-8 mb-4 font-sans text-xl md:text-2xl'>
             {section.title}
           </h3>
-          <p className='font-sans text-[17px] leading-[28px] text-gray-3'>
+          <p className='text-gray-3 font-sans text-[17px] leading-[28px]'>
             {section.content}
           </p>
         </div>
@@ -44,7 +44,7 @@ function SectionRenderer({ section }: { section: ProjectSection }) {
           )}
         >
           <div className='flex items-center'>
-            <p className='font-sans text-[17px] leading-[28px] text-gray-3'>
+            <p className='text-gray-3 font-sans text-[17px] leading-[28px]'>
               {section.text}
             </p>
           </div>
@@ -91,25 +91,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <>
       {/* Page header */}
-      <section
-        className='gradient-bl-green relative overflow-hidden border-b border-separator px-8 pb-14 pt-16 md:px-16'
-      >
+      <section className='gradient-bl-green border-separator relative overflow-hidden border-b px-8 pt-16 pb-14 md:px-16'>
         <div className='mx-auto max-w-[1312px]'>
           <div className='flex items-center justify-between pb-6'>
             <p className='label text-green-600'>Our Work</p>
             {project.tag && (
-              <span className='badge-active rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em]'>
+              <span className='badge-active rounded-full px-3 py-1 font-mono text-[11px] tracking-[0.1em] uppercase'>
                 {project.tag}
               </span>
             )}
           </div>
           <h1 className='pb-5'>
-            <span className='block font-serif text-[40px] font-light leading-[1.1] tracking-[-0.02em] text-inverse md:text-[56px] md:leading-[62px]'>
+            <span className='text-inverse block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] md:text-[56px] md:leading-[62px]'>
               {project.title}
             </span>
           </h1>
           {project.partner && (
-            <p className='font-sans text-[15px] leading-[22px] text-gray-3'>
+            <p className='text-gray-3 font-sans text-[15px] leading-[22px]'>
               For {project.partner}
             </p>
           )}
@@ -117,112 +115,96 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       {/* Overview */}
-      <section className='border-b border-separator bg-root px-8 py-16 md:px-16 md:py-20'>
+      <section className='border-separator bg-root border-b px-8 py-16 md:px-16 md:py-20'>
         <div className='mx-auto max-w-[1312px]'>
-        <div className='flex flex-col items-start gap-16 md:flex-row md:gap-20'>
-          {/* Article */}
-          <div className='flex min-w-0 flex-1 flex-col'>
-            <p className='label pb-6 text-green-600'>About the project</p>
-            {project.description && (
-              <p className='pb-7 font-sans text-[17px] leading-[28px] text-gray-3'>
-                {project.description}
-              </p>
-            )}
-            <div className='flex flex-col gap-4'>
-              {project.intro && (
-                <p className='font-sans text-[17px] leading-[28px] text-gray-3'>
-                  {project.intro}
+          <div className='flex flex-col items-start gap-16 md:flex-row md:gap-20'>
+            {/* Article */}
+            <div className='flex min-w-0 flex-1 flex-col'>
+              <p className='label pb-6 text-green-600'>About the project</p>
+              {project.description && (
+                <p className='text-gray-3 pb-7 font-sans text-[17px] leading-[28px]'>
+                  {project.description}
                 </p>
               )}
-              {project.sections.map((section, i) => (
-                <SectionRenderer key={i} section={section} />
-              ))}
+              <div className='flex flex-col gap-4'>
+                {project.intro && (
+                  <p className='text-gray-3 font-sans text-[17px] leading-[28px]'>
+                    {project.intro}
+                  </p>
+                )}
+                {project.sections.map((section, i) => (
+                  <SectionRenderer key={i} section={section} />
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Metadata sidebar */}
-          <div className='relative w-full shrink-0 md:w-[30%]'>
-            <div className='relative border border-separator bg-panel'>
-              <div className='absolute -left-[5px] -top-[5px] h-[10px] w-[10px] rounded-[1px] bg-checkbox-outline' />
-              <div className='absolute -right-[5px] -top-[5px] h-[10px] w-[10px] rounded-[1px] bg-checkbox-outline' />
-              <div className='absolute -bottom-[5px] -left-[5px] h-[10px] w-[10px] rounded-[1px] bg-checkbox-outline' />
-              <div className='absolute -bottom-[5px] -right-[5px] h-[10px] w-[10px] rounded-[1px] bg-checkbox-outline' />
-
-              {project.partner && (
-                <div className='flex flex-col gap-1.5 border-b border-separator px-7 py-6'>
-                  <span className='label-xs text-gray-4'>
-                    Nonprofit
-                  </span>
-                  <span className='font-serif text-[15px] font-light leading-[22px] text-inverse'>
-                    {project.partner}
-                  </span>
-                </div>
-              )}
-              <div className='flex flex-col gap-1.5 border-b border-separator px-7 py-6'>
-                <span className='label-xs text-gray-4'>
-                  Chapter
-                </span>
-                <span className='font-serif text-[15px] font-light leading-[22px] text-inverse'>
-                  {project.chapter}
-                </span>
-              </div>
-              <div className='flex flex-col gap-1.5 border-b border-separator px-7 py-6'>
-                <span className='label-xs text-gray-4'>
-                  Semester
-                </span>
-                <span className='font-serif text-[15px] font-light leading-[22px] text-inverse'>
-                  {semesterRange || project.duration || '—'}
-                </span>
-              </div>
-              {project.technologies && project.technologies.length > 0 && (
-                <div className='flex flex-col gap-1.5 border-b border-separator px-7 py-6'>
-                  <span className='label-xs text-gray-4'>
-                    Tech Stack
-                  </span>
-                  <span className='font-serif text-[15px] font-light leading-[22px] text-inverse'>
-                    {project.technologies.join(' · ')}
-                  </span>
-                </div>
-              )}
-              {(project.website || project.github) && (
-                <div className='flex flex-col gap-3 border-b border-separator px-7 py-6'>
-                  <span className='label-xs text-gray-4'>
-                    Links
-                  </span>
-                  <div className='flex flex-col gap-2'>
-                    {project.website && (
-                      <a
-                        href={project.website}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='group flex items-center gap-1.5 label text-inverse transition-colors hover:text-green-600'
-                      >
-                        <span>Website</span>
-                        <span className='text-gray-3 transition-colors group-hover:text-green-600'>
-                          ↗
-                        </span>
-                      </a>
-                    )}
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='group flex items-center gap-1.5 label text-inverse transition-colors hover:text-green-600'
-                      >
-                        <span>GitHub</span>
-                        <span className='text-gray-3 transition-colors group-hover:text-green-600'>
-                          ↗
-                        </span>
-                      </a>
-                    )}
+            {/* Metadata sidebar */}
+            <div className='relative w-full shrink-0 md:w-[30%]'>
+              <div className='border-separator bg-panel relative rounded border'>
+                {project.partner && (
+                  <div className='border-separator flex flex-col gap-1.5 border-b px-7 py-6'>
+                    <span className='label-xs text-gray-4'>Nonprofit</span>
+                    <span className='text-inverse font-serif text-[15px] leading-[22px] font-light'>
+                      {project.partner}
+                    </span>
                   </div>
+                )}
+                <div className='border-separator flex flex-col gap-1.5 border-b px-7 py-6'>
+                  <span className='label-xs text-gray-4'>Chapter</span>
+                  <span className='text-inverse font-serif text-[15px] leading-[22px] font-light'>
+                    {project.chapter}
+                  </span>
                 </div>
-              )}
+                <div className='border-separator flex flex-col gap-1.5 border-b px-7 py-6'>
+                  <span className='label-xs text-gray-4'>Semester</span>
+                  <span className='text-inverse font-serif text-[15px] leading-[22px] font-light'>
+                    {semesterRange || project.duration || '—'}
+                  </span>
+                </div>
+                {project.technologies && project.technologies.length > 0 && (
+                  <div className='border-separator flex flex-col gap-1.5 border-b px-7 py-6'>
+                    <span className='label-xs text-gray-4'>Tech Stack</span>
+                    <span className='text-inverse font-serif text-[15px] leading-[22px] font-light'>
+                      {project.technologies.join(' · ')}
+                    </span>
+                  </div>
+                )}
+                {(project.website || project.github) && (
+                  <div className='border-separator flex flex-col gap-3 border-b px-7 py-6'>
+                    <span className='label-xs text-gray-4'>Links</span>
+                    <div className='flex flex-col gap-2'>
+                      {project.website && (
+                        <a
+                          href={project.website}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='group label text-inverse flex items-center gap-1.5 transition-colors hover:text-green-600'
+                        >
+                          <span>Website</span>
+                          <span className='text-gray-3 transition-colors group-hover:text-green-600'>
+                            ↗
+                          </span>
+                        </a>
+                      )}
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='group label text-inverse flex items-center gap-1.5 transition-colors hover:text-green-600'
+                        >
+                          <span>GitHub</span>
+                          <span className='text-gray-3 transition-colors group-hover:text-green-600'>
+                            ↗
+                          </span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-
         </div>
       </section>
 

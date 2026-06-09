@@ -29,14 +29,16 @@ function TeamCard({ member }: { member: BoardTeamMember }) {
           />
         ) : (
           <div className='flex h-full w-full items-center justify-center'>
-            <span className='font-serif text-xl font-light text-gray-3 italic'>
+            <span className='text-gray-3 font-serif text-xl font-light italic'>
               {initials}
             </span>
           </div>
         )}
       </div>
-      <p className='font-sans text-sm font-medium text-inverse'>{member.name}</p>
-      <p className='mt-0.5 font-sans text-xs text-gray-3'>{member.title}</p>
+      <p className='text-inverse font-sans text-sm font-medium'>
+        {member.name}
+      </p>
+      <p className='text-gray-3 mt-0.5 font-sans text-xs'>{member.title}</p>
       {href && linkLabel && (
         <a
           href={href}
@@ -107,7 +109,7 @@ export default async function AboutPage() {
             About Hack4Impact
           </p>
           <h1 className='flex flex-col items-center text-center'>
-            <span className='font-serif text-5xl leading-tight font-light tracking-[-0.02em] text-inverse md:text-[76px] md:leading-[84px]'>
+            <span className='text-inverse font-serif text-5xl leading-tight font-light tracking-[-0.02em] md:text-[76px] md:leading-[84px]'>
               Built by students.
             </span>
             <span className='font-serif text-5xl leading-tight font-light tracking-[-0.02em] text-blue-500 italic md:text-[76px] md:leading-[84px]'>
@@ -136,7 +138,7 @@ export default async function AboutPage() {
             <div className='flex min-w-0 flex-1 flex-col'>
               <p className='label mb-7 text-blue-500'>Our Story</p>
               <div className='mb-11'>
-                <h2 className='font-serif text-4xl leading-tight font-light tracking-[-0.02em] text-inverse md:text-[52px] md:leading-[58px]'>
+                <h2 className='text-inverse font-serif text-4xl leading-tight font-light tracking-[-0.02em] md:text-[52px] md:leading-[58px]'>
                   A decade of
                 </h2>
                 <h2 className='font-serif text-4xl leading-tight font-light tracking-[-0.02em] text-blue-500 italic md:text-[52px] md:leading-[58px]'>
@@ -163,7 +165,7 @@ export default async function AboutPage() {
               </p>
             </div>
 
-            <div className='relative w-full shrink-0 md:w-[280px] lg:w-[340px]'>
+            <div className='relative w-full shrink-0 overflow-hidden rounded md:w-[280px] lg:w-[340px]'>
               {storyPhotoUrl ? (
                 <Image
                   src={storyPhotoUrl}
@@ -176,10 +178,6 @@ export default async function AboutPage() {
               ) : (
                 <div className='aspect-[4/5] bg-gradient-to-b from-blue-50 via-blue-100 to-blue-50' />
               )}
-              <span className='bg-checkbox-outline absolute -top-1.25 -left-1.25 size-2.5 rounded-[1px]' />
-              <span className='bg-checkbox-outline absolute -top-1.25 -right-1.25 size-2.5 rounded-[1px]' />
-              <span className='bg-checkbox-outline absolute -bottom-1.25 -left-1.25 size-2.5 rounded-[1px]' />
-              <span className='bg-checkbox-outline absolute -right-1.25 -bottom-1.25 size-2.5 rounded-[1px]' />
             </div>
           </div>
         </div>
