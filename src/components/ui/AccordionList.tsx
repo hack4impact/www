@@ -12,7 +12,7 @@ interface AccordionListProps {
 }
 
 export function AccordionList({
-  label = 'Questions',
+  label = 'Common Questions',
   items,
   color = 'blue',
 }: AccordionListProps) {
