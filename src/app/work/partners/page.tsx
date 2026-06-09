@@ -18,7 +18,7 @@ export default async function PartnersPage() {
         title='The organizations we serve'
         countLabel={`${partners.length} organizations`}
         description='From local food banks to global advocacy groups, every partner receives high-quality software at no cost.'
-        labelColor='text-purple-600'
+        color='purple'
       />
 
       {/* Partners grid */}
@@ -28,7 +28,7 @@ export default async function PartnersPage() {
         </div>
       </section>
 
-      <AccordionList items={faqs} accentColor='text-purple-600' />
+      <AccordionList items={faqs} color='purple' />
 
       <ActionBand />
     </>

@@ -6,50 +6,41 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Tabs } from '@base-ui/react'
 import { type InfoCard } from '@/lib/types/contentful'
 import { cn } from '@/lib/utils'
+import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
 
 interface TabbedCardsProps {
   items: InfoCard[]
+  colors?: string[]
   label?: string
   heading?: string
   cardLabel?: string
 }
 
-const ACCENT_COLORS = [
-  'text-green-600',
-  'text-blue-500',
-  'text-purple-600',
-  'text-orange-500',
-  'text-pink-600',
-]
-
-// rgba values derived from the brand color palette
-const GLOW_COLORS = [
-  'rgba(94, 231, 62, 0.18)', // green-300
-  'rgba(36, 126, 228, 0.18)', // blue-500
-  'rgba(89, 67, 232, 0.18)', // purple-600
-  'rgba(208, 91, 26, 0.18)', // orange-500
-  'rgba(164, 23, 185, 0.18)', // pink-600
-]
+const DEFAULT_COLORS = ['blue', 'green', 'purple', 'orange', 'pink']
 
 const PAD = 'px-8 pt-10 pb-10 md:px-16 md:pt-14'
 
 function CardContent({
   item,
   index,
-  accent,
+  color,
   cardLabel,
 }: {
   item: InfoCard
   index: number
-  accent: string
-  cardLabel: string
+  color: string
+  cardLabel?: string
 }) {
   return (
     <>
-      <p className={cn('label mb-2', accent)}>
+      <p className={cn('label mb-2', TEXT_CLASS[color])}>
         {cardLabel} {String(index + 1).padStart(2, '0')}
       </p>
-      <h3 className={cn('heading-card mb-4 sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px]')}>
+      <h3
+        className={cn(
+          'heading-card mb-4 sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px]',
+        )}
+      >
         {item.name}
       </h3>
       <p className='text-gray-3 max-w-xl font-sans text-base leading-6'>
@@ -58,7 +49,10 @@ function CardContent({
       {item.link && (
         <Link
           href={item.link}
-          className={cn('label-xs mt-8 block hover:underline', accent)}
+          className={cn(
+            'label-xs mt-8 block hover:underline',
+            TEXT_CLASS[color],
+          )}
         >
           Learn more &rarr;
         </Link>
@@ -69,13 +63,16 @@ function CardContent({
 
 export function TabbedCards({
   items,
-  label = 'Our programs',
-  heading = 'Community in action',
-  cardLabel = 'Program',
+  colors,
+  label,
+  heading,
+  cardLabel,
 }: TabbedCardsProps) {
   const [active, setActive] = useState(items[0]?.name ?? '')
 
   const activeIndex = items.findIndex((item) => item.name === active)
+
+  colors = colors ?? DEFAULT_COLORS
 
   return (
     <motion.section
@@ -103,10 +100,10 @@ export function TabbedCards({
                 key={item.name}
                 value={item.name}
                 className={cn(
-                  '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500/50',
+                  '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-inset',
                   active === item.name
-                    ? 'border-separator border-b-root bg-root font-medium text-inverse'
-                    : 'border-transparent text-gray-3 hover:text-inverse',
+                    ? 'border-separator border-b-root bg-root text-inverse font-medium'
+                    : 'text-gray-3 hover:text-inverse border-transparent',
                 )}
               >
                 {item.name}
@@ -128,7 +125,7 @@ export function TabbedCards({
                   <CardContent
                     item={item}
                     index={i}
-                    accent={ACCENT_COLORS[i % ACCENT_COLORS.length]}
+                    color={colors[i % colors.length]}
                     cardLabel={cardLabel}
                   />
                 </div>
@@ -142,10 +139,10 @@ export function TabbedCards({
                   key={item.name}
                   animate={{ opacity: item.name === active ? 1 : 0 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className='absolute inset-0'
-                  style={{
-                    background: `radial-gradient(ellipse 40% 50% at 15% 50%, ${GLOW_COLORS[i % GLOW_COLORS.length]} 0%, transparent 100%)`,
-                  }}
+                  className={cn(
+                    'absolute inset-0',
+                    GRADIENT_CLASS[colors[i % colors.length]],
+                  )}
                 />
               ))}
             </div>
@@ -159,7 +156,10 @@ export function TabbedCards({
                   animate={{
                     opacity: 1,
                     x: 0,
-                    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
+                    transition: {
+                      duration: 0.3,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    },
                   }}
                   exit={{ opacity: 0, x: -12, transition: { duration: 0.18 } }}
                   className={PAD}
@@ -168,7 +168,7 @@ export function TabbedCards({
                     <CardContent
                       item={items[activeIndex]}
                       index={activeIndex}
-                      accent={ACCENT_COLORS[activeIndex % ACCENT_COLORS.length]}
+                      color={colors[activeIndex % colors.length]}
                       cardLabel={cardLabel}
                     />
                   )}

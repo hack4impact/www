@@ -66,12 +66,17 @@ export function HomeIntro({
           technical skills with community need.
         </motion.p>
 
-        <motion.div variants={itemVariants} className='mt-9 flex w-full flex-col gap-3 px-4 sm:w-auto sm:flex-row sm:px-0'>
+        <motion.div
+          variants={itemVariants}
+          className='mt-9 flex w-full flex-col gap-3 px-4 sm:w-auto sm:flex-row sm:px-0'
+        >
           <Link href='/get-involved/nonprofits' className='w-full sm:w-auto'>
             <Button className='w-full sm:w-auto'>Partner with us</Button>
           </Link>
           <Link href='/get-involved/students' className='w-full sm:w-auto'>
-            <Button variant='outline' className='w-full sm:w-auto'>Start a chapter</Button>
+            <Button variant='outline' className='w-full sm:w-auto'>
+              Start a chapter
+            </Button>
           </Link>
         </motion.div>
       </motion.div>

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 import { cn } from '@/lib/utils'
+import { TEXT_CLASS } from '@/lib/constants'
 
 interface Testimonial {
   quote: string
@@ -12,7 +13,7 @@ interface Testimonial {
 
 interface TestimonialBlockProps {
   testimonials: Testimonial[]
-  accentColor?: string
+  color?: string
 }
 
 const containerVariants = staggerContainer(0.15, false)
@@ -20,7 +21,7 @@ const itemVariants = fadeInUp()
 
 export function TestimonialBlock({
   testimonials,
-  accentColor = 'text-blue-500',
+  color = 'blue',
 }: TestimonialBlockProps) {
   const single = testimonials.length === 1
 
@@ -35,7 +36,7 @@ export function TestimonialBlock({
       >
         <motion.p
           variants={itemVariants}
-          className={cn('label mb-10', accentColor)}
+          className={cn('label mb-10', TEXT_CLASS[color])}
         >
           In their words
         </motion.p>
@@ -61,7 +62,7 @@ export function TestimonialBlock({
                   {t.name}
                 </p>
                 {t.title && (
-                  <p className='label-xs mt-1 text-gray-4'>{t.title}</p>
+                  <p className='label-xs text-gray-4 mt-1'>{t.title}</p>
                 )}
               </div>
             </motion.div>

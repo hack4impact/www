@@ -31,11 +31,11 @@ export default async function NonprofitsPage() {
     <>
       <HeroBanner
         label='Nonprofits'
-        label='Partner with Hack4Impact'
+        heading='Partner with Hack4Impact'
         description='We build custom software for nonprofits — free of charge. Our student teams turn your technical challenges into lasting solutions that amplify your impact.'
         buttonText='Apply now'
         buttonHref='https://tally.so/r/yP1xNW'
-        accentColor='text-blue-500'
+        color='blue'
         image={nonprofitBanner ?? undefined}
         alt='Nonprofits partnering with Hack4Impact'
         imageClassName='scale-125 origin-bottom'
@@ -48,21 +48,14 @@ export default async function NonprofitsPage() {
             numbered={nonprofitProcess.numbered}
             label='For nonprofits'
             title={nonprofitProcess.title ?? 'Our process'}
-            accentColor='text-blue-500'
+            color='blue'
           />
         </section>
       )}
 
-      <TestimonialBlock
-        testimonials={testimonials}
-        accentColor='text-blue-500'
-      />
+      <TestimonialBlock testimonials={testimonials} color='blue' />
 
-      <AccordionList
-        label='What to expect'
-        items={faqs}
-        accentColor='text-blue-500'
-      />
+      <AccordionList label='What to expect' items={faqs} color='blue' />
 
       <ActionBand />
     </>

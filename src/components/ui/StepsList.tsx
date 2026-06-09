@@ -4,6 +4,7 @@ import type { ProcessStep } from '@/lib/types/contentful'
 import { motion } from 'framer-motion'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 import { cn } from '@/lib/utils'
+import { TEXT_CLASS } from '@/lib/constants'
 
 const containerVariants = staggerContainer(0.12)
 const stepVariants = fadeInUp(0.5)
@@ -13,7 +14,7 @@ interface StepsListProps {
   numbered?: boolean
   label?: string
   title?: string
-  accentColor?: string
+  color?: string
 }
 
 export function StepsList({
@@ -21,11 +22,11 @@ export function StepsList({
   numbered = true,
   label,
   title,
-  accentColor = 'text-blue-600',
+  color = 'blue',
 }: StepsListProps) {
   return (
     <motion.div
-      className='flex flex-col divide-y divide-separator border-b border-separator'
+      className='divide-separator border-separator flex flex-col divide-y border-b'
       variants={containerVariants}
       initial='hidden'
       whileInView='visible'
@@ -33,12 +34,8 @@ export function StepsList({
     >
       {(label || title) && (
         <div className='flex flex-col gap-2 pt-2 pb-8'>
-          {label && (
-            <p className={cn('label', accentColor)}>{label}</p>
-          )}
-          {title && (
-            <h2 className='heading-display'>{title}</h2>
-          )}
+          {label && <p className={cn('label', TEXT_CLASS[color])}>{label}</p>}
+          {title && <h2 className='heading-display'>{title}</h2>}
         </div>
       )}
       {steps.map((step, i) => (
@@ -52,17 +49,21 @@ export function StepsList({
               <span
                 className={cn(
                   'w-24 shrink-0 font-serif text-5xl leading-none font-light opacity-40',
-                  accentColor,
+                  TEXT_CLASS[color],
                 )}
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <div className='mr-8 w-px shrink-0 self-stretch bg-separator' />
+              <div className='bg-separator mr-8 w-px shrink-0 self-stretch' />
             </>
           )}
           <div className='flex flex-col gap-1.5 pt-1'>
-            <h3 className='font-sans text-base font-medium text-inverse'>{step.name}</h3>
-            <p className='font-sans text-sm leading-[1.5] text-gray-2'>{step.description}</p>
+            <h3 className='text-inverse font-sans text-base font-medium'>
+              {step.name}
+            </h3>
+            <p className='text-gray-2 font-sans text-sm leading-[1.5]'>
+              {step.description}
+            </p>
           </div>
         </motion.div>
       ))}

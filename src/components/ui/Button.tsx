@@ -6,18 +6,24 @@ import { cn } from '@/lib/utils'
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline'
 type ButtonSize = 'sm' | 'md' | 'lg'
+type ButtonColor = 'blue' | 'purple' | 'pink' | 'orange' | 'green'
 
 interface ButtonProps extends ComponentProps<typeof BaseButton> {
   variant?: ButtonVariant
   size?: ButtonSize
+  color?: ButtonColor
 }
 
-const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700',
-  secondary:
-    'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800',
-  outline:
-    'border border-inverse text-inverse hover:bg-inverse hover:text-root active:bg-inverse',
+function returnVariant(color: ButtonColor, variant: ButtonVariant) {
+  const variantStyles: Record<ButtonVariant, string> = {
+    primary: `bg-${color}-500 text-white hover:bg-${color}-600 active:bg-${color}-700`,
+    secondary:
+      'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800',
+    outline:
+      'border border-inverse text-inverse hover:bg-inverse hover:text-root active:bg-inverse',
+  }
+
+  return variantStyles[variant]
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -29,6 +35,7 @@ const sizeStyles: Record<ButtonSize, string> = {
 export function Button({
   variant = 'primary',
   size = 'md',
+  color = 'blue',
   className,
   children,
   ...props
@@ -37,7 +44,7 @@ export function Button({
     <BaseButton
       className={cn(
         'inline-flex items-center justify-center rounded-md font-mono tracking-[0.02em] transition-colors disabled:pointer-events-none disabled:opacity-50',
-        variantStyles[variant],
+        returnVariant(color, variant),
         sizeStyles[size],
         className,
       )}

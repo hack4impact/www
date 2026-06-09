@@ -16,9 +16,9 @@ export default async function StudentsPage() {
     <>
       <HeroBanner
         label='Students'
-        label='Become a Part of Hack4Impact'
+        heading='Become a Part of Hack4Impact'
         description='Join an existing chapter or start one at your school. Build real software for nonprofits and grow as a technologist and leader.'
-        accentColor='text-green-600'
+        color='green'
         buttonText='Start a chapter'
         buttonHref='https://tally.so/r/q4zO69'
         image={studentBanner ?? undefined}
@@ -34,7 +34,7 @@ export default async function StudentsPage() {
           linkText: 'Browse all chapters',
           linkHref: '/work/chapters',
           linkArrow: '→',
-          color: 'text-green-600',
+          color: 'green',
         }}
         right={{
           label: 'No chapter at your school?',
@@ -44,7 +44,6 @@ export default async function StudentsPage() {
           linkText: 'How to get started',
           linkHref: '#start',
           linkArrow: '↓',
-          color: 'text-gray-700',
         }}
       />
 
@@ -58,12 +57,12 @@ export default async function StudentsPage() {
             numbered={chapterProcess.numbered}
             label='How to start one'
             title={chapterProcess.title ?? 'Founding a chapter'}
-            accentColor='text-green-600'
+            color='green'
           />
         </section>
       )}
 
-      <AccordionList items={faqs} accentColor='text-green-600' />
+      <AccordionList items={faqs} color='green' />
 
       <ActionBand />
     </>

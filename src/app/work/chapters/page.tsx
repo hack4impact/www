@@ -28,7 +28,7 @@ export default async function ChaptersPage() {
         title='A nationwide student network'
         countLabel={`${chapters.length} chapters`}
         description='Student-run, university-based chapters sharing resources, mentors, and a common mission.'
-        labelColor='text-blue-500'
+        color='blue'
       />
 
       {/* Chapters grid */}

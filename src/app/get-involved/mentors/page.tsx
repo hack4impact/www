@@ -23,25 +23,18 @@ export default async function MentorsPage() {
     <>
       <HeroBanner
         label='Mentors'
-        label='Mentor with Hack4Impact'
+        heading='Mentor with Hack4Impact'
         description="Share your industry experience with the next generation of socially-conscious technologists. A few hours a month can shape a student's career and a nonprofit's future."
         buttonText='Get involved'
         buttonHref='https://h4i.notion.site/2f0197abf07b80a794caefe319570de0/'
-        accentColor='text-purple-600'
+        color='purple'
         image={mentorBanner ?? undefined}
         alt='A mentor working with Hack4Impact students'
       />
 
-      <TestimonialBlock
-        testimonials={testimonials}
-        accentColor='text-purple-600'
-      />
+      <TestimonialBlock testimonials={testimonials} color='purple' />
 
-      <AccordionList
-        label='What to expect'
-        items={faqs}
-        accentColor='text-purple-600'
-      />
+      <AccordionList label='What to expect' items={faqs} color='purple' />
 
       <ActionBand />
     </>

@@ -69,7 +69,14 @@ export default async function HomePage() {
       )}
 
       {/* Programs Section */}
-      {programs && <TabbedCards items={programs.cards} />}
+      {programs && (
+        <TabbedCards
+          items={programs.cards}
+          label='Our programs'
+          heading='Community in action'
+          cardLabel='Program'
+        />
+      )}
 
       {/* Quote Callout Section */}
       <section className='relative mt-32 flex flex-col sm:flex-row'>

@@ -5,24 +5,15 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
-
-const GRADIENT_CLASS: Record<string, string> = {
-  'text-blue-500': 'gradient-tr-blue',
-  'text-blue-600': 'gradient-tr-blue',
-  'text-green-600': 'gradient-tr-green',
-  'text-purple-600': 'gradient-tr-purple',
-  'text-orange-500': 'gradient-tr-orange',
-  'text-orange-600': 'gradient-tr-orange',
-  'text-pink-600': 'gradient-tr-purple',
-}
+import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
 
 interface HeroBannerProps {
   label: string
-  title: string
+  heading: string
   description: string
   buttonText?: string
   buttonHref?: string
-  accentColor?: string
+  color?: string
   image?: string
   alt?: string
   imageClassName?: string
@@ -31,11 +22,11 @@ interface HeroBannerProps {
 
 export function HeroBanner({
   label,
-  title,
+  heading,
   description,
   buttonText,
   buttonHref,
-  accentColor = 'text-blue-600',
+  color = 'blue',
   image,
   alt,
   imageClassName,
@@ -44,7 +35,7 @@ export function HeroBanner({
   return (
     <section
       className={cn(
-        GRADIENT_CLASS[accentColor] ?? 'gradient-tr-blue',
+        GRADIENT_CLASS[color] ?? 'gradient-tr-blue',
         'border-separator relative overflow-hidden border-b',
       )}
     >
@@ -55,8 +46,10 @@ export function HeroBanner({
         )}
       >
         <div className={cn(image && 'pt-14 pb-14', contentClassName)}>
-          <p className={cn('label mb-5', accentColor)}>{label}</p>
-          <h1 className='heading-display mb-4'>{title}</h1>
+          <p className={cn('label mb-5', TEXT_CLASS[color])}>
+            Get Involved · {label}
+          </p>
+          <h1 className='heading-display mb-4'>{heading}</h1>
           <p className='text-gray-3 max-w-2xl font-sans text-base leading-6'>
             {description}
           </p>
@@ -94,7 +87,7 @@ export function HeroBanner({
             <span
               className={cn(
                 'font-serif text-[100px] leading-none font-light tracking-[-0.02em] opacity-[0.12]',
-                accentColor,
+                TEXT_CLASS[color],
               )}
             >
               {label}

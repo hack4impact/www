@@ -71,18 +71,18 @@ export default async function SponsorsPage() {
     <>
       <HeroBanner
         label='Sponsors'
-        title='Support Hack4Impact'
+        heading='Support Hack4Impact'
         description='Your sponsorship enables student-driven technology for social good. Fund the tools, events, and infrastructure that power our chapters and the nonprofits they serve.'
         buttonText='Become a sponsor'
         buttonHref='mailto:contact@hack4impact.org'
-        accentColor='text-orange-600'
+        color='orange'
       />
 
       <StatBar stats={stats} />
 
       {sponsorGroups.length > 0 && (
         <section className='border-separator border-t px-8 py-16 md:px-12 md:py-24'>
-          <SponsorsGrid title='Our supporters' groups={sponsorGroups} />
+          <SponsorsGrid heading='Our supporters' groups={sponsorGroups} />
         </section>
       )}
 
@@ -93,7 +93,7 @@ export default async function SponsorsPage() {
             numbered={sponsorProcess.numbered}
             label='Where it goes'
             title={sponsorProcess.title ?? 'How we use your support'}
-            accentColor='text-orange-600'
+            color='orange'
           />
         </section>
       )}

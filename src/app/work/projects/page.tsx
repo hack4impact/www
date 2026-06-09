@@ -18,7 +18,7 @@ export default async function ProjectsPage() {
         title='The work we build'
         countLabel={`${projects.length} projects`}
         description='Every project is handed off with full source code and no strings or maintenance fees.'
-        labelColor='text-green-600'
+        color='green'
       />
 
       {/* Projects grid */}
@@ -28,7 +28,7 @@ export default async function ProjectsPage() {
         </div>
       </section>
 
-      <AccordionList items={faqs} accentColor='text-green-600' />
+      <AccordionList items={faqs} color='green' />
 
       <ActionBand />
     </>
