@@ -12,7 +12,7 @@ export const TEXT_CLASS: Record<string, string> = {
   blue: 'text-blue-500',
   green: 'text-green-600',
   purple: 'text-purple-600',
-  orange: 'text-orange-600',
+  orange: 'text-orange-500',
   pink: 'text-pink-600',
   gray: 'text-gray-3',
 }
