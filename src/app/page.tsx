@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ActionBand } from '@/components/ui/ActionBand'
-import { HomeIntro } from '@/components/ui/HomeIntro'
+import { Hero } from '@/components/ui/Hero'
 import { TabbedCards } from '@/components/ui/TabbedCards'
 import { contentfulApi } from '@/lib/contentful'
 
@@ -21,7 +21,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HomeIntro heroImageUrl={heroImageUrl ?? undefined} />
+      <Hero heroImageUrl={heroImageUrl ?? undefined} />
 
       {/* Process Section */}
       {mainProcess && (
