@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { notionApi } from '@/lib/notion'
-import { ProjectsTable } from '@/components/ui/projects/ProjectsTable'
+import { ProjectsTable } from '@/components/projects/ProjectsTable'
 import { StatBar } from '@/components/ui/StatBar'
 import { contentfulApi } from '@/lib/contentful'
 import Image from 'next/image'
@@ -29,13 +29,11 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
   return (
     <>
-      <section
-        className='gradient-bl-blue relative overflow-hidden border-b border-separator px-8 pb-14 pt-16 md:px-16'
-      >
+      <section className='gradient-bl-blue border-separator relative overflow-hidden border-b px-8 pt-16 pb-14 md:px-16'>
         <div className='mx-auto max-w-[1312px]'>
           <p className='label mb-6 text-blue-500'>Our Chapters</p>
           <h1>
-            <span className='block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] text-inverse md:text-[56px] md:leading-[62px]'>
+            <span className='text-inverse block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] md:text-[56px] md:leading-[62px]'>
               Hack4Impact
             </span>
             <span className='block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] text-blue-500 italic md:text-[56px] md:leading-[62px]'>
@@ -93,7 +91,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                           href={chapter.website}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='group flex items-center gap-2 label text-inverse transition-colors hover:text-blue-500'
+                          className='group label text-inverse flex items-center gap-2 transition-colors hover:text-blue-500'
                         >
                           <span>Website</span>
                           <span className='text-gray-3 transition-colors group-hover:text-blue-500'>
@@ -106,7 +104,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                           href={chapter.github}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='group flex items-center gap-2 label text-inverse transition-colors hover:text-blue-500'
+                          className='group label text-inverse flex items-center gap-2 transition-colors hover:text-blue-500'
                         >
                           <span>GitHub</span>
                           <span className='text-gray-3 transition-colors group-hover:text-blue-500'>
@@ -119,7 +117,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                           href={chapter.instagram}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='group flex items-center gap-2 label text-inverse transition-colors hover:text-blue-500'
+                          className='group label text-inverse flex items-center gap-2 transition-colors hover:text-blue-500'
                         >
                           <span>Instagram</span>
                           <span className='text-gray-3 transition-colors group-hover:text-blue-500'>
@@ -136,7 +134,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       />
 
       {/* Content + Projects */}
-      <section className='border-t border-separator px-8 py-8 md:px-16'>
+      <section className='border-separator border-t px-8 py-8 md:px-16'>
         <div className='mx-auto max-w-[1312px]'>
           <p className='font-serif text-lg md:text-xl'>{chapter.description}</p>
         </div>

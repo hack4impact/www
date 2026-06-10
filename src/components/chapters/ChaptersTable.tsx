@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { FilterBar } from '../FilterBar'
-import { FilteredGrid } from '../FilteredGrid'
+import { FilterBar } from '../ui/FilterBar'
+import { FilteredGrid } from '../ui/FilteredGrid'
 import { ChapterCard } from './ChapterCard'
 import type { Chapter } from '@/lib/types/chapter'
 
@@ -96,8 +96,10 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
     let list = [...chapters]
     if (status === '__none__') list = list.filter((c) => !c.status)
     else if (status !== 'all') list = list.filter((c) => c.status === status)
-    if (region === '__none__') list = list.filter((c) => !parseState(c.location ?? ''))
-    else if (region !== 'all') list = list.filter((c) => parseState(c.location ?? '') === region)
+    if (region === '__none__')
+      list = list.filter((c) => !parseState(c.location ?? ''))
+    else if (region !== 'all')
+      list = list.filter((c) => parseState(c.location ?? '') === region)
     if (est === '__none__') list = list.filter((c) => !c.founded)
     else if (est !== 'all') list = list.filter((c) => c.founded === est)
 
@@ -111,7 +113,9 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
       const nullFallback = sort === 'year-asc' ? '9999' : '0000'
       const aYear = a.founded || nullFallback
       const bYear = b.founded || nullFallback
-      return sort === 'year-asc' ? aYear.localeCompare(bYear) : bYear.localeCompare(aYear)
+      return sort === 'year-asc'
+        ? aYear.localeCompare(bYear)
+        : bYear.localeCompare(aYear)
     })
 
     return list
@@ -121,11 +125,31 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
     <div>
       <FilterBar
         filters={[
-          { label: 'Status', value: status, onValueChange: setStatus, options: statusOptions },
-          { label: 'Region', value: region, onValueChange: setRegion, options: regionOptions },
-          { label: 'Est.', value: est, onValueChange: setEst, options: estOptions },
+          {
+            label: 'Status',
+            value: status,
+            onValueChange: setStatus,
+            options: statusOptions,
+          },
+          {
+            label: 'Region',
+            value: region,
+            onValueChange: setRegion,
+            options: regionOptions,
+          },
+          {
+            label: 'Est.',
+            value: est,
+            onValueChange: setEst,
+            options: estOptions,
+          },
         ]}
-        sort={{ label: 'Sort', value: sort, onValueChange: (v) => setSort(v as Sort), options: SORT_OPTIONS }}
+        sort={{
+          label: 'Sort',
+          value: sort,
+          onValueChange: (v) => setSort(v as Sort),
+          options: SORT_OPTIONS,
+        }}
       />
 
       <FilteredGrid
@@ -134,7 +158,10 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
         gridClassName='mt-10 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
         emptyMessage='No chapters match the selected filters.'
         renderItem={(chapter) => (
-          <ChapterCard chapter={chapter} imageUrl={images[chapter.slug] ?? null} />
+          <ChapterCard
+            chapter={chapter}
+            imageUrl={images[chapter.slug] ?? null}
+          />
         )}
       />
     </div>

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { FilterBar } from '../FilterBar'
-import { FilteredGrid } from '../FilteredGrid'
+import { FilterBar } from '../ui/FilterBar'
+import { FilteredGrid } from '../ui/FilteredGrid'
 import { PartnerCard } from './PartnerCard'
 import type { Partner } from '@/lib/types/partner'
 
@@ -43,7 +43,8 @@ export function PartnersTable({ partners }: PartnersTableProps) {
     const types = new Set<string>()
     let hasNone = false
     for (const p of partners) {
-      if (p.organizationTypes?.length) for (const t of p.organizationTypes) types.add(t)
+      if (p.organizationTypes?.length)
+        for (const t of p.organizationTypes) types.add(t)
       else hasNone = true
     }
     return [
@@ -58,9 +59,12 @@ export function PartnersTable({ partners }: PartnersTableProps) {
   const filtered = useMemo(() => {
     let list = [...partners]
     if (focusArea === '__none__') list = list.filter((p) => !p.subjects?.length)
-    else if (focusArea !== 'all') list = list.filter((p) => p.subjects?.includes(focusArea))
-    if (orgType === '__none__') list = list.filter((p) => !p.organizationTypes?.length)
-    else if (orgType !== 'all') list = list.filter((p) => p.organizationTypes?.includes(orgType))
+    else if (focusArea !== 'all')
+      list = list.filter((p) => p.subjects?.includes(focusArea))
+    if (orgType === '__none__')
+      list = list.filter((p) => !p.organizationTypes?.length)
+    else if (orgType !== 'all')
+      list = list.filter((p) => p.organizationTypes?.includes(orgType))
 
     list.sort((a, b) => {
       if (sort === 'name-asc') return a.name.localeCompare(b.name)
@@ -77,10 +81,25 @@ export function PartnersTable({ partners }: PartnersTableProps) {
     <div>
       <FilterBar
         filters={[
-          { label: 'Focus Area', value: focusArea, onValueChange: setFocusArea, options: focusAreaOptions },
-          { label: 'Org Type', value: orgType, onValueChange: setOrgType, options: orgTypeOptions },
+          {
+            label: 'Focus Area',
+            value: focusArea,
+            onValueChange: setFocusArea,
+            options: focusAreaOptions,
+          },
+          {
+            label: 'Org Type',
+            value: orgType,
+            onValueChange: setOrgType,
+            options: orgTypeOptions,
+          },
         ]}
-        sort={{ label: 'Sort', value: sort, onValueChange: (v) => setSort(v as Sort), options: SORT_OPTIONS }}
+        sort={{
+          label: 'Sort',
+          value: sort,
+          onValueChange: (v) => setSort(v as Sort),
+          options: SORT_OPTIONS,
+        }}
       />
 
       <FilteredGrid

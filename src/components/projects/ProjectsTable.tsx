@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { FilterBar } from '../FilterBar'
-import { FilteredGrid } from '../FilteredGrid'
+import { FilterBar } from '../ui/FilterBar'
+import { FilteredGrid } from '../ui/FilteredGrid'
 import { ProjectCard } from './ProjectCard'
 import type { Project } from '@/lib/types/project'
 
@@ -20,7 +20,10 @@ interface ProjectsTableProps {
   hideChapterFilter?: boolean
 }
 
-export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsTableProps) {
+export function ProjectsTable({
+  projects,
+  hideChapterFilter = false,
+}: ProjectsTableProps) {
   const [focusArea, setFocusArea] = useState('all')
   const [chapter, setChapter] = useState('all')
   const [year, setYear] = useState('all')
@@ -106,18 +109,40 @@ export function ProjectsTable({ projects, hideChapterFilter = false }: ProjectsT
   }, [projects, focusArea, chapter, year, sort])
 
   const filters = [
-    { label: 'Focus Area', value: focusArea, onValueChange: setFocusArea, options: focusAreaOptions },
+    {
+      label: 'Focus Area',
+      value: focusArea,
+      onValueChange: setFocusArea,
+      options: focusAreaOptions,
+    },
     ...(!hideChapterFilter
-      ? [{ label: 'Chapter', value: chapter, onValueChange: setChapter, options: chapterOptions }]
+      ? [
+          {
+            label: 'Chapter',
+            value: chapter,
+            onValueChange: setChapter,
+            options: chapterOptions,
+          },
+        ]
       : []),
-    { label: 'Year', value: year, onValueChange: setYear, options: yearOptions },
+    {
+      label: 'Year',
+      value: year,
+      onValueChange: setYear,
+      options: yearOptions,
+    },
   ]
 
   return (
     <div>
       <FilterBar
         filters={filters}
-        sort={{ label: 'Sort', value: sort, onValueChange: (v) => setSort(v as Sort), options: SORT_OPTIONS }}
+        sort={{
+          label: 'Sort',
+          value: sort,
+          onValueChange: (v) => setSort(v as Sort),
+          options: SORT_OPTIONS,
+        }}
       />
 
       <FilteredGrid
