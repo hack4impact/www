@@ -3,10 +3,13 @@ import type { Project } from '@/lib/types/project'
 
 interface ProjectCardProps {
   project: Project
+  showPartner?: boolean
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
-  const meta = [project.chapter, project.year].filter(Boolean).join(' · ')
+export function ProjectCard({ project, showPartner = false }: ProjectCardProps) {
+  const meta = [showPartner ? project.partner : project.chapter, project.year]
+    .filter(Boolean)
+    .join(' · ')
   const teamCount = project.team.length
 
   return (

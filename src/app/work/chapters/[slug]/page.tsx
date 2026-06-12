@@ -30,7 +30,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   return (
     <>
       <section className='gradient-bl-blue border-separator relative overflow-hidden border-b px-8 pt-16 pb-14 md:px-16'>
-        <div className='mx-auto max-w-[1312px]'>
+        <div className='mx-auto max-w-[1312px] md:pr-[34%]'>
           <p className='label mb-6 text-blue-500'>Our Chapters</p>
           <h1>
             <span className='text-inverse block font-serif text-[40px] leading-[1.1] font-light tracking-[-0.02em] md:text-[56px] md:leading-[62px]'>
@@ -144,7 +144,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         <section className='px-8 pb-12 md:px-16'>
           <div className='mx-auto max-w-[1312px]'>
             <h2 className='mb-6 font-sans text-xl md:text-2xl'>Projects</h2>
-            <ProjectsTable projects={chapterProjects} hideChapterFilter />
+            <ProjectsTable projects={chapterProjects} hideChapterFilter showPartner />
           </div>
         </section>
       )}

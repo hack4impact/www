@@ -18,11 +18,13 @@ const SORT_OPTIONS = [
 interface ProjectsTableProps {
   projects: Project[]
   hideChapterFilter?: boolean
+  showPartner?: boolean
 }
 
 export function ProjectsTable({
   projects,
   hideChapterFilter = false,
+  showPartner = false,
 }: ProjectsTableProps) {
   const [focusArea, setFocusArea] = useState('all')
   const [chapter, setChapter] = useState('all')
@@ -150,7 +152,7 @@ export function ProjectsTable({
         filterKey={`${focusArea}|${chapter}|${year}|${sort}`}
         gridClassName='grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
         emptyMessage='No projects match the selected filters.'
-        renderItem={(project) => <ProjectCard project={project} />}
+        renderItem={(project) => <ProjectCard project={project} showPartner={showPartner} />}
         scrollable
       />
     </div>
