@@ -29,7 +29,7 @@ const SORT_OPTIONS = [
   { value: 'year-desc', label: 'Year ↓' },
 ]
 
-interface ChaptersTableProps {
+interface ChaptersDirectoryProps {
   chapters: Chapter[]
   images: Record<string, string | null>
 }
@@ -39,7 +39,10 @@ function parseState(location: string): string {
   return parts.length >= 2 ? parts[parts.length - 1] : ''
 }
 
-export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
+export function ChaptersDirectory({
+  chapters,
+  images,
+}: ChaptersDirectoryProps) {
   const [status, setStatus] = useState('all')
   const [region, setRegion] = useState('all')
   const [est, setEst] = useState('all')

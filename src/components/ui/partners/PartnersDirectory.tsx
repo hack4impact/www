@@ -17,11 +17,11 @@ const SORT_OPTIONS = [
   { value: 'projects-desc', label: 'Most projects' },
 ]
 
-interface PartnersTableProps {
+interface PartnersDirectoryProps {
   partners: Partner[]
 }
 
-export function PartnersTable({ partners }: PartnersTableProps) {
+export function PartnersDirectory({ partners }: PartnersDirectoryProps) {
   const [focusArea, setFocusArea] = useState('all')
   const [orgType, setOrgType] = useState('all')
   const [sort, setSort] = useState<Sort>('name-asc')

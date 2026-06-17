@@ -1,5 +1,5 @@
 import { ActionBand } from '@/components/ui/ActionBand'
-import { ChaptersTable } from '@/components/ui/chapters/ChaptersTable'
+import { ChaptersDirectory } from '@/components/ui/chapters/ChaptersDirectory'
 import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
 import { contentfulApi } from '@/lib/contentful'
@@ -34,7 +34,7 @@ export default async function ChaptersPage() {
       {/* Chapters grid */}
       <section className='px-8 py-10 md:px-16'>
         <div className='mx-auto max-w-[1312px]'>
-          <ChaptersTable chapters={chapters} images={images} />
+          <ChaptersDirectory chapters={chapters} images={images} />
         </div>
       </section>
 

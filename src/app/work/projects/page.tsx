@@ -1,7 +1,7 @@
 import { ActionBand } from '@/components/ui/ActionBand'
 import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
-import { ProjectsTable } from '@/components/ui/projects/ProjectsTable'
+import { ProjectsDirectory } from '@/components/ui/projects/ProjectsDirectory'
 import { contentfulApi } from '@/lib/contentful'
 import { notionApi } from '@/lib/notion'
 
@@ -24,7 +24,7 @@ export default async function ProjectsPage() {
       {/* Projects grid */}
       <section className='px-8 py-10 md:px-16'>
         <div className='mx-auto flex max-h-[680px] min-h-[480px] max-w-[1312px] flex-col'>
-          <ProjectsTable projects={projects} />
+          <ProjectsDirectory projects={projects} />
         </div>
       </section>
 

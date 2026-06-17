@@ -1,7 +1,7 @@
 import { ActionBand } from '@/components/ui/ActionBand'
 import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
-import { PartnersTable } from '@/components/ui/partners/PartnersTable'
+import { PartnersDirectory } from '@/components/ui/partners/PartnersDirectory'
 import { contentfulApi } from '@/lib/contentful'
 import { notionApi } from '@/lib/notion'
 
@@ -23,8 +23,8 @@ export default async function PartnersPage() {
 
       {/* Partners grid */}
       <section className='px-8 py-10 md:px-16'>
-        <div className='mx-auto flex max-h-[680px] min-h-[480px] max-w-[1312px] flex-col'>
-          <PartnersTable partners={partners} />
+        <div className='mx-auto max-w-[1312px]'>
+          <PartnersDirectory partners={partners} />
         </div>
       </section>
 
