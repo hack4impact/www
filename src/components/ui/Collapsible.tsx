@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from 'react'
 
 import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
-import { Easing, HTMLMotionProps, motion, Transition } from 'framer-motion'
+import { Easing, HTMLMotionProps, motion, Transition } from 'motion/react'
 
 import { TEXT_CLASS } from '@/lib/constants'
 import { cn } from '@/lib/utils'

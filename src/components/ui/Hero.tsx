@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { StaticRadialGradient } from '@paper-design/shaders-react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 import { Button } from '@/components/ui/Button'
 import { fadeInForward, staggerContainer } from '@/lib/animations'

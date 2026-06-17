@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import Link from 'next/link'
 
 import { Menu } from '@base-ui/react/menu'
-import { LayoutGroup, motion } from 'framer-motion'
+import { LayoutGroup, motion } from 'motion/react'
 
 import { dropdownKeys, dropdowns, type DropdownKey } from './nav-data'
 

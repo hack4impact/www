@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import { TEXT_CLASS } from '@/lib/constants'

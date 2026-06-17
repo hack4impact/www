@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 import { Button, ButtonColor } from '@/components/ui/Button'
 import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
