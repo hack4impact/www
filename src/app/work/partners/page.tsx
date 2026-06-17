@@ -1,7 +1,7 @@
-import { PartnersTable } from '@/components/partners/PartnersTable'
 import { ActionBand } from '@/components/ui/ActionBand'
 import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
+import { PartnersTable } from '@/components/ui/partners/PartnersTable'
 import { contentfulApi } from '@/lib/contentful'
 import { notionApi } from '@/lib/notion'
 

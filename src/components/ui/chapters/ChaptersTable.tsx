@@ -3,9 +3,10 @@
 import { useMemo, useState } from 'react'
 
 import type { Chapter } from '@/lib/types/chapter'
+import { buildFilterOptions } from '@/lib/utils'
 
-import { FilterBar } from '../ui/FilterBar'
-import { FilteredGrid } from '../ui/FilteredGrid'
+import { FilterBar } from '../FilterBar'
+import { FilteredGrid } from '../FilteredGrid'
 import { ChapterCard } from './ChapterCard'
 
 type Sort = 'status' | 'name-asc' | 'name-desc' | 'year-asc' | 'year-desc'
@@ -44,55 +45,26 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
   const [est, setEst] = useState('all')
   const [sort, setSort] = useState<Sort>('status')
 
-  const statusOptions = useMemo(() => {
-    const statuses = new Set<string>()
-    let hasNone = false
-    for (const c of chapters) {
-      if (c.status) statuses.add(c.status)
-      else hasNone = true
-    }
-    const sorted = Array.from(statuses).sort(
-      (a, b) => statusPriority(a) - statusPriority(b),
-    )
-    return [
-      { value: 'all', label: 'All' },
-      ...sorted.map((s) => ({ value: s, label: s })),
-      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
-    ]
-  }, [chapters])
+  const statusOptions = useMemo(
+    () =>
+      buildFilterOptions(
+        chapters,
+        (c) => c.status,
+        (a, b) => statusPriority(a) - statusPriority(b),
+      ),
+    [chapters],
+  )
 
-  const regionOptions = useMemo(() => {
-    const states = new Set<string>()
-    let hasNone = false
-    for (const c of chapters) {
-      const s = parseState(c.location ?? '')
-      if (s) states.add(s)
-      else hasNone = true
-    }
-    return [
-      { value: 'all', label: 'All' },
-      ...Array.from(states)
-        .sort()
-        .map((s) => ({ value: s, label: s })),
-      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
-    ]
-  }, [chapters])
+  const regionOptions = useMemo(
+    () =>
+      buildFilterOptions(chapters, (c) => parseState(c.location ?? '') || null),
+    [chapters],
+  )
 
-  const estOptions = useMemo(() => {
-    const years = new Set<string>()
-    let hasNone = false
-    for (const c of chapters) {
-      if (c.founded) years.add(c.founded)
-      else hasNone = true
-    }
-    return [
-      { value: 'all', label: 'All' },
-      ...Array.from(years)
-        .sort()
-        .map((y) => ({ value: y, label: y })),
-      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
-    ]
-  }, [chapters])
+  const estOptions = useMemo(
+    () => buildFilterOptions(chapters, (c) => c.founded),
+    [chapters],
+  )
 
   const filtered = useMemo(() => {
     let list = [...chapters]
@@ -124,7 +96,7 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
   }, [chapters, status, region, est, sort])
 
   return (
-    <div>
+    <div className='flex min-h-0 flex-1 flex-col'>
       <FilterBar
         filters={[
           {
@@ -157,7 +129,7 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
       <FilteredGrid
         items={filtered}
         filterKey={`${status}|${region}|${est}|${sort}`}
-        gridClassName='mt-10 grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
+        gridClassName='grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
         emptyMessage='No chapters match the selected filters.'
         renderItem={(chapter) => (
           <ChapterCard
@@ -165,6 +137,8 @@ export function ChaptersTable({ chapters, images }: ChaptersTableProps) {
             imageUrl={images[chapter.slug] ?? null}
           />
         )}
+        estimatedItemHeight={185}
+        scrollable
       />
     </div>
   )

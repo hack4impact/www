@@ -1,5 +1,5 @@
-import { ChaptersTable } from '@/components/chapters/ChaptersTable'
 import { ActionBand } from '@/components/ui/ActionBand'
+import { ChaptersTable } from '@/components/ui/chapters/ChaptersTable'
 import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
 import { contentfulApi } from '@/lib/contentful'

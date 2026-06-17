@@ -3,9 +3,10 @@
 import { useMemo, useState } from 'react'
 
 import type { Project } from '@/lib/types/project'
+import { buildFilterOptions } from '@/lib/utils'
 
-import { FilterBar } from '../ui/FilterBar'
-import { FilteredGrid } from '../ui/FilteredGrid'
+import { FilterBar } from '../FilterBar'
+import { FilteredGrid } from '../FilteredGrid'
 import { ProjectCard } from './ProjectCard'
 
 type Sort = 'year-desc' | 'year-asc' | 'name-asc' | 'name-desc'
@@ -20,66 +21,36 @@ const SORT_OPTIONS = [
 interface ProjectsTableProps {
   projects: Project[]
   hideChapterFilter?: boolean
-  showPartner?: boolean
 }
 
 export function ProjectsTable({
   projects,
   hideChapterFilter = false,
-  showPartner = false,
 }: ProjectsTableProps) {
   const [focusArea, setFocusArea] = useState('all')
   const [chapter, setChapter] = useState('all')
   const [year, setYear] = useState('all')
   const [sort, setSort] = useState<Sort>('year-desc')
 
-  const focusAreaOptions = useMemo(() => {
-    const tags = new Set<string>()
-    let hasNone = false
-    for (const p of projects) {
-      if (p.tag) tags.add(p.tag)
-      else hasNone = true
-    }
-    return [
-      { value: 'all', label: 'All' },
-      ...Array.from(tags)
-        .sort()
-        .map((t) => ({ value: t, label: t })),
-      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
-    ]
-  }, [projects])
+  const focusAreaOptions = useMemo(
+    () => buildFilterOptions(projects, (p) => p.tag),
+    [projects],
+  )
 
-  const chapterOptions = useMemo(() => {
-    const chapters = new Set<string>()
-    let hasNone = false
-    for (const p of projects) {
-      if (p.chapter) chapters.add(p.chapter)
-      else hasNone = true
-    }
-    return [
-      { value: 'all', label: 'All' },
-      ...Array.from(chapters)
-        .sort()
-        .map((c) => ({ value: c, label: c })),
-      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
-    ]
-  }, [projects])
+  const chapterOptions = useMemo(
+    () => buildFilterOptions(projects, (p) => p.chapter),
+    [projects],
+  )
 
-  const yearOptions = useMemo(() => {
-    const years = new Set<string>()
-    let hasNone = false
-    for (const p of projects) {
-      if (p.year) years.add(p.year)
-      else hasNone = true
-    }
-    return [
-      { value: 'all', label: 'All' },
-      ...Array.from(years)
-        .sort((a, b) => b.localeCompare(a))
-        .map((y) => ({ value: y, label: y })),
-      ...(hasNone ? [{ value: '__none__', label: 'None' }] : []),
-    ]
-  }, [projects])
+  const yearOptions = useMemo(
+    () =>
+      buildFilterOptions(
+        projects,
+        (p) => p.year,
+        (a, b) => b.localeCompare(a),
+      ),
+    [projects],
+  )
 
   const filtered = useMemo(() => {
     let list = [...projects]
@@ -138,7 +109,7 @@ export function ProjectsTable({
   ]
 
   return (
-    <div>
+    <div className='flex min-h-0 flex-1 flex-col'>
       <FilterBar
         filters={filters}
         sort={{
@@ -154,9 +125,8 @@ export function ProjectsTable({
         filterKey={`${focusArea}|${chapter}|${year}|${sort}`}
         gridClassName='grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
         emptyMessage='No projects match the selected filters.'
-        renderItem={(project) => (
-          <ProjectCard project={project} showPartner={showPartner} />
-        )}
+        renderItem={(project) => <ProjectCard project={project} />}
+        estimatedItemHeight={110}
         scrollable
       />
     </div>

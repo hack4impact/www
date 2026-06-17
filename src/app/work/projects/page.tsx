@@ -1,7 +1,7 @@
-import { ProjectsTable } from '@/components/projects/ProjectsTable'
 import { ActionBand } from '@/components/ui/ActionBand'
 import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
+import { ProjectsTable } from '@/components/ui/projects/ProjectsTable'
 import { contentfulApi } from '@/lib/contentful'
 import { notionApi } from '@/lib/notion'
 
