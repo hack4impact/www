@@ -36,11 +36,7 @@ function CardContent({
       <p className={cn('label mb-2', TEXT_CLASS[color])}>
         {cardLabel} {String(index + 1).padStart(2, '0')}
       </p>
-      <h3
-        className={cn(
-          'heading-card mb-4 sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px]',
-        )}
-      >
+      <h3 className='heading-card mb-4 sm:text-[32px] sm:leading-[40px] md:text-[36px] md:leading-[44px]'>
         {item.name}
       </h3>
       <p className='text-gray-3 max-w-xl font-sans text-base leading-6'>
@@ -49,10 +45,7 @@ function CardContent({
       {item.link && (
         <Link
           href={item.link}
-          className={cn(
-            'label-xs mt-8 block hover:underline',
-            TEXT_CLASS[color],
-          )}
+          className={cn('label-xs mt-8 block hover:underline', TEXT_CLASS[color])}
         >
           Learn more &rarr;
         </Link>
@@ -68,9 +61,9 @@ export function TabbedCards({
   heading,
   cardLabel,
 }: TabbedCardsProps) {
-  const [active, setActive] = useState(items[0]?.name ?? '')
-
-  const activeIndex = items.findIndex((item) => item.name === active)
+  // Only track index for glow/animation — Base UI owns which tab is selected.
+  const [activeIndex, setActiveIndex] = useState(0)
+  const activeItem = items[activeIndex]
 
   return (
     <motion.section
@@ -80,28 +73,29 @@ export function TabbedCards({
       viewport={{ once: true, amount: 0.1 }}
       className='border-separator border-t'
     >
-      {/* Heading */}
       <div className='px-8 pt-16 pb-8 md:px-16'>
         <p className='label mb-5 text-blue-500'>{label}</p>
         <h2 className='heading-section'>{heading}</h2>
       </div>
 
       <Tabs.Root
-        value={active}
-        onValueChange={(val) => setActive(val as string)}
+        defaultValue={items[0]?.name ?? ''}
+        onValueChange={(val) => {
+          const idx = items.findIndex((item) => item.name === String(val))
+          if (idx >= 0) setActiveIndex(idx)
+        }}
       >
-        {/* Tab row */}
         <div className='overflow-x-auto'>
           <Tabs.List className='border-separator flex min-w-max items-end border-b px-8 md:px-16'>
-            {items.map((item, i) => (
+            {items.map((item) => (
               <Tabs.Tab
                 key={item.name}
                 value={item.name}
                 className={cn(
-                  '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-inset',
-                  active === item.name
-                    ? 'border-separator border-b-root bg-root text-inverse font-medium'
-                    : 'text-gray-3 hover:text-inverse border-transparent',
+                  '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors outline-none',
+                  'border-transparent text-gray-3 hover:text-inverse',
+                  'focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-inset',
+                  'data-[active]:border-separator data-[active]:border-b-root data-[active]:bg-root data-[active]:font-medium data-[active]:text-inverse',
                 )}
               >
                 {item.name}
@@ -110,7 +104,6 @@ export function TabbedCards({
           </Tabs.List>
         </div>
 
-        {/* Content area */}
         <div className='pb-16 md:pb-20'>
           <div className='relative'>
             {/* Ghost layer — sets container height to tallest card */}
@@ -135,12 +128,9 @@ export function TabbedCards({
               {items.map((item, i) => (
                 <motion.div
                   key={item.name}
-                  animate={{ opacity: item.name === active ? 1 : 0 }}
+                  animate={{ opacity: i === activeIndex ? 1 : 0 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className={cn(
-                    'absolute inset-0',
-                    GRADIENT_CLASS[colors[i % colors.length]],
-                  )}
+                  className={cn('absolute inset-0', GRADIENT_CLASS[colors[i % colors.length]])}
                 />
               ))}
             </div>
@@ -149,22 +139,19 @@ export function TabbedCards({
             <div className='absolute inset-0 overflow-hidden'>
               <AnimatePresence mode='wait'>
                 <motion.div
-                  key={active}
+                  key={activeIndex}
                   initial={{ opacity: 0, x: 16 }}
                   animate={{
                     opacity: 1,
                     x: 0,
-                    transition: {
-                      duration: 0.3,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    },
+                    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
                   }}
                   exit={{ opacity: 0, x: -12, transition: { duration: 0.18 } }}
                   className={PAD}
                 >
-                  {activeIndex >= 0 && (
+                  {activeItem && (
                     <CardContent
-                      item={items[activeIndex]}
+                      item={activeItem}
                       index={activeIndex}
                       color={colors[activeIndex % colors.length]}
                       cardLabel={cardLabel}
