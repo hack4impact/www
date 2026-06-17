@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import type { Chapter } from '@/lib/types/chapter'
 import { FilterBar } from '../ui/FilterBar'
 import { FilteredGrid } from '../ui/FilteredGrid'
 import { ChapterCard } from './ChapterCard'
-import type { Chapter } from '@/lib/types/chapter'
 
 type Sort = 'status' | 'name-asc' | 'name-desc' | 'year-asc' | 'year-desc'
 

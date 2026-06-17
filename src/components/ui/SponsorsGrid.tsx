@@ -18,7 +18,7 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
       className='logo-invert-dark h-10 w-auto max-w-full object-contain'
     />
   ) : (
-    <span className='text-center font-sans text-sm leading-tight text-gray-2 transition-colors group-hover:text-inverse'>
+    <span className='text-gray-2 group-hover:text-inverse text-center font-sans text-sm leading-tight transition-colors'>
       {sponsor.name}
     </span>
   )
@@ -32,7 +32,7 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
         href={sponsor.website}
         target='_blank'
         rel='noopener noreferrer'
-        className={`${baseClass} group transition-colors hover:border-gray-4`}
+        className={`${baseClass} group hover:border-gray-4 transition-colors`}
       >
         {content}
       </a>
@@ -48,14 +48,14 @@ export function SponsorsGrid({ heading, groups }: SponsorsGridProps) {
   return (
     <>
       {heading && (
-        <h2 className='mb-8 font-serif text-[40px] leading-[48px] font-light tracking-[-0.01em] text-inverse'>
+        <h2 className='text-inverse mb-8 font-serif text-[40px] leading-[48px] font-light tracking-[-0.01em]'>
           {heading}
         </h2>
       )}
       <div className='space-y-10'>
         {groups.map((group) => (
           <div key={group.tier}>
-            <div className='mb-4 border-b border-separator pb-2'>
+            <div className='border-separator mb-4 border-b pb-2'>
               <span className='label-xs text-gray-4'>{group.tier}</span>
             </div>
             <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>

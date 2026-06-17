@@ -1,4 +1,4 @@
-import { ReactNode, ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -9,7 +9,14 @@ interface CardProps extends ComponentPropsWithoutRef<'div'> {
   href?: string
 }
 
-export function Card({ icon, title, description, className, href, ...props }: CardProps) {
+export function Card({
+  icon,
+  title,
+  description,
+  className,
+  href,
+  ...props
+}: CardProps) {
   return (
     <div
       className={cn(

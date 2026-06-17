@@ -20,7 +20,7 @@ export function FilterBar({ filters, sort }: FilterBarProps) {
   return (
     <>
       {/* Desktop */}
-      <div className='hidden items-center gap-2 border-b border-separator pb-5 md:flex'>
+      <div className='border-separator hidden items-center gap-2 border-b pb-5 md:flex'>
         {filters.map((f) => (
           <FilterSelect key={f.label} {...f} />
         ))}
@@ -30,10 +30,10 @@ export function FilterBar({ filters, sort }: FilterBarProps) {
       </div>
 
       {/* Mobile */}
-      <div className='border-b border-separator pb-5 md:hidden'>
+      <div className='border-separator border-b pb-5 md:hidden'>
         <Collapsible.Root>
           <div className='flex items-center justify-between'>
-            <Collapsible.Trigger className='group flex cursor-pointer items-center gap-2 rounded-[6px] border border-separator px-3.5 py-2 label-xs text-gray-2 outline-none transition-colors hover:border-gray-3'>
+            <Collapsible.Trigger className='group border-separator label-xs text-gray-2 hover:border-gray-3 flex cursor-pointer items-center gap-2 rounded-[6px] border px-3.5 py-2 transition-colors outline-none'>
               Filters
               <svg
                 width='10'
@@ -53,7 +53,7 @@ export function FilterBar({ filters, sort }: FilterBarProps) {
             </Collapsible.Trigger>
             <FilterSelect {...sort} align={sort.align ?? 'end'} />
           </div>
-          <Collapsible.Panel className='overflow-hidden [height:var(--collapsible-panel-height,0px)] [transition:height_0.24s_cubic-bezier(0.16,1,0.3,1)]'>
+          <Collapsible.Panel className='[height:var(--collapsible-panel-height,0px)] overflow-hidden [transition:height_0.24s_cubic-bezier(0.16,1,0.3,1)]'>
             <div className='grid grid-cols-2 gap-2 pt-3'>
               {filters.map((f) => (
                 <FilterSelect key={f.label} {...f} />

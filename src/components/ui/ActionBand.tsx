@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 import { TEXT_CLASS } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 
 const BAND_ITEMS = [
   {

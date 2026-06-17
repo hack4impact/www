@@ -1,22 +1,22 @@
 import { unstable_cache } from 'next/cache'
 import type {
-  JournalEntry,
   BoardTeamMember,
+  ContentfulInfoCards,
+  ContentfulProcess,
+  FAQ,
+  JournalEntry,
   Sponsor,
   SponsorshipTier,
-  FAQ,
-  ContentfulProcess,
-  ContentfulInfoCards,
 } from '@/lib/types/contentful'
 import { contentfulClient } from './client'
 import {
-  mapEntry,
   mapBoardTeamMember,
+  mapEntry,
+  mapInfoCards,
+  mapProcess,
+  mapQuestions,
   mapSponsor,
   mapSponsorshipTier,
-  mapQuestions,
-  mapProcess,
-  mapInfoCards,
 } from './mappers'
 
 async function fetchJournalEntries(): Promise<JournalEntry[]> {

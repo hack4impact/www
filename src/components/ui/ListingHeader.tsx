@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils'
 import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 
 interface ListingHeaderProps {
   label: string

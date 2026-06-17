@@ -1,13 +1,13 @@
 'use client'
 
 import { ComponentPropsWithoutRef } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { staggerContainer, fadeInForward } from '@/lib/animations'
-import { Button } from '@/components/ui/Button'
-import { cn } from '@/lib/utils'
+import Link from 'next/link'
 import { StaticRadialGradient } from '@paper-design/shaders-react'
+import { motion } from 'framer-motion'
+import { Button } from '@/components/ui/Button'
+import { fadeInForward, staggerContainer } from '@/lib/animations'
+import { cn } from '@/lib/utils'
 
 interface HomeIntroProps extends ComponentPropsWithoutRef<'section'> {
   heroImageUrl?: string

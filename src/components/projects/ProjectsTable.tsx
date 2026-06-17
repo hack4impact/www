@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import type { Project } from '@/lib/types/project'
 import { FilterBar } from '../ui/FilterBar'
 import { FilteredGrid } from '../ui/FilteredGrid'
 import { ProjectCard } from './ProjectCard'
-import type { Project } from '@/lib/types/project'
 
 type Sort = 'year-desc' | 'year-asc' | 'name-asc' | 'name-desc'
 
@@ -152,7 +152,9 @@ export function ProjectsTable({
         filterKey={`${focusArea}|${chapter}|${year}|${sort}`}
         gridClassName='grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
         emptyMessage='No projects match the selected filters.'
-        renderItem={(project) => <ProjectCard project={project} showPartner={showPartner} />}
+        renderItem={(project) => (
+          <ProjectCard project={project} showPartner={showPartner} />
+        )}
         scrollable
       />
     </div>

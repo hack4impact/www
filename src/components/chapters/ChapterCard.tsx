@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 import type { Chapter } from '@/lib/types/chapter'
+import { cn } from '@/lib/utils'
 
 interface ChapterCardProps {
   chapter: Chapter
@@ -15,7 +15,9 @@ const STATUS_STYLES: Record<string, string> = {
 }
 
 function statusStyle(status: string): string {
-  return STATUS_STYLES[status] ?? 'bg-black/35 border border-white/10 text-white/60'
+  return (
+    STATUS_STYLES[status] ?? 'bg-black/35 border border-white/10 text-white/60'
+  )
 }
 
 export function ChapterCard({ chapter, imageUrl }: ChapterCardProps) {
@@ -26,7 +28,7 @@ export function ChapterCard({ chapter, imageUrl }: ChapterCardProps) {
   return (
     <Link
       href={`/work/chapters/${chapter.slug}`}
-      className='group relative block aspect-video overflow-hidden rounded-2xl border border-checkbox-outline bg-blue-50'
+      className='group border-checkbox-outline relative block aspect-video overflow-hidden rounded-2xl border bg-blue-50'
     >
       {imageUrl ? (
         <Image
@@ -46,7 +48,10 @@ export function ChapterCard({ chapter, imageUrl }: ChapterCardProps) {
       {/* Status badge */}
       {chapter.status && (
         <div
-          className={cn('absolute right-2.5 top-2.5 rounded-full px-2.5 py-1 backdrop-blur-md font-mono text-[9px] uppercase tracking-[0.08em]', statusStyle(chapter.status))}
+          className={cn(
+            'absolute top-2.5 right-2.5 rounded-full px-2.5 py-1 font-mono text-[9px] tracking-[0.08em] uppercase backdrop-blur-md',
+            statusStyle(chapter.status),
+          )}
         >
           {chapter.status}
         </div>
@@ -54,11 +59,11 @@ export function ChapterCard({ chapter, imageUrl }: ChapterCardProps) {
 
       {/* Text */}
       <div className='absolute inset-x-0 bottom-0 p-3'>
-        <p className='font-sans text-[15px] font-normal leading-tight text-white'>
+        <p className='font-sans text-[15px] leading-tight font-normal text-white'>
           {chapter.name}
         </p>
         {meta && (
-          <p className='mt-1 font-mono text-[9px] uppercase tracking-[0.08em] text-white/70'>
+          <p className='mt-1 font-mono text-[9px] tracking-[0.08em] text-white/70 uppercase'>
             {meta}
           </p>
         )}

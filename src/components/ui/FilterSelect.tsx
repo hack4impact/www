@@ -45,7 +45,11 @@ export function FilterSelect({
           className='z-50'
         >
           <Select.Popup
-            className={cn('select-popup', 'select-popup-panel', 'min-w-[var(--anchor-width)]')}
+            className={cn(
+              'select-popup',
+              'select-popup-panel',
+              'min-w-[var(--anchor-width)]',
+            )}
           >
             <div className='max-h-[220px] overflow-y-auto py-1.5'>
               {options.map((opt) => (

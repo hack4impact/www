@@ -1,8 +1,8 @@
+import { ActionBand } from '@/components/ui/ActionBand'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { HeroBanner } from '@/components/ui/HeroBanner'
 import { SplitPanel } from '@/components/ui/SplitPanel'
 import { StepsList } from '@/components/ui/StepsList'
-import { CollapsibleList } from '@/components/ui/CollapsibleList'
-import { ActionBand } from '@/components/ui/ActionBand'
 import { contentfulApi } from '@/lib/contentful'
 
 export default async function StudentsPage() {

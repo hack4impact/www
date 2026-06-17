@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Tabs } from '@base-ui/react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
 import { type InfoCard } from '@/lib/types/contentful'
 import { cn } from '@/lib/utils'
-import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
 
 interface TabbedCardsProps {
   items: InfoCard[]
@@ -45,7 +45,10 @@ function CardContent({
       {item.link && (
         <Link
           href={item.link}
-          className={cn('label-xs mt-8 block hover:underline', TEXT_CLASS[color])}
+          className={cn(
+            'label-xs mt-8 block hover:underline',
+            TEXT_CLASS[color],
+          )}
         >
           Learn more &rarr;
         </Link>
@@ -93,9 +96,9 @@ export function TabbedCards({
                 value={item.name}
                 className={cn(
                   '-mb-px shrink-0 cursor-pointer rounded-t-lg border px-5 py-2.5 font-sans text-[15px] whitespace-nowrap transition-colors outline-none',
-                  'border-transparent text-gray-3 hover:text-inverse',
+                  'text-gray-3 hover:text-inverse border-transparent',
                   'focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-inset',
-                  'data-[active]:border-separator data-[active]:border-b-root data-[active]:bg-root data-[active]:font-medium data-[active]:text-inverse',
+                  'data-[active]:border-separator data-[active]:border-b-root data-[active]:bg-root data-[active]:text-inverse data-[active]:font-medium',
                 )}
               >
                 {item.name}
@@ -130,7 +133,10 @@ export function TabbedCards({
                   key={item.name}
                   animate={{ opacity: i === activeIndex ? 1 : 0 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className={cn('absolute inset-0', GRADIENT_CLASS[colors[i % colors.length]])}
+                  className={cn(
+                    'absolute inset-0',
+                    GRADIENT_CLASS[colors[i % colors.length]],
+                  )}
                 />
               ))}
             </div>
@@ -144,7 +150,10 @@ export function TabbedCards({
                   animate={{
                     opacity: 1,
                     x: 0,
-                    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
+                    transition: {
+                      duration: 0.3,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    },
                   }}
                   exit={{ opacity: 0, x: -12, transition: { duration: 0.18 } }}
                   className={PAD}

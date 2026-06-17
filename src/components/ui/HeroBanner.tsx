@@ -1,11 +1,11 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button, ButtonColor } from '@/components/ui/Button'
-import { cn } from '@/lib/utils'
 import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 
 interface HeroBannerProps {
   label: string

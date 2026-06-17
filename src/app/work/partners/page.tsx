@@ -1,9 +1,9 @@
-import { notionApi } from '@/lib/notion'
-import { contentfulApi } from '@/lib/contentful'
 import { PartnersTable } from '@/components/partners/PartnersTable'
-import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ActionBand } from '@/components/ui/ActionBand'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
+import { contentfulApi } from '@/lib/contentful'
+import { notionApi } from '@/lib/notion'
 
 export default async function PartnersPage() {
   const [partners, faqs] = await Promise.all([

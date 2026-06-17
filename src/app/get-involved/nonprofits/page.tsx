@@ -1,7 +1,7 @@
+import { ActionBand } from '@/components/ui/ActionBand'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { HeroBanner } from '@/components/ui/HeroBanner'
 import { StepsList } from '@/components/ui/StepsList'
-import { CollapsibleList } from '@/components/ui/CollapsibleList'
-import { ActionBand } from '@/components/ui/ActionBand'
 import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
 

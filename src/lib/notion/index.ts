@@ -1,12 +1,12 @@
 import {
-  getChapters,
   getChapterBySlug,
-  getProjects,
-  getProjectBySlug,
-  getPartners,
-  getPartnerBySlug,
-  getVolunteerCounts,
+  getChapters,
   getDoneProjectCount,
+  getPartnerBySlug,
+  getPartners,
+  getProjectBySlug,
+  getProjects,
+  getVolunteerCounts,
 } from './api'
 
 export const notionApi = {

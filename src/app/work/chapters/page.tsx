@@ -1,9 +1,9 @@
-import { notionApi } from '@/lib/notion'
-import { contentfulApi } from '@/lib/contentful'
 import { ChaptersTable } from '@/components/chapters/ChaptersTable'
-import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ActionBand } from '@/components/ui/ActionBand'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
+import { contentfulApi } from '@/lib/contentful'
+import { notionApi } from '@/lib/notion'
 
 export default async function ChaptersPage() {
   const [chapters, roles, faqs] = await Promise.all([

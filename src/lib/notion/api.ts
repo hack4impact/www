@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { unstable_cache } from 'next/cache'
-import { mapPartner, mapProgram, mapProject, mapVolunteer } from './mappers'
-import { toSlug, stripOrgPrefix, normalizeLocation } from './utils'
 import type { Chapter } from '@/lib/types/chapter'
-import type { Project, TeamMember } from '@/lib/types/project'
 import type { Partner } from '@/lib/types/partner'
+import type { Project, TeamMember } from '@/lib/types/project'
 import {
-  notion,
+  PARTNERS_DATA_SOURCE_ID,
   PROGRAMS_DATA_SOURCE_ID,
   PROJECTS_DATA_SOURCE_ID,
-  PARTNERS_DATA_SOURCE_ID,
-  VOLUNTEERS_DATA_SOURCE_ID,
   TERMS_DATA_SOURCE_ID,
+  VOLUNTEERS_DATA_SOURCE_ID,
+  notion,
 } from './client'
+import { mapPartner, mapProgram, mapProject, mapVolunteer } from './mappers'
+import { normalizeLocation, stripOrgPrefix, toSlug } from './utils'
 
 // Paginates through a Notion data source, collecting all results
 async function fetchAllPages(dataSourceId: string): Promise<any[]> {
@@ -288,7 +288,6 @@ export async function getChapterBySlug(
   }
 }
 
-
 // Public API: Projects (excludes leadership-type projects)
 export async function getProjects(): Promise<Project[]> {
   const { notionProjects, programMap, partnerMap, volunteerMap, termMap } =
@@ -315,7 +314,6 @@ export async function getProjectBySlug(
 
   return processProject(project, programMap, partnerMap, volunteerMap, termMap)
 }
-
 
 // Public API: Partners
 export async function getPartners(): Promise<Partner[]> {
@@ -375,7 +373,6 @@ export async function getPartnerBySlug(
     subjects: partner.subjects ?? [],
   }
 }
-
 
 // Public API: Aggregate stats
 export async function getVolunteerCounts(): Promise<{

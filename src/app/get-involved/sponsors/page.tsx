@@ -1,10 +1,10 @@
-import { HeroBanner } from '@/components/ui/HeroBanner'
 import { ActionBand } from '@/components/ui/ActionBand'
+import { HeroBanner } from '@/components/ui/HeroBanner'
+import { type SponsorGroup, SponsorsGrid } from '@/components/ui/SponsorsGrid'
 import { StatBar } from '@/components/ui/StatBar'
-import { SponsorsGrid, type SponsorGroup } from '@/components/ui/SponsorsGrid'
 import { StepsList } from '@/components/ui/StepsList'
-import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
+import { notionApi } from '@/lib/notion'
 import type { Sponsor } from '@/lib/types/contentful'
 
 async function getStats() {

@@ -1,6 +1,6 @@
-import { HeroBanner } from '@/components/ui/HeroBanner'
-import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ActionBand } from '@/components/ui/ActionBand'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
+import { HeroBanner } from '@/components/ui/HeroBanner'
 import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
 

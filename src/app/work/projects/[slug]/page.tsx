@@ -1,9 +1,9 @@
-import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { notionApi } from '@/lib/notion'
-import { cn } from '@/lib/utils'
+import { notFound } from 'next/navigation'
 import { ActionBand } from '@/components/ui/ActionBand'
+import { notionApi } from '@/lib/notion'
 import type { ProjectSection } from '@/lib/types/project'
+import { cn } from '@/lib/utils'
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>

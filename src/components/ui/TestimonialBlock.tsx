@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { staggerContainer, fadeInUp } from '@/lib/animations'
-import { cn } from '@/lib/utils'
+import { fadeInUp, staggerContainer } from '@/lib/animations'
 import { TEXT_CLASS } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 
 interface Testimonial {
   quote: string

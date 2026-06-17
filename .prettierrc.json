@@ -5,7 +5,10 @@
   "trailingComma": "all",
   "arrowParens": "always",
   "printWidth": 80,
-  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
   "importOrder": [
     "^(react|react-dom)(.*)$",
     "^(next)(.*)$",

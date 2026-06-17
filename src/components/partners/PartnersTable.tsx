@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import type { Partner } from '@/lib/types/partner'
 import { FilterBar } from '../ui/FilterBar'
 import { FilteredGrid } from '../ui/FilteredGrid'
 import { PartnerCard } from './PartnerCard'
-import type { Partner } from '@/lib/types/partner'
 
 type Sort = 'name-asc' | 'name-desc' | 'projects-desc'
 

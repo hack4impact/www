@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function SunIcon() {
   return (
@@ -56,7 +56,7 @@ export function ThemeToggle() {
       type='button'
       onClick={toggleDark}
       aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className='fixed bottom-6 right-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-separator bg-root text-inverse shadow-lg transition-colors hover:bg-panel'
+      className='border-separator bg-root text-inverse hover:bg-panel fixed right-6 bottom-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border shadow-lg transition-colors'
     >
       {dark ? <SunIcon /> : <MoonIcon />}
     </button>

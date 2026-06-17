@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
-import { motion, LayoutGroup } from 'framer-motion'
 import { Menu } from '@base-ui/react/menu'
-import { dropdowns, dropdownKeys, type DropdownKey } from './nav-data'
+import { LayoutGroup, motion } from 'framer-motion'
+import { type DropdownKey, dropdownKeys, dropdowns } from './nav-data'
 
 function ChevronIcon({ isOpen }: { isOpen: boolean }) {
   return (
@@ -30,7 +30,9 @@ function ChevronIcon({ isOpen }: { isOpen: boolean }) {
 export function DesktopNav() {
   const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null)
   const [hoveredNav, setHoveredNav] = useState<string | null>(null)
-  const [hoveredDropdownItem, setHoveredDropdownItem] = useState<string | null>(null)
+  const [hoveredDropdownItem, setHoveredDropdownItem] = useState<string | null>(
+    null,
+  )
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const cancelClose = () => {
@@ -56,15 +58,12 @@ export function DesktopNav() {
   return (
     <div className='hidden items-center gap-6 md:flex'>
       <LayoutGroup>
-        <div
-          className='flex items-center'
-          onMouseLeave={scheduleClose}
-        >
+        <div className='flex items-center' onMouseLeave={scheduleClose}>
           {/* About */}
           <Link
             href='/about'
             onClick={closeAll}
-            className='relative inline-flex items-center rounded-md px-3 py-1.5 font-sans text-[15px] text-inverse outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50'
+            className='text-inverse relative inline-flex items-center rounded-md px-3 py-1.5 font-sans text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50'
             onMouseEnter={() => {
               cancelClose()
               setHoveredNav('about')
@@ -73,7 +72,7 @@ export function DesktopNav() {
             {hoveredNav === 'about' && (
               <motion.div
                 layoutId='nav-highlight'
-                className='pointer-events-none absolute inset-0 rounded-md bg-gray-5'
+                className='bg-gray-5 pointer-events-none absolute inset-0 rounded-md'
                 transition={{ type: 'spring', stiffness: 400, damping: 32 }}
               />
             )}
@@ -95,7 +94,7 @@ export function DesktopNav() {
               }}
             >
               <Menu.Trigger
-                className='relative inline-flex cursor-pointer items-center gap-1.5 rounded-md px-3 py-1.5 font-sans text-[15px] text-inverse outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50'
+                className='text-inverse relative inline-flex cursor-pointer items-center gap-1.5 rounded-md px-3 py-1.5 font-sans text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50'
                 onMouseEnter={() => {
                   cancelClose()
                   setHoveredNav(key)
@@ -105,7 +104,7 @@ export function DesktopNav() {
                 {hoveredNav === key && (
                   <motion.div
                     layoutId='nav-highlight'
-                    className='pointer-events-none absolute inset-0 rounded-md bg-gray-5'
+                    className='bg-gray-5 pointer-events-none absolute inset-0 rounded-md'
                     transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                   />
                 )}
@@ -119,11 +118,14 @@ export function DesktopNav() {
                 <Menu.Positioner
                   sideOffset={6}
                   align='start'
-                  onMouseEnter={() => { cancelClose(); setHoveredNav(key) }}
+                  onMouseEnter={() => {
+                    cancelClose()
+                    setHoveredNav(key)
+                  }}
                   onMouseLeave={scheduleClose}
                 >
                   <Menu.Popup
-                    className='z-50 min-w-[160px] overflow-hidden rounded-lg border border-separator bg-root shadow-popup outline-none'
+                    className='border-separator bg-root shadow-popup z-50 min-w-[160px] overflow-hidden rounded-lg border outline-none'
                     render={
                       <motion.div
                         initial={{ opacity: 0, y: -6, scale: 0.98 }}
@@ -149,13 +151,17 @@ export function DesktopNav() {
                           onMouseEnter={() => setHoveredDropdownItem(item.href)}
                           onFocus={() => setHoveredDropdownItem(item.href)}
                           onBlur={() => setHoveredDropdownItem(null)}
-                          className='relative block px-4 py-2 font-sans text-[15px] whitespace-nowrap text-inverse outline-none'
+                          className='text-inverse relative block px-4 py-2 font-sans text-[15px] whitespace-nowrap outline-none'
                         >
                           {hoveredDropdownItem === item.href && (
                             <motion.div
                               layoutId={`dropdown-hl-${key}`}
-                              className='pointer-events-none absolute inset-x-1.5 inset-y-0 rounded bg-gray-5'
-                              transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                              className='bg-gray-5 pointer-events-none absolute inset-x-1.5 inset-y-0 rounded'
+                              transition={{
+                                type: 'spring',
+                                stiffness: 400,
+                                damping: 32,
+                              }}
                             />
                           )}
                           <span className='relative z-10'>{item.label}</span>

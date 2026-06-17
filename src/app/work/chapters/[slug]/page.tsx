@@ -1,9 +1,9 @@
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { notionApi } from '@/lib/notion'
 import { ProjectsTable } from '@/components/projects/ProjectsTable'
 import { StatBar } from '@/components/ui/StatBar'
 import { contentfulApi } from '@/lib/contentful'
-import Image from 'next/image'
+import { notionApi } from '@/lib/notion'
 import { cn } from '@/lib/utils'
 
 interface ChapterPageProps {
@@ -144,7 +144,11 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         <section className='px-8 pb-12 md:px-16'>
           <div className='mx-auto max-w-[1312px]'>
             <h2 className='mb-6 font-sans text-xl md:text-2xl'>Projects</h2>
-            <ProjectsTable projects={chapterProjects} hideChapterFilter showPartner />
+            <ProjectsTable
+              projects={chapterProjects}
+              hideChapterFilter
+              showPartner
+            />
           </div>
         </section>
       )}

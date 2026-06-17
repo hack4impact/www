@@ -1,10 +1,10 @@
 'use client'
 
-import type { ProcessStep } from '@/lib/types/contentful'
 import { motion } from 'framer-motion'
-import { staggerContainer, fadeInUp } from '@/lib/animations'
-import { cn } from '@/lib/utils'
+import { fadeInUp, staggerContainer } from '@/lib/animations'
 import { TEXT_CLASS } from '@/lib/constants'
+import type { ProcessStep } from '@/lib/types/contentful'
+import { cn } from '@/lib/utils'
 
 const containerVariants = staggerContainer(0.12)
 const stepVariants = fadeInUp(0.5)

@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-
-import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
 import './globals.css'
 
 const inclusiveSans = localFont({
@@ -81,7 +80,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className='flex min-h-screen flex-col relative font-sans'>
+      <body className='relative flex min-h-screen flex-col font-sans'>
         <Header />
         <main className='flex-1'>{children}</main>
         <Footer />

@@ -19,10 +19,11 @@ export function StatBar({ stats }: StatBarProps) {
             key={stat.label || index}
             className={cn(
               'flex flex-1 flex-col items-center justify-center gap-2 py-7',
-              index < stats.length - 1 && 'border-r border-separator',
+              index < stats.length - 1 && 'border-separator border-r',
             )}
           >
-            {typeof stat.value === 'string' || typeof stat.value === 'number' ? (
+            {typeof stat.value === 'string' ||
+            typeof stat.value === 'number' ? (
               <span className='heading-stat'>{stat.value}</span>
             ) : (
               stat.value

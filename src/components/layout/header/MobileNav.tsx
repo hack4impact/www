@@ -1,9 +1,9 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { Collapsible } from '@base-ui/react/collapsible'
+import { AnimatePresence, motion } from 'framer-motion'
 import { dropdowns, mobileItems } from './nav-data'
 
 interface MobileNavProps {
@@ -24,7 +24,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           className='overflow-hidden md:hidden'
         >
-          <div className='divide-y divide-separator px-8 pb-8'>
+          <div className='divide-separator divide-y px-8 pb-8'>
             {mobileItems.map((item, i) => (
               <motion.div
                 key={item.key}
@@ -87,7 +87,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                         <Link
                           key={child.href}
                           href={child.href}
-                          className='block py-3 pl-4 font-sans text-lg text-inverse/60 outline-none'
+                          className='text-inverse/60 block py-3 pl-4 font-sans text-lg outline-none'
                           onClick={onClose}
                         >
                           {child.label}

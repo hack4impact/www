@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { TabbedCards } from '@/components/ui/TabbedCards'
 import { ActionBand } from '@/components/ui/ActionBand'
+import { TabbedCards } from '@/components/ui/TabbedCards'
 import { contentfulApi } from '@/lib/contentful'
 import type { BoardTeamMember } from '@/lib/types'
 

@@ -1,11 +1,11 @@
 import type {
-  JournalEntry,
   BoardTeamMember,
+  ContentfulInfoCards,
+  ContentfulProcess,
+  FAQ,
+  JournalEntry,
   Sponsor,
   SponsorshipTier,
-  FAQ,
-  ContentfulProcess,
-  ContentfulInfoCards,
 } from '@/lib/types/contentful'
 import { buildContentfulImageUrl } from '../utils'
 
@@ -50,7 +50,11 @@ export function mapBoardTeamMember(item: any): BoardTeamMember {
     email: f.email || undefined,
     website: f.website || undefined,
     imageUrl: f.image?.fields?.file?.url
-      ? buildContentfulImageUrl(`https:${f.image.fields.file.url}`, { w: 400, h: 400, q: 80 })
+      ? buildContentfulImageUrl(`https:${f.image.fields.file.url}`, {
+          w: 400,
+          h: 400,
+          q: 80,
+        })
       : undefined,
   }
 }
@@ -79,7 +83,10 @@ export function mapSponsor(item: any): Sponsor {
     tier: f.tier?.fields?.name || undefined,
     corporate: f.corporate ?? false,
     logoUrl: f.logo?.fields?.file?.url
-      ? buildContentfulImageUrl(`https:${f.logo.fields.file.url}`, { w: 400, q: 85 })
+      ? buildContentfulImageUrl(`https:${f.logo.fields.file.url}`, {
+          w: 400,
+          q: 85,
+        })
       : undefined,
   }
 }

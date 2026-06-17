@@ -1,14 +1,14 @@
 import {
-  getJournalEntries,
-  getPaginatedJournalEntries,
-  getJournalEntryBySlug,
+  getAssetUrl,
   getBoardTeamMembers,
+  getFAQs,
+  getInfoCards,
+  getJournalEntries,
+  getJournalEntryBySlug,
+  getPaginatedJournalEntries,
+  getProcess,
   getSponsors,
   getSponsorshipTiers,
-  getAssetUrl,
-  getFAQs,
-  getProcess,
-  getInfoCards,
 } from './api'
 
 export const contentfulApi = {
@@ -23,4 +23,3 @@ export const contentfulApi = {
   getProcess,
   getInfoCards,
 }
-

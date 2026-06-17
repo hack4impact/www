@@ -1,9 +1,9 @@
-import { notionApi } from '@/lib/notion'
-import { contentfulApi } from '@/lib/contentful'
 import { ProjectsTable } from '@/components/projects/ProjectsTable'
-import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ActionBand } from '@/components/ui/ActionBand'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ListingHeader } from '@/components/ui/ListingHeader'
+import { contentfulApi } from '@/lib/contentful'
+import { notionApi } from '@/lib/notion'
 
 export default async function ProjectsPage() {
   const [projects, faqs] = await Promise.all([

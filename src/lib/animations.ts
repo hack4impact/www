@@ -1,9 +1,6 @@
 import type { Variants } from 'framer-motion'
 
-export function staggerContainer(
-  staggerDelay = 0.1,
-  fade = true,
-): Variants {
+export function staggerContainer(staggerDelay = 0.1, fade = true): Variants {
   return {
     hidden: fade ? { opacity: 0 } : {},
     visible: {

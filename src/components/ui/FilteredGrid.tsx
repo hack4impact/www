@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { staggerContainer, fadeInUp } from '@/lib/animations'
+import { fadeInUp, staggerContainer } from '@/lib/animations'
 
 const itemVariants = fadeInUp(0.4)
 
@@ -25,7 +25,10 @@ export function FilteredGrid<T extends { id: string }>({
   scrollable = false,
   staggerDelay = 0.04,
 }: FilteredGridProps<T>) {
-  const gridVariants = useMemo(() => staggerContainer(staggerDelay), [staggerDelay])
+  const gridVariants = useMemo(
+    () => staggerContainer(staggerDelay),
+    [staggerDelay],
+  )
 
   const grid = (
     <div className={gridClassName}>
@@ -38,7 +41,9 @@ export function FilteredGrid<T extends { id: string }>({
   )
 
   const emptyState = items.length === 0 && (
-    <p className='mt-16 text-center font-sans text-base text-gray-400'>{emptyMessage}</p>
+    <p className='mt-16 text-center font-sans text-base text-gray-400'>
+      {emptyMessage}
+    </p>
   )
 
   return (
