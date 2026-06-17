@@ -1,10 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 
 import { Collapsible as BaseCollapsible } from '@base-ui/react/collapsible'
-import { Easing, HTMLMotionProps, Transition, motion } from 'framer-motion'
+import { Easing, HTMLMotionProps, motion, Transition } from 'framer-motion'
 
 import { TEXT_CLASS } from '@/lib/constants'
 import { cn } from '@/lib/utils'

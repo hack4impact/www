@@ -6,17 +6,19 @@
   "arrowParens": "always",
   "printWidth": 80,
   "plugins": [
-    "@trivago/prettier-plugin-sort-imports",
+    "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
   "importOrder": [
     "^(react|react-dom)(.*)$",
+    "",
     "^(next)(.*)$",
+    "",
     "<THIRD_PARTY_MODULES>",
+    "",
     "^@/(.*)$",
-    "^[./]",
-    "<TYPES>"
+    "",
+    "^[./]"
   ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "importOrderTypeScriptVersion": "6.0.0"
 }

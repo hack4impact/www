@@ -6,12 +6,12 @@ import type { Partner } from '@/lib/types/partner'
 import type { Project, TeamMember } from '@/lib/types/project'
 
 import {
+  notion,
   PARTNERS_DATA_SOURCE_ID,
   PROGRAMS_DATA_SOURCE_ID,
   PROJECTS_DATA_SOURCE_ID,
   TERMS_DATA_SOURCE_ID,
   VOLUNTEERS_DATA_SOURCE_ID,
-  notion,
 } from './client'
 import { mapPartner, mapProgram, mapProject, mapVolunteer } from './mappers'
 import { normalizeLocation, stripOrgPrefix, toSlug } from './utils'

@@ -1,6 +1,6 @@
 import { ActionBand } from '@/components/ui/ActionBand'
 import { HeroBanner } from '@/components/ui/HeroBanner'
-import { type SponsorGroup, SponsorsGrid } from '@/components/ui/SponsorsGrid'
+import { SponsorsGrid, type SponsorGroup } from '@/components/ui/SponsorsGrid'
 import { StatBar } from '@/components/ui/StatBar'
 import { StepsList } from '@/components/ui/StepsList'
 import { contentfulApi } from '@/lib/contentful'

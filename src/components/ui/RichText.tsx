@@ -1,6 +1,6 @@
 import {
-  Options,
   documentToReactComponents,
+  Options,
 } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types'
 

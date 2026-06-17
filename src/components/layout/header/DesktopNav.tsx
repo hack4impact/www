@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { Menu } from '@base-ui/react/menu'
 import { LayoutGroup, motion } from 'framer-motion'
 
-import { type DropdownKey, dropdownKeys, dropdowns } from './nav-data'
+import { dropdownKeys, dropdowns, type DropdownKey } from './nav-data'
 
 function ChevronIcon({ isOpen }: { isOpen: boolean }) {
   return (
