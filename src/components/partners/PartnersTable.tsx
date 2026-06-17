@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+
 import type { Partner } from '@/lib/types/partner'
+
 import { FilterBar } from '../ui/FilterBar'
 import { FilteredGrid } from '../ui/FilteredGrid'
 import { PartnerCard } from './PartnerCard'

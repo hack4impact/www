@@ -1,10 +1,13 @@
 'use client'
 
 import { ComponentPropsWithoutRef } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { StaticRadialGradient } from '@paper-design/shaders-react'
 import { motion } from 'framer-motion'
+
 import { Button } from '@/components/ui/Button'
 import { fadeInForward, staggerContainer } from '@/lib/animations'
 import { cn } from '@/lib/utils'

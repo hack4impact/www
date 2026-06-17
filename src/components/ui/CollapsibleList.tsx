@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
+
 import { TEXT_CLASS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+
 import { Collapsible } from './Collapsible'
 
 interface CollapsibleItem {

@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo } from 'react'
+
 import { motion } from 'framer-motion'
+
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 
 const itemVariants = fadeInUp(0.4)

@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+
 import type { Project } from '@/lib/types/project'
+
 import { FilterBar } from '../ui/FilterBar'
 import { FilteredGrid } from '../ui/FilteredGrid'
 import { ProjectCard } from './ProjectCard'

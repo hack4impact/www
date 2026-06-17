@@ -1,7 +1,9 @@
 'use client'
 
 import { ComponentProps } from 'react'
+
 import { Button as BaseButton } from '@base-ui/react/button'
+
 import { cn } from '@/lib/utils'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline'

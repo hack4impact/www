@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { DesktopNav } from './header/DesktopNav'
 import { MobileNav } from './header/MobileNav'
 import { ThemeToggle } from './header/ThemeToggle'

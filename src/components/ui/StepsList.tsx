@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 import { TEXT_CLASS } from '@/lib/constants'
 import type { ProcessStep } from '@/lib/types/contentful'

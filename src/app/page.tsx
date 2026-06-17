@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import { ActionBand } from '@/components/ui/ActionBand'
 import { Hero } from '@/components/ui/Hero'
 import { TabbedCards } from '@/components/ui/TabbedCards'

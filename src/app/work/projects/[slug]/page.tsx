@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+
 import { ActionBand } from '@/components/ui/ActionBand'
 import { notionApi } from '@/lib/notion'
 import type { ProjectSection } from '@/lib/types/project'

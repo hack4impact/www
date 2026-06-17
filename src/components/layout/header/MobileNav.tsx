@@ -2,8 +2,10 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
 import { Collapsible } from '@base-ui/react/collapsible'
 import { AnimatePresence, motion } from 'framer-motion'
+
 import { dropdowns, mobileItems } from './nav-data'
 
 interface MobileNavProps {

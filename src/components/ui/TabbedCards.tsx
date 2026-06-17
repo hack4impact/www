@@ -1,9 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+
 import Link from 'next/link'
+
 import { Tabs } from '@base-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
+
 import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
 import { type InfoCard } from '@/lib/types/contentful'
 import { cn } from '@/lib/utils'

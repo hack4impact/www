@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import { ActionBand } from '@/components/ui/ActionBand'
 import { TabbedCards } from '@/components/ui/TabbedCards'
 import { contentfulApi } from '@/lib/contentful'

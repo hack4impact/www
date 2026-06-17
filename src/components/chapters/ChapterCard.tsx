@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+
 import type { Chapter } from '@/lib/types/chapter'
 import { cn } from '@/lib/utils'
 

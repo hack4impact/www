@@ -1,6 +1,7 @@
 'use client'
 
 import { Collapsible } from '@base-ui/react/collapsible'
+
 import { FilterSelect } from './FilterSelect'
 
 export interface FilterConfig {

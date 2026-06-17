@@ -1,4 +1,5 @@
 import { unstable_cache } from 'next/cache'
+
 import type {
   BoardTeamMember,
   ContentfulInfoCards,
@@ -8,6 +9,7 @@ import type {
   Sponsor,
   SponsorshipTier,
 } from '@/lib/types/contentful'
+
 import { contentfulClient } from './client'
 import {
   mapBoardTeamMember,

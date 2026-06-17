@@ -2,7 +2,9 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { motion } from 'framer-motion'
+
 import { Button, ButtonColor } from '@/components/ui/Button'
 import { GRADIENT_CLASS, TEXT_CLASS } from '@/lib/constants'
 import { cn } from '@/lib/utils'

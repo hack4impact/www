@@ -7,6 +7,7 @@ import type {
   Sponsor,
   SponsorshipTier,
 } from '@/lib/types/contentful'
+
 import { buildContentfulImageUrl } from '../utils'
 
 function formatDate(iso: string): string {

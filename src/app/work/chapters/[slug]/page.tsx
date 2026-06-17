@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+
 import { ProjectsTable } from '@/components/projects/ProjectsTable'
 import { StatBar } from '@/components/ui/StatBar'
 import { contentfulApi } from '@/lib/contentful'

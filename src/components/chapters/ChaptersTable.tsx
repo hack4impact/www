@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+
 import type { Chapter } from '@/lib/types/chapter'
+
 import { FilterBar } from '../ui/FilterBar'
 import { FilteredGrid } from '../ui/FilteredGrid'
 import { ChapterCard } from './ChapterCard'
