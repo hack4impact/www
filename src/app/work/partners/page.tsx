@@ -1,7 +1,7 @@
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
 import { PartnersTable } from '@/components/partners/PartnersTable'
-import { AccordionList } from '@/components/ui/AccordionList'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ActionBand } from '@/components/ui/ActionBand'
 import { ListingHeader } from '@/components/ui/ListingHeader'
 
@@ -28,7 +28,10 @@ export default async function PartnersPage() {
         </div>
       </section>
 
-      <AccordionList items={faqs} color='purple' />
+      <CollapsibleList
+        items={faqs.map((f) => ({ title: f.question, content: f.answer }))}
+        color='purple'
+      />
 
       <ActionBand />
     </>

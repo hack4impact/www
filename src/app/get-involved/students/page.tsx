@@ -1,7 +1,7 @@
 import { HeroBanner } from '@/components/ui/HeroBanner'
 import { SplitPanel } from '@/components/ui/SplitPanel'
 import { StepsList } from '@/components/ui/StepsList'
-import { AccordionList } from '@/components/ui/AccordionList'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ActionBand } from '@/components/ui/ActionBand'
 import { contentfulApi } from '@/lib/contentful'
 
@@ -62,7 +62,10 @@ export default async function StudentsPage() {
         </section>
       )}
 
-      <AccordionList items={faqs} color='green' />
+      <CollapsibleList
+        items={faqs.map((f) => ({ title: f.question, content: f.answer }))}
+        color='green'
+      />
 
       <ActionBand />
     </>

@@ -1,5 +1,5 @@
 import { HeroBanner } from '@/components/ui/HeroBanner'
-import { AccordionList } from '@/components/ui/AccordionList'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ActionBand } from '@/components/ui/ActionBand'
 import { TestimonialBlock } from '@/components/ui/TestimonialBlock'
 import { contentfulApi } from '@/lib/contentful'
@@ -34,7 +34,11 @@ export default async function MentorsPage() {
 
       <TestimonialBlock testimonials={testimonials} color='purple' />
 
-      <AccordionList label='What to expect' items={faqs} color='purple' />
+      <CollapsibleList
+        label='What to expect'
+        items={faqs.map((f) => ({ title: f.question, content: f.answer }))}
+        color='purple'
+      />
 
       <ActionBand />
     </>

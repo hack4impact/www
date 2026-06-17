@@ -1,7 +1,7 @@
 import { notionApi } from '@/lib/notion'
 import { contentfulApi } from '@/lib/contentful'
 import { ChaptersTable } from '@/components/chapters/ChaptersTable'
-import { AccordionList } from '@/components/ui/AccordionList'
+import { CollapsibleList } from '@/components/ui/CollapsibleList'
 import { ActionBand } from '@/components/ui/ActionBand'
 import { ListingHeader } from '@/components/ui/ListingHeader'
 
@@ -38,7 +38,9 @@ export default async function ChaptersPage() {
         </div>
       </section>
 
-      <AccordionList items={faqs} />
+      <CollapsibleList
+        items={faqs.map((f) => ({ title: f.question, content: f.answer }))}
+      />
 
       <ActionBand />
     </>
