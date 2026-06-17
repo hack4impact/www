@@ -23,7 +23,7 @@ export default async function PartnersPage() {
 
       {/* Partners grid */}
       <section className='px-8 py-10 md:px-16'>
-        <div className='mx-auto max-w-[1312px]'>
+        <div className='mx-auto flex max-h-[680px] min-h-[480px] max-w-[1312px] flex-col'>
           <PartnersDirectory partners={partners} />
         </div>
       </section>

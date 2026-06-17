@@ -143,7 +143,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
       {chapterProjects.length > 0 && (
         <section className='px-8 pb-12 md:px-16'>
-          <div className='mx-auto max-w-[1312px]'>
+          <div className='mx-auto flex max-h-[680px] min-h-[480px] max-w-[1312px] flex-col'>
             <h2 className='mb-6 font-sans text-xl md:text-2xl'>Projects</h2>
             <ProjectsDirectory
               projects={chapterProjects}
